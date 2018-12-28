@@ -10,22 +10,4 @@
 npm install --save june-design-system
 ```
 
-## Usage
-
-```tsx
-import * as React from 'react'
-
-import MyComponent from 'june-design-system'
-
-class Example extends React.Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
-}
-```
-
-## License
-
 MIT © [](https://github.com/)
