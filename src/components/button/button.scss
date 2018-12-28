@@ -1,0 +1,365 @@
+@import '../../theme/theme';
+
+.button {
+    @include em-font-size(14);
+
+    background: $green;
+    border: 1px solid $green;
+    border-radius: $comp-radius;
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-buttons;
+    font-weight: 600;
+    height: $comp-size;
+    line-height: ($comp-size - 2px); // 2px = border-top + border-bottom
+    outline: 0;
+    padding: 0 $gutter;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+
+    @include hover {
+        background: $green-darker;
+        border-color: $green-darker;
+    }
+
+    &__icon {
+        @include em-font-size(26);
+        display: inline-block;
+        margin-right: $gutter-s;
+        position: relative;
+        top: .188em;
+
+        &.icon-plus {
+            @include em-font-size(13);
+            font-weight: 900;
+            top: 0;
+        }
+
+        &.icon-eye {
+            margin-left: -$gutter-xs;
+            margin-right: -$gutter-xs;
+            top: .1em;
+        }
+    }
+
+    &__absolute-icon {
+        @include transition;
+        @include absolute;
+        opacity: 1;
+        pointer-events: none;
+        transform: translateY(0);
+
+        &--hidden {
+            opacity: 0;
+            transform: translateY(-$gutter-xxs);
+        }
+    }
+
+    .label {
+        @include transition(opacity);
+        opacity: 1;
+    }
+
+    &[disabled] {
+        opacity: .5;
+        pointer-events: none;
+    }
+
+    &--outlined {
+        background: none;
+        border-color: $green-light;
+        color: $green;
+
+        @include hover {
+            background: $green-light;
+            border-color: $green-light;
+            color: $white;
+        }
+
+        &.button--loading {
+            background: $green-light;
+            border-color: $green-light;
+            color: $white;
+        }
+    }
+
+    &--red {
+        background-color: $red;
+        border-color: $red;
+
+        @include hover {
+            background-color: $red-dark;
+            border-color: $red-dark;
+        }
+
+        &.button--outlined {
+            background: none;
+            color: $red;
+
+            @include hover {
+                background: $red-light;
+                border-color: $red-light;
+                color: $white;
+            }
+
+            &.button--loading {
+                background: $red-light;
+                border-color: $red-light;
+                color: $white;
+            }
+        }
+    }
+
+    &--green-lime {
+        background-color: $green-lime;
+        border-color: $green-lime;
+        color: $green;
+
+        @include hover {
+            background-color: $green;
+            border-color: $green;
+            color: $white;
+        }
+
+        &.button--outlined {
+            background: none;
+            color: $green-lime;
+
+            @include hover {
+                background: none;
+                color: $green;
+            }
+        }
+    }
+
+    &--green-dark {
+        background-color: $green-dark;
+        border-color: $green-dark;
+        color: $white;
+
+        @include hover {
+            background-color: $green;
+            border-color: $green;
+            color: $white;
+        }
+
+        &.button--outlined {
+            background: none;
+            color: $green-dark;
+
+            @include hover {
+                background: none;
+                color: $green;
+            }
+        }
+
+        &.button--loading {
+            background: $green;
+            border-color: $green;
+            color: $white;
+        }
+    }
+
+    &--white {
+        background-color: $white;
+        border-color: $white;
+        color: $black;
+
+        @include hover {
+            background-color: $green-lime;
+            border-color: $green-lime;
+            color: $black;
+        }
+
+        &.button--outlined {
+            background: none;
+            color: $white;
+
+            @include hover {
+                background: $white;
+                border-color: $white;
+                color: $black;
+            }
+        }
+    }
+
+    &--blue {
+        background-color: $blue-button;
+        border-color: $blue-button;
+        color: $white;
+
+        @include hover {
+            background-color: $blue-facebook;
+            border-color: $blue-facebook;
+            color: $white;
+        }
+
+        &.button--outlined {
+            background: none;
+            color: $blue-button;
+
+            @include hover {
+                background: $blue-button;
+                border-color: $blue-button;
+                color: $white;
+            }
+        }
+    }
+
+    &--facebook {
+        background-color: $blue-facebook;
+        border-color: $blue-facebook;
+
+        @include hover {
+            background: none;
+            border-color: $blue-facebook;
+            color: $blue-facebook;
+        }
+    }
+
+    &--google {
+        background-color: $red-google;
+        border-color: $red-google;
+
+        @include hover {
+            background: none;
+            border-color: $red-google;
+            color: $red-google;
+        }
+    }
+
+    &--small {
+        height: $comp-small-size;
+        line-height: ($comp-small-size - 2px); // 2px = border-top + border-bottom
+        padding: 0 $gutter;
+    }
+
+    &--extra-small {
+        height: 20px;
+        line-height: (20px - 2px); // 2px = border-top + border-bottom
+        padding: 0 $gutter-xs;
+    }
+
+    &--large {
+        height: $comp-large-size;
+        line-height: ($comp-large-size - 2px); // 2px = border-top + border-bottom
+        padding: 0 $gutter;
+
+        @media #{$phablet} {
+            height: $comp-large-size * 1.5;
+            line-height: ($comp-large-size * 1.5 - 2px); // 2px = border-top + border-bottom
+        }
+    }
+
+    &--multiline {
+        height: auto;
+        line-height: 20px;
+        padding-bottom: $gutter-s + 1;
+        padding-top: $gutter-s + 1;
+    }
+
+    &--wide {
+        width: 100%;
+    }
+
+    &--xs-wide {
+        width: 100%;
+
+        @media #{$phone} {
+            width: auto;
+        }
+    }
+
+    &--spaced {
+        margin-bottom: $gutter-s;
+        margin-right: $gutter;
+    }
+
+    &--spaced-horizontal {
+        + .button--spaced-horizontal {
+            margin-left: $gutter-s;
+        }
+    }
+
+    &--min-width {
+        min-width: 230px;
+    }
+
+    &--no-border-radius {
+        border-radius: 0;
+    }
+
+    &--loading {
+        opacity: 1 !important;
+
+        .button {
+            &__label {
+                opacity: 0;
+            }
+        }
+    }
+
+    // "Tag-like" buttons, eg. document actions
+    &--round {
+        @include rem-font-size(13);
+        border-radius: $comp-small-size;
+        height: $comp-small-size;
+        line-height: ($comp-small-size - 2px);
+
+        .button {
+            &__icon {
+                font-size: 14px;
+                margin-right: $gutter-xs;
+                top: .05em;
+            }
+
+            &__label {
+                font-weight: 400;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    &--margin {
+        margin: $gutter-xs;
+    }
+
+    &--no-border {
+        border: 0;
+        padding-left: 0;
+        padding-right: 0;
+
+        @include hover {
+            background: none;
+            color: $green-dark;
+        }
+    }
+
+    &--icon-only {
+        .button {
+            &__icon {
+                margin-right: 0;
+            }
+        }
+
+        &.button--round {
+            height: $comp-size - $gutter-xxs;
+            line-height: $comp-size - $gutter-xxs;
+            margin-right: $gutter;
+            padding: 0;
+            width: $comp-size - $gutter-xxs;
+
+            .button {
+                &__icon {
+                    font-weight: 900;
+                }
+            }
+
+            @media #{$laptop} {
+                margin-right: 0;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 {
   "name": "june-design-system",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Design system for June, including a component library",
   "author": "",
   "license": "MIT",
@@ -21,7 +21,14 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/classnames": "^2.2.6",
+    "@types/react-is": "^16.5.0",
+    "classnames": "^2.2.6",
+    "node-sass": "^4.11.0",
+    "react-is": "^16.7.0",
+    "rollup-plugin-postcss-modules": "^1.0.10"
+  },
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
@@ -30,7 +37,7 @@
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
     "@types/jest": "^23.1.5",
-    "@types/react": "^16.3.13",
+    "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.5",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
@@ -44,7 +51,7 @@
     "rollup-plugin-commonjs": "^9.1.3",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-postcss": "^1.6.2",
+    "rollup-plugin-postcss": "^1.6.3",
     "rollup-plugin-typescript2": "^0.17.0",
     "rollup-plugin-url": "^1.4.0",
     "typescript": "^2.8.3"
