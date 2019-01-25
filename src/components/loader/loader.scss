@@ -1,4 +1,5 @@
-@import '../../theme/theme';
+@import '../../theme/variables';
+@import '../../theme/mixins';
 
 @mixin loader {
     @include transition(transform);
