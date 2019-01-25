@@ -2,6 +2,7 @@ import * as React from 'react';
 
 type Props = {
   loading: boolean,
+  percentage: number,
   color?: string,
 }
 
@@ -22,7 +23,7 @@ export class Loader extends React.Component<Props> {
       <span className={className}>
         <span className="valign valign--centered">
           <span className="valign__cell">
-            <span className={styles.loader__line}/>
+            <span className={styles.loader__line} style={{width: this.props.percentage + '%'}}/>
           </span>
         </span>
       </span>

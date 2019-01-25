@@ -3,35 +3,30 @@
  */
 
 import * as React from 'react';
-
-
 import {Loader} from "../..";
+import styles from "./button.scss";
+
 
 var classNames = require('classnames/bind');
-import styles from "./button.scss";
 const cx = classNames.bind(styles);
 
 type Props = {
   id: string,
-
   label: string | React.ReactNode,
-
   component: any,
 
   icon: string,
   outlined: boolean,
   loading: boolean,
-  disabled: boolean,
-  multiline: boolean,
+  percentageDone: number,
   wide: boolean,
+  size: 'small' | 'medium' | 'large';
   rounded: boolean,
   spaced: boolean,
-  spacedHorizontal: boolean,
-  noBorder: boolean,
-  xsWide: boolean,
-  minWidth: boolean,
+  clear: boolean,
   color: string,
   href: string,
+  disabled: boolean,
   target: string,
   onClick: (id: number) => void,
   successMessage: any[],
@@ -51,22 +46,21 @@ export class Button extends React.Component<Props> {
     }
 
     let icon = null;
-    if (this.props.icon) icon = (<span className={`button__icon ${this.props.icon}`}/>);
+    // if (this.props.icon) icon = (<span className={`button__icon ${this.props.icon}`}/>);
+    if (this.props.icon) icon = (<i className={`material-icons ${this.props.icon}`}/>);
 
     const className = cx(
       'button',
       {[`button--${this.props.color}`]: !!this.props.color},
       {'button--wide': this.props.wide},
       {'button--spaced': this.props.spaced},
-      {'button--spaced-horizontal': this.props.spacedHorizontal},
+      {'button--small': this.props.size === 'small'},
+      {'button--large': this.props.size === 'large'},
       {'button--loading': this.props.loading},
       {'button--outlined': this.props.outlined},
       {'button--round': this.props.rounded},
-      {'button--multiline': this.props.multiline},
       {'button--icon-only': this.props.icon && !this.props.label},
-      {'button--no-border': this.props.noBorder},
-      {'button--xs-wide': this.props.xsWide},
-      {'button--min-width': this.props.minWidth},
+      {'button--clear': this.props.clear},
       this.props.classNames,
     );
 
@@ -79,11 +73,8 @@ export class Button extends React.Component<Props> {
         href={this.props.href}
         target={this.props.target}>
         {icon}
-        <span className={styles.label}>
-            {this.props.children}
-          </span>
-
-        <Loader loading={this.props.loading}/>
+        <span className={styles.label}>{this.props.children}</span>
+        <Loader loading={this.props.loading} percentage={this.props.percentageDone} />
       </Tag>
     );
   }
