@@ -22,16 +22,25 @@ export default class App extends Component {
             content: pageLoader(('./pages/intro.md')),
           },
           {
-            path: '/icons',
-            title: 'Icons',
-            content: pageLoader(('./pages/icons/index.md')),
-            imports: {
-              IconPreferences,
-              IconSavings,
-              IconSettings,
-              IconWater,
-              IconWaterBattery,
-            }
+            title: 'Design',
+            pages: [
+              {
+                path: 'typography',
+                title: 'Typography',
+                content: pageLoader(('./pages/design/typography.md')),
+              },
+              {
+                title: 'Icons',
+                content: pageLoader(('./pages/icons/index.md')),
+                imports: {
+                  IconPreferences,
+                  IconSavings,
+                  IconSettings,
+                  IconWater,
+                  IconWaterBattery,
+                }
+              }
+            ]
           },
           {
             title: 'Components',
@@ -39,7 +48,7 @@ export default class App extends Component {
               {
                 path: 'buttons',
                 title: 'Buttons',
-                imports: { Button: Button },
+                imports: {Button: Button},
                 component: pageLoader(('./pages/components/button.md')),
               },
             ]

@@ -44,9 +44,9 @@ $gas: $blue;
 $water: $blue-light;
 
 // fonts
-$font-body: 'proxima-nova', 'Arial', sans-serif;
-$font-headings: 'proxima-nova', 'Arial', sans-serif;
-$font-buttons: 'fira-sans', 'Arial', sans-serif;
+$font-body: 'Montserrat', sans-serif;
+$font-headings: 'Montserrat', sans-serif;
+$font-buttons: 'Montserrat', sans-serif;
 
 // gutters
 $gutter: 20px;
@@ -60,11 +60,14 @@ $gutter-xxl: $gutter * 4;
 
 // component props
 $comp-radius: 3px;
-$comp-size: 46px;
+$comp-radius-l: 30px;
+
+
+$comp-small-size: 30px;
+$comp-medium-size: 40px;
+$comp-large-size: 51px;
+$comp-size: $comp-medium-size;
 $comp-regular-size: $comp-size;
-$comp-medium-size: 60px;
-$comp-small-size: 32px;
-$comp-large-size: 72px;
 
 // z-indexes
 $zi-label: 1;
