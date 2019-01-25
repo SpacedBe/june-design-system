@@ -1,9 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Catalog, pageLoader} from 'catalog';
-import {Button} from 'june-design-system';
+
+import {
+  Button,
+  IconPreferences,
+  IconSavings,
+  IconSettings,
+  IconWater,
+  IconWaterBattery
+} from 'june-design-system';
 
 export default class App extends Component {
-  render () {
+  render() {
     return (
       <Catalog
         title='June Design System'
@@ -14,12 +22,24 @@ export default class App extends Component {
             content: pageLoader(('./pages/intro.md')),
           },
           {
+            path: '/icons',
+            title: 'Icons',
+            content: pageLoader(('./pages/icons/index.md')),
+            imports: {
+              IconPreferences,
+              IconSavings,
+              IconSettings,
+              IconWater,
+              IconWaterBattery,
+            }
+          },
+          {
             title: 'Components',
             pages: [
               {
                 path: 'buttons',
                 title: 'Buttons',
-                imports: {Button: Button},
+                imports: { Button: Button },
                 component: pageLoader(('./pages/components/button.md')),
               },
             ]

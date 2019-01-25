@@ -18,9 +18,11 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
-    "predeploy": "yarn run build && cd example && yarn install && yarn run build"
+    "predeploy": "yarn run build && cd example && yarn install && yarn run build",
+    "generate-icons": "npx @svgr/cli -d src/icons src/icons/src --icon --replace-attr-values '#000=currentColor' --template src/icons/src/template.js --ext tsx"
   },
   "dependencies": {
+    "@svgr/cli": "^4.1.0",
     "@types/classnames": "^2.2.6",
     "@types/react-is": "^16.5.0",
     "classnames": "^2.2.6",
