@@ -15,6 +15,7 @@ export default class App extends Component {
     return (
       <Catalog
         title='June Design System'
+        styles={["./styles/main.css"]}
         pages={[
           {
             path: '/',
@@ -49,8 +50,11 @@ export default class App extends Component {
               {
                 path: 'buttons',
                 title: 'Buttons',
-                imports: {Button: Button},
                 component: pageLoader(('./pages/components/button.md')),
+                imports: {
+                  Button,
+                  IconSettings,
+                },
               },
             ]
           },

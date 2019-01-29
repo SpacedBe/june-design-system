@@ -1,67 +1,95 @@
 > A collection of all available buttons
 
 # States
-## Types
-### Regular
 
+
+# Button states
 ```react
-<Button size="medium">Medium button (default)</Button>
-```
+state: {
+  rounded: false, 
+  outlined: false,
+  wide: false,
+  clear: false, 
+  disabled: false,
+  size: 'medium',
+  content: 'Foobar',
+  color: 'green'
+}
+---
+<div>
+  <div>
+    <label htmlFor="isRounded">Rounded?</label>
+    <input type="checkbox" value={state.rounded} name="isRounded" onChange={() => setState({rounded: !state.rounded})} />
+  </div>
+  
+  <div>
+    <label htmlFor="isOutlined">Outlined?</label>
+    <input type="checkbox" value={state.outlined} name="isOutlined" onChange={() => setState({outlined: !state.outlined})} />
+  </div>
+  
+  <div>
+    <label htmlFor="isClear">Clear?</label>
+    <input type="checkbox" value={state.clear} name="isClear" onChange={() => setState({clear: !state.clear})} />
+  </div>
+  
+  <div>
+    <label htmlFor="isDisabled">Disabled?</label>
+    <input type="checkbox" value={state.disabled} name="isDisabled" onChange={() => setState({disabled: !state.disabled})} />
+  </div>
+  
+  <div>
+    <label htmlFor="isFullWidth">Full width?</label>
+    <input type="checkbox" value={state.wide} name="isFullWidth" onChange={() => setState({wide: !state.wide})} />
+  </div>
+  
+  <div>
+    <label htmlFor="isFullWidth">Full width?</label>
+    <input type="checkbox" value={state.wide} name="isFullWidth" onChange={() => setState({wide: !state.wide})} />
+  </div>
+  
+  <div>
+    <label htmlFor="color">Color</label>
+    <select name="color" value={state.color} onChange={(value) => setState({color: event.target.value})}>
+       <option value="red">red</option>
+       <option value="green">green</option>
+       <option value="blue">blue</option>
+     </select>
+  </div>
 
-### Outlined
-```react
-<Button outlined="true">Outlined button</Button>
-```
+  <div>
+    <label htmlFor="size">Size</label>
+    <select name="size" value={state.size} onChange={(value) => setState({size: event.target.value})}>
+       <option value="small">Small</option>
+       <option value="medium">Medium</option>
+       <option value="large">Large</option>
+     </select>
+  </div>
 
-### Rounded
-```react
-<Button rounded="true">Rounded button</Button>
-```
-
-### Clear
-```react
-<Button clear="true">Clear button</Button>
-```
-
-## Size
-
-```react
-<Button size="small">Small button</Button>
-```
-
-```react
-<Button size="medium">Medium button (default)</Button>
-```
-
-```react
-<Button size="large">Large button</Button>
-```
-
-## Full width
-
-```react
-<Button wide="true">Wide button</Button>
-```
-
-## Colors
-
-You can use color buttons by adding a modifier
-
-```react
-<Button color={'red'}>Red button</Button>
+  <Button size={state.size} rounded={state.rounded} clear={state.clear} outlined={state.outlined} disabled={state.disabled} wide={state.wide} color={state.color}>
+    {state.content}
+  </Button>
+</div>
 ```
 
 ## Icons
-### Left
-### Right
-### Only
-Todo
 
+### Icon on the left
+```react
+<Button iconLeft={<IconSettings></IconSettings>}>Button with button</Button>
+```
 
-## Disabled
+### Icon on the right
+```react
+<Button iconRight={<IconSettings></IconSettings>}>Button with button</Button>
+```
+
+### Only an icon
+```react
+<Button iconOnly={<IconSettings></IconSettings>}>Button with only an icon</Button>
+```
 
 ```react
-<Button disabled="true">Disabled button</Button>
+<Button outlined="true" iconOnly={<IconSettings></IconSettings>}>Button with only an icon</Button>
 ```
 
 ## Loading

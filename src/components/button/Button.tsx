@@ -15,7 +15,9 @@ type Props = {
   label: string | React.ReactNode,
   component: any,
 
-  icon: string,
+  iconLeft: any,
+  iconRight: any,
+  iconOnly: any,
   outlined: boolean,
   loading: boolean,
   percentageDone: number,
@@ -36,6 +38,8 @@ type Props = {
 export class Button extends React.Component<Props> {
   render() {
     let Tag = 'button';
+    let buttonContent;
+    let isDisabled = (this.props.loading || this.props.disabled) ? true: false;
 
     if (this.props.href) {
       Tag = 'a';
@@ -45,22 +49,66 @@ export class Button extends React.Component<Props> {
       Tag = this.props.component;
     }
 
-    let icon = null;
-    // if (this.props.icon) icon = (<span className={`button__icon ${this.props.icon}`}/>);
-    if (this.props.icon) icon = (<i className={`material-icons ${this.props.icon}`}/>);
+    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly;
+
+    if (hasIcon && this.props.iconLeft) {
+      buttonContent = (
+        <div>
+          <div className={styles.icon}>
+            <span className={styles["icon-left"]}>{this.props.iconLeft}</span>
+            <span className={styles.label}>{this.props.children}</span>
+          </div>
+          <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
+        </div>
+      )
+
+    }
+
+    if (hasIcon && this.props.iconRight) {
+      buttonContent = (
+        <div>
+          <div className={styles.icon}>
+            <span className={styles.label}>{this.props.children}</span>
+            <span className={styles["icon-right"]}>{this.props.iconRight}</span>
+          </div>
+          <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
+        </div>
+      )
+    }
+
+    if (hasIcon && this.props.iconOnly) {
+      buttonContent = (
+        <div>
+          <div className={styles.icon}>
+            {this.props.iconOnly}
+          </div>
+        </div>
+      )
+    }
+
+    if (!hasIcon) {
+      buttonContent = (
+        <div>
+          <span className={styles.label}>{this.props.children}</span>
+          <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
+        </div>
+      )
+    }
+
 
     const className = cx(
       'button',
       {[`button--${this.props.color}`]: !!this.props.color},
       {'button--wide': this.props.wide},
       {'button--spaced': this.props.spaced},
+      {'button--clear': this.props.clear},
       {'button--small': this.props.size === 'small'},
       {'button--large': this.props.size === 'large'},
       {'button--loading': this.props.loading},
       {'button--outlined': this.props.outlined},
       {'button--round': this.props.rounded},
-      {'button--icon-only': this.props.icon && !this.props.label},
-      {'button--clear': this.props.clear},
+      {'button--icon': hasIcon},
+      {'button--icon-only': this.props.iconOnly},
       this.props.classNames,
     );
 
@@ -69,12 +117,10 @@ export class Button extends React.Component<Props> {
         id={this.props.id}
         className={className}
         onClick={this.props.onClick}
-        disabled={this.props.loading || this.props.disabled}
+        disabled={isDisabled}
         href={this.props.href}
         target={this.props.target}>
-        {icon}
-        <span className={styles.label}>{this.props.children}</span>
-        <Loader loading={this.props.loading} percentage={this.props.percentageDone} />
+        {buttonContent}
       </Tag>
     );
   }
