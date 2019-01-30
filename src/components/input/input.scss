@@ -1,0 +1,57 @@
+@import '../../theme/theme';
+
+$border-width: 2px;
+
+$color-resting: #CCCCCC;
+$color-disabled: rgba(#F6F6F6, 0.8);
+$color-focus: #888E90;
+$color-error: red;
+$color-success: green;
+
+$color-black: #172328;
+
+
+.input {
+  border-radius: 3px; //todo: var
+  padding: 8px; //todo: var
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  border: $border-width solid $color-resting;
+  color: $color-resting;
+  outline: none;
+
+  @include transition();
+
+  &--success {
+    border-color: $color-success;
+    color: $color-success;
+  }
+
+  &--error {
+    border-color: $color-error;
+    color: $color-error;
+  }
+
+  &:focus {
+    border-color: $color-focus;
+    color: $color-black;
+  }
+
+  &:disabled {
+    border-color: $color-disabled;
+    color: $color-disabled;
+  }
+}
+
+.validationMessage {
+  font-weight: bold; //todo: var
+  font-size: 11px; //todo: var
+  padding-left: $border-width;
+}
+
+.errorValidationMessage {
+  composes: validationMessage;
+  composes: input--error;
+}
+
+

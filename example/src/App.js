@@ -3,6 +3,7 @@ import {Catalog, pageLoader} from 'catalog';
 
 import {
   Button,
+  Input,
   IconPreferences,
   IconSavings,
   IconSettings,
@@ -54,6 +55,14 @@ export default class App extends Component {
                 imports: {
                   Button,
                   IconSettings,
+                },
+              },
+              {
+                path: 'inputs',
+                title: 'Inputs',
+                component: pageLoader(('./pages/components/input.md')),
+                imports: {
+                  Input
                 },
               },
             ]
