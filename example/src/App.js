@@ -3,6 +3,7 @@ import {Catalog, pageLoader} from 'catalog';
 
 import {
   Button,
+  Input,
   IconPreferences,
   IconSavings,
   IconSettings,
@@ -15,6 +16,7 @@ export default class App extends Component {
     return (
       <Catalog
         title='June Design System'
+        styles={["./styles/main.css"]}
         pages={[
           {
             path: '/',
@@ -22,16 +24,26 @@ export default class App extends Component {
             content: pageLoader(('./pages/intro.md')),
           },
           {
-            path: '/icons',
-            title: 'Icons',
-            content: pageLoader(('./pages/icons/index.md')),
-            imports: {
-              IconPreferences,
-              IconSavings,
-              IconSettings,
-              IconWater,
-              IconWaterBattery,
-            }
+            title: 'Design',
+            pages: [
+              {
+                path: 'typography',
+                title: 'Typography',
+                content: pageLoader(('./pages/design/typography.md')),
+              },
+              {
+                path: 'icons',
+                title: 'Icons',
+                content: pageLoader(('./pages/design/icons.md')),
+                imports: {
+                  IconPreferences,
+                  IconSavings,
+                  IconSettings,
+                  IconWater,
+                  IconWaterBattery,
+                }
+              }
+            ]
           },
           {
             title: 'Components',
@@ -39,8 +51,19 @@ export default class App extends Component {
               {
                 path: 'buttons',
                 title: 'Buttons',
-                imports: { Button: Button },
                 component: pageLoader(('./pages/components/button.md')),
+                imports: {
+                  Button,
+                  IconSettings,
+                },
+              },
+              {
+                path: 'inputs',
+                title: 'Inputs',
+                component: pageLoader(('./pages/components/input.md')),
+                imports: {
+                  Input
+                },
               },
             ]
           },

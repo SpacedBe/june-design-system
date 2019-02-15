@@ -3,3 +3,15 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+label {
+  display: block;
+}
+
+.input-group {
+  margin-bottom: 8px;
+}
+
+.props {
+  margin-bottom: 32px;
+}

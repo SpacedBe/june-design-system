@@ -71,7 +71,7 @@
 // hover
 
 @mixin hover {
-  .no-touchevents &:hover {
+  &:hover {
     @content;
   }
 }

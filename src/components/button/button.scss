@@ -1,28 +1,33 @@
-@import '../../theme/variables';
-@import '../../theme/mixins';
+@import '../../theme/theme';
 
 .button {
   @include em-font-size(14);
 
-  background: $green;
-  border: 1px solid $green;
+  background-color: $green;
+  border: 2px solid $green;
   border-radius: $comp-radius;
   color: $white;
   cursor: pointer;
-  display: inline-block;
   font-family: $font-buttons;
   font-weight: 600;
-  height: $comp-size;
-  line-height: ($comp-size - 2px); // 2px = border-top + border-bottom
+  line-height: ($comp-size - 4px); // 4px = border-top + border-bottom
   outline: 0;
   padding: 0 $gutter;
   position: relative;
   text-align: center;
   text-decoration: none;
+  letter-spacing: 0.8px;
+
+  @include transition;
 
   @include hover {
     background: $green-darker;
     border-color: $green-darker;
+  }
+
+  .label {
+    @include transition(opacity);
+    opacity: 1;
   }
 
   &[disabled] {
@@ -30,9 +35,40 @@
     pointer-events: none;
   }
 
+  .icon {
+    display: flex;
+    align-items: center;
+
+    > * {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-left {
+      margin-right: 8px; //todo: var
+    }
+
+    .icon-right {
+      margin-left: 8px; //todo: var
+    }
+  }
+
+  &--icon-only {
+    color: $white;
+    padding: 20px;
+    border-radius: 50%;
+
+    &:hover {
+      color: $green-dark;
+      background: none;
+    }
+  }
+
+
   &--outlined {
     background: none;
-    border-color: $green-light;
+    border-color: $green;
     color: $green;
 
     @include hover {
@@ -171,87 +207,18 @@
     }
   }
 
-  &--facebook {
-    background-color: $blue-facebook;
-    border-color: $blue-facebook;
-
-    @include hover {
-      background: none;
-      border-color: $blue-facebook;
-      color: $blue-facebook;
-    }
-  }
-
-  &--google {
-    background-color: $red-google;
-    border-color: $red-google;
-
-    @include hover {
-      background: none;
-      border-color: $red-google;
-      color: $red-google;
-    }
-  }
-
   &--small {
-    height: $comp-small-size;
-    line-height: ($comp-small-size - 2px); // 2px = border-top + border-bottom
+    line-height: ($comp-small-size - 4px); // 4px = border-top + border-bottom
     padding: 0 $gutter;
-  }
-
-  &--extra-small {
-    height: 20px;
-    line-height: (20px - 2px); // 2px = border-top + border-bottom
-    padding: 0 $gutter-xs;
   }
 
   &--large {
-    height: $comp-large-size;
-    line-height: ($comp-large-size - 2px); // 2px = border-top + border-bottom
+    line-height: ($comp-large-size - 4px); // 4px = border-top + border-bottom
     padding: 0 $gutter;
-
-    @media #{$phablet} {
-      height: $comp-large-size * 1.5;
-      line-height: ($comp-large-size * 1.5 - 2px); // 2px = border-top + border-bottom
-    }
-  }
-
-  &--multiline {
-    height: auto;
-    line-height: 20px;
-    padding-bottom: $gutter-s + 1;
-    padding-top: $gutter-s + 1;
   }
 
   &--wide {
     width: 100%;
-  }
-
-  &--xs-wide {
-    width: 100%;
-
-    @media #{$phone} {
-      width: auto;
-    }
-  }
-
-  &--spaced {
-    margin-bottom: $gutter-s;
-    margin-right: $gutter;
-  }
-
-  &--spaced-horizontal {
-    + .button--spaced-horizontal {
-      margin-left: $gutter-s;
-    }
-  }
-
-  &--min-width {
-    min-width: 230px;
-  }
-
-  &--no-border-radius {
-    border-radius: 0;
   }
 
   &--loading {
@@ -264,103 +231,24 @@
     }
   }
 
-  // "Tag-like" buttons, eg. document actions
   &--round {
-    @include rem-font-size(13);
     border-radius: $comp-small-size;
-    height: $comp-small-size;
-    line-height: ($comp-small-size - 2px);
-
-    .button {
-      &__icon {
-        font-size: 14px;
-        margin-right: $gutter-xs;
-        top: .05em;
-      }
-
-      &__label {
-        font-weight: 400;
-        text-transform: uppercase;
-      }
-    }
   }
 
   &--margin {
     margin: $gutter-xs;
   }
 
-  &--no-border {
+  &--clear {
     border: 0;
     padding-left: 0;
     padding-right: 0;
+    background: none;
+    color: $green;
 
     @include hover {
-      background: none;
       color: $green-dark;
+      background: none;
     }
   }
-
-  &--icon-only {
-    .button {
-      &__icon {
-        margin-right: 0;
-      }
-    }
-
-    &.button--round {
-      height: $comp-size - $gutter-xxs;
-      line-height: $comp-size - $gutter-xxs;
-      margin-right: $gutter;
-      padding: 0;
-      width: $comp-size - $gutter-xxs;
-
-      .button {
-        &__icon {
-          font-weight: 900;
-        }
-      }
-
-      @media #{$laptop} {
-        margin-right: 0;
-      }
-    }
-  }
-}
-
-.icon {
-  @include em-font-size(26);
-  display: inline-block;
-  margin-right: $gutter-s;
-  position: relative;
-  top: .188em;
-
-  &.icon-plus {
-    @include em-font-size(13);
-    font-weight: 900;
-    top: 0;
-  }
-
-  &.icon-eye {
-    margin-left: -$gutter-xs;
-    margin-right: -$gutter-xs;
-    top: .1em;
-  }
-}
-
-.absolute-icon {
-  @include transition;
-  @include absolute;
-  opacity: 1;
-  pointer-events: none;
-  transform: translateY(0);
-
-  &--hidden {
-    opacity: 0;
-    transform: translateY(-$gutter-xxs);
-  }
-}
-
-.label {
-  @include transition(opacity);
-  opacity: 1;
 }

@@ -46,7 +46,6 @@
     &__line {
         display: block;
         height: 2px;
-        width: $gutter;
 
         &::after {
             @include loader;
