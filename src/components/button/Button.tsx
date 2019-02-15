@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import {Loader} from "../..";
+import {Loader} from "../loader/Loader";
 import styles from "./button.scss";
 
 
@@ -11,35 +11,37 @@ var classNames = require('classnames/bind');
 const cx = classNames.bind(styles);
 
 type Props = {
-  id: string,
-  label: string | React.ReactNode,
-  component: any,
+  id?: string,
+  label?: string | React.ReactNode,
+  component?: any,
 
-  iconLeft: any,
-  iconRight: any,
-  iconOnly: any,
-  outlined: boolean,
-  loading: boolean,
-  percentageDone: number,
-  wide: boolean,
-  size: 'small' | 'medium' | 'large';
-  rounded: boolean,
-  spaced: boolean,
-  clear: boolean,
-  color: string,
-  href: string,
-  disabled: boolean,
-  target: string,
-  onClick: (id: number) => void,
-  successMessage: any[],
-  classNames: string[],
+  iconLeft?: any,
+  iconRight?: any,
+  iconOnly?: any,
+  outlined?: boolean,
+  loading?: boolean,
+  percentageDone?: number,
+  wide?: boolean,
+  size?: 'small' | 'medium' | 'large';
+  rounded?: boolean,
+  spaced?: boolean,
+  clear?: boolean,
+  color?: string,
+  href?: string,
+  disabled?: boolean,
+  target?: string,
+  type?: string,
+  onClick?: (id: number) => void,
+  successMessage?: any[],
+  classNames?: string[],
 };
 
 export class Button extends React.Component<Props> {
   render() {
-    let Tag = 'button';
     let buttonContent;
-    let isDisabled = (this.props.loading || this.props.disabled) ? true: false;
+    let isDisabled = (this.props.loading || this.props.disabled);
+
+    let Tag = 'button';
 
     if (this.props.href) {
       Tag = 'a';
@@ -119,6 +121,7 @@ export class Button extends React.Component<Props> {
         onClick={this.props.onClick}
         disabled={isDisabled}
         href={this.props.href}
+        type={this.props.type}
         target={this.props.target}>
         {buttonContent}
       </Tag>

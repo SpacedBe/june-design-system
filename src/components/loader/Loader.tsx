@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 type Props = {
-  loading: boolean,
-  percentage: number,
+  loading?: boolean,
+  percentage?: number,
   color?: string,
 }
 
