@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Catalog, pageLoader} from 'catalog';
+import { Catalog, pageLoader} from 'catalog';
+
 
 import {
   Button,
@@ -50,7 +51,7 @@ export default class App extends Component {
               {
                 path: 'buttons',
                 title: 'Buttons',
-                component: pageLoader(('./pages/components/button.md')),
+                component: pageLoader(() => import('./pages/components/button')),
                 imports: {
                   Button,
                   IconSettings,
