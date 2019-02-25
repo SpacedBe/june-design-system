@@ -1,16 +1,21 @@
 /**
- * @class Input
+ * @class FormikInput
  */
 
 import * as React from 'react';
-import styles from "./input.scss";
+import styles from "./formik-input.scss";
 
 var classNames = require('classnames/bind');
 const cx = classNames.bind(styles);
 
 type Props = {
-  field: any;
-  form: any;
+  field: {
+    name: string;
+  };
+  form: {
+    ['errors']: string;
+    ['touched']: boolean;
+  };
   type: 'text' | 'number' | 'password';
   disabled: boolean;
   validationMessage: string;
@@ -18,7 +23,7 @@ type Props = {
   placeholderText: string;
 };
 
-export class Input extends React.Component<Props> {
+export class FormikInput extends React.Component<Props> {
   render() {
     const FieldName = this.props.field.name;
     const errors = this.props.form.errors[FieldName];
