@@ -51,6 +51,7 @@ state: {
     <label htmlFor="color">Color</label>
     <select name="color" value={state.color} onChange={(value) => setState({color: event.target.value})}>
        <option value="red">red</option>
+       <option value="yellow">yellow</option>
        <option value="green">green</option>
        <option value="blue">blue</option>
      </select>
