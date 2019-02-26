@@ -1,31 +1,34 @@
 import React from 'react';
 import { Page, ReactSpecimen } from 'catalog';
-import {Popup} from 'june-design-system';
+import {Popup, IconWater} from 'june-design-system';
 
 export default class ButtonPage extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      title: '',
-      text: ''
+     visible: false,
+     title: '',
+     text: ''
     };
   }
 
-  showPopup(){
+  changeInputPopup(event){
     this.setState({
-      title: 'Wat wil dit zeggen?',
-      text: 'Aenean lacinia bibendum nulla sed consectetur. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. '
+      title: event.target.value,
+      text: event.target.name
     })
   }
+
 
   render(){
     return(
       <Page>
-        <ReactSpecimen span="3">
-          <Popup title={this.state.title} text={this.state.text}></Popup>
-        </ReactSpecimen>
-        <button onClick={() => this.showPopup()}>Show Popup</button>
+        <Popup visible={this.state.visible} title={this.state.title} text={this.state.text}></Popup>
+        <div>
+          <button onClick={(event) => this.changeInputPopup(event)} value="0" name="did you know"><IconWater></IconWater></button>
+          <input onClick={(event) => this.changeInputPopup(event)} type="button" value="1" name="Wist je dit al?"/>
+        </div>
       </Page>
     )
   }
