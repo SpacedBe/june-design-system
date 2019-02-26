@@ -45,7 +45,7 @@ export class FormikInput extends React.Component<Props> {
                disabled={this.props.disabled}
                placeholder={this.props.placeholderText}/>
         {
-          touched &&  errors && <div className="error">{errors}</div>
+          touched && errors && <div className="error">{errors}</div>
         }
       </div>
     )
