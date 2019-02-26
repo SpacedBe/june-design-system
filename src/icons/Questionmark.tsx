@@ -2,7 +2,7 @@
 import * as React from "react";
 
 const SvgQuestionmark = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg width="1em" height="1em" viewBox="0 0 32 32" {...props}>
+  <svg width="1em" height="1em" viewBox="0 0 25 25" {...props}>
     <g fill="currentColor" fillRule="evenodd">
       <path  d="M15,25C9.48,25,5,20.52,5,15S9.48,5,15,5s10,4.48,10,10C24.99,20.52,20.52,24.99,15,25z M15,7
    		c-4.42,0-8,3.58-8,8s3.58,8,8,8s8-3.58,8-8C23,10.58,19.42,7,15,7z M16,21h-2v-2h2V21z M16,18h-2c-0.03-1.3,0.65-2.52,1.77-3.18
