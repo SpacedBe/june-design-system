@@ -34,7 +34,7 @@ export default class App extends Component {
               {
                 path: 'icons',
                 title: 'Icons',
-                content: pageLoader(('./pages/design/icons.md')),
+                component: pageLoader(('./pages/design/icons.md')),
                 imports: {
                   IconPreferences,
                   IconSavings,
