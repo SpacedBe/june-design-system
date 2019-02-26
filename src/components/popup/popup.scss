@@ -1,7 +1,11 @@
 @import '../../theme/theme';
 
 .popup{
-  background-color: $gray;
-  width: 10rem;
-  height: 10rem;
+   text-align: center;
+    text-decoration: none;
+
+   &--wide {
+    background-color: $gray;
+    width: 100%;
+  }
 }
