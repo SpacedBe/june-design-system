@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Page, ReactSpecimen } from 'catalog';
 import { Button, IconSettings } from 'june-design-system';
@@ -19,9 +18,6 @@ export default class ButtonPage extends React.Component {
       selectedColor: '',
       clicked: 0
     };
-
-    this.changeColor = this.changeColor.bind(this);
-    this.changeSize = this.changeSize.bind(this);
   }
 
   changeRounded() {
@@ -35,11 +31,13 @@ export default class ButtonPage extends React.Component {
       outlined: !this.state.outlined,
     });
   }
+
   changeClear() {
     this.setState({
       clear: !this.state.clear
     });
   }
+
   changeDisable() {
     this.setState({
       disabled: !this.state.disabled
@@ -105,7 +103,7 @@ export default class ButtonPage extends React.Component {
 
        <div>
         <label htmlFor="color">Color</label>
-            <select name="color" value={this.state.color} onChange={this.changeColor}>
+            <select name="color" value={this.state.color} onChange={(event) => this.changeColor(event)}>
             <option value="red">red</option>
             <option value="green">green</option>
             <option value="blue">blue</option>
@@ -114,7 +112,7 @@ export default class ButtonPage extends React.Component {
 
           <div>
             <label htmlFor="size">Size</label>
-            <select name="size" value={this.state.size} onChange={this.changeSize}>
+            <select name="size" value={this.state.size} onChange={(event) => this.changeSize(event)}>
               <option value="small">Small</option>
               <option value="medium">Medium</option>
               <option value="large">Large</option>
