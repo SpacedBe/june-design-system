@@ -64,12 +64,9 @@ export default class ButtonPage extends React.Component {
     this.setState({
       clicked: this.state.clicked + 1
     });
-    console.log(this.state.clicked);
   }
 
-
   render() {
-
     return (
       <Page>
         ## Buttons
@@ -101,7 +98,6 @@ export default class ButtonPage extends React.Component {
             <input type="checkbox" value={this.state.clear} name="isClear" onChange={() => this.changeClear()} />
       </div>
 
-
           <div>
             <label htmlFor="isFullWidth">Full width?</label>
             <input type="checkbox" value={this.state.wide} name="isFullWidth" onChange={() => this.changeWide()} />
@@ -126,7 +122,6 @@ export default class ButtonPage extends React.Component {
           </div>
 
       </div>
-
 
       ## Icon on the left
        <ReactSpecimen span={3}>
@@ -160,8 +155,6 @@ export default class ButtonPage extends React.Component {
          </ReactSpecimen>
          <p>Clicked {this.state.clicked} times</p>
       </Page>
-
-
     )
   }
 }
