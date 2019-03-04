@@ -1,6 +1,7 @@
 @import '../../theme/theme';
 
 .popup{
+
   @include em-font-size(14);
   text-align: center;
   text-decoration: none;
@@ -29,4 +30,5 @@
   top: 20px;
   right: 10px;
   color: white;
+
 }

@@ -1,11 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Page, ReactSpecimen } from 'catalog';
-import { Button, IconSettings, IconQuestionmark } from 'june-design-system';
-=======
+
 import {Page, ReactSpecimen} from 'catalog';
 import {Button, IconSettings} from 'june-design-system';
->>>>>>> FAB page + component
+
+
 
 
 export default class ButtonPage extends React.Component {
