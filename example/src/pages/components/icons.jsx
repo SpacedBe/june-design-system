@@ -25,7 +25,6 @@ export default class IconPage extends React.Component {
           </ReactSpecimen>
         </div>
       </Page>
-
     )
   }
 }
