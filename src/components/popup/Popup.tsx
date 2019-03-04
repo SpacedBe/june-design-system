@@ -3,11 +3,6 @@
  */
 import * as React from 'react';
 import { Identifier } from 'estree';
-import styles from "./popup.scss"
-
-
-var classNames = require('classnames/bind');
-const cx = classNames.bind(styles);
 
 type Props = {
   id?: string,
@@ -24,12 +19,6 @@ type Props = {
 
 export class Popup extends React.Component<Props>{
   render(){
-
-    const className = cx(
-      'popup',
-      {'popup--wide': this.props.visible},
-      this.props.classNames,
-    );
     return(
       <div id={this.props.id}>
           <h1>{this.props.title}</h1>
