@@ -2,14 +2,10 @@
  * @class Popup
  */
 import * as React from 'react';
-import { Identifier } from 'estree';
 import styles from './popup.scss';
-import { IconQuestionmark } from '../../icons';
-
 
 var classNames = require('classnames/bind');
 const cx = classNames.bind(styles);
-
 
 type Props = {
   id?: string,
@@ -17,25 +13,33 @@ type Props = {
   component: any,
   text?: string,
   title?: string,
-  visible?: false,
+  show?: boolean,
   classNames: string[],
   placeholder?:string,
+  className?: string,
+  img: string,
 
-  onclick?: (id: Identifier) => void,
+  close: () => void,
 }
 
 export class Popup extends React.Component<Props>{
   render(){
+
     const className = cx(
       'popup',
+      {'afterClick': this.props.className},
+      {'afterClick--p': this.props.placeholder},
       this.props.classNames,
     );
     return(
       <div className={className} id={this.props.id}>
-        <IconQuestionmark></IconQuestionmark>
-        <h1>{this.props.title}</h1>
-        <h3>{this.props.text}</h3>
-        <p>{this.props.placeholder}</p>
+        <div className={styles.block}>
+            <h1>{this.props.title}</h1>
+            <h3>{this.props.text}</h3>
+            <p className={styles.p}>{this.props.placeholder}</p>
+            <button onClick={() => this.props.close()}>close</button>
+            <img src={this.props.img}></img>
+        </div>
       </div>
     );
   }
