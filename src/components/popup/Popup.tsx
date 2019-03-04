@@ -6,12 +6,12 @@ import { Identifier } from 'estree';
 
 type Props = {
   id?: string,
-  label?: string,
-  component?: any,
+  label: string,
+  component: any,
   text?: string,
   title?: string,
-  visible?: boolean,
-  classNames?: string[],
+  visible: boolean,
+  classNames: string[],
   placeholder?:string,
 
   onclick?: (id: Identifier) => void,
