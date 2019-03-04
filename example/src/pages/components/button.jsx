@@ -72,8 +72,8 @@ export default class ButtonPage extends React.Component {
 
           <Button size={this.state.size} rounded={this.state.rounded} clear={this.state.clear} outlined={this.state.outlined} disabled={this.state.disabled} wide={this.state.wide} color={this.state.color}>
            {this.state.content}
-         </Button>
-         </ReactSpecimen>
+          </Button>
+        </ReactSpecimen>
 
       <div>
           <div>

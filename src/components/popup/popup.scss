@@ -1,0 +1,11 @@
+@import '../../theme/theme';
+
+.popup{
+   text-align: center;
+    text-decoration: none;
+
+   &--wide {
+    background-color: $gray;
+    width: 100%;
+  }
+}

@@ -57,6 +57,11 @@ export default class App extends Component {
                   IconSettings,
                 },
               },
+              {
+                path: 'tooltip',
+                title: 'Tooltip',
+                component: pageLoader(() => import('./pages/components/tooltip')),
+              },
             ]
           },
           {
