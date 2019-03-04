@@ -1,6 +1,7 @@
 import React from 'react';
-import {Page, ReactSpecimen} from 'catalog';
-import {Button, IconSettings} from 'june-design-system';
+import { Page, ReactSpecimen } from 'catalog';
+import { Button, IconSettings, IconQuestionmark } from 'june-design-system';
+
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -143,7 +144,13 @@ export default class ButtonPage extends React.Component {
           <Button iconOnly={<IconSettings></IconSettings>}>Button with only an icon</Button>
         </ReactSpecimen>
 
-        ## Loading
+      ## Only with questionmark
+       <ReactSpecimen span={3}>
+          <Button iconQuestionmark={<IconQuestionmark></IconQuestionmark>}>Button with only an icon</Button>
+        </ReactSpecimen>
+
+
+       ## Loading
         <ReactSpecimen span={3}>
           <Button loading="true" percentageDone="30">Loading button</Button>
         </ReactSpecimen>
