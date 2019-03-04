@@ -11,3 +11,13 @@ npm install --save june-design-system
 ```
 
 MIT © [](https://github.com/)
+
+# SVG
+We transform SVGs into React components using [SVGR](https://github.com/smooth-code/svgr).
+
+To generate a React-component from a svg file, place the svg file in ```src/icons/src```
+and then run the following yarn task:
+
+```bash
+yarn run generate-icons
+```

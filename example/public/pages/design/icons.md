@@ -4,14 +4,16 @@
 
 ```react
 <div>
-<IconPreferences></IconPreferences>
-
-<IconSavings></IconSavings>
-
-<IconSettings></IconSettings>
-
-<IconWater></IconWater>
-
-<IconWaterBattery></IconWaterBattery>
+  <IconPreferences></IconPreferences>
+  
+  <IconSavings></IconSavings>
+  
+  <IconSettings></IconSettings>
+  
+  <IconWater></IconWater>
+  
+  <IconWaterBattery></IconWaterBattery>
+  
+  <IconCheck></IconCheck>
 </div>
 ```
