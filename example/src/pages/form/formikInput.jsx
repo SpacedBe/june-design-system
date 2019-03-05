@@ -2,6 +2,8 @@ import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {FormikInput} from 'june-design-system';
 
+
+
 export default class ButtonPage extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,7 @@ export default class ButtonPage extends React.Component {
     this.state = {
       type: 'text',
       disabled: false,
+      className: 'input',
       field: {
         name: 'example-input',
       },
@@ -54,14 +57,15 @@ export default class ButtonPage extends React.Component {
 
   changeDisable() {
     this.setState({
-      disabled: !this.state.disabled
+      disabled: !this.state.disabled,
+      className: "input--disabled"
     });
   }
 
   render() {
     return (
       <Page>
-        ## Example input
+        ## Input with no icon
         <ReactSpecimen span={3}>
           <FormikInput
             label="example input"

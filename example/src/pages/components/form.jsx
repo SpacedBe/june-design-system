@@ -53,10 +53,10 @@ export default class ButtonPage extends React.Component {
         ## Input field with no icon
         <ReactSpecimen span={3}>
           <FormikInput
-            label="example input"
+            label=""
             type={this.state.type}
             disabled={this.state.disabled}
-            placeholderText="example placeholder"
+            placeholderText="placeholder text"
             field={this.state.field}
             form={this.state.form}>
           </FormikInput>

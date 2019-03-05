@@ -24,6 +24,7 @@ type Props = {
   validationMessage: string;
   label: string;
   placeholderText: string;
+  className: string;
 };
 
 export class FormikInput extends React.Component<Props> {
@@ -34,6 +35,7 @@ export class FormikInput extends React.Component<Props> {
 
     const classes = cx(
       'input',
+      {'input--disabled': this.props.disabled },
     );
 
     return (
@@ -48,7 +50,7 @@ export class FormikInput extends React.Component<Props> {
                disabled={this.props.disabled}
                placeholder={this.props.placeholderText}/>
         {
-          touched && errors && <div className="error">{errors}</div>
+          touched && errors && <div className={styles.error}>{errors}</div>
         }
       </div>
     )
