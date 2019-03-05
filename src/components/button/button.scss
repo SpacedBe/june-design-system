@@ -54,18 +54,6 @@
     }
   }
 
-  &--icon-only {
-    color: $color-white;
-    padding: 20px;
-    border-radius: 50%;
-
-    &:hover {
-      color: $green-dark;
-      background: none;
-    }
-  }
-
-
   &--outlined {
     background: none;
     border-color: $green;

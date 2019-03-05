@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Catalog, pageLoader} from 'catalog';
 
-
 import {
   Button,
   IconPreferences,
@@ -10,6 +9,7 @@ import {
   IconWater,
   IconWaterBattery,
   Stepper,
+  Fab,
 } from 'june-design-system';
 
 export default class App extends Component {
@@ -56,6 +56,14 @@ export default class App extends Component {
                 imports: {
                   Button,
                   IconSettings,
+                },
+              },
+              {
+                path: 'fab',
+                title: 'FAB',
+                component: pageLoader(() => import('./pages/components/fab')),
+                imports: {
+                  Fab,
                 },
               },
               {

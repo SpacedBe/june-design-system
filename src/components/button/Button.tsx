@@ -110,7 +110,6 @@ export class Button extends React.Component<Props> {
       {'button--outlined': this.props.outlined},
       {'button--round': this.props.rounded},
       {'button--icon': hasIcon},
-      {'button--icon-only': this.props.iconOnly},
       this.props.classNames,
     );
 
