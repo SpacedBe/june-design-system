@@ -16,6 +16,9 @@ type Props = {
     ['errors']: string;
     ['touched']: boolean;
   };
+
+  ['serverErrors']: string;
+
   type: 'text' | 'number' | 'password';
   disabled: boolean;
   validationMessage: string;
@@ -26,7 +29,7 @@ type Props = {
 export class FormikInput extends React.Component<Props> {
   render() {
     const FieldName = this.props.field.name;
-    const errors = this.props.form.errors[FieldName];
+    const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];
 
     const classes = cx(
