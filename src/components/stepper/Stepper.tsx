@@ -29,7 +29,7 @@ const Entry = styled.div`
 
 const Label = styled.div`
   position: absolute;
-  top: 20px;
+  top: 30px;
   text-transform: uppercase;
   color: ${styleVariables.textColor}
 `;
