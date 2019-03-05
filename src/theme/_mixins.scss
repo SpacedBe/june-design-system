@@ -5,7 +5,7 @@
 // box shadow
 
 @mixin box-shadow {
-  box-shadow: 0 0 8px 0 rgba($black, .05);
+  box-shadow: 0 0 8px 0 rgba($color-black, .05);
 }
 
 // circle
@@ -118,7 +118,7 @@
 
 // triangle
 
-@mixin triangle ($color: $black, $direction: top, $width: 10px, $height: 10px) {
+@mixin triangle ($color: $color-black, $direction: top, $width: 10px, $height: 10px) {
   @include square(0);
   transform: rotate(360deg);
   @if $direction == top or $direction == bottom {

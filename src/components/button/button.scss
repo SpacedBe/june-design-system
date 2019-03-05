@@ -6,7 +6,7 @@
   background-color: $green;
   border: 2px solid $green;
   border-radius: $comp-radius;
-  color: $white;
+  color: $color-white;
   cursor: pointer;
   font-family: $font-buttons;
   font-weight: 600;
@@ -55,7 +55,7 @@
   }
 
   &--icon-only {
-    color: $white;
+    color: $color-white;
     padding: 20px;
     border-radius: 50%;
 
@@ -74,13 +74,13 @@
     @include hover {
       background: $green-light;
       border-color: $green-light;
-      color: $white;
+      color: $color-white;
     }
 
     &.button--loading {
       background: $green-light;
       border-color: $green-light;
-      color: $white;
+      color: $color-white;
     }
   }
 
@@ -100,13 +100,13 @@
       @include hover {
         background: $red-light;
         border-color: $red-light;
-        color: $white;
+        color: $color-white;
       }
 
       &.button--loading {
         background: $red-light;
         border-color: $red-light;
-        color: $white;
+        color: $color-white;
       }
     }
   }
@@ -119,7 +119,7 @@
     @include hover {
       background-color: $green;
       border-color: $green;
-      color: $white;
+      color: $color-white;
     }
 
     &.button--outlined {
@@ -136,12 +136,12 @@
   &--green-dark {
     background-color: $green-dark;
     border-color: $green-dark;
-    color: $white;
+    color: $color-white;
 
     @include hover {
       background-color: $green;
       border-color: $green;
-      color: $white;
+      color: $color-white;
     }
 
     &.button--outlined {
@@ -157,29 +157,29 @@
     &.button--loading {
       background: $green;
       border-color: $green;
-      color: $white;
+      color: $color-white;
     }
   }
 
   &--white {
-    background-color: $white;
-    border-color: $white;
-    color: $black;
+    background-color: $color-white;
+    border-color: $color-white;
+    color: $color-black;
 
     @include hover {
       background-color: $green-lime;
       border-color: $green-lime;
-      color: $black;
+      color: $color-black;
     }
 
     &.button--outlined {
       background: none;
-      color: $white;
+      color: $color-white;
 
       @include hover {
-        background: $white;
-        border-color: $white;
-        color: $black;
+        background: $color-white;
+        border-color: $color-white;
+        color: $color-black;
       }
     }
   }
@@ -187,12 +187,12 @@
   &--blue {
     background-color: $blue-button;
     border-color: $blue-button;
-    color: $white;
+    color: $color-white;
 
     @include hover {
       background-color: $blue-facebook;
       border-color: $blue-facebook;
-      color: $white;
+      color: $color-white;
     }
 
     &.button--outlined {
@@ -202,7 +202,7 @@
       @include hover {
         background: $blue-button;
         border-color: $blue-button;
-        color: $white;
+        color: $color-white;
       }
     }
   }

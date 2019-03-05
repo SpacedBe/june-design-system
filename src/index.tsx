@@ -6,3 +6,4 @@ export * from './icons';
 export * from './components/formik-input/FormikInput';
 export * from './components/formik-toggle/FormikToggle';
 export * from './components/formik-checkbox/FormikCheckbox';
+export * from './scripts/loadStyleVariables';

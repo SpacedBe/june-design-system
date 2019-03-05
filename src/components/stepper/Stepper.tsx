@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {IconCheck} from '../../icons';
+import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 
 interface Step {
   label: string,
@@ -10,6 +11,8 @@ type Props = {
   steps: Step[];
   currentStepIndex: number;
 }
+
+const styleVariables = loadStyleVariables();
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,13 +31,13 @@ const Label = styled.div`
   position: absolute;
   top: 20px;
   text-transform: uppercase;
-  color: #888E90 //todo: variable
+  color: ${styleVariables.textColor}
 `;
 
 const Line = styled.div`
   position: absolute;
   width: 100%;
-  border-bottom: 2px solid #DFF2F2;
+  border-bottom: 2px solid ${styleVariables.colorPrimaryLight};
   z-index: 0;
 `;
 
@@ -57,8 +60,8 @@ const lastStepStyle = {
 const Dot = styled.div<{ large?: boolean, color?: string, current?: boolean }>`
   width: ${props => props.large ? '20px' : '6px'};
   height: ${props => props.large ? '20px' : '6px'};
-  background-color: ${props => props.current ? '#ffffff' : '#46ACA6'};
-  border: ${props => props.current ? '5px solid #46ACA6' : 'none'};
+  background-color: ${props => props.current ? styleVariables.white : styleVariables.colorPrimary};
+  border: ${props => props.current ? `5px solid ${styleVariables.colorPrimary}` : 'none'};
   border-radius: 50%;
   position: relative;
   z-index: 1;
@@ -97,7 +100,7 @@ export class Stepper extends React.Component<Props> {
               }
 
               if (index === this.props.currentStepIndex) {
-                // current steps
+                // current step
                 dot = (
                   <Dot large={false} current={true}/>
                 );
@@ -110,7 +113,7 @@ export class Stepper extends React.Component<Props> {
 
                 );
               } else {
-                // future step
+                // future steps
                 dot = (
                   <Dot large={false}></Dot>
                 );
