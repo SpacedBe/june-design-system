@@ -43,12 +43,10 @@ export default class ButtonPage extends React.Component {
       className: '',
       img: ''
     })
-    console.log(event.show)
   }
 
   render(){
    const toggleClass = this.state.show ? "popup" : "";
-    console.log(toggleClass);
     return(
       <Page>
         <div>

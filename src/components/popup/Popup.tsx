@@ -3,6 +3,8 @@
  */
 import * as React from 'react';
 import styles from './popup.scss';
+import { Button } from '../button/Button';
+import { IconClose } from '../../icons';
 
 var classNames = require('classnames/bind');
 const cx = classNames.bind(styles);
@@ -37,7 +39,7 @@ export class Popup extends React.Component<Props>{
             <h1>{this.props.title}</h1>
             <h3>{this.props.text}</h3>
             <p className={styles.p}>{this.props.placeholder}</p>
-           <button className={styles.closeButton} onClick={() => this.props.close()}>X</button>
+            <Button  onClick={() => this.props.close()} iconOnly={<IconClose></IconClose>}></Button>
             <img width="300" src={this.props.img}></img>
         </div>
       </div>
