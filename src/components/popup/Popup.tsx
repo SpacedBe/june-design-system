@@ -37,8 +37,8 @@ export class Popup extends React.Component<Props>{
             <h1>{this.props.title}</h1>
             <h3>{this.props.text}</h3>
             <p className={styles.p}>{this.props.placeholder}</p>
-            <button onClick={() => this.props.close()}>close</button>
-            <img src={this.props.img}></img>
+           <button className={styles.closeButton} onClick={() => this.props.close()}>X</button>
+            <img width="300" src={this.props.img}></img>
         </div>
       </div>
     );

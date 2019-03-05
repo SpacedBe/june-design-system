@@ -29,18 +29,26 @@ export default class ButtonPage extends React.Component {
       className: "popup--afterClick",
       img: monster
     })
-    console.log(event.show)
+
   }
 
   handleClose(event){
-    console.log("in close")
+    const styler = document.getElementById(this.state.id);
     this.setState({
-      show: ''
+      show: false,
+      title: '',
+      text: '',
+      id: '',
+      placeholder: '',
+      className: '',
+      img: ''
     })
     console.log(event.show)
   }
 
   render(){
+   const toggleClass = this.state.show ? "popup" : "";
+    console.log(toggleClass);
     return(
       <Page>
         <div>
@@ -48,7 +56,7 @@ export default class ButtonPage extends React.Component {
           <p>Gas</p>
           <Button onClick={(event) => this.changeInputPopup((({ value: '1', name: 'Wat wil dit zeggen?', placeholder: 'Schakel dit aan wanneer je een tweede elektriciteitsmeter voor je exclusief nachtverbruik hebt. Indien je een gewone dag/nacht meter hebt, met beide telwerken in dezelfde meterkast, moet deze dienst niet inschakelen.', show: true})))} iconQuestionmark={<IconQuestionmark></IconQuestionmark>}></Button>
           <p>Elektriciteit</p>
-          <Popup img={this.state.img} onHide={this.handleClose} show={this.state.show} className={this.state.className} close={(event) => this.handleClose((({show: false })))} visible={this.state.visible} title={this.state.title} text={this.state.text} id={this.state.id} placeholder={this.state.placeholder}></Popup>
+          <Popup name="popup" img={this.state.img} onHide={this.handleClose} show={this.state.show} className={toggleClass} close={(event) => this.handleClose((({show: false })))} visible={this.state.visible} title={this.state.title} text={this.state.text} id={this.state.id} placeholder={this.state.placeholder}></Popup>
         </div>
       </Page>
     )
