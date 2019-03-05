@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikInput, IconMail} from 'june-design-system';
+import {FormikInput, IconCalender, Button, IconElectricity} from 'june-design-system';
 
 
 export default class ButtonPage extends React.Component {
@@ -66,7 +66,7 @@ export default class ButtonPage extends React.Component {
   render() {
     return (
       <Page>
-        ## Input with no icon
+        ## Input field no icon
         <ReactSpecimen span={3}>
           <FormikInput
             label=""
@@ -107,10 +107,10 @@ export default class ButtonPage extends React.Component {
           </div>
         </div>
 
-       ## Input with icon left
+       ## Input field icon left
         <ReactSpecimen span={3}>
           <FormikInput
-            iconLeft={<IconMail></IconMail>}
+            iconLeft={<IconCalender></IconCalender>}
             label=""
             type={this.state.type}
             placeholderText="example placeholder"
@@ -119,10 +119,46 @@ export default class ButtonPage extends React.Component {
           </FormikInput>
         </ReactSpecimen>
 
-        ## Input with icon right
+        ## Input field icon right
         <ReactSpecimen span={3}>
           <FormikInput
-            iconRight={<IconMail></IconMail>}
+            iconRight={<IconCalender></IconCalender>}
+            label=""
+            type={this.state.type}
+            placeholderText="example placeholder"
+            field={this.state.field}
+            form={this.state.form}>
+          </FormikInput>
+        </ReactSpecimen>
+
+        ## Input field button (right)
+        <ReactSpecimen span={3}>
+          <FormikInput
+            iconRight={<Button size={'small'}>copy</Button>}
+            label=""
+            type={this.state.type}
+            placeholderText="example placeholder"
+            field={this.state.field}
+            form={this.state.form}>
+          </FormikInput>
+        </ReactSpecimen>
+
+        ## Input field icon lead
+        <ReactSpecimen span={3}>
+          <FormikInput
+            iconFront={<IconElectricity></IconElectricity>}
+            label=""
+            type={this.state.type}
+            placeholderText="example placeholder"
+            field={this.state.field}
+            form={this.state.form}>
+          </FormikInput>
+        </ReactSpecimen>
+
+        ## Input field icon end
+        <ReactSpecimen span={3}>
+          <FormikInput
+            iconEnd={<IconElectricity></IconElectricity>}
             label=""
             type={this.state.type}
             placeholderText="example placeholder"
