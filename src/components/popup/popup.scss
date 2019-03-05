@@ -1,9 +1,9 @@
 @import '../../theme/theme';
 
 .popup{
-   @include em-font-size(14);
-   text-align: center;
-   text-decoration: none;
+  @include em-font-size(14);
+  text-align: center;
+  text-decoration: none;
 }
 
 .afterClick{
@@ -16,12 +16,12 @@
   color: white;
 }
 .p{
-    width: 80%;
-    padding-left: 2rem;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    line-height: 22px;
+  width: 80%;
+  padding-left: 2rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 22px;
   }
 
 .closeButton{
