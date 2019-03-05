@@ -90,6 +90,11 @@ export default class App extends Component {
                 title: 'Input',
                 component: pageLoader(() => import('./pages/form/formikInput')),
               },
+              {
+                path: 'form',
+                title: 'Form',
+                component: pageLoader(() => import('./pages/components/form')),
+              },
             ]
           },
         ]}
