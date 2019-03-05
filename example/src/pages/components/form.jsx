@@ -50,17 +50,53 @@ export default class ButtonPage extends React.Component {
   render() {
     return (
       <Page>
-        ## Input field with no icon
-        <ReactSpecimen span={3}>
+        <h3>Form section title</h3>
           <FormikInput
-            label=""
+            label="Email*"
             type={this.state.type}
             disabled={this.state.disabled}
             placeholderText="placeholder text"
             field={this.state.field}
             form={this.state.form}>
           </FormikInput>
-        </ReactSpecimen>
+
+        <FormikInput
+          label="Password*"
+          type={this.state.type}
+          disabled={this.state.disabled}
+          placeholderText="placeholder text"
+          field={this.state.field}
+          form={this.state.form}>
+        </FormikInput>
+
+      <div>
+        <FormikInput
+          label="Postal code"
+          type={this.state.type}
+          disabled={this.state.disabled}
+          placeholderText="placeholder text"
+          field={this.state.field}
+          form={this.state.form}>
+        </FormikInput>
+
+        <FormikInput
+          label="City"
+          type={this.state.type}
+          disabled={this.state.disabled}
+          placeholderText="placeholder text"
+          field={this.state.field}
+          form={this.state.form}>
+        </FormikInput>
+      </div>
+
+        <FormikInput
+          label="Gender*"
+          type={this.state.type}
+          disabled={this.state.disabled}
+          placeholderText="placeholder text"
+          field={this.state.field}
+          form={this.state.form}>
+        </FormikInput>
 
         <div>
           <div>

@@ -6,3 +6,5 @@ export { default as IconWaterBattery } from './WaterBattery';
 export { default as IconQuestionmark } from './Questionmark';
 export { default as IconCheck } from './Check';
 export { default as IconClose } from './Close';
+export { default as IconMail } from './Mail';
+

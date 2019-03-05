@@ -3,6 +3,7 @@
   border: 2px solid #cccccc;
   padding: 10px 100px 10px 10px;
   border-radius: 2.5px;
+  background-color: white;
 
   .input::placeholder{
       color: #cccccc;
@@ -27,4 +28,15 @@
     }
 }
 
+.inputWithIconLeft{
+  border:none;
+  margin-left: 10px;
+}
 
+.inputWithIconRight{
+  margin-right: 40px;
+}
+
+.icon svg{
+  padding-top: 5px;
+}

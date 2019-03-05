@@ -1,7 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikInput} from 'june-design-system';
-
+import {FormikInput, IconMail} from 'june-design-system';
 
 
 export default class ButtonPage extends React.Component {
@@ -47,7 +46,6 @@ export default class ButtonPage extends React.Component {
   }
 
   toggleError() {
-    console.log("in error toggle");
     this.setState({
       error: !this.state.error,
       form: {
@@ -60,7 +58,6 @@ export default class ButtonPage extends React.Component {
   }
 
   changeDisable() {
-    console.log("in disabled toggle");
     this.setState({
       disabled: !this.state.disabled,
     });
@@ -109,6 +106,30 @@ export default class ButtonPage extends React.Component {
               onChange={() => this.changeDisable()}  />
           </div>
         </div>
+
+       ## Input with icon left
+        <ReactSpecimen span={3}>
+          <FormikInput
+            iconLeft={<IconMail></IconMail>}
+            label=""
+            type={this.state.type}
+            placeholderText="example placeholder"
+            field={this.state.field}
+            form={this.state.form}>
+          </FormikInput>
+        </ReactSpecimen>
+
+        ## Input with icon right
+        <ReactSpecimen span={3}>
+          <FormikInput
+            iconRight={<IconMail></IconMail>}
+            label=""
+            type={this.state.type}
+            placeholderText="example placeholder"
+            field={this.state.field}
+            form={this.state.form}>
+          </FormikInput>
+        </ReactSpecimen>
       </Page>
     )
   }

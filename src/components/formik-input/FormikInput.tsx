@@ -5,7 +5,6 @@
 import * as React from 'react';
 import styles from "./formik-input.scss";
 
-
 var classNames = require('classnames/bind');
 const cx = classNames.bind(styles);
 
@@ -27,6 +26,8 @@ type Props = {
   error: boolean,
   focussed: boolean,
   disabled: boolean,
+  iconLeft?: any,
+  iconRight?: any,
   classNames?: string[],
 };
 
@@ -36,8 +37,10 @@ export class FormikInput extends React.Component<Props> {
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];
 
-    let Tag = 'input';
+    let Tag = 'div';
+    let buttonContent;
 
+    const hasIcon = this.props.iconLeft || this.props.iconRight;
 
     const className = cx(
       'input',
@@ -47,19 +50,40 @@ export class FormikInput extends React.Component<Props> {
       this.props.classNames,
     );
 
+
+    if (hasIcon && this.props.iconLeft){
+      buttonContent = (
+        <div className={className}>
+          <span className={styles.icon}>{this.props.iconLeft}</span>
+          <input className={styles.inputWithIconLeft}{...this.props.field} placeholder={this.props.placeholderText}  disabled={this.props.disabled} type={this.props.type}></input>
+        </div>
+
+      )
+    }
+
+    if(hasIcon && this.props.iconRight){
+      buttonContent = (
+        <div className={className}>
+          <input className={styles.inputWithIconRight}{...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></input>
+          <span className={styles.icon}>{this.props.iconRight}</span>
+        </div>
+      )
+    }
+    if (!hasIcon) {
+      buttonContent = (
+        <input className={className} {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></input>
+      )
+    }
     return (
       <div className={styles.inputGroup}>
         <label htmlFor={FieldName}>
           {this.props.label}
         </label>
 
-        <Tag
-          className={className}
-          {...this.props.field}
-          type={this.props.type}
-          disabled={this.props.disabled}
-          placeholder={this.props.placeholderText}>
-          </Tag>
+        {buttonContent}
+        <Tag className={styles.div}>
+
+        </Tag>
         {
           touched && errors && <div className={styles.error}>{errors}</div>
         }
