@@ -1,9 +1,17 @@
-// standard colors
+// Variables that will be placed in this file here will be accessible in JS and SCSS.
 
-$black: #2C0B2A;
-$white: #FFF;
+/**********/
+/* Colors */
+/**********/
 
-// app Colors
+$color-black: #2C0B2A;
+$color-white: #FFF;
+
+$color-primary :#46ACA6;
+$color-primary-light: #DFF2F2;
+
+$text-color: #888E90;
+
 $gray: #BFBFBF;
 $gray-dark: #949A9E;
 $gray-darker: #333;
@@ -43,12 +51,18 @@ $electricity: $yellow;
 $gas: $blue;
 $water: $blue-light;
 
-// fonts
+/*********/
+/* Fonts */
+/*********/
+
 $font-body: 'Montserrat', sans-serif;
 $font-headings: 'Montserrat', sans-serif;
 $font-buttons: 'Montserrat', sans-serif;
 
-// gutters
+/***********/
+/* Gutters */
+/***********/
+
 $gutter: 20px;
 $gutter-xxs: $gutter / 4;
 $gutter-xs: $gutter / 3;
@@ -58,18 +72,11 @@ $gutter-l: $gutter * 2;
 $gutter-xl: $gutter * 3;
 $gutter-xxl: $gutter * 4;
 
-// component props
-$comp-radius: 3px;
-$comp-radius-l: 30px;
 
+/**********/
+/* Layers */
+/**********/
 
-$comp-small-size: 30px;
-$comp-medium-size: 40px;
-$comp-large-size: 51px;
-$comp-size: $comp-medium-size;
-$comp-regular-size: $comp-size;
-
-// z-indexes
 $zi-label: 1;
 $zi-button: 2;
 $zi-overlay: 3;
@@ -79,7 +86,10 @@ $zi-footer: 6;
 $zi-header: 7;
 $zi-fallback: 8;
 
-// screen sizes
+/***************/
+/* Screen size */
+/***************/
+
 $screen-xxxs: 370px !default;
 $screen-xxs: 400px !default;
 $screen-xs: 480px !default;
@@ -88,7 +98,10 @@ $screen-md: 992px !default;
 $screen-lg: 1420px !default;
 $screen-xl: 1600px !default;
 
-// media queries
+/******************/
+/* Media queries */
+/*****************/
+
 $desktop: '(min-width: #{$screen-xl})';
 $laptop: '(min-width: #{$screen-lg})';
 $netbook: '(min-width: #{$screen-md + 220})';
@@ -99,9 +112,19 @@ $phone: '(min-width: #{$screen-xs})';
 $smallphone: '(min-width: #{$screen-xxs})';
 $smallerphone: '(min-width: #{$screen-xxxs})';
 
-// states
+/******************/
+/* Refactor these */
+/*****************/
 $state-hover: 'html:not(.touchevents) &:not([disabled]):not(.is-disabled):hover';
 
-// gratis image dimensions
 $gratis-img-width: 85px;
 $gratis-img-height: 42px;
+
+$comp-radius: 3px;
+$comp-radius-l: 30px;
+
+$comp-small-size: 30px;
+$comp-medium-size: 40px;
+$comp-large-size: 51px;
+$comp-size: $comp-medium-size;
+$comp-regular-size: $comp-size;

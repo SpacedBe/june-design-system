@@ -1,9 +1,9 @@
-@import '../../theme/variables';
+@import '../../theme/scss-variables';
 @import '../../theme/mixins';
 
 @mixin loader {
     @include transition(transform);
-    background-color: $white;
+    background-color: $color-white;
     content: ' ';
     display: block;
     height: 100%;

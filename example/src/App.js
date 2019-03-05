@@ -8,7 +8,8 @@ import {
   IconSavings,
   IconSettings,
   IconWater,
-  IconWaterBattery
+  IconWaterBattery,
+  Stepper,
 } from 'june-design-system';
 
 export default class App extends Component {
@@ -54,6 +55,15 @@ export default class App extends Component {
                 component: pageLoader(() => import('./pages/components/button')),
                 imports: {
                   Button,
+                  IconSettings,
+                },
+              },
+              {
+                path: 'stepper',
+                title: 'Stepper',
+                component: pageLoader(() => import('./pages/components/stepper')),
+                imports: {
+                  Stepper,
                   IconSettings,
                 },
               },
