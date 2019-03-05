@@ -11,7 +11,8 @@ export default class ButtonPage extends React.Component {
     this.state = {
       type: 'text',
       disabled: false,
-      className: 'input',
+      error: false,
+      focussed: false,
       field: {
         name: 'example-input',
       },
@@ -27,6 +28,7 @@ export default class ButtonPage extends React.Component {
 
   toggleTouched() {
     this.setState({
+      focussed: !this.state.focussed,
       form: {
         ...this.state.form,
         touched: {
@@ -45,7 +47,9 @@ export default class ButtonPage extends React.Component {
   }
 
   toggleError() {
+    console.log("in error toggle");
     this.setState({
+      error: !this.state.error,
       form: {
         ...this.state.form,
         errors: {
@@ -56,9 +60,9 @@ export default class ButtonPage extends React.Component {
   }
 
   changeDisable() {
+    console.log("in disabled toggle");
     this.setState({
       disabled: !this.state.disabled,
-      className: "input--disabled"
     });
   }
 
@@ -68,7 +72,9 @@ export default class ButtonPage extends React.Component {
         ## Input with no icon
         <ReactSpecimen span={3}>
           <FormikInput
-            label="example input"
+            label=""
+            error={this.state.error}
+            focussed={this.state.focussed}
             type={this.state.type}
             disabled={this.state.disabled}
             serverErrors={this.state.serverErrors}
@@ -80,14 +86,14 @@ export default class ButtonPage extends React.Component {
 
         <div>
           <div>
-            <label htmlFor="isTouched">is touched?</label>
-            <input type="checkbox" name="isTouched"
+            <label htmlFor="isTouched">Touched</label>
+            <input type="checkbox" name="isTouched" value={this.state.focussed}
                    onChange={() => this.toggleTouched()}/>
           </div>
 
           <div>
-            <label htmlFor="hasError">has error?</label>
-            <input type="checkbox"  name="hasError"
+            <label htmlFor="hasError">Error</label>
+            <input type="checkbox"  name="hasError" value={this.state.error}
                    onChange={() => this.toggleError()}/>
           </div>
 
@@ -100,7 +106,7 @@ export default class ButtonPage extends React.Component {
           <div>
             <label htmlFor="isDisabled">Disabled?</label>
             <input type="checkbox" value={this.state.disabled} name="isDisabled"
-                   onChange={() => this.changeDisable()}/>
+              onChange={() => this.changeDisable()}  />
           </div>
         </div>
       </Page>

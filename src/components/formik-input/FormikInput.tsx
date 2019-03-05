@@ -5,6 +5,7 @@
 import * as React from 'react';
 import styles from "./formik-input.scss";
 
+
 var classNames = require('classnames/bind');
 const cx = classNames.bind(styles);
 
@@ -20,11 +21,13 @@ type Props = {
   ['serverErrors']: string;
 
   type: 'text' | 'number' | 'password';
-  disabled: boolean;
   validationMessage: string;
   label: string;
   placeholderText: string;
-  className: string;
+  error: boolean,
+  focussed: boolean,
+  disabled: boolean,
+  classNames?: string[],
 };
 
 export class FormikInput extends React.Component<Props> {
@@ -33,9 +36,15 @@ export class FormikInput extends React.Component<Props> {
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];
 
-    const classes = cx(
+    let Tag = 'input';
+
+
+    const className = cx(
       'input',
-      {'input--disabled': this.props.disabled },
+      { 'input--disabled': this.props.disabled },
+      { 'input--error': this.props.error },
+      { 'input--focussed': this.props.focussed },
+      this.props.classNames,
     );
 
     return (
@@ -44,11 +53,13 @@ export class FormikInput extends React.Component<Props> {
           {this.props.label}
         </label>
 
-        <input className={classes}
-               {...this.props.field}
-               type={this.props.type}
-               disabled={this.props.disabled}
-               placeholder={this.props.placeholderText}/>
+        <Tag
+          className={className}
+          {...this.props.field}
+          type={this.props.type}
+          disabled={this.props.disabled}
+          placeholder={this.props.placeholderText}>
+          </Tag>
         {
           touched && errors && <div className={styles.error}>{errors}</div>
         }

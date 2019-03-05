@@ -1,17 +1,30 @@
-.error{
-  border: 1px solid red;
-}
-
-.disabled{
-   border: 1px solid red;
-}
-
 
 .input{
-  border: 1px solid #888e90;
+  border: 2px solid #cccccc;
   padding: 10px 100px 10px 10px;
+  border-radius: 2.5px;
 
-  .disabled{
-     border: 1px solid #f6f6f6
+  .input::placeholder{
+      color: #cccccc;
   }
+
+  &--disabled{
+    border: 2px solid #f6f6f6;
+  }
+  &--disabled::placeholder{
+    color: #f6f6f6;
+  }
+
+  &--error{
+    border: 2px solid #e85257;
+  }
+    &--error::placeholder{
+      color: #e85257;
+    }
+
+    &--focussed{
+      border: 2px solid #888e90;
+    }
 }
+
+
