@@ -42,6 +42,6 @@ export default {
     commonjs(),
     copy([
       {files: 'src/theme/shared_variables.scss', dest: 'dist'},
-    ], { watch: true })
+    ])
   ]
 }
