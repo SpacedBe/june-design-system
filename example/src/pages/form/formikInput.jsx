@@ -12,6 +12,9 @@ export default class ButtonPage extends React.Component {
       field: {
         name: 'example-input',
       },
+      serverErrors: {
+        'example-input': null,
+      },
       form: {
         errors: { 'example-input': null },
         touched: { 'example-input': false },
@@ -26,6 +29,14 @@ export default class ButtonPage extends React.Component {
         touched: {
           'example-input': !this.state.form.touched['example-input'],
         }
+      }
+    });
+  }
+
+  toggleServerError() {
+    this.setState({
+      serverErrors: {
+          'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
       }
     });
   }
@@ -56,6 +67,7 @@ export default class ButtonPage extends React.Component {
             label="example input"
             type={this.state.type}
             disabled={this.state.disabled}
+            serverErrors={this.state.serverErrors}
             placeholderText="example placeholder"
             field={this.state.field}
             form={this.state.form}>
@@ -73,6 +85,12 @@ export default class ButtonPage extends React.Component {
             <label htmlFor="hasError">has error?</label>
             <input type="checkbox"  name="hasError"
                    onChange={() => this.toggleError()}/>
+          </div>
+
+          <div>
+            <label htmlFor="hasServerError">has server error?</label>
+            <input type="checkbox"  name="hasServerError"
+                   onChange={() => this.toggleServerError()}/>
           </div>
 
           <div>
