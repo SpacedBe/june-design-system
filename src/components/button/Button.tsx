@@ -1,9 +1,11 @@
 /**
  * @class Button
+ *
  */
 
 import * as React from 'react';
 import {Loader} from "../loader/Loader";
+// todo: refactor to style components
 import styles from "./button.scss";
 
 
@@ -114,6 +116,7 @@ export class Button extends React.Component<Props> {
     );
 
     return (
+      //@ts-ignore
       <Tag
         id={this.props.id}
         className={className}

@@ -2,14 +2,23 @@ import * as React from "react";
 import {loadStyleVariables} from "../..";
 import styled from "styled-components";
 
-type Props = {};
+type Props = {
+  size?: 'small' | 'medium' | 'large';
+  inverted?: boolean;
+};
 const styleVariables = loadStyleVariables();
 
-const Host = styled.div`
-  width: 54px;
-  height: 54px;
-  background-color: transparent;
-  color: ${styleVariables.colorPrimary};
+const sizes = {
+  small: '34px',
+  medium: '54px',
+  large: '96px',
+};
+
+const Host = styled.div<Props>`
+  width: ${props => sizes[props.size || 'medium']}; // TS does not recognize defaultProps
+  height: ${props => sizes[props.size || 'medium']};
+  background-color: ${props => props.inverted ? styleVariables.colorPrimary : 'transparent'};
+  color: ${props => props.inverted ? styleVariables.colorWhite : styleVariables.colorPrimary};
   border: 2px solid ${styleVariables.colorPrimary};
   border-radius: 50%;
   font-size: 20px;
@@ -26,27 +35,31 @@ const Host = styled.div`
   transition: all .2s;
   
   svg {
-    fill: ${styleVariables.colorPrimary};;
+    fill: ${props => props.inverted ? styleVariables.colorWhite : styleVariables.colorPrimary};
   }
 
   &:hover {
-    background-color: ${styleVariables.colorPrimary};
-    color: ${styleVariables.colorWhite};
+    background-color: ${props => props.inverted ? styleVariables.colorWhite : styleVariables.colorPrimary};
+    color: ${props => props.inverted ? styleVariables.colorPrimary : styleVariables.colorWhite};
   
     svg {
-      fill: white;
+      fill: ${props => props.inverted ? styleVariables.colorPrimary : styleVariables.colorWhite};
     }
   }
 `;
 
 export class Fab extends React.Component<Props> {
+  static defaultProps = {
+    size: 'medium'
+  };
+
   constructor(props: any) {
     super(props);
   }
 
   render() {
     return (
-      <Host>
+      <Host size={this.props.size} inverted={this.props.inverted}>
         {this.props.children}
       </Host>
     );
