@@ -1,6 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Page, ReactSpecimen } from 'catalog';
 import { Button, IconSettings, IconQuestionmark } from 'june-design-system';
+=======
+import {Page, ReactSpecimen} from 'catalog';
+import {Button, IconSettings} from 'june-design-system';
+>>>>>>> FAB page + component
 
 
 export default class ButtonPage extends React.Component {
@@ -151,6 +156,7 @@ export default class ButtonPage extends React.Component {
 
 
        ## Loading
+
         <ReactSpecimen span={3}>
           <Button loading="true" percentageDone="30">Loading button</Button>
         </ReactSpecimen>
