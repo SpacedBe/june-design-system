@@ -7,11 +7,6 @@ import * as React from 'react';
 import styles from "./formik-input.scss";
 import styled from 'styled-components';
 
-//var classNames = require('classnames/bind');
-//const cx = classNames.bind(styles);
-
-//const styleVariables = loadStyleVariables();
-
 type Props = {
   field: {
     name: string;
@@ -35,32 +30,71 @@ type Props = {
   buttonRight?: any,
   iconFront?: any,
   iconEnd?: any,
+  buttonOutsideRight?: any,
+  toolTip?: any,
+  required?: any,
   classNames?: string[],
 };
 
-const InputBox = styled.div`
+const InputBoxRight = styled.div`
   border: 2px solid #cccccc;
-  padding: 10px 100px 10px 10px;
+  padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
   background-color: white;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  width: 100%;
+
 `;
+
+const InputBoxLeft = styled.div`
+  border: 2px solid #cccccc;
+  padding: 10px 10px 10px 10px;
+  border-radius: 2.5px;
+  background-color: white;
+  outline: none;
+  display: flex;
+  height: 40px;
+  width: 100%;
+
+`
 
 const InputWithIconLeft = styled.input`
  border: none;
  margin-left: 10px;
+ outline: none;
 `
 
 const Input = styled.input`
   border: none;
+  outline: none;
 `
 
-const IconSvg = styled.span`
-  padding-top: 5px;
+const IconSmall = styled.span`
+  font-size: 1.5em;
+`
+const IconBig = styled.span`
+  font-size: 2em;
 `
 
+const ButtonSmall = styled.button`
+font-size: 1em;
+`
 const Flex = styled.div`
  display: flex;
  align-items: center;
+ width: 100%;
+ justify-content: space-between;
+`
+
+const Label = styled.label`
+ padding-bottom: 5px;
+`
+
+const ToolTip = styled.button`
+ font-size: 1.2em;
 `
 
 export class FormikInput extends React.Component<Props> {
@@ -72,7 +106,9 @@ export class FormikInput extends React.Component<Props> {
     let Tag = 'div';
     let buttonContent;
 
-    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd;
+    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd || this.props.required;
+
+    const hasButton = this.props.buttonOutsideRight || this.props.toolTip;
 
     // const className = cx(
     //   'input',
@@ -86,69 +122,114 @@ export class FormikInput extends React.Component<Props> {
 
     if (!hasIcon) {
       buttonContent = (
-        <InputBox>
-          <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
-        </InputBox>
+        <InputBoxLeft >
+          <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type} ></Input>
+        </InputBoxLeft>
 
       )
     }
 
     if (hasIcon && this.props.iconLeft){
       buttonContent = (
-        <InputBox>
-          <IconSvg className={styles.icon}>{this.props.iconLeft}</IconSvg>
+        <InputBoxLeft>
+          <IconSmall className={styles.icon}>{this.props.iconLeft}</IconSmall>
           <InputWithIconLeft className={styles.inputWithIconLeft}{...this.props.field} placeholder={this.props.placeholderText} type={this.props.type}></InputWithIconLeft>
-        </InputBox>
+        </InputBoxLeft>
       )
     }
 
     if(hasIcon && this.props.iconRight){
       buttonContent = (
-        <InputBox>
+        <InputBoxRight>
           <Input className={styles.inputWithIconLeft}{...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
-          <IconSvg className={styles.icon}>{this.props.iconRight}</IconSvg>
-        </InputBox>
+          <IconSmall className={styles.icon}>{this.props.iconRight}</IconSmall>
+        </InputBoxRight>
       )
     }
 
     if (hasIcon && this.props.buttonRight) {
       buttonContent = (
-        <InputBox>
-          <Input className={styles.inputWithIconRight}{...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
-          <IconSvg className={styles.icon}>{this.props.buttonRight}</IconSvg>
-        </InputBox>
+        <InputBoxLeft>
+          <Input className={styles.inputWithIconRight} {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
+          <ButtonSmall>{this.props.buttonRight}</ButtonSmall>
+        </InputBoxLeft>
       )
     }
+
+
+    if (hasButton && this.props.buttonOutsideRight) {
+      buttonContent = (
+        <Flex>
+          <InputBoxRight>
+            <Input className={styles.inputWithIconRight}{...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
+          </InputBoxRight>
+          <ButtonSmall>{this.props.buttonOutsideRight}</ButtonSmall>
+        </Flex>
+      )
+    }
+
 
     if(hasIcon && this.props.iconFront){
       buttonContent = (
         <Flex>
-          <IconSvg>{this.props.iconFront}</IconSvg>
-          <InputBox >
+          <IconBig>{this.props.iconFront}</IconBig>
+          <InputBoxLeft >
             <Input className={styles.inputWithIconRight}{...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
-          </InputBox>
+          </InputBoxLeft>
         </Flex>
       )
     }
 
     if(hasIcon && this.props.iconEnd){
       buttonContent = (
-        <Flex className={styles.flex}>
-          <InputBox>
+        <Flex>
+          <InputBoxLeft>
             <Input className={styles.inputWithIconRight}{...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
-          </InputBox>
-          <IconSvg>{this.props.iconEnd}</IconSvg>
+          </InputBoxLeft>
+          <IconBig>{this.props.iconEnd}</IconBig>
         </Flex>
+      )
+    }
+
+    if (hasIcon && this.props.required) {
+      buttonContent = (
+        <div>
+          <Flex>
+            <Label htmlFor={FieldName}>
+              {this.props.label}
+            </Label>
+          </Flex>
+
+          <InputBoxRight>
+            <Input className={styles.inputWithIconRight}{...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
+          </InputBoxRight>
+        </div>
+      )
+    }
+
+    if (hasButton && this.props.toolTip) {
+      buttonContent = (
+        <div>
+          <Flex>
+            <Label htmlFor={FieldName}>
+              {this.props.label}
+              <ToolTip>{this.props.toolTip}</ToolTip>
+            </Label>
+          </Flex>
+
+          <InputBoxRight>
+            <Input className={styles.inputWithIconRight}{...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
+          </InputBoxRight>
+        </div>
       )
     }
 
 
 
+
     return (
       <Tag>
-        <label htmlFor={FieldName}>
-          {this.props.label}
-        </label>
+
 
         {buttonContent}
         <Tag className={styles.div}>
