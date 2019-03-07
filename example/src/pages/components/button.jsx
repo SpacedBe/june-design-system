@@ -1,10 +1,6 @@
 import React from 'react';
-
 import {Page, ReactSpecimen} from 'catalog';
-import {Button, IconSettings} from 'june-design-system';
-
-
-
+import {Button, IconSettings, IconQuestionmark} from 'june-design-system';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {

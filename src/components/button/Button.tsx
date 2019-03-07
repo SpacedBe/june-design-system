@@ -8,6 +8,7 @@ import {Loader} from "../loader/Loader";
 // todo: refactor to style components
 import styles from "./button.scss";
 
+
 var classNames = require('classnames/bind');
 const cx = classNames.bind(styles);
 
@@ -19,7 +20,6 @@ type Props = {
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
-  iconQuestionmark?: any,
   outlined?: boolean,
   loading?: boolean,
   percentageDone?: number,
@@ -53,7 +53,7 @@ export class Button extends React.Component<Props> {
       Tag = this.props.component;
     }
 
-    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly || this.props.iconQuestionmark;
+    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly;
 
     if (hasIcon && this.props.iconLeft) {
       buttonContent = (
@@ -90,16 +90,6 @@ export class Button extends React.Component<Props> {
       )
     }
 
-    if (hasIcon && this.props.iconQuestionmark) {
-      buttonContent = (
-        <div>
-          <div className={styles.questionmark}>
-            {this.props.iconQuestionmark}
-          </div>
-        </div>
-      )
-    }
-
     if (!hasIcon) {
       buttonContent = (
         <div>
@@ -122,8 +112,6 @@ export class Button extends React.Component<Props> {
       {'button--outlined': this.props.outlined},
       {'button--round': this.props.rounded},
       {'button--icon': hasIcon},
-      {'button--icon-only': this.props.iconOnly},
-      {'button--icon-questionmark': this.props.iconQuestionmark},
       this.props.classNames,
     );
 
