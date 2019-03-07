@@ -54,6 +54,18 @@
     }
   }
 
+  &--icon-only {
+    color: $green;
+    padding: 2px;
+    background: none;
+    border: none;
+
+    &:hover {
+      color: $green-dark;
+      background: none;
+    }
+  }
+
   &--outlined {
     background: none;
     border-color: $green;

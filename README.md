@@ -10,7 +10,6 @@
 npm install --save june-design-system
 ```
 
-
 # Style variables
 Because we use Styled Components we created a way to access SCSS variables in React components.
 To load the variables call the ```loadStyleVariables()``` function and an array of variable-value pairs will be returned.   

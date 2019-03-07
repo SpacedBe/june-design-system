@@ -1,41 +1,68 @@
 import React from 'react';
 import { Page } from 'catalog';
-import {Popup, IconQuestionmark, Button} from 'june-design-system';
+import {Popup, Button, IconQuestionmark} from 'june-design-system';
+import monster from "../../assets/images/monster.png"
 
 export default class ButtonPage extends React.Component {
 
   constructor() {
     super();
+
     this.state = {
-     visible: false,
+     show: false,
      title: '',
      text: '',
      id: '',
-     placeholder: ''
+     placeholder: '',
+     className: '',
+     img: ''
     };
   }
 
   changeInputPopup(event){
     this.setState({
-      title: event.target.value,
-      text: event.target.name,
-      id: event.target.value,
-      placeholder: event.target.placeholder,
-      visible: !this.state.visible
+      title: event.value,
+      text: event.name,
+      id: event.value,
+      placeholder: event.placeholder,
+      show: true,
+      className: "popup--afterClick",
+      img: monster
+
+
     })
+
   }
 
+  handleClose(event){
+    this.setState({
+      show: false,
+      title: '',
+      text: '',
+      id: '',
+      placeholder: '',
+      className: '',
+      img: ''
+    })
+
+  }
 
   render(){
+   const toggleClass = this.state.show ? "popup" : "";
     return(
       <Page>
-        <IconQuestionmark></IconQuestionmark>
-
-        <Popup visible={this.state.visible} title={this.state.title} text={this.state.text} id={this.state.id} placeholder={this.state.placeholder}></Popup>
         <div>
-          <input onClick={(event) => this.changeInputPopup(event)} type="button" value="0" name="Did you know?" placeholder="Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. "/>
-          <input onClick={(event) => this.changeInputPopup(event)} type="button" value="1" name="Wist Je dit al" placeholder="Aenean lacinia bibendum nulla sed consectetur. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. "/>
-          <input onClick={(event) => this.changeInputPopup(event)} type="button" value="2" name="Weetje drie" placeholder="penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna. " />
+          <Button onClick={(event) => this.changeInputPopup((({ value: '0', name: 'Wat wil dit zeggen?', placeholder:'Schakel dit aan wanneer je een tweede elektriciteitsmeter voor je exclusief nachtverbruik hebt. Indien je een gewone dag/nacht meter hebt, met beide telwerken in dezelfde meterkast, moet deze dienst niet inschakelen.', show: true})))} 
+          iconOnly={<IconQuestionmark></IconQuestionmark>}>
+          </Button>
+          <p>Gas</p>
+          <Button onClick={(event) => this.changeInputPopup((({ value: '1', name: 'Wat wil dit zeggen?', placeholder: 'Schakel dit aan wanneer je een tweede elektriciteitsmeter voor je exclusief nachtverbruik hebt. Indien je een gewone dag/nacht meter hebt, met beide telwerken in dezelfde meterkast, moet deze dienst niet inschakelen.', show: true})))} 
+          iconOnly={<IconQuestionmark></IconQuestionmark>}></Button>
+          <p>Elektriciteit</p>
+
+          <Popup name="popup" img={this.state.img} onHide={this.handleClose} show={this.state.show} className={toggleClass} close={(event) => this.handleClose((({show: false })))} visible={this.state.visible} title={this.state.title} text={this.state.text} id={this.state.id} placeholder={this.state.placeholder}></Popup>
+
+
         </div>
       </Page>
     )

@@ -2,7 +2,13 @@
  * @class Popup
  */
 import * as React from 'react';
-import { Identifier } from 'estree';
+import styles from './popup.scss';
+import { Button } from '../button/Button';
+import { IconClose } from '../../icons';
+
+
+var classNames = require('classnames/bind');
+const cx = classNames.bind(styles);
 
 type Props = {
   id?: string,
@@ -10,22 +16,37 @@ type Props = {
   component: any,
   text?: string,
   title?: string,
-  visible: boolean,
+  show?: boolean,
   classNames: string[],
   placeholder?:string,
+  className?: string,
+  img: string,
 
-  onclick?: (id: Identifier) => void,
+  close: () => void,
 }
 
 export class Popup extends React.Component<Props>{
   render(){
+
+    const className = cx(
+      'popup',
+      {'afterClick': this.props.className},
+      {'afterClick--p': this.props.placeholder},
+      this.props.classNames,
+    );
     return(
-      <div id={this.props.id}>
-          <h1>{this.props.title}</h1>
-          <h3>{this.props.text}</h3>
-          <p>{this.props.placeholder}</p>
+      <div className={className} id={this.props.id}>
+
+        <div className={styles.block}>
+            <h1>{this.props.title}</h1>
+            <h3>{this.props.text}</h3>
+            <p className={styles.p}>{this.props.placeholder}</p>
+            <Button  onClick={() => this.props.close()} iconOnly={<IconClose></IconClose>}></Button>
+            <img width="300" src={this.props.img}></img>
         </div>
 
+
+      </div>
     );
   }
 }
