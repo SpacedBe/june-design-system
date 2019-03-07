@@ -2,7 +2,6 @@ import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark} from 'june-design-system';
 
-
 export default class ButtonPage extends React.Component {
   constructor(props) {
     super(props);
@@ -243,7 +242,6 @@ export default class ButtonPage extends React.Component {
           >
           </FormikInput>
         </ReactSpecimen>
-
       </Page>
     )
   }

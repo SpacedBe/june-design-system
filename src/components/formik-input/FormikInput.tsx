@@ -50,7 +50,6 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   justify-content: space-between;
   height: 40px;
   width: 100%;
-
 `;
 
 const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?: boolean}>`
@@ -66,9 +65,9 @@ const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?:
   width: 100%;
 `
 const InputWithIconLeft = styled.input`
- border: none;
- margin-left: 10px;
- outline: none;
+  border: none;
+  margin-left: 10px;
+  outline: none;
 `
 
 const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
@@ -114,17 +113,7 @@ export class FormikInput extends React.Component<Props> {
     let buttonContent;
 
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd || this.props.required;
-
     const hasButton = this.props.buttonOutsideRight || this.props.toolTip;
-
-    // const className = cx(
-    //   'input',
-    //   { 'input--disabled': this.props.disabled },
-    //   { 'input--error': this.props.error },
-    //   { 'input--focussed': this.props.focussed },
-    //   this.props.classNames,
-    // );
-
 
     if (!hasIcon) {
       buttonContent = (
@@ -216,14 +205,12 @@ export class FormikInput extends React.Component<Props> {
     if (hasButton && this.props.toolTip) {
       buttonContent = (
         <div>
-
           <Flex>
             <Label htmlFor={FieldName}>
               {this.props.label}
               <ToolTip>{this.props.toolTip}</ToolTip>
             </Label>
           </Flex>
-
           <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
           </InputBoxRight>
@@ -231,25 +218,15 @@ export class FormikInput extends React.Component<Props> {
       )
     }
 
-
-
-
     return (
       <Tag>
-
-
         {buttonContent}
         <Tag>
           {
             touched && errors && <div>{errors}</div>
-
           }
-
         </Tag>
-
-
       </Tag>
-
     )
   }
 }
