@@ -3,7 +3,6 @@ import { Page } from 'catalog';
 import {Popup, Button, IconQuestionmark} from 'june-design-system';
 import monster from "../../assets/images/monster.png"
 
-
 export default class ButtonPage extends React.Component {
 
   constructor() {

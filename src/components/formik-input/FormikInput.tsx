@@ -109,7 +109,7 @@ export class FormikInput extends React.Component<Props> {
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];
 
-    let Tag = 'div';
+    let Tag = 'span';
     let buttonContent;
 
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd || this.props.required;

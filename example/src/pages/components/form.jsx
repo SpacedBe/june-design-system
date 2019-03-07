@@ -52,7 +52,8 @@ export default class ButtonPage extends React.Component {
       <Page>
         <h3>Form section title</h3>
           <FormikInput
-            label="Email*"
+            label="Email"
+            required
             type={this.state.type}
             disabled={this.state.disabled}
             placeholderText="placeholder text"
@@ -61,7 +62,7 @@ export default class ButtonPage extends React.Component {
           </FormikInput>
 
         <FormikInput
-          label="Password*"
+          label="Password"
           type={this.state.type}
           disabled={this.state.disabled}
           placeholderText="placeholder text"
@@ -90,7 +91,7 @@ export default class ButtonPage extends React.Component {
       </div>
 
         <FormikInput
-          label="Gender*"
+          label="Gender"
           type={this.state.type}
           disabled={this.state.disabled}
           placeholderText="placeholder text"
