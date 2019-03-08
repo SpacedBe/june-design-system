@@ -26,7 +26,7 @@ type Props = {
   loading?: boolean,
   percentageDone?: number,
   wide?: boolean,
-  size?: 'small' | 'medium' | 'large';
+  size?: string;
   rounded?: boolean,
   spaced?: boolean,
   clear?: boolean,
@@ -42,23 +42,6 @@ type Props = {
 
 const styleVariables = loadStyleVariables();
 
-const NormalButton = styled.button`
-  background-color: ${styleVariables.green};
-  border: 2px solid ${styleVariables.green};
-  border-radius: ${styleVariables.compRadius};
-  color: ${styleVariables.white};
-  cursor: pointer;
-  font-family: ${styleVariables.fontbuttons};
-  font-weight: 600;
-  line-height: (${styleVariables.compSize} - 4px); // 4px = border-top + border-bottom
-  outline: 0;
-  padding: 0 ${styleVariables.gutter};
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  letter-spacing: 0.8px;
-`
-
 const Icon = styled.div`
   display: flex;
   align-items: center;
@@ -68,85 +51,118 @@ const IconLeft = styled.span`
   margin-right: 8px;
 `
 
+const IconRight = styled.span`
+ margin-left: 8px;
+`
+
 const Label = styled.span`
   @include transition(opacity);
     opacity: 1;
 `
+
+const NormalButton = styled.button<{target?: string, size?: string, rounded?: boolean, clear?: boolean, outlined?: boolean, disabled?: boolean, wide?: boolean, color?: ''}>`
+  background: ${props => {
+    if (props.outlined || props.clear) {
+				return `none`
+      } else if (props.disabled){
+        return `${styleVariables.gray}`
+      } else {
+         return `${styleVariables.green}`
+      }
+    }
+  }};
+  border-radius: ${props => props.rounded ? `${styleVariables.compSmallSize}` : `${styleVariables.compRadius}`};
+  border:  ${props => {
+    if (props.outlined) {
+				return `2px solid ${styleVariables.green}`
+      } else if(props.disabled){
+        return `2px solid ${styleVariables.gray}`
+      } else if (props.clear){
+        return `none`
+      } else {
+        return `2px solid ${styleVariables.green}`
+      }
+    }
+  }};
+  color: ${props => {
+    if (props.outlined || props.clear) {
+				return `${styleVariables.green}`
+      } else {
+        return `${styleVariables.colorWhite}`
+      }
+    }
+  }};
+  cursor: pointer;
+  font-family: ${styleVariables.fontbuttons};
+  font-weight: 600;
+  outline: 0;
+  padding: 0 ${styleVariables.gutter};
+  position: relative;
+  text-align: center;
+  width: ${props => props.wide ? `100%` : ``}
+  text-decoration: none;
+  letter-spacing: 0.8px;
+  transition: .2s ease-in-out;
+  line-height: ${props => {
+    if (props.size === 'medium'){
+      return `${styleVariables.compMediumSize}`
+      console.log(props.size)
+    } else {
+      return `${styleVariables.compLargeSize}`
+    }
+  }};
+}`
 export class Button extends React.Component<Props> {
   render() {
     let buttonContent;
     let isDisabled = (this.props.loading || this.props.disabled);
 
-    let Tag = 'div';
-
-    if (this.props.href) {
-      Tag = 'a';
-    }
-
-    if (this.props.component) {
-      Tag = this.props.component;
-    }
-
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly;
+
+      if (!hasIcon) {
+      buttonContent = (
+        <div>
+            <Label>{this.props.children}</Label >
+            <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
+        </div>
+      )
+    }
 
     if (hasIcon && this.props.iconLeft) {
       buttonContent = (
-        // <NormalButton>
-        //   <div className={styles.icon}>
-        //     <span className={styles["icon-left"]}>{this.props.iconLeft}</span>
-        //     <span className={styles.label}>{this.props.children}</span>
-        //   </div>
-        //   <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-        // </NormalButton>
-        <NormalButton>
-          <Icon>
+        <div>
+           <Icon>
             <IconLeft>{this.props.iconLeft}</IconLeft>
             <Label>{this.props.children}</Label>
           </Icon>
           <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-        </NormalButton>
+        </div>
+         
       )
 
     }
 
     if (hasIcon && this.props.iconRight) {
       buttonContent = (
-        <NormalButton>
-          <div>
-            <span>{this.props.children}</span>
-            <span>{this.props.iconRight}</span>
-          </div>
+        <div>
+          <Icon>
+            <Label>{this.props.children}</Label>
+            <IconRight>{this.props.iconRight}</IconRight>
+          </Icon>
           <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-        </NormalButton>
+        </div>
       )
     }
 
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
-        <NormalButton>
           <div>
-            {this.props.iconOnly}
+            <Icon>{this.props.iconOnly}</Icon>
           </div>
-        </NormalButton>
       )
     }
 
-    if (!hasIcon) {
-      buttonContent = (
-        // <NormalButton>
-        //   <span className={styles.label}>{this.props.children}</span>
-        //   <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-        // </NormalButton>
-        <div>
-          <NormalButton>
-            <span>{this.props.children}</span>
-            <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-          </NormalButton>
-        </div>
-
-        
-      )
-    }
+  
 
 
     // const className = cx(
@@ -164,18 +180,23 @@ export class Button extends React.Component<Props> {
     //   this.props.classNames,
     // );
 
+    
     return (
       //@ts-ignore
-      <Tag
+      <NormalButton
         id={this.props.id}
-        // className={className}
-        onClick={this.props.onClick}
         disabled={isDisabled}
-        href={this.props.href}
+        // href={this.props.href}
+        wide={this.props.wide}
         type={this.props.type}
-        target={this.props.target}>
+        //size={this.props.size}
+        clear={this.props.clear}
+        outlined={this.props.outlined}
+        rounded={this.props.rounded}
+        target={this.props.target}
+        >
         {buttonContent}
-      </Tag>
+      </NormalButton>
     );
   }
 }

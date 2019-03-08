@@ -55,6 +55,7 @@ export default class ButtonPage extends React.Component {
   }
 
   changeSize(event) {
+    console.log(event.target.value)
     this.setState({size: event.target.value})
   }
 
@@ -111,23 +112,17 @@ export default class ButtonPage extends React.Component {
               <option value="blue">blue</option>
             </select>
           </div>
-          <div>
+
+           <div>
             <label htmlFor="size">Size</label>
-            <select name="size" value={this.state.size} onChange={this.changeSize}>
+            <select name="size" value={this.state.size} onChange={(event) => this.changeSize(event)}>
               <option value="small">Small</option>
               <option value="medium">Medium</option>
               <option value="large">Large</option>
             </select>
-          </div>
         </div>
-        <div>
-          <label htmlFor="size">Size</label>
-          <select name="size" value={this.state.size} onChange={(event) => this.changeSize(event)}>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-          </select>
         </div>
+       
         ## Icon on the left
         <ReactSpecimen span={3}>
           <Button iconLeft={<IconSettings></IconSettings>}>Button with button</Button>
