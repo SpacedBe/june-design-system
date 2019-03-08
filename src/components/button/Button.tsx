@@ -60,7 +60,7 @@ const Label = styled.span`
     opacity: 1;
 `
 
-const NormalButton = styled.button<{target?: string, size?: string, rounded?: boolean, clear?: boolean, outlined?: boolean, disabled?: boolean, wide?: boolean, color?: ''}>`
+const NormalButton = styled.button<{target?: string, onClick?: void, size?: string, rounded?: boolean, clear?: boolean, outlined?: boolean, disabled?: boolean, wide?: boolean, color?: ''}>`
   background: ${props => {
     if (props.outlined || props.clear) {
 				return `none`
@@ -137,9 +137,7 @@ export class Button extends React.Component<Props> {
           </Icon>
           <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
         </div>
-         
       )
-
     }
 
     if (hasIcon && this.props.iconRight) {
@@ -162,25 +160,6 @@ export class Button extends React.Component<Props> {
       )
     }
 
-  
-
-
-    // const className = cx(
-    //   'button',
-    //   {[`button--${this.props.color}`]: !!this.props.color},
-    //   {'button--wide': this.props.wide},
-    //   {'button--spaced': this.props.spaced},
-    //   {'button--clear': this.props.clear},
-    //   {'button--small': this.props.size === 'small'},
-    //   {'button--large': this.props.size === 'large'},
-    //   {'button--loading': this.props.loading},
-    //   {'button--outlined': this.props.outlined},
-    //   {'button--round': this.props.rounded},
-    //   {'button--icon': hasIcon},
-    //   this.props.classNames,
-    // );
-
-    
     return (
       //@ts-ignore
       <NormalButton
@@ -191,6 +170,7 @@ export class Button extends React.Component<Props> {
         type={this.props.type}
         //size={this.props.size}
         clear={this.props.clear}
+        //onClick={this.props.onClick}
         outlined={this.props.outlined}
         rounded={this.props.rounded}
         target={this.props.target}
