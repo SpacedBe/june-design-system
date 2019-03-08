@@ -73,7 +73,7 @@ export default class ButtonPage extends React.Component {
         <ReactSpecimen>
           <Button size={this.state.size} rounded={this.state.rounded} clear={this.state.clear}
                   outlined={this.state.outlined} disabled={this.state.disabled} wide={this.state.wide}
-                  color={this.state.color}>
+                  color={this.state.color} onClick={this.state.clicked}>
             {this.state.content}
           </Button>
         </ReactSpecimen>
@@ -123,7 +123,7 @@ export default class ButtonPage extends React.Component {
             </select>
         </div>
         </div>
-       
+
         ## Icon on the left
         <ReactSpecimen span={3}>
           <Button iconLeft={<IconSettings></IconSettings>}>Button with button</Button>

@@ -50,6 +50,9 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   justify-content: space-between;
   height: 40px;
   width: 100%;
+  &::placeholder {
+     color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+  }
 `;
 
 const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?: boolean}>`
@@ -97,11 +100,11 @@ const Flex = styled.div`
 `
 
 const Label = styled.label`
- padding-bottom: 5px;
+  padding-bottom: 5px;
 `
 
 const ToolTip = styled.button`
- font-size: 1.2em;
+  font-size: 1.2em;
 `
 
 export class FormikInput extends React.Component<Props> {
@@ -121,7 +124,6 @@ export class FormikInput extends React.Component<Props> {
         <InputBoxLeft error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
           <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type} ></Input>
         </InputBoxLeft>
-
       )
     }
 
@@ -195,7 +197,6 @@ export class FormikInput extends React.Component<Props> {
               {this.props.label}
             </Label>
           </Flex>
-
           <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
           </InputBoxRight>

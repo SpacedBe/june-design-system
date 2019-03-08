@@ -5,9 +5,8 @@
 
 import * as React from 'react';
 import {Loader} from "../loader/Loader";
-// todo: refactor to style components
-// import styles from "./button.scss";
 import styled from 'styled-components';
+
 import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 
 const styleVariables = loadStyleVariables();
@@ -28,7 +27,6 @@ type Props = {
   id?: string,
   label?: string | React.ReactNode,
   component?: any,
-
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
@@ -47,7 +45,6 @@ type Props = {
   type?: string,
   onClick?: (id: number) => void,
   successMessage?: any[],
-  // classNames?: string[],
 };
 
 
@@ -81,32 +78,32 @@ const NormalButton = styled.button<{target?: string, onClick?: void, size?: stri
         return `${styleVariables.green}`
       }
     }
-  }};
+  };
   border-radius: ${props => props.rounded ? `${styleVariables.compSmallSize}` : `${styleVariables.compRadius}`};
   border:  ${props => {
     if (props.outlined) {
-				return `2px solid ${styleVariables.green}`
+				return colors[props.color || 'green']
       } else if(props.disabled){
         return `2px solid ${styleVariables.gray}`
       } else if (props.clear){
         return `none`
       }else if(props.color) {
-         return colors[props.color || '2px solid green']
+         return colors[props.color || 'green']
       } else {
-        return `2px solid ${styleVariables.green}`
+       return colors[props.color || 'green']
       }
     }
-  }};
+  };
   color: ${props => {
     if (props.outlined || props.clear) {
-				return `${styleVariables.green}`
+				return colors[props.color || 'green']
       } else if(props.color = 'red'){
          return `${styleVariables.colorWhite}`
       } else{
         return `${styleVariables.colorWhite}`
       }
     }
-  }};
+  };
   cursor: pointer;
   font-family: ${styleVariables.fontbuttons};
   font-weight: 600;
@@ -165,9 +162,9 @@ export class Button extends React.Component<Props> {
 
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
-          <div>
-            <Icon>{this.props.iconOnly}</Icon>
-          </div>
+        <div>
+          <Icon>{this.props.iconOnly}</Icon>
+        </div>
       )
     }
 
@@ -176,13 +173,12 @@ export class Button extends React.Component<Props> {
       <NormalButton
         id={this.props.id}
         disabled={isDisabled}
-        // href={this.props.href}
         color={this.props.color}
         wide={this.props.wide}
         type={this.props.type}
         size={this.props.size}
         clear={this.props.clear}
-        //onClick={this.props.onClick}
+        //clicker moet hier komen, werkt niet meer
         outlined={this.props.outlined}
         rounded={this.props.rounded}
         target={this.props.target}

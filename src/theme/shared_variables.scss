@@ -115,7 +115,7 @@ $smallerphone: '(min-width: #{$screen-xxxs})';
 /******************/
 /* Refactor these */
 /*****************/
-$state-hover: 'html:not(.touchevents) &:not([disabled]):not(.is-disabled):hover';
+ $state-hover: 'html:not(.touchevents) &:not([disabled]):not(.is-disabled):hover';
 
 $gratis-img-width: 85px;
 $gratis-img-height: 42px;
