@@ -10,9 +10,19 @@ import {Loader} from "../loader/Loader";
 import styled from 'styled-components';
 import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 
+const styleVariables = loadStyleVariables();
 
-// var classNames = require('classnames/bind');
-// const cx = classNames.bind(styles);
+const sizes = {
+  small: '30px',
+  medium: '40px',
+  large: '51px',
+};
+
+const colors = {
+  red: `${styleVariables.red}`,
+  green: `${styleVariables.green}`,
+  blue: `${styleVariables.blue}`,
+};
 
 type Props = {
   id?: string,
@@ -26,11 +36,11 @@ type Props = {
   loading?: boolean,
   percentageDone?: number,
   wide?: boolean,
-  size?: string;
+  size?: 'small' | 'medium' | 'large',
   rounded?: boolean,
   spaced?: boolean,
   clear?: boolean,
-  color?: string,
+  color?: 'red' | 'green' | 'blue',
   href?: string,
   disabled?: boolean,
   target?: string,
@@ -40,7 +50,6 @@ type Props = {
   // classNames?: string[],
 };
 
-const styleVariables = loadStyleVariables();
 
 const Icon = styled.div`
   display: flex;
@@ -60,14 +69,16 @@ const Label = styled.span`
     opacity: 1;
 `
 
-const NormalButton = styled.button<{target?: string, onClick?: void, size?: string, rounded?: boolean, clear?: boolean, outlined?: boolean, disabled?: boolean, wide?: boolean, color?: ''}>`
+const NormalButton = styled.button<{target?: string, onClick?: void, size?: string, rounded?: boolean, clear?: boolean, outlined?: boolean, disabled?: boolean, wide?: boolean, color?: string}>`
   background: ${props => {
     if (props.outlined || props.clear) {
 				return `none`
       } else if (props.disabled){
         return `${styleVariables.gray}`
+      } else if(props.color) {
+         return  colors[props.color || 'green']
       } else {
-         return `${styleVariables.green}`
+        return `${styleVariables.green}`
       }
     }
   }};
@@ -79,6 +90,8 @@ const NormalButton = styled.button<{target?: string, onClick?: void, size?: stri
         return `2px solid ${styleVariables.gray}`
       } else if (props.clear){
         return `none`
+      }else if(props.color) {
+         return colors[props.color || '2px solid green']
       } else {
         return `2px solid ${styleVariables.green}`
       }
@@ -87,7 +100,9 @@ const NormalButton = styled.button<{target?: string, onClick?: void, size?: stri
   color: ${props => {
     if (props.outlined || props.clear) {
 				return `${styleVariables.green}`
-      } else {
+      } else if(props.color = 'red'){
+         return `${styleVariables.colorWhite}`
+      } else{
         return `${styleVariables.colorWhite}`
       }
     }
@@ -103,16 +118,12 @@ const NormalButton = styled.button<{target?: string, onClick?: void, size?: stri
   text-decoration: none;
   letter-spacing: 0.8px;
   transition: .2s ease-in-out;
-  line-height: ${props => {
-    if (props.size === 'medium'){
-      return `${styleVariables.compMediumSize}`
-      console.log(props.size)
-    } else {
-      return `${styleVariables.compLargeSize}`
-    }
-  }};
+  line-height: ${props => sizes[props.size || 'medium']};
 }`
 export class Button extends React.Component<Props> {
+   static defaultProps = {
+    size: 'medium'
+  };
   render() {
     let buttonContent;
     let isDisabled = (this.props.loading || this.props.disabled);
@@ -166,9 +177,10 @@ export class Button extends React.Component<Props> {
         id={this.props.id}
         disabled={isDisabled}
         // href={this.props.href}
+        color={this.props.color}
         wide={this.props.wide}
         type={this.props.type}
-        //size={this.props.size}
+        size={this.props.size}
         clear={this.props.clear}
         //onClick={this.props.onClick}
         outlined={this.props.outlined}
