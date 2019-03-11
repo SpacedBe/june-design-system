@@ -20,7 +20,6 @@ export default class ButtonPage extends React.Component {
   }
 
   changeInputPopup(event){
-    console.log('in event')
     this.setState({
       title: event.value,
       text: event.name,

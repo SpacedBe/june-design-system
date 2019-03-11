@@ -43,7 +43,7 @@ type Props = {
   disabled?: boolean,
   target?: string,
   type?: string,
-  onClick?: (id: number) => void,
+  onClick?: any,
   successMessage?: any[],
 };
 
@@ -103,7 +103,7 @@ const NormalButton = styled.button<{
     props.rounded
       ? `${styleVariables.compSmallSize}`
       : `${styleVariables.compRadius}`};
-  border:  ${props => {
+  border: ${props => {
     if (props.outlined) {
       return colors[props.color || "green"];
     } else if (props.disabled) {
@@ -136,14 +136,14 @@ const NormalButton = styled.button<{
   width: ${props => (props.wide ? "100%" : "")};
   text-decoration: none;
   letter-spacing: 0.8px;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
   line-height: ${props => sizes[props.size || "medium"]};
 
-   &:hover {
+  &:hover {
     background-color: ${styleVariables.greenDarker};
     color: ${styleVariables.colorWhite};
   }
-`
+`;
 
 export class Button extends React.Component<Props> {
    static defaultProps = {
@@ -206,6 +206,7 @@ export class Button extends React.Component<Props> {
         type={this.props.type}
         size={this.props.size}
         clear={this.props.clear}
+        onClick={this.props.onClick}
         //clicker moet hier komen, werkt niet meer
         outlined={this.props.outlined}
         rounded={this.props.rounded}
