@@ -197,7 +197,6 @@ export class Button extends React.Component<Props> {
     }
 
     return (
-      //@ts-ignore
       <NormalButton
         id={this.props.id}
         disabled={isDisabled}

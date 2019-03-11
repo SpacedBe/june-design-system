@@ -10,7 +10,7 @@ export default class ButtonPage extends React.Component {
       type: 'text',
       disabled: false,
       error: false,
-      focussed: false,
+      touched: false,
       current: false,
       field: {
         name: 'example-input',
@@ -27,11 +27,11 @@ export default class ButtonPage extends React.Component {
 
   toggleTouched() {
     this.setState({
-      focussed: !this.state.focussed,
+      touched: !this.state.touched,
       form: {
         ...this.state.form,
         touched: {
-          'example-input': !this.state.form.touched['example-input'],
+          "example-input": !this.state.form.touched["example-input"]
         }
       }
     });
@@ -78,7 +78,7 @@ export default class ButtonPage extends React.Component {
             <input
               type="checkbox"
               name="isTouched"
-              value={this.state.focussed}
+              value={this.state.touched}
               onChange={() => this.toggleTouched()}
             />
           </div>
@@ -117,7 +117,7 @@ export default class ButtonPage extends React.Component {
           <FormikInput
             label=""
             error={this.state.error}
-            focussed={this.state.focussed}
+            touched={this.state.touched}
             type={this.state.type}
             disabled={this.state.disabled}
             placeholderText="example placeholder"
@@ -233,7 +233,11 @@ export default class ButtonPage extends React.Component {
         ## Input field with tooltip
         <ReactSpecimen span={3}>
           <FormikInput
-            tooltip={<Button size={"small"}><IconQuestionmark></IconQuestionmark></Button>}
+            tooltip={
+              <Button size={"small"}>
+                <IconQuestionmark />
+              </Button>
+            }
             label="Label Value"
             error={this.state.error}
             disabled={this.state.disabled}
