@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark} from 'june-design-system';
+import Autoselector from '../components/autoselector';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -245,6 +246,21 @@ export default class ButtonPage extends React.Component {
             placeholderText="example placeholder"
             field={this.state.field}
             form={this.state.form}
+          />
+        </ReactSpecimen>
+        ## dynamic selector
+        <ReactSpecimen span={3}>
+          <Autoselector
+            label="Label Value"
+            options={[
+              "Alligator",
+              "Bask",
+              "Crocodilian",
+              "Death Roll",
+              "Badsqsk",
+              "Crodsqcodilian",
+              "Deathdq Roll",
+            ]}
           />
         </ReactSpecimen>
       </Page>
