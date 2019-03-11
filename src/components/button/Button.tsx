@@ -47,76 +47,104 @@ type Props = {
   successMessage?: any[],
 };
 
-
 const Icon = styled.div`
   display: flex;
   align-items: center;
-`
+  font-size: 1em;
+  fill: ${styleVariables.colorWhite};
+  &:hover {
+    fill: ${styleVariables.colorWhite};
+  }
+`;
+
+const IconOnly = styled.span`
+  fill: ${styleVariables.colorWhite};
+  padding: 0.2em;
+  font-size: 1.3em;
+`;
 
 const IconLeft = styled.span`
   margin-right: 8px;
-`
+`;
 
 const IconRight = styled.span`
- margin-left: 8px;
-`
+  margin-left: 8px;
+`;
 
 const Label = styled.span`
   @include transition(opacity);
     opacity: 1;
 `
 
-const NormalButton = styled.button<{target?: string, onClick?: void, size?: string, rounded?: boolean, clear?: boolean, outlined?: boolean, disabled?: boolean, wide?: boolean, color?: string}>`
+const NormalButton = styled.button<{
+  target?: string;
+  onClick?: void;
+  size?: string;
+  rounded?: boolean;
+  clear?: boolean;
+  outlined?: boolean;
+  disabled?: boolean;
+  wide?: boolean;
+  color?: string;
+  inverted?: boolean;
+}>`
   background: ${props => {
     if (props.outlined || props.clear) {
-				return `none`
-      } else if (props.disabled){
-        return `${styleVariables.gray}`
-      } else if(props.color) {
-         return  colors[props.color || 'green']
-      } else {
-        return `${styleVariables.green}`
-      }
+      return `none`;
+    } else if (props.disabled) {
+      return `${styleVariables.gray}`;
+    } else if (props.color) {
+      return colors[props.color || "green"];
+    } else {
+      return `${styleVariables.green}`;
     }
-  };
-  border-radius: ${props => props.rounded ? `${styleVariables.compSmallSize}` : `${styleVariables.compRadius}`};
+  }};
+  border-radius: ${props =>
+    props.rounded
+      ? `${styleVariables.compSmallSize}`
+      : `${styleVariables.compRadius}`};
   border:  ${props => {
     if (props.outlined) {
-				return colors[props.color || 'green']
-      } else if(props.disabled){
-        return `2px solid ${styleVariables.gray}`
-      } else if (props.clear){
-        return `none`
-      }else if(props.color) {
-         return colors[props.color || 'green']
-      } else {
-       return colors[props.color || 'green']
-      }
+      return colors[props.color || "green"];
+    } else if (props.disabled) {
+      return `2px solid ${styleVariables.gray}`;
+    } else if (props.clear) {
+      return `none`;
+    } else if (props.color) {
+      return colors[props.color || "green"];
+    } else {
+      return colors[props.color || "green"];
     }
-  };
+  }};
   color: ${props => {
     if (props.outlined || props.clear) {
-				return colors[props.color || 'green']
-      } else if(props.color = 'red'){
-         return `${styleVariables.colorWhite}`
-      } else{
-        return `${styleVariables.colorWhite}`
-      }
+      return colors[props.color || "green"];
+    } else if ((props.color = "red")) {
+      return `${styleVariables.colorWhite}`;
+    } else {
+      return `${styleVariables.colorWhite}`;
     }
-  };
+  }};
   cursor: pointer;
   font-family: ${styleVariables.fontbuttons};
   font-weight: 600;
   outline: 0;
+  margin-left: 1em;
   padding: 0 ${styleVariables.gutter};
   position: relative;
   text-align: center;
-  width: ${props => props.wide ? `100%` : ``}
+  width: ${props => (props.wide ? "100%" : "")};
   text-decoration: none;
   letter-spacing: 0.8px;
   transition: .2s ease-in-out;
-  line-height: ${props => sizes[props.size || 'medium']};
-}`
+  line-height: ${props => sizes[props.size || "medium"]};
+
+   &:hover {
+    background-color: ${styleVariables.greenDarker};
+    color: ${styleVariables.colorWhite};
+  }
+`
+
 export class Button extends React.Component<Props> {
    static defaultProps = {
     size: 'medium'
@@ -163,7 +191,7 @@ export class Button extends React.Component<Props> {
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
         <div>
-          <Icon>{this.props.iconOnly}</Icon>
+          <IconOnly>{this.props.iconOnly}</IconOnly>
         </div>
       )
     }

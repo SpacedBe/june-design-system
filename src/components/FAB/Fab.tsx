@@ -33,7 +33,7 @@ const Host = styled.div<Props>`
   align-items: center;
   box-sizing: border-box;
   transition: all .2s;
-  
+
   svg {
     fill: ${props => props.inverted ? styleVariables.colorWhite : styleVariables.colorPrimary};
   }
@@ -41,7 +41,7 @@ const Host = styled.div<Props>`
   &:hover {
     background-color: ${props => props.inverted ? styleVariables.colorWhite : styleVariables.colorPrimary};
     color: ${props => props.inverted ? styleVariables.colorPrimary : styleVariables.colorWhite};
-  
+
     svg {
       fill: ${props => props.inverted ? styleVariables.colorPrimary : styleVariables.colorWhite};
     }
