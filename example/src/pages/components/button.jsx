@@ -52,11 +52,9 @@ export default class ButtonPage extends React.Component {
 
   changeColor(event) {
     this.setState({color: event.target.value})
-    console.log(event.target.value)
   }
 
   changeSize(event) {
-    console.log(event.target.value)
     this.setState({size: event.target.value})
   }
 
