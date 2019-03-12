@@ -1,14 +1,13 @@
-import React from 'react';
-import { Page, ReactSpecimen, render } from 'catalog';
-import { FormikSelect } from 'june-design-system';
+import React from "react";
+import { Page, ReactSpecimen, render } from "catalog";
+import { FormikToggle, IconQuestionmark } from "june-design-system";
 
-export default class FormikSelectPage extends React.Component{
+export default class FormikTogglePage extends React.Component {
+
   constructor(props) {
     super(props);
 
     this.state = {
-      userInput: "",
-      options: [],
       label: "",
       disabled: false,
       error: false,
@@ -69,16 +68,7 @@ export default class FormikSelectPage extends React.Component{
       }
     });
   }
-
-
-  onChange = e => {
-    const userInput = e.currentTarget.value;
-    this.setState({
-      userInput: e.currentTarget.value
-    });
-  };
-
-  render() {
+  render(){
     return (
       <Page>
         <div>
@@ -121,15 +111,24 @@ export default class FormikSelectPage extends React.Component{
             />
           </div>
         </div>
-      ## Dynamic selector
+        ## Toggle Regular
         <ReactSpecimen span={3}>
-          <FormikSelect
-            label="Gender"
-            options={[{ option: "ONE" },
-            { option: "TWO" },
-            { option: "THREE" },
-            { option: "FOUR" }]}
-            htmlFor="isSelect"
+          <FormikToggle
+            tooltipToggle={<IconQuestionmark></IconQuestionmark>}
+            label="Regular Toggle"
+            error={this.state.error}
+            touched={this.state.touched}
+            disabled={this.state.disabled}
+            field={this.state.field}
+            form={this.state.form}
+          />
+        </ReactSpecimen>
+
+        ## Toggle Long Label
+        <ReactSpecimen span={3}>
+          <FormikToggle
+            tooltipToggle
+            label="Toggle with a long label discription"
             error={this.state.error}
             touched={this.state.touched}
             disabled={this.state.disabled}

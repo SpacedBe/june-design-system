@@ -101,9 +101,11 @@ const Flex = styled.div`
   justify-content: space-between;
 `
 
-const Label = styled.label<{ disabled?: boolean }>`
+const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
   padding-bottom: 5px;
   opacity: ${props => (props.disabled ? "0.5" : "1")};
+  color: ${props =>
+    props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
 `;
 export class FormikInput extends React.Component<Props> {
   render() {
@@ -189,7 +191,7 @@ export class FormikInput extends React.Component<Props> {
       buttonContent = (
         <div>
           <Flex>
-            <Label htmlFor={FieldName}>
+            <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>
               {this.props.label}
             </Label>
           </Flex>
@@ -204,7 +206,7 @@ export class FormikInput extends React.Component<Props> {
       buttonContent = (
         <div>
           <Flex>
-            <Label htmlFor={FieldName}>
+            <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>
               {this.props.label}
               <IconSmall disabled={this.props.disabled}>{this.props.tooltip}</IconSmall>
             </Label>
