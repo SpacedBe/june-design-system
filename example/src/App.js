@@ -91,6 +91,11 @@ export default class App extends Component {
                 component: pageLoader(() => import('./pages/form/formikInput')),
               },
               {
+                path: 'select',
+                title: 'Select',
+                component: pageLoader(() => import('./pages/form/formikSelect')),
+              },
+              {
                 path: 'form',
                 title: 'Form',
                 component: pageLoader(() => import('./pages/components/form')),

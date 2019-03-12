@@ -1,7 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark} from 'june-design-system';
-import Autoselector from '../components/autoselector';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -113,17 +112,6 @@ export default class ButtonPage extends React.Component {
             />
           </div>
         </div>
-        ## dynamic selector
-        <ReactSpecimen span={3}>
-          <Autoselector
-            label="Gender"
-            options={[
-              {id:1, option: "Male"},
-              {id: 2, option: "Female"},
-              {id: 3, option: "X"},
-            ]}
-          />
-        </ReactSpecimen>
         ## Input field no icon
         <ReactSpecimen span={3}>
           <FormikInput
