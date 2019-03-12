@@ -113,6 +113,17 @@ export default class ButtonPage extends React.Component {
             />
           </div>
         </div>
+        ## dynamic selector
+        <ReactSpecimen span={3}>
+          <Autoselector
+            label="Gender"
+            options={[
+              {id:1, option: "Male"},
+              {id: 2, option: "Female"},
+              {id: 3, option: "X"},
+            ]}
+          />
+        </ReactSpecimen>
         ## Input field no icon
         <ReactSpecimen span={3}>
           <FormikInput
@@ -246,21 +257,6 @@ export default class ButtonPage extends React.Component {
             placeholderText="example placeholder"
             field={this.state.field}
             form={this.state.form}
-          />
-        </ReactSpecimen>
-        ## dynamic selector
-        <ReactSpecimen span={3}>
-          <Autoselector
-            label="Label Value"
-            options={[
-              "Alligator",
-              "Bask",
-              "Crocodilian",
-              "Death Roll",
-              "Badsqsk",
-              "Crodsqcodilian",
-              "Deathdq Roll",
-            ]}
           />
         </ReactSpecimen>
       </Page>
