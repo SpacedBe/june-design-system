@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, ReactSpecimen, render } from "catalog";
-import { FormikToggle, IconQuestionmark } from "june-design-system";
+import { FormikToggle, IconQuestionmark, IconElectricity } from "june-design-system";
 
 export default class FormikTogglePage extends React.Component {
 
@@ -114,7 +114,7 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Regular
         <ReactSpecimen span={3}>
           <FormikToggle
-            tooltipToggle={<IconQuestionmark></IconQuestionmark>}
+            tooltipToggle={<IconQuestionmark />}
             label="Regular Toggle"
             error={this.state.error}
             touched={this.state.touched}
@@ -123,12 +123,35 @@ export default class FormikTogglePage extends React.Component {
             form={this.state.form}
           />
         </ReactSpecimen>
-
         ## Toggle Long Label
         <ReactSpecimen span={3}>
           <FormikToggle
-            tooltipToggle
             label="Toggle with a long label discription"
+            error={this.state.error}
+            touched={this.state.touched}
+            disabled={this.state.disabled}
+            field={this.state.field}
+            form={this.state.form}
+          />
+        </ReactSpecimen>
+        ## Toggle Long Icon Right
+        <ReactSpecimen span={3}>
+          <FormikToggle
+            iconRight={<IconElectricity />}
+            label="Toggle with a label"
+            error={this.state.error}
+            touched={this.state.touched}
+            disabled={this.state.disabled}
+            field={this.state.field}
+            form={this.state.form}
+          />
+        </ReactSpecimen>
+        ## Toggle Long Icon Right & Tooltip
+        <ReactSpecimen span={3}>
+          <FormikToggle
+            tooltipToggle={<IconQuestionmark />}
+            iconRight={<IconElectricity />}
+            label="Toggle with a label"
             error={this.state.error}
             touched={this.state.touched}
             disabled={this.state.disabled}

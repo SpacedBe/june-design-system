@@ -21,35 +21,16 @@ type Props = {
   error: boolean;
   tooltipToggle?: any;
   focussed: boolean;
+  iconRight?: any;
 };
 
 
 const styleVariables = loadStyleVariables();
 
-// const Div = styled.div<{
-//   error?: boolean;
-//   disabled?: boolean;
-//   focussed?: boolean;
-// }>`
-//   border: ${props =>
-//     props.error
-//       ? `2px solid ${styleVariables.red}`
-//       : `2px solid ${styleVariables.grayLight}`};
-//   padding: 10px 10px 10px 10px;
-//   border-radius: 2.5px;
-//   background: ${styleVariables.colorWhite};
-//   outline: none;
-//   display: flex;
-//   opacity: ${props => (props.disabled ? "0.5" : "1")};
-//   justify-content: space-between;
-//   height: 40px;
-//   width: 100%;
-// `;
-
 const Toggle = styled.label`
   position: relative;
   display: inline-block;
-  width: 55px;
+  width: 40px;
   height: 20px;
 `;
 
@@ -75,7 +56,7 @@ const Slider = styled.span<{
   background: ${props =>
     props.error ? `${styleVariables.red}` : `${styleVariables.green}`};
   &:checked {
-    transform: translateX(35px);
+    transform: translateX(20px);
     background-color: ${styleVariables.red};
   }
 `;
@@ -109,7 +90,7 @@ const Input = styled.input<{
     transition: all 0.4s;
   }
   &:checked {
-    transform: translateX(35px);
+    transform: translateX(20px);
   }
 `;
 
@@ -125,20 +106,23 @@ const LabelBeforeToffle = styled.label`
 `
 
 const Icon = styled.span`
+  font-size: 1.5em;
 `
+
 export class FormikToggle extends React.Component<Props> {
   render() {
     const FieldName = this.props.field.name;
     const errors = this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];
 
-    const hasTooltip = this.props.tooltipToggle;
+    const hasTooltip = this.props.tooltipToggle || this.props.iconRight;
     let toggleContent;
 
     if(hasTooltip && this.props.tooltipToggle){
       toggleContent = (
-        <div>
+        <Div>
           <Icon>{this.props.tooltipToggle}</Icon>
+          <LabelBeforeToffle>{this.props.label}</LabelBeforeToffle>
           <Toggle>
             <Slider
               error={this.props.error}
@@ -152,16 +136,81 @@ export class FormikToggle extends React.Component<Props> {
               error={this.props.error}
             />
           </Toggle>
-        </div>
+        </Div>
+      );
+    }
+
+    if (hasTooltip && this.props.iconRight) {
+      toggleContent = (
+        <Div>
+          <LabelBeforeToffle>{this.props.label}</LabelBeforeToffle>
+          <Icon>{this.props.iconRight}</Icon>
+          <Toggle>
+            <Slider
+              error={this.props.error}
+              disabled={this.props.disabled}
+              focussed={this.props.focussed}
+            />
+            <Input
+              {...this.props.field}
+              type="checkbox"
+              disabled={this.props.disabled}
+              error={this.props.error}
+            />
+          </Toggle>
+        </Div>
+      );
+    }
+
+    if (hasTooltip && this.props.iconRight && this.props.tooltipToggle) {
+      toggleContent = (
+        <Div>
+          <Icon>{this.props.tooltipToggle}</Icon>
+          <LabelBeforeToffle>{this.props.label}</LabelBeforeToffle>
+          <Icon>{this.props.iconRight}</Icon>
+          <Toggle>
+            <Slider
+              error={this.props.error}
+              disabled={this.props.disabled}
+              focussed={this.props.focussed}
+            />
+            <Input
+              {...this.props.field}
+              type="checkbox"
+              disabled={this.props.disabled}
+              error={this.props.error}
+            />
+          </Toggle>
+        </Div>
+      );
+    }
+    if (!hasTooltip) {
+      toggleContent = (
+        <Div>
+          <LabelBeforeToffle>{this.props.label}</LabelBeforeToffle>
+          <Toggle>
+            <Slider
+              error={this.props.error}
+              disabled={this.props.disabled}
+              focussed={this.props.focussed}
+            />
+            <Input
+              {...this.props.field}
+              type="checkbox"
+              disabled={this.props.disabled}
+              error={this.props.error}
+            />
+          </Toggle>
+        </Div>
       );
     }
     return (
-      <Div>
-        <LabelBeforeToffle>{this.props.label}</LabelBeforeToffle>
+      <div>
+
         {toggleContent}
 
         {touched && errors && <div className="error">{errors}</div>}
-      </Div>
+      </div>
     );
   }
 }
