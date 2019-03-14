@@ -258,22 +258,21 @@ export default class ButtonPage extends React.Component {
             form={this.state.form}
           />
         </ReactSpecimen>
-
         ## Autocomplete
         <ReactSpecimen span={3}>
           <Autocomplete
             placeholderText="Typ om je postcode in te vullen"
             suggestions={[
-              "Alligator",
-              "Bask",
-              "Crocodilian",
-              "Death Roll",
-              "Eggs",
-              "Jaws",
-              "Reptile",
-              "Solitary",
-              "Tail",
-              "Wetlands"
+              "One",
+              "Two",
+              "Three",
+              "Four",
+              "Five",
+              "Six",
+              "Seven",
+              "Eight",
+              "Nine",
+              "Ten"
             ]}
           />
         </ReactSpecimen>
