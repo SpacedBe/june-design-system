@@ -73,10 +73,6 @@ const Round = styled.div`
 `;
 export class FormikRadiobutton extends React.Component<Props> {
   render() {
-    // const FieldName = this.props.field.name;
-    // const errors = this.props.form.errors[FieldName];
-    // const touched = this.props.form.touched[FieldName];
-
     return (
       <InputDiv>
         <Round>
@@ -87,9 +83,7 @@ export class FormikRadiobutton extends React.Component<Props> {
             disabled={this.props.disabled}
           />
         </Round>
-
         <label>{this.props.label}</label>
-        {/* {touched &&  errors && <div className="error">{errors}</div>} */}
       </InputDiv>
     );
   }
