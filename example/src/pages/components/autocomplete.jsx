@@ -1,10 +1,7 @@
 
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import { Page, ReactSpecimen } from 'catalog';
-
 import styled from "styled-components";
-
 
 class Autocomplete extends Component {
   static propTypes = {
@@ -22,6 +19,7 @@ class Autocomplete extends Component {
       activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
+      label: "",
 
       userInput: "",
       placeholderText: ""
@@ -62,14 +60,11 @@ class Autocomplete extends Component {
         userInput: filteredSuggestions[activeSuggestion]
       });
     } else if (e.keyCode === 38) {
-
       if (activeSuggestion === 0) {
         return;
       }
       this.setState({ activeSuggestion: activeSuggestion - 1 });
-
     } else if (e.keyCode === 40) {
-
       if (activeSuggestion - 1 === filteredSuggestions.length) {
         return;
       }
@@ -90,9 +85,6 @@ class Autocomplete extends Component {
       }
     } = this;
 
-
-
-
     const SuggestionList = styled.ul`
       width: 100%;
       height: 100%;
@@ -111,13 +103,11 @@ class Autocomplete extends Component {
       font-size: 0.8em;
     `;
 
-
     const InputField = styled.input`
       background: white;
       border: 2px solid #bfbfbf;
       padding: 10px 10px 10px 10px;
     `;
-
 
     let suggestionsListComponent;
 
@@ -145,6 +135,7 @@ class Autocomplete extends Component {
 
     return (
       <div>
+        <label>{this.props.label}</label>
         <InputField
           type="text"
           placeholderText={this.props.placeholderText}

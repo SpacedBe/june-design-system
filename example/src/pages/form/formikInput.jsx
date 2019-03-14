@@ -1,8 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import { FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark} from 'june-design-system';
-import Autocomplete from "../components/autocomplete";
-
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -74,12 +72,6 @@ export default class ButtonPage extends React.Component {
   }
 
   onChangeUserInput(event){
-    // const { suggestions } = this.props;
-    // const userInput = e.currentTarget.value;
-    // const filteredSuggestions = suggestions.filter(
-    //   suggestion =>
-    //     suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-    // );
     this.setState({ userInput: event.target.value })
     console.log(event.target.value)
   };
@@ -170,7 +162,7 @@ export default class ButtonPage extends React.Component {
         ## Input field button inside
         <ReactSpecimen span={3}>
           <FormikInput
-            iconRight={<Button size={"big"}>copy</Button>}
+            iconRight={<Button size={"medium"}>copy</Button>}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
@@ -183,7 +175,7 @@ export default class ButtonPage extends React.Component {
         ## Input field button outside
         <ReactSpecimen span={3}>
           <FormikInput
-            buttonOutsideRight={<Button size={"big"}>button</Button>}
+            buttonOutsideRight={<Button size={"medium"}>button</Button>}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
@@ -256,24 +248,6 @@ export default class ButtonPage extends React.Component {
             placeholderText="example placeholder"
             field={this.state.field}
             form={this.state.form}
-          />
-        </ReactSpecimen>
-        ## Autocomplete
-        <ReactSpecimen span={3}>
-          <Autocomplete
-            placeholderText="Typ om je postcode in te vullen"
-            suggestions={[
-              "One",
-              "Two",
-              "Three",
-              "Four",
-              "Five",
-              "Six",
-              "Seven",
-              "Eight",
-              "Nine",
-              "Ten"
-            ]}
           />
         </ReactSpecimen>
       </Page>
