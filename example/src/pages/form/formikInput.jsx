@@ -1,6 +1,8 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark} from 'june-design-system';
+import { FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark} from 'june-design-system';
+import Autocomplete from "../components/autocomplete";
+
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -10,8 +12,10 @@ export default class ButtonPage extends React.Component {
       type: 'text',
       disabled: false,
       error: false,
-      touched: false,
+      focussed: false,
       current: false,
+      userInput: '',
+      suggestions: [],
       field: {
         name: 'example-input',
       },
@@ -27,11 +31,11 @@ export default class ButtonPage extends React.Component {
 
   toggleTouched() {
     this.setState({
-      touched: !this.state.touched,
+      focussed: !this.state.focussed,
       form: {
         ...this.state.form,
         touched: {
-          "example-input": !this.state.form.touched["example-input"]
+          'example-input': !this.state.form.touched['example-input'],
         }
       }
     });
@@ -69,6 +73,17 @@ export default class ButtonPage extends React.Component {
     });
   }
 
+  onChangeUserInput(event){
+    // const { suggestions } = this.props;
+    // const userInput = e.currentTarget.value;
+    // const filteredSuggestions = suggestions.filter(
+    //   suggestion =>
+    //     suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+    // );
+    this.setState({ userInput: event.target.value })
+    console.log(event.target.value)
+  };
+
   render() {
     return (
       <Page>
@@ -78,7 +93,7 @@ export default class ButtonPage extends React.Component {
             <input
               type="checkbox"
               name="isTouched"
-              value={this.state.touched}
+              value={this.state.focussed}
               onChange={() => this.toggleTouched()}
             />
           </div>
@@ -117,7 +132,7 @@ export default class ButtonPage extends React.Component {
           <FormikInput
             label=""
             error={this.state.error}
-            touched={this.state.touched}
+            focussed={this.state.focussed}
             type={this.state.type}
             disabled={this.state.disabled}
             placeholderText="example placeholder"
@@ -155,7 +170,7 @@ export default class ButtonPage extends React.Component {
         ## Input field button inside
         <ReactSpecimen span={3}>
           <FormikInput
-            iconRight={<Button size={"small"}>copy</Button>}
+            iconRight={<Button size={"big"}>copy</Button>}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
@@ -168,7 +183,7 @@ export default class ButtonPage extends React.Component {
         ## Input field button outside
         <ReactSpecimen span={3}>
           <FormikInput
-            buttonOutsideRight={<Button size={"small"}>button</Button>}
+            buttonOutsideRight={<Button size={"big"}>button</Button>}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
@@ -233,11 +248,7 @@ export default class ButtonPage extends React.Component {
         ## Input field with tooltip
         <ReactSpecimen span={3}>
           <FormikInput
-            tooltip={
-              <Button size={"small"}>
-                <IconQuestionmark />
-              </Button>
-            }
+            toolTip={<IconQuestionmark />}
             label="Label Value"
             error={this.state.error}
             disabled={this.state.disabled}
@@ -245,6 +256,25 @@ export default class ButtonPage extends React.Component {
             placeholderText="example placeholder"
             field={this.state.field}
             form={this.state.form}
+          />
+        </ReactSpecimen>
+
+        ## Autocomplete
+        <ReactSpecimen span={3}>
+          <Autocomplete
+            placeholderText="Typ om je postcode in te vullen"
+            suggestions={[
+              "Alligator",
+              "Bask",
+              "Crocodilian",
+              "Death Roll",
+              "Eggs",
+              "Jaws",
+              "Reptile",
+              "Solitary",
+              "Tail",
+              "Wetlands"
+            ]}
           />
         </ReactSpecimen>
       </Page>
