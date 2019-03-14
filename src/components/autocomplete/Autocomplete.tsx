@@ -41,19 +41,10 @@ const Select = styled.select<{
 `;
 export class Autocomplete extends React.Component<Props> {
   render(){
-
-    // let optionContent;
-
-    // optionContent = (
-
-    //   );
-
     return (
+      <Select onChange={this.props.onChange} value={this.props.value} >
 
-        <Select onChange={this.props.onChange} value={this.props.value} >
-
-        </Select>
-
+      </Select>
     );
   }
 }

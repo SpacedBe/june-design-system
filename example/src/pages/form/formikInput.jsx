@@ -73,7 +73,6 @@ export default class ButtonPage extends React.Component {
 
   onChangeUserInput(event){
     this.setState({ userInput: event.target.value })
-    console.log(event.target.value)
   };
 
   render() {

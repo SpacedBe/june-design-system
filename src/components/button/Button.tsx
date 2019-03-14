@@ -106,11 +106,11 @@ const NormalButton = styled.button<{
   border: ${props => {
     if (props.outlined) {
       return colors[props.color || "green"];
-    } else if (props.disabled) {
+    }
+    if (props.disabled) {
       return `2px solid ${styleVariables.gray}`;
-    } else if (props.clear) {
-      return `none`;
-    } else if (props.color) {
+    }
+    if (props.color) {
       return colors[props.color || "green"];
     } else {
       return colors[props.color || "green"];
@@ -206,7 +206,6 @@ export class Button extends React.Component<Props> {
         size={this.props.size}
         clear={this.props.clear}
         onClick={this.props.onClick}
-        //clicker moet hier komen, werkt niet meer
         outlined={this.props.outlined}
         rounded={this.props.rounded}
         target={this.props.target}

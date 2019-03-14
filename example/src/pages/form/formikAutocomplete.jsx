@@ -1,8 +1,18 @@
 import React from 'react';
 import { Page, ReactSpecimen } from 'catalog';
-import Autocomplete from "../components/autocomplete";
+import {FormikAutocomplete} from "june-design-system"
+import PropTypes from "prop-types";
 
-export default class FormikAutocomplete extends React.Component {
+
+export default class FormikAutocompletePage extends React.Component {
+  static propTypes = {
+    suggestions: PropTypes.instanceOf(Array)
+  };
+
+  static defaultProps = {
+    suggestions: []
+  };
+
   constructor(props) {
     super(props);
 
@@ -14,7 +24,10 @@ export default class FormikAutocomplete extends React.Component {
       current: false,
       label: '',
       userInput: '',
-      suggestions: [],
+      activeSuggestion: 0,
+      filteredSuggestions: [],
+      options: [],
+      showSuggestions: false,
       field: {
         name: 'example-input',
       },
@@ -44,28 +57,27 @@ export default class FormikAutocomplete extends React.Component {
     console.log(event.target.value)
   };
 
+  onChange = e => {
+   console.log("in change func")
+  };
+
   render(){
     return (
       <Page>
         ## Autocomplete
+        <input
+          type="text"
+          onChange={(event) => this.onChange(event)}
+          value={this.state.userInput}
+        />
         <ReactSpecimen span={3}>
-          <Autocomplete
-            error={this.state.error}
-            focussed={this.state.focussed}
-            touched={this.state.touched}
-            label="Numbers"
-            suggestions={[
-              "One",
-              "Two",
-              "Three",
-              "Four",
-              "Five",
-              "Six",
-              "Seven",
-              "Eight",
-              "Nine",
-              "Ten"
-            ]}
+          <FormikAutocomplete
+            label="auto"
+            showSuggestions={this.state.showSuggestions}
+             options={[{ option: "ONE" },
+            { option: "TWO" },
+            { option: "THREE" },
+            { option: "FOUR" }]}
           />
         </ReactSpecimen>
       </Page>

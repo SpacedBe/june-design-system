@@ -18,12 +18,10 @@ type Props = {
     ['errors']: string;
     ['touched']: boolean;
   };
-
   ['serverErrors']: string;
   userInput?: string,
   options: Option[],
   label?: string,
-  optionSet?: any,
   error: boolean,
   focussed: boolean,
   disabled: boolean,
@@ -69,11 +67,9 @@ export class FormikSelect extends React.Component<Props>{
   render(){
 
     const FieldName = this.props.field.name;
-    const hasOption = this.props.optionSet;
     const touched = this.props.form.touched[FieldName];
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
 
-    if (hasOption && this.props.optionSet){}
     return (
       <div>
         <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>{this.props.label}</Label>
