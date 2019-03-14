@@ -10,6 +10,7 @@ export default class FormikRadiobuttonPage extends React.Component{
       error: false,
       checked: false,
       name:"",
+      label: "",
       field: {
         name: 'example-input',
       },
@@ -35,6 +36,7 @@ export default class FormikRadiobuttonPage extends React.Component{
               type="radio"
               htmlFor="isRadioButton"
               name="radioCheck"
+              label="option one"
               checked={this.state.checked}
             />
             <FormikRadiobutton
@@ -43,6 +45,7 @@ export default class FormikRadiobuttonPage extends React.Component{
               type="radio"
               htmlFor="isRadioButton"
               name="radioCheck"
+              label="When a label is really long it just shows on multiple lines."
               checked={this.state.checked}
             />
           </div>

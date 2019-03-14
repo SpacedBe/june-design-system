@@ -16,8 +16,8 @@ type Props = {
   };
   disabled: boolean;
   name:string,
+  label: string,
   validationMessage: string;
-  label: string;
   checked: boolean;
   placeholderText: string;
 };
@@ -54,8 +54,10 @@ const Input = styled.input.attrs({ type: "radio" })`
 `;
 
 const InputDiv = styled.div`
-  display: block;
+  display: flex;
+  align-items: center;
   position: relative;
+  margin-bottom: 20px;
 `;
 
 const Round = styled.div`
