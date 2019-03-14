@@ -124,10 +124,17 @@ export default class App extends Component {
                 )
               },
               {
+                path: "radiobutton",
+                title: "Radiobutton",
+                component: pageLoader(() =>
+                  import("./pages/form/formikRadiobutton")
+                )
+              },
+              {
                 path: "form",
                 title: "Form",
                 component: pageLoader(() =>
-                  import("./pages/components/form")
+                  import("./pages/form/formikForm")
                 )
               }
             ]
