@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Catalog, pageLoader} from 'catalog';
+import {Catalog, pageLoader} from 'catalog';
 
 import {
   Button,
@@ -30,7 +30,7 @@ export default class App extends Component {
               {
                 path: 'typography',
                 title: 'Typography',
-                content: pageLoader(('./pages/design/typography.md')),
+                content: pageLoader('/pages/design/typography.md'),
               },
               {
                 path: 'icons',
