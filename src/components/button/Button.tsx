@@ -144,7 +144,7 @@ const NormalButton = styled.button<{
 
 export class Button extends React.Component<Props> {
    static defaultProps = {
-    size: 'medium'
+    size: 'medium',
   };
   render() {
     let buttonContent;

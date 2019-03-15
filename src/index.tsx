@@ -8,5 +8,4 @@ export * from "./components/formik-input/FormikInput";
 export * from "./components/formik-toggle/FormikToggle";
 export * from "./components/formik-select/FormikSelect";
 export * from './components/formik-checkbox/FormikCheckbox';
-export * from "./components/formik-autocomplete/FormikAutocomplete";
 export * from './scripts/loadStyleVariables';
