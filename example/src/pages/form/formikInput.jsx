@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark} from 'june-design-system';
+import { FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark} from 'june-design-system';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -12,6 +12,8 @@ export default class ButtonPage extends React.Component {
       error: false,
       focussed: false,
       current: false,
+      userInput: '',
+      suggestions: [],
       field: {
         name: 'example-input',
       },
@@ -69,35 +71,53 @@ export default class ButtonPage extends React.Component {
     });
   }
 
+  onChangeUserInput(event){
+    this.setState({ userInput: event.target.value })
+  };
+
   render() {
     return (
       <Page>
         <div>
           <div>
             <label htmlFor="isTouched">Touched</label>
-            <input type="checkbox" name="isTouched" value={this.state.focussed}
-              onChange={() => this.toggleTouched()} />
+            <input
+              type="checkbox"
+              name="isTouched"
+              value={this.state.focussed}
+              onChange={() => this.toggleTouched()}
+            />
           </div>
 
           <div>
             <label htmlFor="hasError">Error</label>
-            <input type="checkbox" name="hasError" value={this.state.error}
-              onChange={() => this.toggleError()} />
+            <input
+              type="checkbox"
+              name="hasError"
+              value={this.state.error}
+              onChange={() => this.toggleError()}
+            />
           </div>
 
           <div>
             <label htmlFor="hasServerError">has server error?</label>
-            <input type="checkbox"  name="hasServerError"
-                   onChange={() => this.toggleServerError()}/>
+            <input
+              type="checkbox"
+              name="hasServerError"
+              onChange={() => this.toggleServerError()}
+            />
           </div>
 
           <div>
             <label htmlFor="isDisabled">Disabled?</label>
-            <input type="checkbox" value={this.state.disabled} name="isDisabled"
-              onChange={() => this.changeDisable()} />
+            <input
+              type="checkbox"
+              value={this.state.disabled}
+              name="isDisabled"
+              onChange={() => this.changeDisable()}
+            />
           </div>
         </div>
-
         ## Input field no icon
         <ReactSpecimen span={3}>
           <FormikInput
@@ -109,94 +129,87 @@ export default class ButtonPage extends React.Component {
             placeholderText="example placeholder"
             field={this.state.field}
             form={this.state.form}
-            current={this.state.current}>
-          </FormikInput>
+            current={this.state.current}
+          />
         </ReactSpecimen>
-
-       ## Input field icon left
+        ## Input field icon left
         <ReactSpecimen span={3}>
           <FormikInput
-            iconLeft={<IconCalender></IconCalender>}
+            iconLeft={<IconCalender />}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
             type={this.state.type}
             placeholderText="example placeholder"
             field={this.state.field}
-            form={this.state.form}>
-          </FormikInput>
+            form={this.state.form}
+          />
         </ReactSpecimen>
-
         ## Input field icon right
         <ReactSpecimen span={3}>
           <FormikInput
-            iconRight={<IconCalender></IconCalender>}
+            iconRight={<IconCalender />}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
             type={this.state.type}
             placeholderText="example placeholder"
             field={this.state.field}
-            form={this.state.form}>
-          </FormikInput>
+            form={this.state.form}
+          />
         </ReactSpecimen>
-
         ## Input field button inside
         <ReactSpecimen span={3}>
           <FormikInput
-            iconRight={<Button size={'big'}>copy</Button>}
+            iconRight={<Button size={"medium"}>copy</Button>}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
             type={this.state.type}
             placeholderText="example placeholder"
             field={this.state.field}
-            form={this.state.form}>
-          </FormikInput>
+            form={this.state.form}
+          />
         </ReactSpecimen>
-
         ## Input field button outside
         <ReactSpecimen span={3}>
           <FormikInput
-            buttonOutsideRight={<Button size={'big'}>button</Button>}
+            buttonOutsideRight={<Button size={"medium"}>button</Button>}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
             type={this.state.type}
             placeholderText="example placeholder"
             field={this.state.field}
-            form={this.state.form}>
-          </FormikInput>
+            form={this.state.form}
+          />
         </ReactSpecimen>
-
         ## Input field icon lead
         <ReactSpecimen span={3}>
           <FormikInput
-            iconFront={<IconElectricity></IconElectricity>}
+            iconFront={<IconElectricity />}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
             type={this.state.type}
             placeholderText="example placeholder"
             field={this.state.field}
-            form={this.state.form}>
-          </FormikInput>
+            form={this.state.form}
+          />
         </ReactSpecimen>
-
         ## Input field icon end
         <ReactSpecimen span={3}>
           <FormikInput
-            iconEnd={<IconElectricity></IconElectricity>}
+            iconEnd={<IconElectricity />}
             label=""
             error={this.state.error}
             disabled={this.state.disabled}
             type={this.state.type}
             placeholderText="example placeholder"
             field={this.state.field}
-            form={this.state.form}>
-          </FormikInput>
+            form={this.state.form}
+          />
         </ReactSpecimen>
-
         ## Input field label
         <ReactSpecimen span={3}>
           <FormikInput
@@ -208,11 +221,8 @@ export default class ButtonPage extends React.Component {
             placeholderText="example placeholder"
             field={this.state.field}
             form={this.state.form}
-          >
-          </FormikInput>
+          />
         </ReactSpecimen>
-
-
         ## Input field required
         <ReactSpecimen span={3}>
           <FormikInput
@@ -223,15 +233,13 @@ export default class ButtonPage extends React.Component {
             type={this.state.type}
             placeholderText="example placeholder"
             field={this.state.field}
-            form={this.state.form}>
-          </FormikInput>
+            form={this.state.form}
+          />
         </ReactSpecimen>
-
-
         ## Input field with tooltip
         <ReactSpecimen span={3}>
           <FormikInput
-            toolTip={<IconQuestionmark></IconQuestionmark>}
+            toolTip={<IconQuestionmark />}
             label="Label Value"
             error={this.state.error}
             disabled={this.state.disabled}
@@ -239,10 +247,26 @@ export default class ButtonPage extends React.Component {
             placeholderText="example placeholder"
             field={this.state.field}
             form={this.state.form}
-          >
-          </FormikInput>
+          />
+        </ReactSpecimen>
+        ## Autocomplete
+        <ReactSpecimen span={3}>
+          <FormikInput
+            tooltip={
+              <Button size={"small"}>
+                <IconQuestionmark />
+              </Button>
+            }
+            label="Label Value"
+            error={this.state.error}
+            disabled={this.state.disabled}
+            type={this.state.type}
+            placeholderText="example placeholder"
+            field={this.state.field}
+            form={this.state.form}
+          />
         </ReactSpecimen>
       </Page>
-    )
+    );
   }
 }

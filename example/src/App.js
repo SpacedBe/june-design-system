@@ -16,16 +16,16 @@ export default class App extends Component {
   render() {
     return (
       <Catalog
-        title='June Design System'
+        title="June Design System"
         styles={["./styles/main.css"]}
         pages={[
           {
-            path: '/',
-            title: 'Introduction',
-            content: pageLoader(('./pages/intro.md')),
+            path: "/",
+            title: "Introduction",
+            content: pageLoader("./pages/intro.md")
           },
           {
-            title: 'Design',
+            title: "Design",
             pages: [
               {
                 path: 'typography',
@@ -33,72 +33,100 @@ export default class App extends Component {
                 content: pageLoader('/pages/design/typography.md'),
               },
               {
-                path: 'icons',
-                title: 'Icons',
-                component: pageLoader(() => import('./pages/components/icons')),
+                path: "icons",
+                title: "Icons",
+                component: pageLoader(() =>
+                  import("./pages/components/icons")
+                ),
                 imports: {
                   IconPreferences,
                   IconSavings,
                   IconSettings,
                   IconWater,
-                  IconWaterBattery,
+                  IconWaterBattery
                 }
               }
             ]
           },
           {
-            title: 'Components',
+            title: "Components",
             pages: [
               {
-                path: 'buttons',
-                title: 'Buttons',
-                component: pageLoader(() => import('./pages/components/button')),
+                path: "buttons",
+                title: "Buttons",
+                component: pageLoader(() =>
+                  import("./pages/components/button")
+                ),
                 imports: {
                   Button,
-                  IconSettings,
-                },
+                  IconSettings
+                }
               },
               {
-                path: 'fab',
-                title: 'FAB',
-                component: pageLoader(() => import('./pages/components/fab')),
+                path: "fab",
+                title: "FAB",
+                component: pageLoader(() =>
+                  import("./pages/components/fab")
+                ),
                 imports: {
-                  Fab,
-                },
+                  Fab
+                }
               },
               {
-                path: 'stepper',
-                title: 'Stepper',
-                component: pageLoader(() => import('./pages/components/stepper')),
+                path: "stepper",
+                title: "Stepper",
+                component: pageLoader(() =>
+                  import("./pages/components/stepper")
+                ),
                 imports: {
                   Stepper,
-                  IconSettings,
-                },
+                  IconSettings
+                }
               },
               {
-                path: 'tooltip',
-                title: 'Tooltip',
-                component: pageLoader(() => import('./pages/components/tooltip')),
-              },
+                path: "tooltip",
+                title: "Tooltip",
+                component: pageLoader(() =>
+                  import("./pages/components/tooltip")
+                )
+              }
             ]
           },
           {
-            title: 'Form',
+            title: "Form",
             pages: [
               {
-                path: 'input',
-                title: 'Input',
-                component: pageLoader(() => import('./pages/form/formikInput')),
+                path: "input",
+                title: "Input",
+                component: pageLoader(() =>
+                  import("./pages/form/formikInput")
+                )
               },
               {
-                path: 'form',
-                title: 'Form',
-                component: pageLoader(() => import('./pages/components/form')),
+                path: "select",
+                title: "Select",
+                component: pageLoader(() =>
+                  import("./pages/form/formikSelect")
+                )
               },
+              {
+                path: "toggle",
+                title: "Toggle",
+                component: pageLoader(() =>
+                  import("./pages/form/formikToggle")
+                )
+              },
+              {
+                path: "form",
+                title: "Form",
+                component: pageLoader(() =>
+                  import("./pages/components/form")
+                )
+              }
             ]
-          },
+          }
         ]}
       />
-    )
+    );
   }
 }

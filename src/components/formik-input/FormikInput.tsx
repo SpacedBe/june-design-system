@@ -30,7 +30,7 @@ type Props = {
   iconFront?: any,
   iconEnd?: any,
   buttonOutsideRight?: any,
-  toolTip?: any,
+  tooltip?: any,
   required?: any,
   current?: boolean,
   classNames?: string[],
@@ -43,13 +43,16 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
-  background-color: ${styleVariables.white};
+  background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
   justify-content: space-between;
   height: 40px;
   width: 100%;
+  &::placeholder {
+     color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+  }
 `;
 
 const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?: boolean}>`
@@ -57,7 +60,7 @@ const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?:
   color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
-  background-color: ${styleVariables.white};
+  background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
@@ -67,42 +70,43 @@ const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?:
 const InputWithIconLeft = styled.input`
   border: none;
   margin-left: 10px;
+  background-color: ${styleVariables.colorWhite};
   outline: none;
 `
 
 const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
   border: none;
   outline: none;
-  background-color: ${styleVariables.white};
+  background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
 `
 
-const IconSmall = styled.span`
+const IconSmall = styled.span<{ disabled?: boolean }>`
   font-size: 1.5em;
-`
+  opacity: ${props => (props.disabled ? "0.5" : "1")};
+`;
+
 const IconBig = styled.span`
   font-size: 2em;
-`
+`;
 
 const ButtonSmall = styled.button<{disabled?:boolean}>`
-font-size: 1em;
-opacity: ${props => props.disabled ? '0.5' : '1'};
+  font-size: 1em;
+  opacity: ${props => props.disabled ? '0.5' : '1'};
 `
 const Flex = styled.div`
- display: flex;
- align-items: center;
- width: 100%;
- justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 `
 
-const Label = styled.label`
- padding-bottom: 5px;
-`
-
-const ToolTip = styled.button`
- font-size: 1.2em;
-`
-
+const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
+  padding-bottom: 5px;
+  opacity: ${props => (props.disabled ? "0.5" : "1")};
+  color: ${props =>
+    props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+`;
 export class FormikInput extends React.Component<Props> {
   render() {
     const FieldName = this.props.field.name;
@@ -113,14 +117,13 @@ export class FormikInput extends React.Component<Props> {
     let buttonContent;
 
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd || this.props.required;
-    const hasButton = this.props.buttonOutsideRight || this.props.toolTip;
+    const hasButton = this.props.buttonOutsideRight || this.props.tooltip;
 
     if (!hasIcon) {
       buttonContent = (
         <InputBoxLeft error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
           <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type} ></Input>
         </InputBoxLeft>
-
       )
     }
 
@@ -137,7 +140,7 @@ export class FormikInput extends React.Component<Props> {
       buttonContent = (
         <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
           <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
-          <IconSmall >{this.props.iconRight}</IconSmall>
+          <IconSmall>{this.props.iconRight}</IconSmall>
         </InputBoxRight>
       )
     }
@@ -151,18 +154,16 @@ export class FormikInput extends React.Component<Props> {
       )
     }
 
-
     if (hasButton && this.props.buttonOutsideRight) {
       buttonContent = (
         <Flex>
           <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
           </InputBoxRight>
-          <ButtonSmall disabled={this.props.disabled} >{this.props.buttonOutsideRight}</ButtonSmall>
+          <IconSmall disabled={this.props.disabled} >{this.props.buttonOutsideRight}</IconSmall>
         </Flex>
       )
     }
-
 
     if(hasIcon && this.props.iconFront){
       buttonContent = (
@@ -190,11 +191,10 @@ export class FormikInput extends React.Component<Props> {
       buttonContent = (
         <div>
           <Flex>
-            <Label htmlFor={FieldName}>
+            <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>
               {this.props.label}
             </Label>
           </Flex>
-
           <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
           </InputBoxRight>
@@ -202,13 +202,13 @@ export class FormikInput extends React.Component<Props> {
       )
     }
 
-    if (hasButton && this.props.toolTip) {
+    if (hasButton && this.props.tooltip) {
       buttonContent = (
         <div>
           <Flex>
-            <Label htmlFor={FieldName}>
+            <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>
               {this.props.label}
-              <ToolTip>{this.props.toolTip}</ToolTip>
+              <IconSmall disabled={this.props.disabled}>{this.props.tooltip}</IconSmall>
             </Label>
           </Flex>
           <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>

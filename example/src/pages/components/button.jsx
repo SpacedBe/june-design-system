@@ -69,104 +69,141 @@ export default class ButtonPage extends React.Component {
       <Page>
         ## Buttons
         <ReactSpecimen>
-          <Button size={this.state.size} rounded={this.state.rounded} clear={this.state.clear}
-                  outlined={this.state.outlined} disabled={this.state.disabled} wide={this.state.wide}
-                  color={this.state.color}>
+          <Button
+            size={this.state.size}
+            rounded={this.state.rounded}
+            clear={this.state.clear}
+            outlined={this.state.outlined}
+            disabled={this.state.disabled}
+            wide={this.state.wide}
+            color={this.state.color}
+            onClick={this.state.clicked}
+          >
             {this.state.content}
           </Button>
         </ReactSpecimen>
-
         <div>
           <div>
             <label htmlFor="isRounded">Rounded?</label>
-            <input type="checkbox" value={this.state.rounded} name="isRounded" onChange={() => this.changeRounded()}/>
+            <input
+              type="checkbox"
+              value={this.state.rounded}
+              name="isRounded"
+              onChange={() => this.changeRounded()}
+            />
           </div>
 
           <div>
             <label htmlFor="isOutlined">Outlined?</label>
-            <input type="checkbox" value={this.state.outlined} name="isOutlined"
-                   onChange={() => this.changeOutlined()}/>
+            <input
+              type="checkbox"
+              value={this.state.outlined}
+              name="isOutlined"
+              onChange={() => this.changeOutlined()}
+            />
           </div>
 
           <div>
             <label htmlFor="isDisabled">Disabled?</label>
-            <input type="checkbox" value={this.state.disabled} name="isDisabled" onChange={() => this.changeDisable()}/>
+            <input
+              type="checkbox"
+              value={this.state.disabled}
+              name="isDisabled"
+              onChange={() => this.changeDisable()}
+            />
           </div>
 
           <div>
             <label htmlFor="isClear">Clear?</label>
-            <input type="checkbox" value={this.state.clear} name="isClear" onChange={() => this.changeClear()}/>
+            <input
+              type="checkbox"
+              value={this.state.clear}
+              name="isClear"
+              onChange={() => this.changeClear()}
+            />
           </div>
 
           <div>
             <label htmlFor="isFullWidth">Full width?</label>
-            <input type="checkbox" value={this.state.wide} name="isFullWidth" onChange={() => this.changeWide()}/>
+            <input
+              type="checkbox"
+              value={this.state.wide}
+              name="isFullWidth"
+              onChange={() => this.changeWide()}
+            />
           </div>
 
           <div>
             <label htmlFor="color">Color</label>
-            <select name="color" value={this.state.color} onChange={(event) => this.changeColor(event)}>
+            <select
+              name="color"
+              value={this.state.color}
+              onChange={event => this.changeColor(event)}
+            >
               <option value="red">red</option>
               <option value="green">green</option>
               <option value="blue">blue</option>
+              <option value="yellow">yellow</option>
             </select>
           </div>
+
           <div>
             <label htmlFor="size">Size</label>
-            <select name="size" value={this.state.size} onChange={this.changeSize}>
+            <select
+              name="size"
+              value={this.state.size}
+              onChange={event => this.changeSize(event)}
+            >
               <option value="small">Small</option>
               <option value="medium">Medium</option>
               <option value="large">Large</option>
             </select>
           </div>
         </div>
-        <div>
-          <label htmlFor="size">Size</label>
-          <select name="size" value={this.state.size} onChange={(event) => this.changeSize(event)}>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-          </select>
-        </div>
         ## Icon on the left
         <ReactSpecimen span={3}>
-          <Button iconLeft={<IconSettings></IconSettings>}>Button with button</Button>
+          <Button iconLeft={<IconSettings />}>Button with icon</Button>
         </ReactSpecimen>
-
         ## Icon on the right
         <ReactSpecimen span={3}>
-          < Button iconRight={< IconSettings></IconSettings>}> Button with button</Button>
+          <Button iconRight={<IconSettings />}> Button with icon</Button>
         </ReactSpecimen>
-
         ## Only an icon
         <ReactSpecimen span={3}>
-          <Button iconOnly={<IconSettings></IconSettings>}>Button with only an icon</Button>
+          <Button iconOnly={<IconSettings />}>
+            Button with only an icon
+          </Button>
         </ReactSpecimen>
-
-      ## Only with questionmark
-       <ReactSpecimen span={3}>
-          <Button iconQuestionmark={<IconQuestionmark></IconQuestionmark>}>Button with only an icon</Button>
-        </ReactSpecimen>
-
-
-       ## Loading
-
+        ## Only with questionmark
         <ReactSpecimen span={3}>
-          <Button loading="true" percentageDone="30">Loading button</Button>
+          <Button iconQuestionmark={<IconQuestionmark />}>
+            Button with only an icon
+          </Button>
+        </ReactSpecimen>
+        ## Loading
+        <ReactSpecimen span={3}>
+          <Button loading="true" percentageDone="30">
+            Loading button
+          </Button>
         </ReactSpecimen>
         <ReactSpecimen span={3}>
-          <Button loading="true" percentageDone="60">Loading button</Button>
+          <Button loading="true" percentageDone="60">
+            Loading button
+          </Button>
         </ReactSpecimen>
         <ReactSpecimen span={3}>
-          <Button loading="true" percentageDone="90">Loading button</Button>
+          <Button loading="true" percentageDone="90">
+            Loading button
+          </Button>
         </ReactSpecimen>
-
         # Click events
         <ReactSpecimen span={3}>
-          <Button onClick={() => this.changeClicked()}>Click</Button>
+          <Button htmlfor="isClicked" onClick={() => this.changeClicked()}>
+            Click
+          </Button>
         </ReactSpecimen>
         <p>Clicked {this.state.clicked} times</p>
       </Page>
-    )
+    );
   }
 }

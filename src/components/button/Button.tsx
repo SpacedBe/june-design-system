@@ -5,18 +5,29 @@
 
 import * as React from 'react';
 import {Loader} from "../loader/Loader";
-// todo: refactor to style components
-import styles from "./button.scss";
+import styled from 'styled-components';
 
+import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 
-var classNames = require('classnames/bind');
-const cx = classNames.bind(styles);
+const styleVariables = loadStyleVariables();
+
+const sizes = {
+  small: '30px',
+  medium: '40px',
+  large: '51px',
+};
+
+const colors = {
+  red: `${styleVariables.red}`,
+  green: `${styleVariables.green}`,
+  blue: `${styleVariables.blue}`,
+  yellow: `${styleVariables.yellow}`,
+};
 
 type Props = {
   id?: string,
   label?: string | React.ReactNode,
   component?: any,
-
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
@@ -24,57 +35,151 @@ type Props = {
   loading?: boolean,
   percentageDone?: number,
   wide?: boolean,
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large',
   rounded?: boolean,
   spaced?: boolean,
   clear?: boolean,
-  color?: string,
+  color?: 'red' | 'green' | 'blue' | 'yellow',
   href?: string,
   disabled?: boolean,
   target?: string,
   type?: string,
-  onClick?: (id: number) => void,
+  onClick?: any,
   successMessage?: any[],
-  classNames?: string[],
 };
 
+const Icon = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+  fill: ${styleVariables.colorWhite};
+  &:hover {
+    fill: ${styleVariables.colorWhite};
+  }
+`;
+
+const IconOnly = styled.span`
+  fill: ${styleVariables.colorWhite};
+  padding: 0.2em;
+  font-size: 1.3em;
+`;
+
+const IconLeft = styled.span`
+  margin-right: 8px;
+`;
+
+const IconRight = styled.span`
+  margin-left: 8px;
+`;
+
+const Label = styled.span`
+  @include transition(opacity);
+    opacity: 1;
+`
+
+const NormalButton = styled.button<{
+  target?: string;
+  onClick?: void;
+  size?: string;
+  rounded?: boolean;
+  clear?: boolean;
+  outlined?: boolean;
+  disabled?: boolean;
+  wide?: boolean;
+  color?: string;
+  inverted?: boolean;
+}>`
+  background: ${props => {
+    if (props.outlined || props.clear) {
+      return `none`;
+    } else if (props.disabled) {
+      return `${styleVariables.gray}`;
+    } else if (props.color) {
+      return colors[props.color || ""];
+    } else {
+      return `${styleVariables.colorPrimary}`;
+    }
+  }};
+  border-radius: ${props =>
+    props.rounded ? `${styleVariables.compSmallSize}` : `${styleVariables.compRadius}`};
+
+  border: 2px solid ${props => {
+    if (props.outlined) {
+      return colors[props.color || ""];
+    }
+    if (props.disabled) {
+      return `2px solid ${styleVariables.gray}`;
+    }
+    if (props.color) {
+      return colors[props.color  || ""];
+    }
+  }};
+
+  color: ${props => {
+    if (props.outlined || props.clear) {
+      return colors[props.color || ""];
+    } else {
+      return `${styleVariables.colorWhite}`;
+    }
+  }};
+  cursor: pointer;
+  font-family: ${styleVariables.fontbuttons};
+  font-weight: 600;
+  outline: 0;
+  margin-left: 1em;
+  padding: 0 ${styleVariables.gutter};
+  position: relative;
+  text-align: center;
+  width: ${props => (props.wide ? "100%" : "")};
+  text-decoration: none;
+  letter-spacing: 0.8px;
+  transition: 0.2s ease-in-out;
+  line-height: ${props => sizes[props.size || "medium"]};
+
+  &:hover {
+    background-color: ${styleVariables.greenDarker};
+    color: ${styleVariables.colorWhite};
+  }
+`;
+
 export class Button extends React.Component<Props> {
+   static defaultProps = {
+    size: 'medium',
+  };
   render() {
     let buttonContent;
     let isDisabled = (this.props.loading || this.props.disabled);
 
-    let Tag = 'button';
-
-    if (this.props.href) {
-      Tag = 'a';
-    }
-
-    if (this.props.component) {
-      Tag = this.props.component;
-    }
-
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly;
+
+      if (!hasIcon) {
+      buttonContent = (
+        <div>
+          <Label>{this.props.children}</Label >
+          <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
+        </div>
+      )
+    }
 
     if (hasIcon && this.props.iconLeft) {
       buttonContent = (
         <div>
-          <div className={styles.icon}>
-            <span className={styles["icon-left"]}>{this.props.iconLeft}</span>
-            <span className={styles.label}>{this.props.children}</span>
-          </div>
+           <Icon>
+            <IconLeft>{this.props.iconLeft}</IconLeft>
+            <Label>{this.props.children}</Label>
+          </Icon>
           <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
         </div>
       )
-
     }
 
     if (hasIcon && this.props.iconRight) {
       buttonContent = (
         <div>
-          <div className={styles.icon}>
-            <span className={styles.label}>{this.props.children}</span>
-            <span className={styles["icon-right"]}>{this.props.iconRight}</span>
-          </div>
+          <Icon>
+            <Label>{this.props.children}</Label>
+            <IconRight>{this.props.iconRight}</IconRight>
+          </Icon>
           <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
         </div>
       )
@@ -83,50 +188,27 @@ export class Button extends React.Component<Props> {
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
         <div>
-          <div className={styles.icon}>
-            {this.props.iconOnly}
-          </div>
+          <IconOnly>{this.props.iconOnly}</IconOnly>
         </div>
       )
     }
-
-    if (!hasIcon) {
-      buttonContent = (
-        <div>
-          <span className={styles.label}>{this.props.children}</span>
-          <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-        </div>
-      )
-    }
-
-
-    const className = cx(
-      'button',
-      {[`button--${this.props.color}`]: !!this.props.color},
-      {'button--wide': this.props.wide},
-      {'button--spaced': this.props.spaced},
-      {'button--clear': this.props.clear},
-      {'button--small': this.props.size === 'small'},
-      {'button--large': this.props.size === 'large'},
-      {'button--loading': this.props.loading},
-      {'button--outlined': this.props.outlined},
-      {'button--round': this.props.rounded},
-      {'button--icon': hasIcon},
-      this.props.classNames,
-    );
 
     return (
-      //@ts-ignore
-      <Tag
+      <NormalButton
         id={this.props.id}
-        className={className}
-        onClick={this.props.onClick}
         disabled={isDisabled}
-        href={this.props.href}
+        color={this.props.color}
+        wide={this.props.wide}
         type={this.props.type}
-        target={this.props.target}>
+        size={this.props.size}
+        clear={this.props.clear}
+        onClick={this.props.onClick}
+        outlined={this.props.outlined}
+        rounded={this.props.rounded}
+        target={this.props.target}
+        >
         {buttonContent}
-      </Tag>
+      </NormalButton>
     );
   }
 }
