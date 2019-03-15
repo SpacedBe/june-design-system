@@ -249,6 +249,23 @@ export default class ButtonPage extends React.Component {
             form={this.state.form}
           />
         </ReactSpecimen>
+        ## Autocomplete
+        <ReactSpecimen span={3}>
+          <FormikInput
+            tooltip={
+              <Button size={"small"}>
+                <IconQuestionmark />
+              </Button>
+            }
+            label="Label Value"
+            error={this.state.error}
+            disabled={this.state.disabled}
+            type={this.state.type}
+            placeholderText="example placeholder"
+            field={this.state.field}
+            form={this.state.form}
+          />
+        </ReactSpecimen>
       </Page>
     );
   }

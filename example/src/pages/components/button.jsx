@@ -52,6 +52,7 @@ export default class ButtonPage extends React.Component {
 
   changeColor(event) {
     this.setState({color: event.target.value})
+    console.log(event.target.value);
   }
 
   changeSize(event) {
@@ -143,6 +144,7 @@ export default class ButtonPage extends React.Component {
               <option value="red">red</option>
               <option value="green">green</option>
               <option value="blue">blue</option>
+              <option value="yellow">yellow</option>
             </select>
           </div>
 
