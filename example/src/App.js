@@ -103,6 +103,13 @@ export default class App extends Component {
                 )
               },
               {
+                path: "textarea",
+                title: "Textarea",
+                component: pageLoader(() =>
+                  import("./pages/form/formikTextarea.jsx")
+                )
+              },
+              {
                 path: "select",
                 title: "Select",
                 component: pageLoader(() =>

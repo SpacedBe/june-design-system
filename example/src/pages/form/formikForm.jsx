@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, render } from "catalog";
-import { FormikInput, FormikSelect, FormikCheckbox,FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button } from "june-design-system";
+import { FormikInput, FormikSelect, FormikCheckbox,FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button, FormikTextarea } from "june-design-system";
 import styled from "styled-components";
 
 export default class FormPage extends React.Component{
@@ -142,11 +142,12 @@ export default class FormPage extends React.Component{
             </div>
 
             <div className={"container"}>
-              <FormikInput
-                label="Textarea*"
+              <FormikTextarea
                 required
-                type="text"
+                label="Textarea *"
+                error={this.state.error}
                 disabled={this.state.disabled}
+                type={this.state.type}
                 placeholderText=""
                 field={this.state.field}
                 form={this.state.form}
@@ -160,7 +161,7 @@ export default class FormPage extends React.Component{
               <FormikToggle
                 tooltipToggle={<IconQuestionmark />}
                 iconRight={<IconElectricity />}
-                label="Toggle with a label"
+                label="Toggle with an icon"
                 error={this.state.error}
                 touched={this.state.touched}
                 disabled={this.state.disabled}
@@ -169,7 +170,6 @@ export default class FormPage extends React.Component{
               />
 
               <FormikToggle
-                tooltipToggle={<IconQuestionmark />}
                 label="Regular Toggle"
                 error={this.state.error}
                 touched={this.state.touched}
@@ -188,16 +188,18 @@ export default class FormPage extends React.Component{
               />
 
               <FormikToggle
-                iconRight={<IconElectricity />}
-                label="Toggle with a label"
+                tooltipToggle={<IconQuestionmark />}
+                label="Toggle with a long label discription and an info icon"
                 error={this.state.error}
                 touched={this.state.touched}
                 disabled={this.state.disabled}
                 field={this.state.field}
                 form={this.state.form}
               />
+
               <div />
             </div>
+
             <div className={"button"}>
               <Button
                 clear={false}
