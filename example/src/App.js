@@ -131,6 +131,13 @@ export default class App extends Component {
                 )
               },
               {
+                path: "checkbox",
+                title: "Checkbox",
+                component: pageLoader(() =>
+                  import("./pages/form/formikCheckbox")
+                )
+              },
+              {
                 path: "form",
                 title: "Form",
                 component: pageLoader(() =>

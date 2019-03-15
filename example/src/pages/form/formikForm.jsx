@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, render } from "catalog";
-import { FormikInput, FormikSelect, FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button } from "june-design-system";
+import { FormikInput, FormikSelect, FormikCheckbox,FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button } from "june-design-system";
 import styled from "styled-components";
 
 export default class FormPage extends React.Component{
@@ -29,8 +29,9 @@ export default class FormPage extends React.Component{
               <h2>Form Section Title</h2>
               <p>
                 The title right above is to divide the from into clear
-                sections. This text gives more information for every section.
-            </p>
+                sections. This text gives more information for every
+                section.
+              </p>
               <div>
                 <FormikInput
                   label="Email*"
@@ -94,7 +95,7 @@ export default class FormPage extends React.Component{
               <div>
                 <p>
                   The question linked to the radio buttons is asked here.*
-              </p>
+                </p>
                 <FormikRadiobutton
                   error={this.state.error}
                   label={this.state.label}
@@ -119,6 +120,24 @@ export default class FormPage extends React.Component{
             <div className={"container"}>
               <div>
                 <p>The question linked to the checkboxes is asked here.</p>
+                <FormikCheckbox
+                  error={this.state.error}
+                  label={this.state.label}
+                  type="checkbox"
+                  htmlFor="isCheckbox"
+                  name="checkboxCheck"
+                  label="option one"
+                  checked={this.state.checked}
+                />
+                <FormikCheckbox
+                  error={this.state.error}
+                  label={this.state.label}
+                  type="checkbox"
+                  htmlFor="isCheckbox"
+                  name="checkboxCheck"
+                  label="When a label is really long it just shows on multiple lines."
+                  checked={this.state.checked}
+                />
               </div>
             </div>
 
@@ -182,7 +201,7 @@ export default class FormPage extends React.Component{
             <div className={"button"}>
               <Button
                 clear={false}
-                color='green'
+                color="green"
                 disabled
                 onClick={0}
                 outlined={false}
@@ -190,11 +209,10 @@ export default class FormPage extends React.Component{
                 wide={false}
               >
                 Verzenden
-            </Button>
+              </Button>
             </div>
           </section>
-      </div>
-
+        </div>
       </Page>
     );
   }
