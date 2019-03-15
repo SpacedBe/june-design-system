@@ -7,7 +7,8 @@ import styled from "styled-components";
 import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 
 interface Option {
-  option: string,
+  label: string,
+   value: string,
 }
 
 type Props = {
@@ -72,15 +73,25 @@ export class FormikSelect extends React.Component<Props>{
 
     return (
       <div>
-        <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>{this.props.label}</Label>
-        <Select error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
+        <Label
+          error={this.props.error}
+          disabled={this.props.disabled}
+          htmlFor={FieldName}
+        >
+          {this.props.label}
+        </Label>
+        <Select
+          error={this.props.error}
+          disabled={this.props.disabled}
+          focussed={this.props.focussed}
+        >
           {this.props.options.map(item => (
-            <Option key={item.option} value={item.option}>{item.option}</Option>
+            <Option key={item.value} value={item.label}>
+              {item.label}
+            </Option>
           ))}
         </Select>
-        {
-          touched && errors && <div>{errors}</div>
-        }
+        {touched && errors && <div>{errors}</div>}
       </div>
     );
   }
