@@ -110,8 +110,12 @@ const LabelBeforeToffle = styled.label`
 `
 
 const Icon = styled.span`
-  font-size: 1.5em;
-`
+  margin-top: 5px;
+  font-size: 2em;
+  svg {
+    fill: ${styleVariables.gray};
+  }
+`;
 
 export class FormikToggle extends React.Component<Props> {
   render() {

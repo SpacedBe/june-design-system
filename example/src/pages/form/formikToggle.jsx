@@ -114,7 +114,6 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Regular
         <ReactSpecimen span={3}>
           <FormikToggle
-            tooltipToggle={<IconQuestionmark />}
             label="Regular Toggle"
             error={this.state.error}
             touched={this.state.touched}
@@ -137,8 +136,9 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Long Icon Right
         <ReactSpecimen span={3}>
           <FormikToggle
+            tooltipToggle={<IconQuestionmark />}
             iconRight={<IconElectricity />}
-            label="Toggle with a label"
+            label="Toggle with an icon"
             error={this.state.error}
             touched={this.state.touched}
             disabled={this.state.disabled}
@@ -150,8 +150,7 @@ export default class FormikTogglePage extends React.Component {
         <ReactSpecimen span={3}>
           <FormikToggle
             tooltipToggle={<IconQuestionmark />}
-            iconRight={<IconElectricity />}
-            label="Toggle with a label"
+            label="Toggle with a long label discription and an info icon"
             error={this.state.error}
             touched={this.state.touched}
             disabled={this.state.disabled}
