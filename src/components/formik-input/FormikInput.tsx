@@ -48,8 +48,8 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   outline: none;
   display: flex;
   justify-content: space-between;
-  height: 40px;
-  width: 100%;
+  height: 30px;
+  margin-bottom: 20px;
   &::placeholder {
      color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
   }
@@ -64,8 +64,8 @@ const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?:
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
-  height: 40px;
-  width: 100%;
+  height: 30px;
+  margin-bottom: 20px;
 `
 const InputWithIconLeft = styled.input`
   border: none;
@@ -105,7 +105,7 @@ const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
   padding-bottom: 5px;
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   color: ${props =>
-    props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+    props.error ? `${styleVariables.red}` : `${styleVariables.black}`};
 `;
 export class FormikInput extends React.Component<Props> {
   render() {

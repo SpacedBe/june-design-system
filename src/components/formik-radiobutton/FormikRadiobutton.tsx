@@ -65,7 +65,7 @@ const Round = styled.div`
   height: 21px;
   border-radius: 15px;
   top: 0px;
-  left: -12px;
+  left: 0px;
   position: relative;
   content: "";
   display: inline-block;
@@ -73,6 +73,10 @@ const Round = styled.div`
   background-color : ${styleVariables.colorWhite};
   border: 2px solid ${styleVariables.green};
 `;
+
+const Label = styled.label`
+  margin-left: 10px;
+`
 export class FormikRadiobutton extends React.Component<Props> {
   render() {
     return (
@@ -85,7 +89,7 @@ export class FormikRadiobutton extends React.Component<Props> {
             disabled={this.props.disabled}
           />
         </Round>
-        <label>{this.props.label}</label>
+        <Label>{this.props.label}</Label>
       </InputDiv>
     );
   }

@@ -94,6 +94,10 @@ const Input = styled.input<{
   }
 `;
 
+const ToggleContainer = styled.div`
+  margin-bottom: 20px;
+`
+
 const Div = styled.div`
   display: flex;
   justify-content: space-between;
@@ -205,12 +209,12 @@ export class FormikToggle extends React.Component<Props> {
       );
     }
     return (
-      <div>
+      <ToggleContainer>
 
         {toggleContent}
 
         {touched && errors && <div className="error">{errors}</div>}
-      </div>
+      </ToggleContainer>
     );
   }
 }

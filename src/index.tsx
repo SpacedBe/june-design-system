@@ -7,5 +7,6 @@ export * from './icons';
 export * from "./components/formik-input/FormikInput";
 export * from "./components/formik-toggle/FormikToggle";
 export * from "./components/formik-select/FormikSelect";
+export * from "./components/formik-form/FormikForm"
 export * from './components/formik-radiobutton/FormikRadiobutton';
 export * from './scripts/loadStyleVariables';
