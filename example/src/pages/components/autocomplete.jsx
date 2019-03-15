@@ -1,16 +1,8 @@
 
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-<<<<<<< Updated upstream
 import styled from "styled-components";
 
-=======
-import { Page, ReactSpecimen } from 'catalog';
-
-import styled from "styled-components";
-
-
->>>>>>> Stashed changes
 class Autocomplete extends Component {
   static propTypes = {
     suggestions: PropTypes.instanceOf(Array)
@@ -27,11 +19,7 @@ class Autocomplete extends Component {
       activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
-<<<<<<< Updated upstream
       label: "",
-=======
->>>>>>> Stashed changes
-
       userInput: "",
       placeholderText: ""
     };
@@ -71,21 +59,11 @@ class Autocomplete extends Component {
         userInput: filteredSuggestions[activeSuggestion]
       });
     } else if (e.keyCode === 38) {
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
       if (activeSuggestion === 0) {
         return;
       }
       this.setState({ activeSuggestion: activeSuggestion - 1 });
-<<<<<<< Updated upstream
     } else if (e.keyCode === 40) {
-=======
-
-    } else if (e.keyCode === 40) {
-
->>>>>>> Stashed changes
       if (activeSuggestion - 1 === filteredSuggestions.length) {
         return;
       }
@@ -106,12 +84,6 @@ class Autocomplete extends Component {
       }
     } = this;
 
-<<<<<<< Updated upstream
-=======
-
-
-
->>>>>>> Stashed changes
     const SuggestionList = styled.ul`
       width: 100%;
       height: 100%;
@@ -130,20 +102,12 @@ class Autocomplete extends Component {
       font-size: 0.8em;
     `;
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     const InputField = styled.input`
       background: white;
       border: 2px solid #bfbfbf;
       padding: 10px 10px 10px 10px;
     `;
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     let suggestionsListComponent;
 
     if (showSuggestions && userInput) {
@@ -151,15 +115,8 @@ class Autocomplete extends Component {
         suggestionsListComponent = (
           <SuggestionList>
             {filteredSuggestions.map((suggestion, index) => {
-<<<<<<< Updated upstream
               return (
                 <SuggestionListItem key={suggestion} onClick={onClick}>
-=======
-
-              return (
-                <SuggestionListItem key={suggestion} onClick={onClick}>
-
->>>>>>> Stashed changes
                   {suggestion}
                 </SuggestionListItem>
               );
@@ -168,13 +125,7 @@ class Autocomplete extends Component {
         );
       } else {
         suggestionsListComponent = (
-<<<<<<< Updated upstream
           <div>
-=======
-
-          <div>
-
->>>>>>> Stashed changes
             <em>No result message...</em>
           </div>
         );
@@ -182,13 +133,9 @@ class Autocomplete extends Component {
     }
 
     return (
-<<<<<<< Updated upstream
       <div>
         <label>{this.props.label}</label>
-=======
 
-      <div>
->>>>>>> Stashed changes
         <InputField
           type="text"
           placeholderText={this.props.placeholderText}
@@ -198,31 +145,7 @@ class Autocomplete extends Component {
         />
         {suggestionsListComponent}
       </div>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     );
   }
 }
-
-<<<<<<< Updated upstream
-=======
-
-
-// const Div = styled.div`
-//       border: 2px solid #bfbfbf;
-//       padding: 10px 10px 0px 10px;
-//       border-radius: 2.5px;
-//       outline: none;
-//       display: flex;
-//       justify-content: space-between;
-//       height: 40px;
-//       width: 100%;
-//       background: white;
-//       display: flex;
-//       flex-flow: column
-//   `;
-
->>>>>>> Stashed changes
 export default Autocomplete;
