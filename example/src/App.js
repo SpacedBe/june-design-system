@@ -135,13 +135,6 @@ export default class App extends Component {
                 )
               },
               {
-                path: "autocomplete",
-                title: "Autocomplete",
-                component: pageLoader(() =>
-                  import("./pages/form/formikAutocomplete")
-                )
-              },
-              {
                 path: "radiobutton",
                 title: "Radiobutton",
                 component: pageLoader(() =>
