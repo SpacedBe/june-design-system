@@ -43,7 +43,7 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
-  background: ${styleVariables.colorWhite};
+  background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
@@ -60,7 +60,7 @@ const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?:
   color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
-  background: ${styleVariables.colorWhite};
+  background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
@@ -70,14 +70,14 @@ const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?:
 const InputWithIconLeft = styled.input`
   border: none;
   margin-left: 10px;
-  background: ${styleVariables.colorWhite};
+  background-color: ${styleVariables.colorWhite};
   outline: none;
 `
 
 const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
   border: none;
   outline: none;
-  background: ${styleVariables.colorWhite};
+  background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
 `
 

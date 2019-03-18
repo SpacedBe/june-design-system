@@ -7,7 +7,8 @@ import styled from "styled-components";
 import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 
 interface Option {
-  option: string,
+  label: string,
+   value: string,
 }
 
 type Props = {
@@ -18,12 +19,10 @@ type Props = {
     ['errors']: string;
     ['touched']: boolean;
   };
-
   ['serverErrors']: string;
   userInput?: string,
   options: Option[],
   label?: string,
-  optionSet?: any,
   error: boolean,
   focussed: boolean,
   disabled: boolean,
@@ -69,22 +68,30 @@ export class FormikSelect extends React.Component<Props>{
   render(){
 
     const FieldName = this.props.field.name;
-    const hasOption = this.props.optionSet;
     const touched = this.props.form.touched[FieldName];
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
 
-    if (hasOption && this.props.optionSet){}
     return (
       <div>
-        <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>{this.props.label}</Label>
-        <Select error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
+        <Label
+          error={this.props.error}
+          disabled={this.props.disabled}
+          htmlFor={FieldName}
+        >
+          {this.props.label}
+        </Label>
+        <Select
+          error={this.props.error}
+          disabled={this.props.disabled}
+          focussed={this.props.focussed}
+        >
           {this.props.options.map(item => (
-            <Option key={item.option} value={item.option}>{item.option}</Option>
+            <Option key={item.value} value={item.label}>
+              {item.label}
+            </Option>
           ))}
         </Select>
-        {
-          touched && errors && <div>{errors}</div>
-        }
+        {touched && errors && <div>{errors}</div>}
       </div>
     );
   }

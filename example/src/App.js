@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Catalog, pageLoader} from 'catalog';
+import {Catalog, pageLoader} from 'catalog';
 
 import {
   Button,
@@ -28,9 +28,9 @@ export default class App extends Component {
             title: "Design",
             pages: [
               {
-                path: "typography",
-                title: "Typography",
-                content: pageLoader("./pages/design/typography.md")
+                path: 'typography',
+                title: 'Typography',
+                content: pageLoader('/pages/design/typography.md'),
               },
               {
                 path: "icons",
@@ -45,6 +45,17 @@ export default class App extends Component {
                   IconWater,
                   IconWaterBattery
                 }
+              }
+            ]
+          },
+          {
+            title: 'Layout',
+            pages: [
+              {
+                path: 'container',
+                title: 'Containers',
+                content: pageLoader('/pages/layout/container.md'),
+                imports: {}
               }
             ]
           },

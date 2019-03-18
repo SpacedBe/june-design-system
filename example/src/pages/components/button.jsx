@@ -143,6 +143,7 @@ export default class ButtonPage extends React.Component {
               <option value="red">red</option>
               <option value="green">green</option>
               <option value="blue">blue</option>
+              <option value="yellow">yellow</option>
             </select>
           </div>
 
@@ -161,11 +162,11 @@ export default class ButtonPage extends React.Component {
         </div>
         ## Icon on the left
         <ReactSpecimen span={3}>
-          <Button iconLeft={<IconSettings />}>Button with button</Button>
+          <Button iconLeft={<IconSettings />}>Button with icon</Button>
         </ReactSpecimen>
         ## Icon on the right
         <ReactSpecimen span={3}>
-          <Button iconRight={<IconSettings />}> Button with button</Button>
+          <Button iconRight={<IconSettings />}> Button with icon</Button>
         </ReactSpecimen>
         ## Only an icon
         <ReactSpecimen span={3}>

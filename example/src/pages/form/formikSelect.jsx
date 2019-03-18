@@ -120,21 +120,23 @@ export default class FormikSelectPage extends React.Component{
             />
           </div>
         </div>
-      ## Dynamic selector
+        ## Dynamic selector
         <ReactSpecimen span={3}>
-        <FormikSelect
+          <FormikSelect
             label="Gender"
-            options={[{ option: "ONE" },
-            { option: "TWO" },
-            { option: "THREE" },
-            { option: "FOUR" }]}
+            options={[
+              { label: "ONE", value: "1" },
+              { label: "TWO", value: "2" },
+              { label: "THREE", value: "3" },
+              { label: "FOUR", value: "4" }
+            ]}
             htmlFor="isSelect"
             error={this.state.error}
             touched={this.state.touched}
             disabled={this.state.disabled}
             field={this.state.field}
             form={this.state.form}
-            />
+          />
         </ReactSpecimen>
       </Page>
     );
