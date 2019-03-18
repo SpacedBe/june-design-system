@@ -42,7 +42,7 @@ const Input = styled.input.attrs({ type: "checkbox" })`
     width: 13px;
     height: 13px;
     border-radius: 15%;
-    top: -1px;
+    top: -2px;
     left: -0.5px;
     position: relative;
     background-color: ${styleVariables.green};
@@ -66,7 +66,7 @@ const Checkbox = styled.div`
   border-radius: 15%;
   top: 0px;
   left: 0px;
-  position: relative;
+  position: absolute;
   content: "";
   display: inline-block;
   visibility: visible;
@@ -75,8 +75,9 @@ const Checkbox = styled.div`
 `;
 
 const Label = styled.label`
-  margin-left: 10px;
-`
+  margin-left: 35px;
+  position: relative;
+`;
 export class FormikCheckbox extends React.Component<Props> {
   render() {
     return (
@@ -89,7 +90,7 @@ export class FormikCheckbox extends React.Component<Props> {
             disabled={this.props.disabled}
           />
         </Checkbox>
-        <Label>{this.props.label}</Label>
+          <Label>{this.props.label}</Label>
       </InputDiv>
     );
   }

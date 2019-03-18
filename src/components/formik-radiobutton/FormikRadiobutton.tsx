@@ -66,7 +66,7 @@ const Round = styled.div`
   border-radius: 15px;
   top: 0px;
   left: 0px;
-  position: relative;
+  position: absolute;
   content: "";
   display: inline-block;
   visibility: visible;
@@ -75,7 +75,7 @@ const Round = styled.div`
 `;
 
 const Label = styled.label`
-  margin-left: 10px;
+  margin-left: 35px;
 `
 export class FormikRadiobutton extends React.Component<Props> {
   render() {

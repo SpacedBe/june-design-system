@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, render } from "catalog";
-import { FormikInput, FormikSelect, FormikCheckbox,FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button, FormikTextarea } from "june-design-system";
+import { FormikInput, FormikSelect, FormikCheckbox, FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button, FormikTextarea } from "june-design-system";
 import styled from "styled-components";
 
 export default class FormPage extends React.Component{
@@ -96,7 +96,7 @@ export default class FormPage extends React.Component{
                 <p>
                   The question linked to the radio buttons is asked here.*
                 </p>
-                <FormikRadiobutton
+                {/* <FormikRadiobutton
                   error={this.state.error}
                   label={this.state.label}
                   type="radio"
@@ -112,6 +112,15 @@ export default class FormPage extends React.Component{
                   htmlFor="isRadioButton"
                   name="radioCheck"
                   label="When a label is really long it just shows on multiple lines."
+                  checked={this.state.checked}
+                /> */}
+                <FormikRadiobutton
+                  error={this.state.error}
+                  label={this.state.label}
+                  type="radio"
+                  htmlFor="isRadioButton"
+                  name="radioCheck"
+                  label="option one"
                   checked={this.state.checked}
                 />
               </div>
