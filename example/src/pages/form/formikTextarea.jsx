@@ -12,6 +12,7 @@ export default class FormikTextareaPage extends React.Component {
       error: false,
       focussed: false,
       current: false,
+      size: 'medium',
       field: {
         name: 'example-input',
       },
@@ -69,6 +70,10 @@ export default class FormikTextareaPage extends React.Component {
     });
   }
 
+  changeSize(event) {
+    this.setState({ size: event.target.value })
+  }
+
   render() {
     return (
       <Page>
@@ -117,6 +122,7 @@ export default class FormikTextareaPage extends React.Component {
           <FormikTextarea
             required
             label="Textarea *"
+            size={"xlarge"}
             error={this.state.error}
             disabled={this.state.disabled}
             type={this.state.type}

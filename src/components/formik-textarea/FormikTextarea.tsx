@@ -6,6 +6,13 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 
+const sizes = {
+  small: "50px",
+  medium: "100px",
+  large: "150px",
+  xlarge: "200px"
+};
+
 type Props = {
   field: {
     name: string;
@@ -26,22 +33,23 @@ type Props = {
   required?: any,
   rows?: number,
   cols?: number,
+  size?: 'small' | 'medium' | 'large' | 'xlarge',
   classNames?: string[],
 };
 
 const styleVariables = loadStyleVariables();
 
-const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean }>`
+const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean, size?: string; }>`
   border: ${props => props.error ? `2px solid ${styleVariables.red}` : `2px solid ${styleVariables.grayLight}`};
   color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   border-radius: 2.5px;
   background: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
   justify-content: space-between;
-  height: 200px;
+  height: ${props => sizes[props.size || "medium"]};
   margin-bottom: 20px;
   &::placeholder {
      color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
@@ -72,14 +80,14 @@ const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
 `;
 
 export class FormikTextarea extends React.Component<Props> {
+  static defaultProps = {
+    size: 'medium',
+  };
   render() {
     const FieldName = this.props.field.name;
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];
-
-    let Tag = 'span';
     let buttonContent;
-
       buttonContent = (
         <div>
           <Flex>
@@ -87,20 +95,20 @@ export class FormikTextarea extends React.Component<Props> {
               {this.props.label}
             </Label>
           </Flex>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
+          <InputBoxRight size={this.props.size} error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
             <Textarea {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled}></Textarea>
           </InputBoxRight>
         </div>
       )
     return (
-      <Tag>
+      <span >
         {buttonContent}
-        <Tag>
+        <span>
           {
             touched && errors && <div>{errors}</div>
           }
-        </Tag>
-      </Tag>
+        </span>
+      </span>
     )
   }
 }

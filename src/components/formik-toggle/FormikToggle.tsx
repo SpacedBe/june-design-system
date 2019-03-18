@@ -10,10 +10,6 @@ type Props = {
   field: {
     name: string;
   };
-  form: {
-    ['touched']: boolean;
-  };
-  disabled: boolean;
   validationMessage: string;
   label: string;
   placeholderText: string;
@@ -37,7 +33,7 @@ const Toggle = styled.div`
     right: 0;
     bottom: 0;
     border: 2px solid ${styleVariables.gray};
-    color: white;
+    color: ${styleVariables.colorWhite};
     background: ${styleVariables.grayLight};
     border-radius: 30px;
     transition: all 0.4s;
@@ -65,21 +61,18 @@ const Toggle = styled.div`
   }
 `;
 
-const Input = styled.input<{
-  disabled?: boolean;
-  focussed?: boolean;
-}>`
+const Input = styled.input`
   position: absolute;
   cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 97;
+  z-index: 90;
   border-radius: 30px;
   transition: all 0.4s;
   &:before {
-    background-color: white;
+    background-color: ${styleVariables.colorWhite};
     position: absolute;
     border: 2px solid ${styleVariables.gray};
     content: "";
@@ -116,9 +109,6 @@ const Icon = styled.span`
 
 export class FormikToggle extends React.Component<Props> {
   render() {
-    const FieldName = this.props.field.name;
-    const touched = this.props.form.touched[FieldName];
-
     const hasTooltip = this.props.tooltipToggle || this.props.iconRight;
     let toggleContent;
 
@@ -131,7 +121,6 @@ export class FormikToggle extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="checkbox"
-              disabled={this.props.disabled}
             />
             <span></span>
           </Toggle>
@@ -148,7 +137,6 @@ export class FormikToggle extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="checkbox"
-              disabled={this.props.disabled}
             />
             <span></span>
           </Toggle>
@@ -166,7 +154,6 @@ export class FormikToggle extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="checkbox"
-              disabled={this.props.disabled}
             />
             <span></span>
           </Toggle>
@@ -181,7 +168,6 @@ export class FormikToggle extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="checkbox"
-              disabled={this.props.disabled}
             />
             <span></span>
           </Toggle>
@@ -190,10 +176,7 @@ export class FormikToggle extends React.Component<Props> {
     }
     return (
       <div>
-
         {toggleContent}
-
-        {touched && <div>{}</div>}
       </div>
     );
   }
