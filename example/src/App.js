@@ -49,6 +49,17 @@ export default class App extends Component {
             ]
           },
           {
+            title: 'Layout',
+            pages: [
+              {
+                path: 'container',
+                title: 'Containers',
+                content: pageLoader('/pages/layout/container.md'),
+                imports: {}
+              }
+            ]
+          },
+          {
             title: "Components",
             pages: [
               {
