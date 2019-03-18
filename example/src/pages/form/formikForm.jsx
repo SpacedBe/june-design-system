@@ -76,10 +76,10 @@ export default class FormPage extends React.Component{
                 <FormikSelect
                   label="Gender"
                   options={[
-                    { option: "ONE" },
-                    { option: "TWO" },
-                    { option: "THREE" },
-                    { option: "FOUR" }
+                    { label: "ONE", value: "1" },
+                    { label: "TWO", value: "2" },
+                    { label: "THREE", value: "3" },
+                    { label: "FOUR", value: "4" }
                   ]}
                   htmlFor="isSelect"
                   error={this.state.error}
