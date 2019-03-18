@@ -70,6 +70,7 @@ const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
   color: ${props =>
     props.error ? `${styleVariables.red}` : `${styleVariables.black}`};
 `;
+
 export class FormikTextarea extends React.Component<Props> {
   render() {
     const FieldName = this.props.field.name;
@@ -91,8 +92,6 @@ export class FormikTextarea extends React.Component<Props> {
           </InputBoxRight>
         </div>
       )
-
-
     return (
       <Tag>
         {buttonContent}

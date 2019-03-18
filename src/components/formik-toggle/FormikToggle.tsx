@@ -22,7 +22,6 @@ type Props = {
   iconRight?: any;
 };
 
-
 const styleVariables = loadStyleVariables();
 
 const Toggle = styled.div`
@@ -42,8 +41,6 @@ const Toggle = styled.div`
     background: ${styleVariables.grayLight};
     border-radius: 30px;
     transition: all 0.4s;
-
-    /* visibility: hidden; */
     :after {
       top: 2px;
       left: 5px;
@@ -100,7 +97,6 @@ const Input = styled.input<{
     border: 2px solid ${styleVariables.greenDark};
   }
 `;
-
 
 const Div = styled.div`
   display: flex;

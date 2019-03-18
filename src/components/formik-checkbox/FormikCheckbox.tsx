@@ -78,6 +78,7 @@ const Label = styled.label`
   margin-left: 35px;
   position: relative;
 `;
+
 export class FormikCheckbox extends React.Component<Props> {
   render() {
     return (
