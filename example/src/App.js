@@ -114,6 +114,13 @@ export default class App extends Component {
                 )
               },
               {
+                path: "textarea",
+                title: "Textarea",
+                component: pageLoader(() =>
+                  import("./pages/form/formikTextarea.jsx")
+                )
+              },
+              {
                 path: "select",
                 title: "Select",
                 component: pageLoader(() =>
@@ -128,10 +135,24 @@ export default class App extends Component {
                 )
               },
               {
+                path: "radiobutton",
+                title: "Radiobutton",
+                component: pageLoader(() =>
+                  import("./pages/form/formikRadiobutton")
+                )
+              },
+              {
+                path: "checkbox",
+                title: "Checkbox",
+                component: pageLoader(() =>
+                  import("./pages/form/formikCheckbox")
+                )
+              },
+              {
                 path: "form",
                 title: "Form",
                 component: pageLoader(() =>
-                  import("./pages/components/form")
+                  import("./pages/form/formikForm")
                 )
               }
             ]
