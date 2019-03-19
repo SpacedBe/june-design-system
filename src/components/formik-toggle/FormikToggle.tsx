@@ -16,11 +16,15 @@ type Props = {
   tooltipToggle?: any;
   focussed: boolean;
   iconRight?: any;
+  checked?: boolean;
+  value?: any;
+  changeChecked?: any;
+  onCheckedChange: any;
 };
 
 const styleVariables = loadStyleVariables();
 
-const Toggle = styled.div`
+const Toggle = styled.div<{ checked?: boolean }>`
   position: relative;
   display: inline-block;
   width: 40px;
@@ -61,7 +65,7 @@ const Toggle = styled.div`
   }
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ checked?: boolean; value?: any, changeChecked?: void}>`
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -91,7 +95,7 @@ const Input = styled.input`
   }
 `;
 
-const Div = styled.div`
+const Div = styled.div<{ checked?: boolean; onChange?: void }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -108,6 +112,15 @@ const Icon = styled.span`
 `
 
 export class FormikToggle extends React.Component<Props> {
+  constructor(props: any) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e: any) {
+    this.props.onCheckedChange(e.target.value);
+  }
+
   render() {
     const hasTooltip = this.props.tooltipToggle || this.props.iconRight;
     let toggleContent;
@@ -121,8 +134,10 @@ export class FormikToggle extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="checkbox"
+              value={this.props.checked}
+              onChange={this.handleChange}
+              name="isRounded"
             />
-            <span></span>
           </Toggle>
         </Div>
       );
@@ -175,7 +190,7 @@ export class FormikToggle extends React.Component<Props> {
       );
     }
     return (
-      <div>
+      <div >
         {toggleContent}
       </div>
     );

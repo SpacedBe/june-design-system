@@ -9,6 +9,8 @@ export default class FormikTogglePage extends React.Component {
 
     this.state = {
       label: "",
+      checked: false,
+      msg: "",
       field: {
         name: 'example-input',
       },
@@ -16,6 +18,13 @@ export default class FormikTogglePage extends React.Component {
         'example-input': null,
       },
     };
+    this.handleCheckedChange = this.handleCheckedChange.bind(this);
+
+  }
+
+  handleCheckedChange(isChecked){
+    console.log("test", isChecked);
+    this.setState({checked: !this.state.checked})
   }
 
   render(){
@@ -27,9 +36,12 @@ export default class FormikTogglePage extends React.Component {
             label="Regular Toggle"
             field={this.state.field}
             form={this.state.form}
+            onCheckedChange={this.handleCheckedChange}
+            checked={this.state.checked}
           />
         </ReactSpecimen>
-        ## Toggle Long Label
+        <label>state={this.state.checked ? "true" : "false"}</label>
+        ## Toggle Long Label.
         <ReactSpecimen span={3}>
           <FormikToggle
             label="Toggle with a long label discription"
@@ -48,12 +60,15 @@ export default class FormikTogglePage extends React.Component {
           />
         </ReactSpecimen>
         ## Toggle Long Icon Right & Tooltip
+        <pre>{JSON.stringify(this.state.checked)}</pre>
         <ReactSpecimen span={3}>
           <FormikToggle
             tooltipToggle={<IconQuestionmark />}
             label="Toggle with a long label discription and an info icon"
             field={this.state.field}
             form={this.state.form}
+            onCheckedChange={this.handleCheckedChange}
+            checked={this.state.checked}
           />
         </ReactSpecimen>
       </Page>
