@@ -125,6 +125,23 @@ export class FormikToggle extends React.Component<Props> {
     const hasTooltip = this.props.tooltipToggle || this.props.iconRight;
     let toggleContent;
 
+    if (!hasTooltip) {
+      toggleContent = (
+        <Div>
+          <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
+          <Toggle>
+            <Input
+              {...this.props.field}
+              type="checkbox"
+              value={this.props.checked}
+              onChange={this.handleChange}
+            />
+            <span></span>
+          </Toggle>
+        </Div>
+      );
+    }
+
     if (hasTooltip && this.props.tooltipToggle) {
       toggleContent = (
         <Div>
@@ -136,8 +153,8 @@ export class FormikToggle extends React.Component<Props> {
               type="checkbox"
               value={this.props.checked}
               onChange={this.handleChange}
-              name="isRounded"
             />
+            <span></span>
           </Toggle>
         </Div>
       );
@@ -152,6 +169,8 @@ export class FormikToggle extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="checkbox"
+              value={this.props.checked}
+              onChange={this.handleChange}
             />
             <span></span>
           </Toggle>
@@ -169,20 +188,8 @@ export class FormikToggle extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="checkbox"
-            />
-            <span></span>
-          </Toggle>
-        </Div>
-      );
-    }
-    if (!hasTooltip) {
-      toggleContent = (
-        <Div>
-          <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <Toggle>
-            <Input
-              {...this.props.field}
-              type="checkbox"
+              value={this.props.checked}
+              onChange={this.handleChange}
             />
             <span></span>
           </Toggle>

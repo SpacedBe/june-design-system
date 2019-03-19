@@ -25,6 +25,7 @@ export default class FormikTogglePage extends React.Component {
   handleCheckedChange(isChecked){
     console.log("test", isChecked);
     this.setState({checked: !this.state.checked})
+    console.log(this.state)
   }
 
   render(){
@@ -47,6 +48,8 @@ export default class FormikTogglePage extends React.Component {
             label="Toggle with a long label discription"
             field={this.state.field}
             form={this.state.form}
+            onCheckedChange={this.handleCheckedChange}
+            checked={this.state.checked}
           />
         </ReactSpecimen>
         ## Toggle Long Icon Right
@@ -57,10 +60,11 @@ export default class FormikTogglePage extends React.Component {
             label="Toggle with an icon"
             field={this.state.field}
             form={this.state.form}
+            onCheckedChange={this.handleCheckedChange}
+            checked={this.state.checked}
           />
         </ReactSpecimen>
         ## Toggle Long Icon Right & Tooltip
-        <pre>{JSON.stringify(this.state.checked)}</pre>
         <ReactSpecimen span={3}>
           <FormikToggle
             tooltipToggle={<IconQuestionmark />}
