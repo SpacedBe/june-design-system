@@ -36,6 +36,7 @@ const Input = styled.input`
     opacity: 1;
   }
 `;
+
 const Span = styled.span`
   display: inline-block;
   margin: 2.5px;
@@ -45,6 +46,7 @@ const Span = styled.span`
   position: relative;
   background: ${styleVariables.green};
 `;
+
 const InputDiv = styled.div`
   display: flex;
   align-items: center;
