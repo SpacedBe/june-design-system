@@ -24,35 +24,27 @@ type Props = {
 
 const styleVariables = loadStyleVariables();
 
-const Input = styled.input.attrs({ type: "checkbox" })`
-  &:after {
-    width: 13px;
-    height: 13px;
+const Input = styled.input`
+  opacity: 0;
+  z-index: 200;
+  position: absolute;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
 
-    top: -2px;
-    left: -2px;
-    position: relative;
-    background-color: ${styleVariables.colorWhite};
-    content: "";
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid ${styleVariables.colorWhite};
-  }
-  &:checked&:after {
-    width: 13px;
-    height: 13px;
-    border-radius: 15%;
-    top: -2px;
-    left: -0.5px;
-    position: relative;
-    background-color: ${styleVariables.green};
-    content: "";
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid ${styleVariables.green};
+  &:checked ~ span{
+    opacity: 1;
   }
 `;
-
+const Span = styled.span`
+  display: inline-block;
+  margin: 2.5px;
+  width: 15px;
+  height: 15px;
+  opacity:0;
+  position: relative;
+  background: ${styleVariables.green};
+`;
 const InputDiv = styled.div`
   display: flex;
   align-items: center;
@@ -90,6 +82,7 @@ export class FormikCheckbox extends React.Component<Props> {
             name={this.props.name}
             disabled={this.props.disabled}
           />
+          <Span></Span>
         </Checkbox>
           <Label>{this.props.label}</Label>
       </InputDiv>
