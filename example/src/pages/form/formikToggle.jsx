@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, ReactSpecimen, render } from "catalog";
-import { FormikToggle, IconQuestionmark, IconElectricity } from "june-design-system";
+import { FormikToggle, IconQuestionmark, IconElectricity, IconOff, IconOn } from "june-design-system";
 
 export default class FormikTogglePage extends React.Component {
 
@@ -42,6 +42,7 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Regular
         <ReactSpecimen span={3}>
           <FormikToggle
+            iconOff={this.state.checked ? <IconOff /> : <IconOn />}
             label="Regular Toggle"
             field={this.state.field}
             form={this.state.form}
@@ -53,6 +54,7 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Long Label.
         <ReactSpecimen span={3}>
           <FormikToggle
+            iconOff={this.state.checked? <IconOff/> : <IconOn/>}
             label="Toggle with a long label discription"
             field={this.state.field}
             form={this.state.form}
@@ -63,6 +65,7 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Icon Right & Tooltip
         <ReactSpecimen span={3}>
           <FormikToggle
+            iconOff={this.state.checked ? <IconOff /> : <IconOn />}
             tooltipToggle={<IconQuestionmark />}
             iconRight={<IconElectricity />}
             label="Toggle with an icon"
@@ -78,6 +81,7 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Tooltip
         <ReactSpecimen span={3}>
           <FormikToggle
+            iconOff={this.state.checked ? <IconOff /> : <IconOn />}
             tooltipToggle={<IconQuestionmark />}
             label="Toggle with a long label discription and an info icon"
             field={this.state.field}

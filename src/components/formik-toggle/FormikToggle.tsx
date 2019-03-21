@@ -17,6 +17,9 @@ type Props = {
   focussed: boolean;
   iconRight?: any;
 
+  iconOn?: any;
+  iconOff?: any;
+
   checked?: boolean;
   checkedTooltip?: boolean;
   checkedIconTooltip?: boolean;
@@ -60,12 +63,7 @@ const ToggleInput = styled.input<{
   }
 `;
 
-const Label = styled.label<{
-  value?: any;
-  onCheckedChange?: void;
-  onCheckedChangeTooltip?: void;
-  onCheckedChangeIconTooltip?: void;
-}>`
+const Label = styled.label`
   display: inline-block;
   width: 40px;
   height: 15px;
@@ -76,12 +74,7 @@ const Label = styled.label<{
   border: 2px solid ${styleVariables.colorGray};
 `;
 
-const Switch = styled.span<{
-  value?: any;
-  onCheckedChange?: void;
-  onCheckedChangeTooltip?: void;
-  onCheckedChangeIconTooltip?: void;
-}>`
+const Switch = styled.span`
   position: absolute;
   width: 25px;
   height: 25px;
@@ -101,15 +94,7 @@ const Content = styled.p`
   color: ${styleVariables.colorGrayDark};
 `;
 
-const Div = styled.div<{
-  checked?: boolean;
-  checkedIconRightTooltip?: boolean;
-  checkedTooltip?: boolean;
-  onChange?: void;
-  onCheckedChange?: void;
-  onCheckedChangeTooltip?: void;
-  onCheckedChangeIconTooltip?: void;
-}>`
+const Div = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -160,14 +145,9 @@ export class FormikToggle extends React.Component<Props> {
               value={this.props.checked}
               onChange={this.handleChange}
             />
-            <Label
-              value={this.props.checked}
-              onChange={this.handleChange}>
-              <Switch
-                value={this.props.checked}
-                onChange={this.handleChange}
-              ></Switch>
-              <Content>O</Content>
+            <Label>
+              <Switch></Switch>
+              <Content>{this.props.iconOff}</Content>
             </Label>
             </div>
         </Div>
@@ -186,15 +166,9 @@ export class FormikToggle extends React.Component<Props> {
               value={this.props.checkedTooltip}
               onChange={this.handleChangeTooltip}
             />
-            <Label
-              value={this.props.checkedTooltip}
-              onChange={this.handleChangeTooltip}
-            >
-              <Switch
-                value={this.props.checkedTooltip}
-                onChange={this.handleChangeTooltip}
-              />
-              <Content>O</Content>
+            <Label>
+              <Switch/>
+               <Content>{this.props.iconOff}</Content>
             </Label>
           </div>
         </Div>
@@ -214,15 +188,9 @@ export class FormikToggle extends React.Component<Props> {
               value={this.props.checkedIconTooltip}
               onChange={this.handleChangeIconTooltip}
             />
-            <Label
-              value={this.props.checkedIconTooltip}
-              onChange={this.handleChangeIconTooltip}
-            >
-              <Switch
-                value={this.props.checkedIconTooltip}
-                onChange={this.handleChangeIconTooltip}
-              />
-              <Content>O</Content>
+            <Label>
+              <Switch />
+              <Content>{this.props.iconOff}</Content>
             </Label>
           </div>
         </Div>
