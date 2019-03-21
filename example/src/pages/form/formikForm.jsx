@@ -166,6 +166,8 @@ export default class FormPage extends React.Component{
                 touched={this.state.touched}
                 disabled={this.state.disabled}
                 field={this.state.field}
+                onCheckedChange={this.handleCheckedChange}
+                checked={this.state.checked}
                 form={this.state.form}
               />
 
@@ -175,6 +177,8 @@ export default class FormPage extends React.Component{
                 touched={this.state.touched}
                 disabled={this.state.disabled}
                 field={this.state.field}
+                onCheckedChange={this.handleCheckedChange}
+                checked={this.state.checked}
                 form={this.state.form}
               />
 
@@ -184,6 +188,8 @@ export default class FormPage extends React.Component{
                 touched={this.state.touched}
                 disabled={this.state.disabled}
                 field={this.state.field}
+                onCheckedChange={this.handleCheckedChange}
+                checked={this.state.checked}
                 form={this.state.form}
               />
 
@@ -194,6 +200,8 @@ export default class FormPage extends React.Component{
                 touched={this.state.touched}
                 disabled={this.state.disabled}
                 field={this.state.field}
+                onCheckedChange={this.handleCheckedChange}
+                checked={this.state.checked}
                 form={this.state.form}
               />
 

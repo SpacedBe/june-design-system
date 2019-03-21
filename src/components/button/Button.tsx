@@ -112,6 +112,8 @@ const NormalButton = styled.button<{
     }
     if (props.color) {
       return colors[props.color  || ""];
+    } else {
+      return `${styleVariables.colorPrimary}`;
     }
   }};
 
@@ -139,6 +141,7 @@ const NormalButton = styled.button<{
   &:hover {
     background-color: ${styleVariables.greenDarker};
     color: ${styleVariables.colorWhite};
+    border: 2px solid  ${styleVariables.greenDarker}
   }
 `;
 

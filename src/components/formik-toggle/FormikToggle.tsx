@@ -24,7 +24,7 @@ type Props = {
 
 const styleVariables = loadStyleVariables();
 
-const ToggleInput = styled.input<{ value?: any }>`
+const ToggleInput = styled.input<{ value?: any; onCheckedChange?: void }>`
   z-index: ${styleVariables.ziCheckbox};
   opacity: 0;
   width: 40px;
@@ -48,19 +48,19 @@ const ToggleInput = styled.input<{ value?: any }>`
   }
 `;
 
-const Label = styled.label<{value?: any}>`
+const Label = styled.label<{ value?: any, onCheckedChange?: void}>`
   display: inline-block;
   width: 40px;
   height: 15px;
   border-radius: 30px;
   position: relative;
   cursor: pointer;
-  background: ${styleVariables.grayLight};
-  border: 2px solid ${ styleVariables.gray };
+  background: ${styleVariables.colorGrayLight};
+  border: 2px solid ${styleVariables.colorGray};
 
 `;
 
-const Switch = styled.span<{ value?: any }>`
+const Switch = styled.span<{ value?: any, onCheckedChange?: void }>`
   position: absolute;
   width: 25px;
   height: 25px;
@@ -68,7 +68,7 @@ const Switch = styled.span<{ value?: any }>`
   top: -7px;
   border-radius: 25px;
   background: ${styleVariables.colorWhite};
-  border: 2px solid ${styleVariables.gray};
+  border: 2px solid ${styleVariables.colorGray};
   transition: transform ${styleVariables.transitionspeedNormal} ease-in;
 `;
 
@@ -77,10 +77,10 @@ const Content = styled.p`
   margin-top: 0.5px;
   margin-left: 25px;
   font-size: 12px;
-  color: ${styleVariables.grayDark};
+  color: ${styleVariables.colorGrayDark};
 `;
 
-const Div = styled.div<{ checked?: boolean; onChange?: void }>`
+const Div = styled.div<{ checked?: boolean; onChange?: void, onCheckedChange?: void }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
