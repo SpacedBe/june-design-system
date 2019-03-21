@@ -47,6 +47,7 @@ const ToggleInput = styled.input<{ checked?: boolean; value?: any, changeChecked
     color: ${styleVariables.colorWhite};
   }
 `;
+
 const Label = styled.label<{ checked?: boolean; value?: any, changeChecked?: void}>`
   display: inline-block;
   width: 40px;
@@ -58,6 +59,7 @@ const Label = styled.label<{ checked?: boolean; value?: any, changeChecked?: voi
   border: 2px solid ${ styleVariables.gray };
 
 `;
+
 const Switch = styled.span<{ checked?: boolean; value?: any, changeChecked?: void}>`
   position: absolute;
   width: 25px;
