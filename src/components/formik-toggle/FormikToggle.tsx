@@ -25,10 +25,13 @@ type Props = {
 const styleVariables = loadStyleVariables();
 
 const ToggleInput = styled.input<{ checked?: boolean; value?: any, changeChecked?: void }>`
+  z-index: 200;
+  opacity: 0;
+  width: 40px;
+  height: 15px;
+  position: absolute;
   &:checked ~ label span {
-    transform: translateX(30px);
-    background: ${styleVariables.colorWhite};
-    border: 2px solid ${styleVariables.greenDark};
+    transform: translatex(30px);
     transition: transform 0.2s ease-in;
   }
   &:checked ~ label{
@@ -109,6 +112,7 @@ export class FormikToggle extends React.Component<Props> {
       toggleContent = (
         <Div>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
+            <div>
             <ToggleInput id="toggle"
               {...this.props.field}
               type="checkbox"
@@ -116,14 +120,15 @@ export class FormikToggle extends React.Component<Props> {
               onChange={this.handleChange}
             />
             <Label id="label"
-                value={this.props.checked}
-                onChange={this.handleChange}>
-            <Switch id="switch"
               value={this.props.checked}
-              onChange={this.handleChange}
+              onChange={this.handleChange}>
+              <Switch id="switch"
+                value={this.props.checked}
+                onChange={this.handleChange}
               ></Switch>
-            <Content>O</Content>
+              <Content>O</Content>
             </Label>
+            </div>
         </Div>
       );
     }
@@ -133,21 +138,23 @@ export class FormikToggle extends React.Component<Props> {
         <Div>
           <Icon>{this.props.tooltipToggle}</Icon>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <ToggleInput id="toggle"
-            {...this.props.field}
-            type="checkbox"
-            value={this.props.checked}
-            onChange={this.handleChange}
-          />
-          <Label id="label"
-            value={this.props.checked}
-            onChange={this.handleChange}>
-            <Switch id="switch"
+          <div>
+            <ToggleInput id="toggle"
+              {...this.props.field}
+              type="checkbox"
               value={this.props.checked}
               onChange={this.handleChange}
-            ></Switch>
-          </Label>
-          <Content>O</Content>
+            />
+            <Label id="label"
+              value={this.props.checked}
+              onChange={this.handleChange}>
+              <Switch id="switch"
+                value={this.props.checked}
+                onChange={this.handleChange}
+              ></Switch>
+              <Content>O</Content>
+            </Label>
+          </div>
         </Div>
       );
     }
@@ -157,21 +164,23 @@ export class FormikToggle extends React.Component<Props> {
         <Div>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
           <Icon>{this.props.iconRight}</Icon>
-          <ToggleInput id="toggle"
-            {...this.props.field}
-            type="checkbox"
-            value={this.props.checked}
-            onChange={this.handleChange}
-          />
-          <Label id="label"
-            value={this.props.checked}
-            onChange={this.handleChange}>
-            <Switch id="switch"
+          <div>
+            <ToggleInput id="toggle"
+              {...this.props.field}
+              type="checkbox"
               value={this.props.checked}
               onChange={this.handleChange}
-            ></Switch>
-          </Label>
-          <Content>O</Content>
+            />
+            <Label id="label"
+              value={this.props.checked}
+              onChange={this.handleChange}>
+              <Switch id="switch"
+                value={this.props.checked}
+                onChange={this.handleChange}
+              ></Switch>
+              <Content>O</Content>
+            </Label>
+          </div>
         </Div>
       );
     }
@@ -182,21 +191,23 @@ export class FormikToggle extends React.Component<Props> {
           <Icon>{this.props.tooltipToggle}</Icon>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
           <Icon>{this.props.iconRight}</Icon>
-          <ToggleInput id="toggle"
-            {...this.props.field}
-            type="checkbox"
-            value={this.props.checked}
-            onChange={this.handleChange}
-          />
-          <Label id="label"
-            value={this.props.checked}
-            onChange={this.handleChange}>
-            <Switch id="switch"
+          <div>
+            <ToggleInput id="toggle"
+              {...this.props.field}
+              type="checkbox"
               value={this.props.checked}
               onChange={this.handleChange}
-            ></Switch>
-          </Label>
-          <Content>O</Content>
+            />
+            <Label id="label"
+              value={this.props.checked}
+              onChange={this.handleChange}>
+              <Switch id="switch"
+                value={this.props.checked}
+                onChange={this.handleChange}
+              ></Switch>
+              <Content>O</Content>
+            </Label>
+          </div>
         </Div>
       );
     }
