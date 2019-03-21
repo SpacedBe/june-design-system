@@ -26,7 +26,7 @@ const styleVariables = loadStyleVariables();
 
 const Input = styled.input`
   opacity: 0;
-  z-index: 200;
+  z-index: ${styleVariables.ziCheckbox};
   position: absolute;
   cursor: pointer;
   width: 20px;
@@ -39,12 +39,12 @@ const Input = styled.input`
 
 const Span = styled.span`
   display: inline-block;
-  margin: 2.5px;
+  margin: 3px;
   width: 15px;
   height: 15px;
   opacity:0;
   position: relative;
-  background: ${styleVariables.green};
+  background: ${styleVariables.colorGreen};
 `;
 
 const InputDiv = styled.div`
@@ -65,7 +65,7 @@ const Checkbox = styled.div`
   display: inline-block;
   visibility: visible;
   background-color : ${styleVariables.colorWhite};
-  border: 2px solid ${styleVariables.green};
+  border: 2px solid ${styleVariables.colorGreen};
 `;
 
 const Label = styled.label`

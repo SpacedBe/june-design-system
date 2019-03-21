@@ -26,7 +26,7 @@ const styleVariables = loadStyleVariables();
 
 const Input = styled.input.attrs({ type: "radio" })`
   opacity: 0;
-  z-index: 200;
+  z-index: ${styleVariables.ziCheckbox};
   position: absolute;
   cursor: pointer;
   width: 20px;
@@ -35,17 +35,18 @@ const Input = styled.input.attrs({ type: "radio" })`
   &:checked ~ span {
     opacity: 1;
   }
-`;
+;`
+
 
 const Span = styled.span`
   display: inline-block;
-  margin: 2.5px;
+  margin: 3px;
   width: 15px;
   height: 15px;
   opacity: 0;
   border-radius: 30px;
   position: relative;
-  background: ${styleVariables.green};
+  background: ${styleVariables.colorGreen};
 `;
 
 const InputDiv = styled.div`
@@ -66,12 +67,13 @@ const Round = styled.div`
   display: inline-block;
   visibility: visible;
   background-color : ${styleVariables.colorWhite};
-  border: 2px solid ${styleVariables.green};
+  border: 2px solid ${styleVariables.colorGreen};
 `;
 
 const Label = styled.label`
   margin-left: 35px;
 `
+
 export class FormikRadiobutton extends React.Component<Props> {
   render() {
     return (

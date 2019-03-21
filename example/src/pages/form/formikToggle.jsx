@@ -10,7 +10,6 @@ export default class FormikTogglePage extends React.Component {
     this.state = {
       label: "",
       checked: false,
-      msg: "",
       field: {
         name: 'example-input',
       },
@@ -23,9 +22,7 @@ export default class FormikTogglePage extends React.Component {
   }
 
   handleCheckedChange(isChecked){
-    console.log("test", isChecked);
     this.setState({checked: !this.state.checked})
-    console.log(this.state)
   }
 
   render(){

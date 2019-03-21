@@ -37,8 +37,8 @@ const Select = styled.select<{
 }>`
   border: ${props =>
     props.error
-      ? `2px solid ${styleVariables.red}`
-      : `2px solid ${styleVariables.grayLight}`};
+      ? `2px solid ${styleVariables.colorRed}`
+      : `2px solid ${styleVariables.colorGrayLight}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
   background: ${styleVariables.colorWhite};
@@ -57,12 +57,12 @@ const Label = styled.label<{
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   color: ${props =>
     props.error
-      ? `${styleVariables.red}`
-      : `${styleVariables.grayLight}`};
+      ? `${styleVariables.colorRed}`
+      : `${styleVariables.colorGrayLight}`};
 `;
 
 const Option = styled.option`
-  color: ${`${styleVariables.gray}`};
+  color: ${`${styleVariables.colorGray}`};
 `;
 export class FormikSelect extends React.Component<Props>{
   render(){

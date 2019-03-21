@@ -18,10 +18,10 @@ const sizes = {
 };
 
 const colors = {
-  red: `${styleVariables.red}`,
-  green: `${styleVariables.green}`,
-  blue: `${styleVariables.blue}`,
-  yellow: `${styleVariables.yellow}`,
+  red: `${styleVariables.colorRed}`,
+  green: `${styleVariables.colorGreen}`,
+  blue: `${styleVariables.colorBlue}`,
+  yellow: `${styleVariables.colorYellow}`
 };
 
 type Props = {
@@ -93,7 +93,7 @@ const NormalButton = styled.button<{
     if (props.outlined || props.clear) {
       return `none`;
     } else if (props.disabled) {
-      return `${styleVariables.gray}`;
+      return `${styleVariables.colorGray}`;
     } else if (props.color) {
       return colors[props.color || ""];
     } else {
@@ -108,7 +108,7 @@ const NormalButton = styled.button<{
       return colors[props.color || ""];
     }
     if (props.disabled) {
-      return `2px solid ${styleVariables.gray}`;
+      return `2px solid ${styleVariables.colorGray}`;
     }
     if (props.color) {
       return colors[props.color  || ""];
