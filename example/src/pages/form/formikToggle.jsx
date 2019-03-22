@@ -29,11 +29,11 @@ export default class FormikTogglePage extends React.Component {
   }
 
   handleCheckedChangeTooltip(){
-    this.setState({ checkedTooltip: !this.state.checkedTooltip });
+    this.setState({checkedTooltip: !this.state.checkedTooltip });
   }
 
   handleCheckedChangeIconTooltip(){
-    this.setState({ checkedIconRightTooltip: !this.state.checkedIconTooltip })
+    this.setState({checkedIconTooltip: !this.state.checkedIconTooltip })
   }
 
   render(){
@@ -65,7 +65,7 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Icon Right & Tooltip
         <ReactSpecimen span={3}>
           <FormikToggle
-            iconOff={this.state.checked ? <IconOff /> : <IconOn />}
+            iconOff={this.state.checkedIconTooltip ? <IconOff /> : <IconOn />}
             tooltipToggle={<IconQuestionmark />}
             iconRight={<IconElectricity />}
             label="Toggle with an icon"
@@ -81,13 +81,13 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Tooltip
         <ReactSpecimen span={3}>
           <FormikToggle
-            iconOff={this.state.checked ? <IconOff /> : <IconOn />}
+            iconOff={this.state.checkedTooltip ? <IconOff /> : <IconOn />}
             tooltipToggle={<IconQuestionmark />}
             label="Toggle with a long label discription and an info icon"
             field={this.state.field}
             form={this.state.form}
             onCheckedChangeTooltip={this.handleCheckedChangeTooltip}
-            checkedIconTooltip={this.state.checkedTooltip}
+            checkedTooltip={this.state.checkedTooltip}
           />
         </ReactSpecimen>
         <label>state={this.state.checkedTooltip ? "true" : "false"}</label>
