@@ -40,8 +40,8 @@ type Props = {
 const styleVariables = loadStyleVariables();
 
 const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean, size?: string; }>`
-  border: ${props => props.error ? `2px solid ${styleVariables.red}` : `2px solid ${styleVariables.grayLight}`};
-  color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+  border: ${props => props.error ? `2px solid ${styleVariables.colorRed}` : `2px solid ${styleVariables.colorGrayLight}`};
+  color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   padding: 10px;
   border-radius: 2.5px;
   background: ${styleVariables.colorWhite};
@@ -52,7 +52,7 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   height: ${props => sizes[props.size || "medium"]};
   margin-bottom: 20px;
   &::placeholder {
-     color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+     color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   }
 `;
 
@@ -76,7 +76,7 @@ const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
   padding-bottom: 5px;
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   color: ${props =>
-    props.error ? `${styleVariables.red}` : `${styleVariables.black}`};
+    props.error ? `${styleVariables.colorRed}` : `${styleVariables.black}`};
 `;
 
 export class FormikTextarea extends React.Component<Props> {

@@ -25,32 +25,28 @@ type Props = {
 const styleVariables = loadStyleVariables();
 
 const Input = styled.input.attrs({ type: "radio" })`
-  &:after {
-    width: 13px;
-    height: 13px;
-    border-radius: 15px;
-    top: -2px;
-    left: -2px;
-    position: relative;
-    background-color: ${styleVariables.colorWhite};
-    content: "";
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid ${styleVariables.colorWhite};
+  opacity: 0;
+  z-index: ${styleVariables.ziCheckbox};
+  position: absolute;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+
+  &:checked ~ span {
+    opacity: 1;
   }
-  &:checked&:after {
-    width: 13px;
-    height: 13px;
-    border-radius: 15px;
-    top: -1px;
-    left: -0.5px;
-    position: relative;
-    background-color: ${styleVariables.green};
-    content: "";
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid ${styleVariables.green};
-  }
+;`
+
+
+const Span = styled.span`
+  display: inline-block;
+  margin: 3px;
+  width: 15px;
+  height: 15px;
+  opacity: 0;
+  border-radius: 30px;
+  position: relative;
+  background: ${styleVariables.colorGreen};
 `;
 
 const InputDiv = styled.div`
@@ -71,12 +67,13 @@ const Round = styled.div`
   display: inline-block;
   visibility: visible;
   background-color : ${styleVariables.colorWhite};
-  border: 2px solid ${styleVariables.green};
+  border: 2px solid ${styleVariables.colorGreen};
 `;
 
 const Label = styled.label`
   margin-left: 35px;
 `
+
 export class FormikRadiobutton extends React.Component<Props> {
   render() {
     return (
@@ -88,6 +85,7 @@ export class FormikRadiobutton extends React.Component<Props> {
             name={this.props.name}
             disabled={this.props.disabled}
           />
+          <Span></Span>
         </Round>
         <Label>{this.props.label}</Label>
       </InputDiv>

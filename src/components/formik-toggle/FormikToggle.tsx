@@ -16,78 +16,84 @@ type Props = {
   tooltipToggle?: any;
   focussed: boolean;
   iconRight?: any;
+
+  iconOn?: any;
+  iconOff?: any;
+
+  checked?: boolean;
+  checkedTooltip?: boolean;
+  checkedIconTooltip?: boolean;
+
+  value?: any;
+  changeChecked?: any;
+
+  onCheckedChange: any;
+  onCheckedChangeTooltip: any;
+  onCheckedChangeIconTooltip: any;
 };
 
 const styleVariables = loadStyleVariables();
 
-const Toggle = styled.div`
-  position: relative;
-  display: inline-block;
+const ToggleInput = styled.input<{
+  value?: any;
+  onCheckedChange?: void;
+  onCheckedChangeTooltip?: void;
+  onCheckedChangeIconTooltip?: void;
+}>`
+  z-index: ${styleVariables.ziCheckbox};
+  opacity: 0;
   width: 40px;
-  height: 20px;
-  span {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px solid ${styleVariables.gray};
-    color: ${styleVariables.colorWhite};
-    background: ${styleVariables.grayLight};
-    border-radius: 30px;
-    transition: all 0.4s;
-    :after {
-      top: 2px;
-      left: 5px;
-      font-size: 10px;
-      content: "O";
-      visibility: visible;
-      display: block;
-      position: absolute;
-      transform: translateX(20px);
-    }
+  height: 15px;
+  position: absolute;
+  &:checked ~ label span {
+    transform: translatex(30px);
+    transition: transform ${styleVariables.transitionspeedNormal} ease-in;
   }
-  input:checked + span {
-    background: ${styleVariables.green};
+  &:checked ~ label {
+    background: ${styleVariables.colorGreen};
     border: 2px solid ${styleVariables.greenDark};
-    :after {
-      content: "I";
-      visibility: visible;
-      display: block;
-      position: absolute;
-      transform: translateX(2px);
-    }
+    transition: transform ${styleVariables.transitionspeedNormal} ease-in;
+  }
+
+  &:checked ~ label p {
+    opacity: 1;
+    content: I;
+    transform: translateX(-20px);
+    color: ${styleVariables.colorWhite};
   }
 `;
 
-const Input = styled.input`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 90;
+const Label = styled.label`
+  display: inline-block;
+  width: 40px;
+  height: 15px;
   border-radius: 30px;
-  transition: all 0.4s;
-  &:before {
-    background-color: ${styleVariables.colorWhite};
-    position: absolute;
-    border: 2px solid ${styleVariables.gray};
-    content: "";
-    width: 25px;
-    height: 25px;
-    left: -6px;
-    top: -7px;
-    border-radius: 24px;
-    transition: all 0.4s;
-  }
-  &:checked {
-    transform: translateX(20px);
-  }
-  &:checked:before {
-    border: 2px solid ${styleVariables.greenDark};
+  position: relative;
+  cursor: pointer;
+  background: ${styleVariables.colorGrayLight};
+  border: 2px solid ${styleVariables.colorGray};
+`;
+
+const Switch = styled.span`
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: -10px;
+  top: -7px;
+  border-radius: 25px;
+  background: ${styleVariables.colorWhite};
+  border: 2px solid ${styleVariables.colorGray};
+  transition: transform ${styleVariables.transitionspeedNormal} ease-in;
+`;
+
+const Content = styled.p`
+  opacity: 0.5;
+  margin-top: 0.5px;
+  margin-left: 25px;
+  color: ${styleVariables.colorGrayDark};
+  svg {
+    margin-bottom: 2px;
+    font-size: 0.6em;
   }
 `;
 
@@ -108,38 +114,66 @@ const Icon = styled.span`
 `
 
 export class FormikToggle extends React.Component<Props> {
+  constructor(props: any) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeTooltip = this.handleChangeTooltip.bind(this);
+    this.handleChangeIconTooltip = this.handleChangeIconTooltip.bind(this);
+  }
+
+  handleChange(e: any) {
+    this.props.onCheckedChange(e.target.value);
+  }
+
+  handleChangeTooltip(e: any){
+    this.props.onCheckedChangeTooltip(e.target.value);
+  }
+
+  handleChangeIconTooltip(e: any){
+    this.props.onCheckedChangeIconTooltip(e.target.value);
+  }
+
   render() {
     const hasTooltip = this.props.tooltipToggle || this.props.iconRight;
     let toggleContent;
 
-    if (hasTooltip && this.props.tooltipToggle) {
+    if (!hasTooltip) {
       toggleContent = (
         <Div>
-          <Icon>{this.props.tooltipToggle}</Icon>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <Toggle>
-            <Input
+            <div>
+            <ToggleInput
               {...this.props.field}
               type="checkbox"
+              value={this.props.checked}
+              onChange={this.handleChange}
             />
-            <span></span>
-          </Toggle>
+            <Label>
+              <Switch></Switch>
+              <Content>{this.props.iconOff}</Content>
+            </Label>
+            </div>
         </Div>
       );
     }
 
-    if (hasTooltip && this.props.iconRight) {
-      toggleContent = (
+    if (hasTooltip && this.props.tooltipToggle) {
+       toggleContent = (
         <Div>
+          <Icon>{this.props.tooltipToggle}</Icon>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <Icon>{this.props.iconRight}</Icon>
-          <Toggle>
-            <Input
+          <div>
+            <ToggleInput
               {...this.props.field}
               type="checkbox"
+              value={this.props.checkedTooltip}
+              onChange={this.handleChangeTooltip}
             />
-            <span></span>
-          </Toggle>
+            <Label>
+              <Switch/>
+               <Content>{this.props.iconOff}</Content>
+            </Label>
+          </div>
         </Div>
       );
     }
@@ -150,27 +184,18 @@ export class FormikToggle extends React.Component<Props> {
           <Icon>{this.props.tooltipToggle}</Icon>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
           <Icon>{this.props.iconRight}</Icon>
-          <Toggle>
-            <Input
+          <div>
+            <ToggleInput
               {...this.props.field}
               type="checkbox"
+              value={this.props.checkedIconTooltip}
+              onChange={this.handleChangeIconTooltip}
             />
-            <span></span>
-          </Toggle>
-        </Div>
-      );
-    }
-    if (!hasTooltip) {
-      toggleContent = (
-        <Div>
-          <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <Toggle>
-            <Input
-              {...this.props.field}
-              type="checkbox"
-            />
-            <span></span>
-          </Toggle>
+            <Label>
+              <Switch />
+              <Content>{this.props.iconOff}</Content>
+            </Label>
+          </div>
         </Div>
       );
     }

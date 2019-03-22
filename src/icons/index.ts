@@ -9,4 +9,6 @@ export { default as IconClose } from './Close';
 export { default as IconMail } from './Mail';
 export { default as IconCalender } from './Calender';
 export { default as IconElectricity } from './Electricity';
+export { default as IconOff } from "./Off";
+export { default as IconOn } from "./On";
 

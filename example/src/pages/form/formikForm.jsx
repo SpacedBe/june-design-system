@@ -18,8 +18,22 @@ export default class FormPage extends React.Component{
         touched: { "example-input": false }
       }
     };
+    this.handleCheckedChange = this.handleCheckedChange.bind(this);
+    this.handleCheckedChangeTooltip = this.handleCheckedChangeTooltip.bind(this);
+    this.handleCheckedChangeIconTooltip = this.handleCheckedChangeIconTooltip.bind(this);
   }
 
+  handleCheckedChange() {
+    this.setState({ checked: !this.state.checked })
+  }
+
+  handleCheckedChangeTooltip() {
+    this.setState({ checkedTooltip: !this.state.checkedTooltip });
+  }
+
+  handleCheckedChangeIconTooltip() {
+    this.setState({ checkedIconRightTooltip: !this.state.checkedIconTooltip })
+  }
   render(){
     return (
       <Page>
@@ -162,41 +176,36 @@ export default class FormPage extends React.Component{
                 tooltipToggle={<IconQuestionmark />}
                 iconRight={<IconElectricity />}
                 label="Toggle with an icon"
-                error={this.state.error}
-                touched={this.state.touched}
-                disabled={this.state.disabled}
                 field={this.state.field}
                 form={this.state.form}
+                onCheckedChangeIconTooltip={this.handleCheckedChangeIconTooltip}
+                checkedIconTooltip={this.state.checkedIconTooltip}
               />
 
               <FormikToggle
                 label="Regular Toggle"
-                error={this.state.error}
-                touched={this.state.touched}
-                disabled={this.state.disabled}
                 field={this.state.field}
                 form={this.state.form}
+                onCheckedChange={this.handleCheckedChange}
+                checked={this.state.checked}
               />
 
               <FormikToggle
                 label="Toggle with a long label discription"
-                error={this.state.error}
-                touched={this.state.touched}
-                disabled={this.state.disabled}
                 field={this.state.field}
                 form={this.state.form}
+                onCheckedChange={this.handleCheckedChange}
+                checked={this.state.checked}
               />
 
               <FormikToggle
                 tooltipToggle={<IconQuestionmark />}
                 label="Toggle with a long label discription and an info icon"
-                error={this.state.error}
-                touched={this.state.touched}
-                disabled={this.state.disabled}
                 field={this.state.field}
                 form={this.state.form}
+                onCheckedChangeTooltip={this.handleCheckedChangeTooltip}
+                checkedIconTooltip={this.state.checkedTooltip}
               />
-
               <div />
             </div>
 

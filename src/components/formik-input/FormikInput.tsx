@@ -39,8 +39,9 @@ type Props = {
 const styleVariables = loadStyleVariables();
 
 const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean }>`
-  border: ${props => props.error ? `2px solid ${styleVariables.red}` : `2px solid ${styleVariables.grayLight}`};
-  color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+  width: 100%;
+  border: ${props => props.error ? `2px solid ${styleVariables.colorRed}` : `2px solid ${styleVariables.colorGrayLight}`};
+  color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
   background-color: ${styleVariables.colorWhite};
@@ -49,24 +50,33 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   display: flex;
   justify-content: space-between;
   height: 30px;
-  margin-bottom: 20px;
   &::placeholder {
-     color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+     color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   }
 `;
 
-const InputBoxLeft = styled.div<{error?: boolean; disabled?: boolean, focussed?: boolean}>`
-  border: ${props => props.error ? `2px solid ${styleVariables.red}` : `2px solid ${styleVariables.grayLight}`};
-  color: ${props => props.error ? `${styleVariables.red}` : `${styleVariables.grayLight}`};
+const InputBoxLeft = styled.div<{
+  error?: boolean;
+  disabled?: boolean;
+  focussed?: boolean;
+}>`
+  width: 100%;
+  border: ${props =>
+    props.error
+      ? `2px solid ${styleVariables.colorRed}`
+      : `2px solid ${styleVariables.colorGrayLight}`};
+  color: ${props =>
+    props.error
+      ? `${styleVariables.colorRed}`
+      : `${styleVariables.colorGrayLight}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
   background-color: ${styleVariables.colorWhite};
-  opacity: ${props => props.disabled ? '0.5' : '1'};
+  opacity: ${props => (props.disabled ? "0.5" : "1")};
   outline: none;
   display: flex;
   height: 30px;
-  margin-bottom: 20px;
-`
+`;
 const InputWithIconLeft = styled.input`
   border: none;
   margin-left: 10px;
@@ -105,7 +115,7 @@ const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
   padding-bottom: 5px;
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   color: ${props =>
-    props.error ? `${styleVariables.red}` : `${styleVariables.black}`};
+    props.error ? `${styleVariables.colorRed}` : `${styleVariables.black}`};
 `;
 export class FormikInput extends React.Component<Props> {
   render() {

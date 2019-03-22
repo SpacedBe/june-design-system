@@ -12,13 +12,13 @@ $color-primary-light: #DFF2F2;
 
 $text-color: #888E90;
 
-$gray: #BFBFBF;
-$gray-dark: #949A9E;
-$gray-darker: #333;
-$gray-light: #CCC;
-$gray-lighter: #EEE;
+$color-gray: #BFBFBF;
+$color-gray-dark: #949A9E;
+$color-gray-darker: #333;
+$color-gray-light: #CCC;
+$color-gray-lighter: #EEE;
 
-$green: #1BA598;
+$color-green: #1BA598;
 $green-alternate: #23B3A5;
 $green-light: #A0D8D3;
 $green-light-darker: darken($green-light, 10);
@@ -34,22 +34,22 @@ $green-lime-lighter: #F0F8F4;
 $green-lime-alternate: darken($green-lighter, 5);
 $green-lime-dark: #97C7B1;
 
-$red: #FF5757;
+$color-red: #FF5757;
 $red-light: #FCA0A0;
 $red-lighter: #ECE1DB;
 $red-dark: #A12E2D;
 $red-google: #DC4E41;
 
-$yellow: #F1C40F;
+$color-yellow: #F1C40F;
 
-$blue: #0091EA;
-$blue-light: #5CDBFD;
-$blue-button: #558FFF;
-$blue-facebook: #39599E;
+$color-blue: #0091EA;
+$color-blue-light: #5CDBFD;
+$color-blue-button: #558FFF;
+$color-blue-facebook: #39599E;
 
-$electricity: $yellow;
-$gas: $blue;
-$water: $blue-light;
+$electricity: $color-yellow;
+$gas: $color-blue;
+$water: $color-blue-light;
 
 /*********/
 /* Fonts */
@@ -85,6 +85,7 @@ $zi-modal: 5;
 $zi-footer: 6;
 $zi-header: 7;
 $zi-fallback: 8;
+$zi-checkbox: 200;
 
 /***************/
 /* Screen size */
@@ -137,3 +138,11 @@ $textarea-small: 50px;
 $textarea-medium: 100px;
 $textarea-large: 150px;
 $textarea-xlarge: 200px;
+
+
+/***********/
+/* Transitions */
+/***********/
+
+$transitionspeed-normal: 0.2s;
+$transitionspeed-faster: 0.6s;
