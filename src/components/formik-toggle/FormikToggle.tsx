@@ -90,8 +90,11 @@ const Content = styled.p`
   opacity: 0.5;
   margin-top: 0.5px;
   margin-left: 25px;
-  font-size: 12px;
   color: ${styleVariables.colorGrayDark};
+  svg {
+    margin-bottom: 2px;
+    font-size: 0.6em;
+  }
 `;
 
 const Div = styled.div`
