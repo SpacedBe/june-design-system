@@ -4,9 +4,10 @@ import {loadStyleVariables} from "../..";
 
 const styleVariables = loadStyleVariables();
 
-const StyledContainer = styled.div<{hasPadding?: boolean}>`
+const StyledContainer = styled.div`
   max-width: ${styleVariables.screenXs};
   margin: 0 auto;
+  padding: 5px 20px;
 `;
 
 export class Container extends React.Component {

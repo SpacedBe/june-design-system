@@ -12,4 +12,5 @@ export * from "./components/formik-form/FormikForm"
 export * from './components/formik-radiobutton/FormikRadiobutton';
 export * from "./components/formik-checkbox/FormikCheckbox";
 export * from "./components/formik-textarea/FormikTextarea";
+export * from "./components/separator/Separator";
 export * from './scripts/loadStyleVariables';

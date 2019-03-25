@@ -7,7 +7,7 @@ body {
 label {
   display: block;
 }
-
+.pop
 .input-group {
   margin-bottom: 8px;
 }
@@ -39,3 +39,39 @@ label {
   justify-content: center;
   padding-top: 20px;
 }
+
+/*POPUP - tooltip.jsx*/
+
+.popup{
+  text-align: center;
+  text-decoration: none;
+
+}
+.popup.afterClick{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #46ACA6;
+
+  color: white;
+}
+
+.popup.p{
+ width: 80%;
+  padding-left: 2rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.closeButton{
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  color: white;
+
+}
+
