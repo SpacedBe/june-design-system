@@ -70,7 +70,6 @@ export default class ButtonPage extends React.Component {
         ## Buttons
         <ReactSpecimen>
           <Button
-          className={'foo'}
             size={this.state.size}
             rounded={this.state.rounded}
             clear={this.state.clear}

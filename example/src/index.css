@@ -7,7 +7,7 @@ body {
 label {
   display: block;
 }
-
+.pop
 .input-group {
   margin-bottom: 8px;
 }
@@ -45,9 +45,9 @@ label {
 .popup{
   text-align: center;
   text-decoration: none;
-}
 
-.afterClick{
+}
+.popup.afterClick{
   position: fixed;
   top: 0;
   left: 0;
@@ -57,14 +57,15 @@ label {
 
   color: white;
 }
-.p{
-  width: 80%;
+
+.popup.p{
+ width: 80%;
   padding-left: 2rem;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   line-height: 22px;
-  }
+}
 
 .closeButton{
   position: absolute;

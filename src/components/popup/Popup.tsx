@@ -2,7 +2,6 @@
  * @class Popup
  */
 import * as React from 'react';
-// import styles from './popup.scss';
 import { Button } from '../button/Button';
 import { IconClose } from '../../icons';
 
@@ -29,7 +28,7 @@ export class Popup extends React.Component<Props>{
         <div>
             <h1>{this.props.title}</h1>
             <h3>{this.props.text}</h3>
-            <p >{this.props.placeholder}</p>
+            <p>{this.props.placeholder}</p>
             <Button  onClick={() => this.props.close()} iconOnly={<IconClose></IconClose>}></Button>
             <img width="300" src={this.props.img}></img>
         </div>
