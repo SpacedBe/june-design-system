@@ -11,4 +11,5 @@ export { default as IconCalender } from './Calender';
 export { default as IconElectricity } from './Electricity';
 export { default as IconOff } from "./Off";
 export { default as IconOn } from "./On";
+export { default as IconJune } from "./June";
 

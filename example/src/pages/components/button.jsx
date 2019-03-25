@@ -70,6 +70,7 @@ export default class ButtonPage extends React.Component {
         ## Buttons
         <ReactSpecimen>
           <Button
+          className={'foo'}
             size={this.state.size}
             rounded={this.state.rounded}
             clear={this.state.clear}
@@ -144,6 +145,7 @@ export default class ButtonPage extends React.Component {
               <option value="green">green</option>
               <option value="blue">blue</option>
               <option value="yellow">yellow</option>
+              <option value="facebook">facebook</option>
             </select>
           </div>
 

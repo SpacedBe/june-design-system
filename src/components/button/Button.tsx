@@ -21,7 +21,8 @@ const colors = {
   red: `${styleVariables.colorRed}`,
   green: `${styleVariables.colorGreen}`,
   blue: `${styleVariables.colorBlue}`,
-  yellow: `${styleVariables.colorYellow}`
+  yellow: `${styleVariables.colorYellow}`,
+  facebook: `${styleVariables.colorBlueFacebook}`
 };
 
 type Props = {
@@ -39,13 +40,14 @@ type Props = {
   rounded?: boolean,
   spaced?: boolean,
   clear?: boolean,
-  color?: 'red' | 'green' | 'blue' | 'yellow',
+  color?: 'red' | 'green' | 'blue' | 'yellow' | 'facebook',
   href?: string,
   disabled?: boolean,
   target?: string,
   type?: string,
   onClick?: any,
   successMessage?: any[],
+  className?: string;
 };
 
 const Icon = styled.div`
@@ -198,6 +200,7 @@ export class Button extends React.Component<Props> {
 
     return (
       <NormalButton
+        className={this.props.className}
         id={this.props.id}
         disabled={isDisabled}
         color={this.props.color}
@@ -209,8 +212,9 @@ export class Button extends React.Component<Props> {
         outlined={this.props.outlined}
         rounded={this.props.rounded}
         target={this.props.target}
-        >
+      >
         {buttonContent}
+        classname: {this.props.className}
       </NormalButton>
     );
   }

@@ -28,9 +28,9 @@ export default class App extends Component {
             title: "Design",
             pages: [
               {
-                path: 'typography',
-                title: 'Typography',
-                content: pageLoader('/pages/design/typography.md'),
+                path: "typography",
+                title: "Typography",
+                content: pageLoader("/pages/design/typography.md")
               },
               {
                 path: "icons",
@@ -49,12 +49,12 @@ export default class App extends Component {
             ]
           },
           {
-            title: 'Layout',
+            title: "Layout",
             pages: [
               {
-                path: 'container',
-                title: 'Containers',
-                content: pageLoader('/pages/layout/container.md'),
+                path: "container",
+                title: "Containers",
+                content: pageLoader("/pages/layout/container.md"),
                 imports: {}
               }
             ]
@@ -99,6 +99,13 @@ export default class App extends Component {
                 title: "Tooltip",
                 component: pageLoader(() =>
                   import("./pages/components/tooltip")
+                )
+              },
+              {
+                path: "separator",
+                title: "Separator",
+                component: pageLoader(() =>
+                  import("./pages/components/separator")
                 )
               }
             ]
