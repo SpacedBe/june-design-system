@@ -130,7 +130,6 @@ const NormalButton = styled.button<{
   font-family: ${styleVariables.fontbuttons};
   font-weight: 600;
   outline: 0;
-  margin-left: 1em;
   padding: 0 ${styleVariables.gutter};
   position: relative;
   text-align: center;
@@ -214,7 +213,6 @@ export class Button extends React.Component<Props> {
         target={this.props.target}
       >
         {buttonContent}
-        classname: {this.props.className}
       </NormalButton>
     );
   }

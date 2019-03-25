@@ -12,7 +12,9 @@ const Line = styled.div`
 
 const Flex = styled.div`
   display: flex;
-  align-items: center
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
 `
 
 const Content = styled.span`
