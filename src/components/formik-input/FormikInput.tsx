@@ -49,10 +49,11 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   outline: none;
   display: flex;
   justify-content: space-between;
-  height: 30px;
+  height: 45px;
   &::placeholder {
      color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   }
+  margin-bottom: 20px;
 `;
 
 const InputBoxLeft = styled.div<{
@@ -75,7 +76,9 @@ const InputBoxLeft = styled.div<{
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   outline: none;
   display: flex;
-  height: 30px;
+  height: 45px;
+  margin-bottom: 20px;
+  margin-top: 5px;
 `;
 const InputWithIconLeft = styled.input`
   border: none;
