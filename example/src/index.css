@@ -53,7 +53,7 @@ label {
   line-height: normal;
 }
 
-.container > .underline{
+.container >  .underline{
   text-decoration: underline;
   font-size: 14px;
   line-height: normal
@@ -70,9 +70,6 @@ label {
   line-height: normal;
   text-transform: uppercase;
 }
-
-
-
 
 /*FORM - formikForm.jsx*/
 
