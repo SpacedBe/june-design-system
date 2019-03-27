@@ -30,8 +30,7 @@ export default class ButtonPage extends React.Component {
               <p className={"small"}>Small: The quick brow fox jumps over the lazy dog </p>
           <br/>
               <p className={"mini"}>Stepper items</p>
-              <p className={"mini"}>Mini: The quick brow fox jumps over the lazy dog</p>
-
+              <p className="mini">Mini: The quick brow fox jumps over the lazy dog</p>
         </Container>
       </Page>
     );
