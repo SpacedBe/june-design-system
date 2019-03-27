@@ -31,7 +31,8 @@ const Label = styled.div`
   position: absolute;
   top: 30px;
   text-transform: uppercase;
-  color: ${styleVariables.textColor}
+  color: ${styleVariables.textColor};
+  font-size: 10px;
 `;
 
 const Line = styled.div`

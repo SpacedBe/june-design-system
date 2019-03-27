@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
 export class Container extends React.Component {
   render() {
     return (
-      <StyledContainer>
+      <StyledContainer className={"container"}>
         {this.props.children}
       </StyledContainer>
     )

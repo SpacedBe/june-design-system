@@ -129,6 +129,7 @@ const NormalButton = styled.button<{
   cursor: pointer;
   font-family: ${styleVariables.fontbuttons};
   font-weight: 600;
+  font-size: 14px;
   outline: 0;
   padding: 0 ${styleVariables.gutter};
   position: relative;
