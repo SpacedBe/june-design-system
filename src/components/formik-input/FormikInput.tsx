@@ -95,18 +95,18 @@ const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
 `
 
 const IconSmall = styled.span<{ disabled?: boolean }>`
-  font-size: 1.5em;
+  font-size: ${styleVariables.fontSizeXxl};
   opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
 
 const IconBig = styled.span`
-  font-size: 2em;
+  font-size: ${styleVariables.fontSizeXxl};
 `;
 
-const ButtonSmall = styled.button<{disabled?:boolean}>`
-  font-size: 1em;
-  opacity: ${props => props.disabled ? '0.5' : '1'};
-`
+const ButtonSmall = styled.button<{ disabled?: boolean }>`
+  font-size: ${styleVariables.fontSizeM};
+  opacity: ${props => (props.disabled ? "0.5" : "1")};
+`;
 const Flex = styled.div`
   display: flex;
   align-items: center;

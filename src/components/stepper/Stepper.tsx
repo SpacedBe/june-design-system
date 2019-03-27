@@ -32,7 +32,7 @@ const Label = styled.div`
   top: 30px;
   text-transform: uppercase;
   color: ${styleVariables.textColor};
-  font-size: 10px;
+  font-size: ${styleVariables.fontSizeXs};
 `;
 
 const Line = styled.div`

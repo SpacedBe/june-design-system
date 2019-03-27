@@ -53,7 +53,7 @@ type Props = {
 const Icon = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1em;
+  font-size: ${styleVariables.fontSizeM};
   fill: ${styleVariables.colorWhite};
   &:hover {
     fill: ${styleVariables.colorWhite};
@@ -63,7 +63,7 @@ const Icon = styled.div`
 const IconOnly = styled.span`
   fill: ${styleVariables.colorWhite};
   padding: 0.2em;
-  font-size: 1.3em;
+  font-size: ${styleVariables.fontSizeM};
 `;
 
 const IconLeft = styled.span`
@@ -129,7 +129,7 @@ const NormalButton = styled.button<{
   cursor: pointer;
   font-family: ${styleVariables.fontbuttons};
   font-weight: 600;
-  font-size: 14px;
+  font-size: ${styleVariables.fontSizeM};
   outline: 0;
   padding: 0 ${styleVariables.gutter};
   position: relative;
