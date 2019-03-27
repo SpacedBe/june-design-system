@@ -16,7 +16,7 @@ export default class ButtonPage extends React.Component {
             <h4>H4: The quick brow fox jumps over the lazy dog</h4>
 
           <br />
-            <h5>Subtitels</h5>
+            <h5>Subtitles</h5>
             <h5>H5: The quick brow fox jumps over the lazy dog</h5>
             <h6>H6: The quick brow fox jumps over the lazy dog</h6>
           <br/>
