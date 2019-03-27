@@ -56,7 +56,14 @@ export default class App extends Component {
                 title: "Containers",
                 content: pageLoader("/pages/layout/container.md"),
                 imports: {}
-              }
+              },
+                {
+                path: "typograph",
+                title: "Typograph",
+                component: pageLoader(() =>
+                  import("./pages/components/typograph")
+                ),
+              },
             ]
           },
           {
