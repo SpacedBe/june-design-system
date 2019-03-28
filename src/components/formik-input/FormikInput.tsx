@@ -119,6 +119,8 @@ const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   color: ${props =>
     props.error ? `${styleVariables.colorRed}` : `${styleVariables.black}`};
+  font-family: ${styleVariables.fontSecondary};
+  font-size: ${styleVariables.fontSizeM}
 `;
 export class FormikInput extends React.Component<Props> {
   render() {

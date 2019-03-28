@@ -76,7 +76,8 @@ const IconRight = styled.span`
 
 const Label = styled.span`
   @include transition(opacity);
-    opacity: 1;
+  opacity: 1;
+  font-family: ${styleVariables.fontPrimary}
 `
 
 const NormalButton = styled.button<{

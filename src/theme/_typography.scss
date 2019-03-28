@@ -377,7 +377,11 @@ $font-path: '/assets/fonts/' !default;
   font-size: $font-size-l;
 }
 
-.openSans{
+.primaryFont{
+  font-family: $font-body;
+}
+
+.secondaryFont{
   font-family: $font-open-sans;
 }
 

@@ -72,6 +72,8 @@ const Label = styled.label`
   cursor: pointer;
   background: ${styleVariables.colorGrayLight};
   border: 2px solid ${styleVariables.colorGray};
+  font-family: ${styleVariables.fontSecondary};
+  font-size: ${styleVariables.fontSizeL};
 `;
 
 const Switch = styled.span`
@@ -107,7 +109,9 @@ const Div = styled.div`
 const LabelBeforeToggle = styled.label`
   width: 70%;
   line-height: 1.5em;
-`
+  font-family: ${styleVariables.fontSecondary};
+  font-size: ${styleVariables.fontSizeL};
+`;
 
 const Icon = styled.span`
   font-size: 1.5em;

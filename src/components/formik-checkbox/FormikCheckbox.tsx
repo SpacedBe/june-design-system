@@ -71,6 +71,8 @@ const Checkbox = styled.div`
 const Label = styled.label`
   margin-left: 35px;
   position: relative;
+  font-family: ${styleVariables.fontSecondary};
+  font-size: ${styleVariables.fontSizeM};
 `;
 
 export class FormikCheckbox extends React.Component<Props> {
