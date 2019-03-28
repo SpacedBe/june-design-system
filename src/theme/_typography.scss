@@ -377,6 +377,10 @@ $font-path: '/assets/fonts/' !default;
   font-size: $font-size-l;
 }
 
+.openSans{
+  font-family: $font-open-sans;
+}
+
 .primaryLink{
    font-size: $font-size-s;
    color: #1BA598;
