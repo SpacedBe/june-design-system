@@ -80,7 +80,7 @@ const Label = styled.span`
   font-family: ${styleVariables.fontPrimary}
 `
 const OnlyIconButton = styled.button`
-  > div > span > svg {
+  svg {
     fill: ${styleVariables.colorGray};
     font-size: ${styleVariables.fontSizeXxl};
   }
