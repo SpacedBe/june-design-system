@@ -20,7 +20,7 @@ const HeaderDiv = styled.div`
 export class Header extends React.Component {
   render() {
     return (
-      <HeaderDiv>
+      <HeaderDiv {...this.props}>
         {this.props.children}
       </HeaderDiv>
     )

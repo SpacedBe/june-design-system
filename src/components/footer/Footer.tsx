@@ -20,7 +20,7 @@ const FooterDiv = styled.div`
 export class Footer extends React.Component{
   render(){
     return(
-      <FooterDiv>
+      <FooterDiv {...this.props}>
         {this.props.children}
       </FooterDiv>
     )
