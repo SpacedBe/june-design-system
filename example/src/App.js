@@ -162,6 +162,13 @@ export default class App extends Component {
                   import("./pages/form/formikCheckbox")
                 )
               },
+               {
+                path: "fixedFooter",
+                title: "FixedFooter",
+                component: pageLoader(() =>
+                  import("./pages/form/formikFixedFooter")
+                )
+              },
               {
                 path: "form",
                 title: "Form",
