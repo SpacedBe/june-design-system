@@ -79,10 +79,7 @@ const Label = styled.span`
   opacity: 1;
   font-family: ${styleVariables.fontPrimary}
 `
-const OnlyIconButton = styled.button<{
-  target?: string;
-  onClick?: void;
-}>`
+const OnlyIconButton = styled.button`
   > div > span > svg {
     fill: ${styleVariables.colorGray};
     font-size: ${styleVariables.fontSizeXxl};
@@ -253,8 +250,6 @@ export class Button extends React.Component<Props> {
         <OnlyIconButton
           className={this.props.className}
           id={this.props.id}
-          onClick={this.props.onClick}
-          target={this.props.target}
         >
           <div>
             <IconOnly>{this.props.iconOnly}</IconOnly>
