@@ -8,10 +8,6 @@ import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 const styleVariables = loadStyleVariables();
 
 const HeaderDiv = styled.div`
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
   height: 100px;
   overflow: hidden;
   background-color: ${styleVariables.colorWhite};
