@@ -114,7 +114,21 @@ export default class App extends Component {
                 component: pageLoader(() =>
                   import("./pages/components/separator")
                 )
-              }
+              },
+               {
+                path: "footer",
+                title: "Footer",
+                component: pageLoader(() =>
+                  import("./pages/components/footer")
+                )
+              },
+              {
+                path: "header",
+                title: "Header",
+                component: pageLoader(() =>
+                  import("./pages/components/header")
+                )
+              },
             ]
           },
           {
@@ -160,20 +174,6 @@ export default class App extends Component {
                 title: "Checkbox",
                 component: pageLoader(() =>
                   import("./pages/form/formikCheckbox")
-                )
-              },
-              {
-                path: "fixedFooter",
-                title: "FixedFooter",
-                component: pageLoader(() =>
-                  import("./pages/form/formikFixedFooter")
-                )
-              },
-              {
-                path: "fixedHeader",
-                title: "FixedHeader",
-                component: pageLoader(() =>
-                  import("./pages/form/formikFixedHeader")
                 )
               },
               {

@@ -1,5 +1,5 @@
 /**
- * @class FormikFixedFooter
+ * @class Footer
  */
 
 import * as React from 'react';
@@ -8,7 +8,7 @@ import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 
 const styleVariables = loadStyleVariables();
 
-const FixedFooter = styled.div`
+const FooterDiv = styled.div`
   position: fixed;
   bottom: 0px;
   height: 100px;
@@ -22,11 +22,11 @@ const FixedFooter = styled.div`
   box-shadow: 0px -3px 10px ${styleVariables.colorGrayLighter};
 `;
 
-export class FormikFixedFooter extends React.Component{
+export class Footer extends React.Component{
   render(){
     return(
-      <FixedFooter>
-      </FixedFooter>
+      <FooterDiv>
+      </FooterDiv>
     )
   }
 }

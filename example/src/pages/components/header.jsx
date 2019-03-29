@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page } from 'catalog';
-import { FormikFixedHeader } from 'june-design-system';
+import { Header } from 'june-design-system';
 
 export default class FixedHeaderPage extends React.Component {
   constructor() {
@@ -12,8 +12,8 @@ export default class FixedHeaderPage extends React.Component {
   render() {
     return (
       <Page>
-        <FormikFixedHeader>
-        </FormikFixedHeader>
+        <Header>
+        </Header>
       </Page>
     )
   }

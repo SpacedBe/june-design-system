@@ -4,6 +4,8 @@ export * from './components/popup/Popup';
 export * from './components/loader/Loader';
 export * from './components/stepper/Stepper';
 export * from './components/container/Container';
+export * from './components/header/Header';
+export * from './components/footer/Footer';
 export * from './icons';
 export * from "./components/formik-input/FormikInput";
 export * from "./components/formik-toggle/FormikToggle";
@@ -12,7 +14,5 @@ export * from "./components/formik-form/FormikForm"
 export * from './components/formik-radiobutton/FormikRadiobutton';
 export * from "./components/formik-checkbox/FormikCheckbox";
 export * from "./components/formik-textarea/FormikTextarea";
-export * from "./components/formik-fixedFooter/FormikFixedFooter";
-export * from "./components/formik-fixedHeader/FormikFixedHeader";
 export * from "./components/separator/Separator";
 export * from './scripts/loadStyleVariables';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page } from 'catalog';
-import { FormikFixedFooter } from 'june-design-system';
+import { Footer } from 'june-design-system';
 
 export default class FixedFooterPage extends React.Component {
     constructor(){
@@ -12,8 +12,8 @@ export default class FixedFooterPage extends React.Component {
     render(){
         return(
           <Page>
-            <FormikFixedFooter>
-            </FormikFixedFooter>
+            <Footer>
+            </Footer>
           </Page>
         )
     }
