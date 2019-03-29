@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-bottom: 50px;
 `;
 
 const Entry = styled.div`
@@ -46,17 +47,17 @@ const Line = styled.div`
 const Step = styled.div`
   display: flex;
   justify-content: center;
-  width: 20%;
+  width: 25%;
 `;
 
 const firstStepStyle = {
   justifyContent: 'flex-start',
-  width: '10%',
+  width: '15%',
 };
 
 const lastStepStyle = {
   justifyContent: 'flex-end',
-  width: '10%',
+  width: '15%',
 };
 
 const Dot = styled.div<{ large?: boolean, color?: string, current?: boolean }>`
@@ -83,7 +84,7 @@ export class Stepper extends React.Component<Props> {
     this.validateSteps(this.props.steps);
 
     let lineStyle = {
-      width: ((this.props.steps.length - 2) * 20 + (2 * 10)) + '%'
+      width: ((this.props.steps.length - 2) * 25 + (2 * 12)) + '%'
     };
 
     return (
