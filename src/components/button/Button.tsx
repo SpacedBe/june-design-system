@@ -260,7 +260,7 @@ export class Button extends React.Component<Props> {
             <IconOnly>{this.props.iconOnly}</IconOnly>
           </div>
         </OnlyIconButton>
-      )
+      );
     }
 
     return (

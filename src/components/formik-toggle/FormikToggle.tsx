@@ -117,6 +117,12 @@ const Icon = styled.span`
   font-size: 1.5em;
 `
 
+const FlexDiv = styled.div`
+  display: flex;
+  flex-flow: row;
+  width: 50%;
+`
+
 export class FormikToggle extends React.Component<Props> {
   constructor(props: any) {
     super(props);
@@ -185,9 +191,11 @@ export class FormikToggle extends React.Component<Props> {
     if (hasTooltip && this.props.iconRight && this.props.tooltipToggle) {
       toggleContent = (
         <Div>
-          <Icon>{this.props.tooltipToggle}</Icon>
-          <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <Icon>{this.props.iconRight}</Icon>
+          <FlexDiv>
+            <Icon>{this.props.tooltipToggle}</Icon>
+            <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
+            <Icon>{this.props.iconRight}</Icon>
+          </FlexDiv>
           <div>
             <ToggleInput
               {...this.props.field}
