@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page } from 'catalog';
-import {Popup, Button, IconQuestionmark, IconSettings, IconCalender} from 'june-design-system';
+import {Popup, Button, IconQuestionmark} from 'june-design-system';
 import monster from "../../assets/images/monster.png"
 
 export default class ButtonPage extends React.Component {
@@ -53,7 +53,7 @@ export default class ButtonPage extends React.Component {
           </Button>
           <p>Gas</p>
           <Button onClick={(event) => this.changeInputPopup((({ value: '1', name: 'Wat wil dit zeggen?', placeholder: 'Schakel dit aan wanneer je een tweede elektriciteitsmeter voor je exclusief nachtverbruik hebt. Indien je een gewone dag/nacht meter hebt, met beide telwerken in dezelfde meterkast, moet deze dienst niet inschakelen.', show: true})))}
-          iconOnly={<IconQuestionmark fill="green"></IconQuestionmark>}></Button>
+          iconOnly={<IconQuestionmark></IconQuestionmark>}></Button>
           <p>Elektriciteit</p>
           <Popup name="popup" img={this.state.img} onHide={this.handleClose} show={this.state.show} className={toggleClass} close={(event) => this.handleClose((({show: false })))} visible={this.state.visible} title={this.state.title} text={this.state.text} id={this.state.id} placeholder={this.state.placeholder}></Popup>
         </div>
