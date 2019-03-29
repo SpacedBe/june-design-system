@@ -72,7 +72,9 @@ const Round = styled.div`
 
 const Label = styled.label`
   margin-left: 35px;
-`
+  font-family: ${styleVariables.fontSecondary};
+  font-size: ${styleVariables.fontSizeM};
+`;
 
 export class FormikRadiobutton extends React.Component<Props> {
   render() {

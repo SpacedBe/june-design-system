@@ -72,11 +72,13 @@ const Flex = styled.div`
   justify-content: space-between;
 `
 
-const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
+const Label = styled.label<{ disabled?: boolean; error?: boolean }>`
   padding-bottom: 5px;
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   color: ${props =>
     props.error ? `${styleVariables.colorRed}` : `${styleVariables.black}`};
+  font-family: ${styleVariables.fontSecondary};
+  font-size: ${styleVariables.fontSizeM};
 `;
 
 export class FormikTextarea extends React.Component<Props> {

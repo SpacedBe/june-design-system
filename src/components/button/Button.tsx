@@ -76,8 +76,17 @@ const IconRight = styled.span`
 
 const Label = styled.span`
   @include transition(opacity);
-    opacity: 1;
+  opacity: 1;
+  font-family: ${styleVariables.fontPrimary}
 `
+const OnlyIconButton = styled.button`
+  svg {
+    fill: ${styleVariables.colorGray};
+    font-size: ${styleVariables.fontSizeXxl};
+  }
+  background-color: transparent;
+  border: none;
+`;
 
 const NormalButton = styled.button<{
   target?: string;
@@ -159,27 +168,72 @@ export class Button extends React.Component<Props> {
 
       if (!hasIcon) {
       buttonContent = (
-        <div>
-          <Label>{this.props.children}</Label >
-          <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-        </div>
+        <NormalButton
+          className={this.props.className}
+          id={this.props.id}
+          disabled={isDisabled}
+          color={this.props.color}
+          wide={this.props.wide}
+          type={this.props.type}
+          size={this.props.size}
+          clear={this.props.clear}
+          onClick={this.props.onClick}
+          outlined={this.props.outlined}
+          rounded={this.props.rounded}
+          target={this.props.target}
+        >
+          <div>
+            <Label>{this.props.children}</Label >
+            <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
+          </div>
+        </NormalButton>
       )
     }
 
     if (hasIcon && this.props.iconLeft) {
       buttonContent = (
-        <div>
-           <Icon>
-            <IconLeft>{this.props.iconLeft}</IconLeft>
-            <Label>{this.props.children}</Label>
-          </Icon>
-          <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-        </div>
+        <NormalButton
+          className={this.props.className}
+          id={this.props.id}
+          disabled={isDisabled}
+          color={this.props.color}
+          wide={this.props.wide}
+          type={this.props.type}
+          size={this.props.size}
+          clear={this.props.clear}
+          onClick={this.props.onClick}
+          outlined={this.props.outlined}
+          rounded={this.props.rounded}
+          target={this.props.target}
+        >
+          <div>
+            <Icon>
+              <IconLeft>{this.props.iconLeft}</IconLeft>
+              <Label>{this.props.children}</Label>
+            </Icon>
+            <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
+          </div>
+        </NormalButton>
+
       )
     }
 
     if (hasIcon && this.props.iconRight) {
       buttonContent = (
+        <NormalButton
+          className={this.props.className}
+          id={this.props.id}
+          disabled={isDisabled}
+          color={this.props.color}
+          wide={this.props.wide}
+          type={this.props.type}
+          size={this.props.size}
+          clear={this.props.clear}
+          onClick={this.props.onClick}
+          outlined={this.props.outlined}
+          rounded={this.props.rounded}
+          target={this.props.target}
+        >
         <div>
           <Icon>
             <Label>{this.props.children}</Label>
@@ -187,34 +241,30 @@ export class Button extends React.Component<Props> {
           </Icon>
           <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
         </div>
+        </NormalButton>
       )
     }
 
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
-        <div>
-          <IconOnly>{this.props.iconOnly}</IconOnly>
-        </div>
-      )
+        <OnlyIconButton
+          className={this.props.className}
+          id={this.props.id}
+        >
+          <div>
+            <IconOnly>{this.props.iconOnly}</IconOnly>
+          </div>
+        </OnlyIconButton>
+      );
     }
 
     return (
-      <NormalButton
-        className={this.props.className}
-        id={this.props.id}
-        disabled={isDisabled}
-        color={this.props.color}
-        wide={this.props.wide}
-        type={this.props.type}
-        size={this.props.size}
-        clear={this.props.clear}
-        onClick={this.props.onClick}
-        outlined={this.props.outlined}
-        rounded={this.props.rounded}
-        target={this.props.target}
-      >
-        {buttonContent}
-      </NormalButton>
+      <div>
+        {
+          buttonContent
+        }
+      </div>
+
     );
   }
 }

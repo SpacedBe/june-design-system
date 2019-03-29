@@ -57,13 +57,13 @@ export default class App extends Component {
                 content: pageLoader("/pages/layout/container.md"),
                 imports: {}
               },
-                {
+              {
                 path: "typograph",
                 title: "Typograph",
                 component: pageLoader(() =>
                   import("./pages/components/typograph")
-                ),
-              },
+                )
+              }
             ]
           },
           {
@@ -114,7 +114,21 @@ export default class App extends Component {
                 component: pageLoader(() =>
                   import("./pages/components/separator")
                 )
-              }
+              },
+               {
+                path: "footer",
+                title: "Footer",
+                component: pageLoader(() =>
+                  import("./pages/components/footer")
+                )
+              },
+              {
+                path: "header",
+                title: "Header",
+                component: pageLoader(() =>
+                  import("./pages/components/header")
+                )
+              },
             ]
           },
           {

@@ -20,6 +20,8 @@ const Flex = styled.div`
 const Content = styled.span`
   padding: 5px;
   color: ${styleVariables.colorPrimary};
+  font-size: ${styleVariables.fontSizeM};
+  font-family: ${styleVariables.fontSecondary};
 `
 
 export class Separator extends React.Component{

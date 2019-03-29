@@ -377,13 +377,21 @@ $font-path: '/assets/fonts/' !default;
   font-size: $font-size-l;
 }
 
+.primaryFont{
+  font-family: $font-body;
+}
+
+.secondaryFont{
+  font-family: $font-secondary;
+}
+
 .primaryLink{
-   font-size: $font-size-s;
+   font-size: $font-size-m;
    color: #1BA598;
    text-decoration: underline;
 }
 .secondaryLink {
-  font-size: $font-size-s;
+  font-size: $font-size-m;
   color: #BFBFBF;
   text-decoration: underline;
 }
@@ -404,6 +412,7 @@ $font-path: '/assets/fonts/' !default;
 /*FONT_SIZES*/
 h1{
   font-size: $font-size-xxl;
+  font-family: $font-primary;
 }
 
 h2{
@@ -412,11 +421,17 @@ h2{
 
 h3{
  font-size: $font-size-l;
+ font-family: $font-secondary;
 }
 
-.underline{
-  text-decoration: underline;
+p{
   font-size: $font-size-m;
+  font-family: $font-secondary;
+}
+
+.explainer{
+  font-size: $font-size-s;
+  font-family: $font-secondary;
 }
 
 .small{

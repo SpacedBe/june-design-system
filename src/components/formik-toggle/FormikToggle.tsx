@@ -72,6 +72,8 @@ const Label = styled.label`
   cursor: pointer;
   background: ${styleVariables.colorGrayLight};
   border: 2px solid ${styleVariables.colorGray};
+  font-family: ${styleVariables.fontSecondary};
+  font-size: ${styleVariables.fontSizeL};
 `;
 
 const Switch = styled.span`
@@ -101,16 +103,24 @@ const Div = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0px;
 `;
 
 const LabelBeforeToggle = styled.label`
   width: 70%;
   line-height: 1.5em;
-`
+  font-family: ${styleVariables.fontSecondary};
+  font-size: ${styleVariables.fontSizeL};
+`;
 
 const Icon = styled.span`
   font-size: 1.5em;
+`
+
+const FlexDiv = styled.div`
+  display: flex;
+  flex-flow: row;
+  width: 50%;
 `
 
 export class FormikToggle extends React.Component<Props> {
@@ -181,9 +191,11 @@ export class FormikToggle extends React.Component<Props> {
     if (hasTooltip && this.props.iconRight && this.props.tooltipToggle) {
       toggleContent = (
         <Div>
-          <Icon>{this.props.tooltipToggle}</Icon>
-          <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <Icon>{this.props.iconRight}</Icon>
+          <FlexDiv>
+            <Icon>{this.props.tooltipToggle}</Icon>
+            <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
+            <Icon>{this.props.iconRight}</Icon>
+          </FlexDiv>
           <div>
             <ToggleInput
               {...this.props.field}
