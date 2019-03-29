@@ -26,6 +26,7 @@ export class Footer extends React.Component{
   render(){
     return(
       <FooterDiv>
+        {this.props.children}
       </FooterDiv>
     )
   }
