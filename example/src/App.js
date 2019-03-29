@@ -57,13 +57,13 @@ export default class App extends Component {
                 content: pageLoader("/pages/layout/container.md"),
                 imports: {}
               },
-                {
+              {
                 path: "typograph",
                 title: "Typograph",
                 component: pageLoader(() =>
                   import("./pages/components/typograph")
-                ),
-              },
+                )
+              }
             ]
           },
           {
@@ -162,11 +162,18 @@ export default class App extends Component {
                   import("./pages/form/formikCheckbox")
                 )
               },
-               {
+              {
                 path: "fixedFooter",
                 title: "FixedFooter",
                 component: pageLoader(() =>
                   import("./pages/form/formikFixedFooter")
+                )
+              },
+              {
+                path: "fixedHeader",
+                title: "FixedHeader",
+                component: pageLoader(() =>
+                  import("./pages/form/formikFixedHeader")
                 )
               },
               {
