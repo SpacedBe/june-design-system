@@ -16,26 +16,27 @@ export default class CounterPage extends React.Component {
       });
     }
 
-    changeDownClicked() {
+  changeDownClicked() {
+    if (this.state.clicked >= 1){
       this.setState({
         clicked: this.state.clicked - 1
       });
     }
+  }
     render(){
         return(
           <Page>
           # Counter
-            <ReactSpecimen span={3}>
               <Counter>
-                <span>{this.state.clicked}</span>
-                <Button clear color="green" size="small" htmlfor="isClicked" onClick={() => this.changeDownClicked()}>
+              <span>{this.state.clicked}</span>
+                <Button clear color="green" size="xsmall" htmlfor="isClicked" onClick={() => this.changeDownClicked()}>
                   -
                 </Button>
-                  <Button clear color="green" size="small" htmlfor="isClicked" onClick={() => this.changeUpClicked()}>
-                    +
-                </Button>
+                <Button clear color="green" size="xsmall" htmlfor="isClicked" onClick={() => this.changeUpClicked()}>
+                  +
+                  </Button>
               </Counter>
-            </ReactSpecimen>
+
           </Page>
         )
     }

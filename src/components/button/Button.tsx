@@ -12,6 +12,7 @@ import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 const styleVariables = loadStyleVariables();
 
 const sizes = {
+  xsmall: '20px',
   small: '30px',
   medium: '40px',
   large: '51px',
@@ -36,7 +37,7 @@ type Props = {
   loading?: boolean,
   percentageDone?: number,
   wide?: boolean,
-  size?: 'small' | 'medium' | 'large',
+  size?: 'xsmall' | 'small' | 'medium' | 'large',
   rounded?: boolean,
   spaced?: boolean,
   clear?: boolean,
