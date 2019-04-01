@@ -8,7 +8,6 @@ import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 const styleVariables = loadStyleVariables();
 
 const HeaderDiv = styled.div`
-  height: 100px;
   overflow: hidden;
   background-color: ${styleVariables.colorWhite};
   display: flex;
@@ -18,8 +17,8 @@ const HeaderDiv = styled.div`
 `;
 
 export class Header extends React.Component {
-  render() {
-    return (
+  render(){
+    return(
       <HeaderDiv {...this.props}>
         {this.props.children}
       </HeaderDiv>

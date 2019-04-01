@@ -1,7 +1,6 @@
 /**
  * @class Footer
  */
-
 import * as React from 'react';
 import styled from 'styled-components';
 import { loadStyleVariables } from "../../scripts/loadStyleVariables";
