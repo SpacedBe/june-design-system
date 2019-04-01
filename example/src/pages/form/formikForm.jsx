@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, render } from "catalog";
-import { FormikInput, FormikSelect, FormikCheckbox, FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button, FormikTextarea } from "june-design-system";
+import { FormikInput, FormikSelect, FormikCheckbox, FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button, FormikTextarea, Footer, Header } from "june-design-system";
 import styled from "styled-components";
 
 export default class FormPage extends React.Component{

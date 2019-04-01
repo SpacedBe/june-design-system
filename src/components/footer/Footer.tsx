@@ -1,7 +1,6 @@
 /**
  * @class Footer
  */
-
 import * as React from 'react';
 import styled from 'styled-components';
 import { loadStyleVariables } from "../../scripts/loadStyleVariables";
@@ -20,7 +19,7 @@ const FooterDiv = styled.div`
 export class Footer extends React.Component{
   render(){
     return(
-      <FooterDiv>
+      <FooterDiv {...this.props}>
         {this.props.children}
       </FooterDiv>
     )
