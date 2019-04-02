@@ -103,7 +103,14 @@ const OnlyIconButtonBorder = styled.button`
   }
   background-color: transparent;
   border: 2px solid ${styleVariables.colorPrimaryLight};
+  width: 30px;
+  heigth: auto;
 `;
+
+const Flex = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 const NormalButton = styled.button<{
   target?: string;
@@ -278,9 +285,9 @@ export class Button extends React.Component<Props> {
     if (hasIcon && this.props.iconButton) {
       buttonContent = (
         <OnlyIconButtonBorder onClick={this.props.onClick} className={this.props.className} id={this.props.id}>
-          <div>
+          <Flex>
             <IconButon>{this.props.iconButton}</IconButon>
-          </div>
+          </Flex>
         </OnlyIconButtonBorder>
       );
     }
