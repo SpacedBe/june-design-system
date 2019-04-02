@@ -43,6 +43,7 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   border: ${props => props.error ? `2px solid ${styleVariables.colorRed}` : `2px solid ${styleVariables.colorGrayLight}`};
   color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   padding: 10px 10px 10px 10px;
+  margin-right: 20px;
   border-radius: 2.5px;
   background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
@@ -53,7 +54,6 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   &::placeholder {
      color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   }
-  margin-bottom: 20px;
 `;
 
 const InputBoxLeft = styled.div<{
@@ -92,6 +92,7 @@ const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
   outline: none;
   background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
+  width: 100%;
 `
 
 const IconSmall = styled.span<{ disabled?: boolean }>`
