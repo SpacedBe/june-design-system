@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page, ReactSpecimen } from 'catalog';
-import { Counter, Button } from 'june-design-system';
+import { Counter, Button, SvgSettings, IconAdd, IconRemove } from 'june-design-system';
 
 export default class CounterPage extends React.Component {
     constructor(){
@@ -24,20 +24,29 @@ export default class CounterPage extends React.Component {
     }
   }
     render(){
-        return(
+        return (
           <Page>
-          # Counter
-              <Counter>
+            # Counter
+            <Counter>
               <span>{this.state.clicked}</span>
-                <Button clear color="green" size="xsmall" htmlfor="isClicked" onClick={() => this.changeDownClicked()}>
-                  -
-                </Button>
-                <Button clear color="green" size="xsmall" htmlfor="isClicked" onClick={() => this.changeUpClicked()}>
-                  +
-                  </Button>
-              </Counter>
-
+                <Button
+                  iconButton={<IconRemove />}
+                  clear
+                  color="green"
+                  size="xsmall"
+                  htmlfor="isClicked"
+                  onClick={() => this.changeDownClicked()}
+                />
+                <Button
+                  iconButton={<IconAdd />}
+                  clear
+                  color="green"
+                  size="xsmall"
+                  htmlfor="isClicked"
+                  onClick={() => this.changeUpClicked()}
+                />
+            </Counter>
           </Page>
-        )
+        );
     }
 }

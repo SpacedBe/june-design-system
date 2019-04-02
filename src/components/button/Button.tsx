@@ -33,6 +33,7 @@ type Props = {
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
+  iconButton?: any,
   outlined?: boolean,
   loading?: boolean,
   percentageDone?: number,
@@ -67,6 +68,12 @@ const IconOnly = styled.span`
   font-size: ${styleVariables.fontSizeM};
 `;
 
+const IconButon = styled.span`
+  fill: ${styleVariables.colorWhite};
+  padding: 0.2em;
+  font-size: ${styleVariables.fontSizeM};
+`;
+
 const IconLeft = styled.span`
   margin-right: 8px;
 `;
@@ -87,6 +94,15 @@ const OnlyIconButton = styled.button`
   }
   background-color: transparent;
   border: none;
+`;
+
+const OnlyIconButtonBorder = styled.button`
+  svg {
+    fill: ${styleVariables.colorGray};
+    font-size: ${styleVariables.fontSizeXxl};
+  }
+  background-color: transparent;
+  border: 2px solid ${styleVariables.colorPrimaryLight};
 `;
 
 const NormalButton = styled.button<{
@@ -165,7 +181,7 @@ export class Button extends React.Component<Props> {
     let buttonContent;
     let isDisabled = (this.props.loading || this.props.disabled);
 
-    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly;
+    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly || this.props.iconButton;
 
       if (!hasIcon) {
       buttonContent = (
@@ -256,6 +272,16 @@ export class Button extends React.Component<Props> {
             <IconOnly>{this.props.iconOnly}</IconOnly>
           </div>
         </OnlyIconButton>
+      );
+    }
+
+    if (hasIcon && this.props.iconButton) {
+      buttonContent = (
+        <OnlyIconButtonBorder onClick={this.props.onClick} className={this.props.className} id={this.props.id}>
+          <div>
+            <IconButon>{this.props.iconButton}</IconButon>
+          </div>
+        </OnlyIconButtonBorder>
       );
     }
 

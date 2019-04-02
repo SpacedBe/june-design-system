@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Button, IconSettings, IconQuestionmark} from 'june-design-system';
+import {Button, IconSettings, IconQuestionmark, IconAdd} from 'june-design-system';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -172,6 +172,12 @@ export default class ButtonPage extends React.Component {
         ## Only an icon
         <ReactSpecimen span={3}>
           <Button iconOnly={<IconSettings />}>
+            Button with only an icon
+          </Button>
+        </ReactSpecimen>
+        ## Button with Icon Add / Remove
+        <ReactSpecimen span={3}>
+          <Button iconButton={<IconAdd />}>
             Button with only an icon
           </Button>
         </ReactSpecimen>
