@@ -68,12 +68,6 @@ const IconOnly = styled.span`
   font-size: ${styleVariables.fontSizeM};
 `;
 
-const IconButon = styled.span`
-  fill: ${styleVariables.colorWhite};
-  padding: 0.2em;
-  font-size: ${styleVariables.fontSizeM};
-`;
-
 const IconLeft = styled.span`
   margin-right: 8px;
 `;
@@ -96,16 +90,11 @@ const OnlyIconButton = styled.button`
   border: none;
 `;
 
-const OnlyIconButtonBorder = styled.button`
-  svg {
-    fill: ${styleVariables.colorGray};
-    font-size: ${styleVariables.fontSizeXxl};
-  }
-  background-color: transparent;
+const OnlyIconBorder = styled(OnlyIconButton)`
   border: 2px solid ${styleVariables.colorPrimaryLight};
   width: 30px;
-  heigth: auto;
-`;
+  height: 30px;
+`
 
 const Flex = styled.div`
   display: flex;
@@ -284,11 +273,11 @@ export class Button extends React.Component<Props> {
 
     if (hasIcon && this.props.iconButton) {
       buttonContent = (
-        <OnlyIconButtonBorder onClick={this.props.onClick} className={this.props.className} id={this.props.id}>
+        <OnlyIconBorder onClick={this.props.onClick} className={this.props.className} id={this.props.id}>
           <Flex>
-            <IconButon>{this.props.iconButton}</IconButon>
+            <IconOnly>{this.props.iconButton}</IconOnly>
           </Flex>
-        </OnlyIconButtonBorder>
+        </OnlyIconBorder>
       );
     }
 

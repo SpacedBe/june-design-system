@@ -14,7 +14,7 @@ const Flex = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 20px 0;
+  padding: 10px 0;
 `
 
 const Content = styled.span`
@@ -31,7 +31,7 @@ export class Separator extends React.Component{
 
   render(){
     return (
-      <Flex>
+      <Flex {...this.props}>
         <Line/>
         <Content>
           {this.props.children}

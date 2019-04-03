@@ -38,6 +38,11 @@ type Props = {
 
 const styleVariables = loadStyleVariables();
 
+const LabelStyle = styled.span`
+  font-size: ${styleVariables.fontSizeM};
+  font-family: ${styleVariables.fontSecondary};
+`
+
 const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean }>`
   width: 100%;
   border: ${props => props.error ? `2px solid ${styleVariables.colorRed}` : `2px solid ${styleVariables.colorGrayLight}`};
@@ -126,10 +131,10 @@ const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
 export class FormikInput extends React.Component<Props> {
   render() {
     const FieldName = this.props.field.name;
+    const label = this.props.label;
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];
 
-    let Tag = 'span';
     let buttonContent;
 
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd || this.props.required;
@@ -235,14 +240,17 @@ export class FormikInput extends React.Component<Props> {
     }
 
     return (
-      <Tag>
+      <div>
+        <LabelStyle>
+          {label}
+        </LabelStyle>
         {buttonContent}
-        <Tag>
+        <span>
           {
             touched && errors && <div>{errors}</div>
           }
-        </Tag>
-      </Tag>
+        </span>
+      </div>
     )
   }
 }
