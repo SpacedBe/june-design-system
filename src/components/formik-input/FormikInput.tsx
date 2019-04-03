@@ -16,7 +16,6 @@ type Props = {
   };
 
   ['serverErrors']: string;
-
   type: 'text' | 'number' | 'password';
   validationMessage: string;
   label: string;
@@ -80,6 +79,7 @@ const InputBoxLeft = styled.div<{
   margin-bottom: 20px;
   margin-top: 5px;
 `;
+
 const InputWithIconLeft = styled.input`
   border: none;
   margin-left: 10px;
