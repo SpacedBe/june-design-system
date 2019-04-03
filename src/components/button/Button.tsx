@@ -29,27 +29,23 @@ const colors = {
 type Props = {
   id?: string,
   label?: string | React.ReactNode,
-  component?: any,
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
   iconButtonWithBorder?: any,
   outlined?: boolean,
   loading?: boolean,
-  percentageDone?: number,
   wide?: boolean,
   size?: 'xsmall' | 'small' | 'medium' | 'large',
   rounded?: boolean,
-  spaced?: boolean,
   clear?: boolean,
   color?: 'red' | 'green' | 'blue' | 'yellow' | 'facebook',
-  href?: string,
   disabled?: boolean,
   target?: string,
   type?: string,
   onClick?: any,
-  successMessage?: any[],
   className?: string;
+  percentageDone?: any;
 };
 
 const Icon = styled.div`
@@ -227,7 +223,6 @@ export class Button extends React.Component<Props> {
             <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
           </div>
         </NormalButton>
-
       )
     }
 

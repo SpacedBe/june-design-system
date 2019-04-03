@@ -15,7 +15,6 @@ export default class ButtonPage extends React.Component {
       content: 'Foobar',
       color: 'green',
       wide: false,
-      selectedColor: '',
       clickedCounter: 0,
       clicked: 0,
     };
