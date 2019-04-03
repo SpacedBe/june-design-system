@@ -42,7 +42,7 @@ type Props = {
   color?: 'red' | 'green' | 'blue' | 'yellow' | 'facebook',
   disabled?: boolean,
   target?: string,
-  type?: string,
+  type?: "button" | "reset" | "submit" | undefined,
   onClick?: any,
   className?: string;
   percentageDone?: any;

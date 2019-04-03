@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { loadStyleVariables } from "../..";
+import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 
 const styleVariables = loadStyleVariables();
 

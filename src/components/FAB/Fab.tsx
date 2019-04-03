@@ -1,5 +1,5 @@
 import * as React from "react";
-import {loadStyleVariables} from "../..";
+import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 import styled from "styled-components";
 
 type Props = {
