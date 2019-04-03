@@ -191,13 +191,13 @@ export default class ButtonPage extends React.Component {
           </Button>
         </ReactSpecimen>
         ## Button with Icon Add / Remove
-         <ReactSpecimen span={3}>
+        <ReactSpecimen span={3}>
           <Button
             htmlfor="isClicked"
             onClick={() => this.changeDownClicked()}
-            iconButton={<IconRemove />}
+            iconButtonWithBorder={<IconRemove />}
           />
-         </ReactSpecimen>
+        </ReactSpecimen>
         ## Only with questionmark
         <ReactSpecimen span={3}>
           <Button iconQuestionmark={<IconQuestionmark />}>
