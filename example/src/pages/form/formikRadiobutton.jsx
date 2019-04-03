@@ -9,7 +9,7 @@ export default class FormikRadiobuttonPage extends React.Component{
     this.state = {
       error: false,
       checked: false,
-      name:"",
+      focussed: false,
       label: "",
       field: {
         name: 'example-input',
@@ -24,29 +24,91 @@ export default class FormikRadiobuttonPage extends React.Component{
     }
   }
 
+  toggleTouched() {
+    this.setState({
+      focussed: !this.state.focussed,
+      form: {
+        ...this.state.form,
+        touched: {
+          'example-input': !this.state.form.touched['example-input'],
+        }
+      }
+    });
+  }
+
+  toggleServerError() {
+    this.setState({
+      serverErrors: {
+        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
+      }
+    });
+  }
+
+  toggleError() {
+    this.setState({
+      error: !this.state.error,
+      form: {
+        ...this.state.form,
+        errors: {
+          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
+        }
+      }
+    });
+  }
+
   render(){
     return (
       <Page>
+        <div>
+          <div>
+            <label htmlFor="isTouched">Touched</label>
+            <input
+              type="checkbox"
+              name="isTouched"
+              value={this.state.focussed}
+              onChange={() => this.toggleTouched()}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="hasError">Error</label>
+            <input
+              type="checkbox"
+              name="hasError"
+              value={this.state.error}
+              onChange={() => this.toggleError()}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="hasServerError">has server error?</label>
+            <input
+              type="checkbox"
+              name="hasServerError"
+              onChange={() => this.toggleServerError()}
+            />
+          </div>
+        </div>
         ## Radiobutton
         <ReactSpecimen span={3}>
           <div>
             <FormikRadiobutton
               error={this.state.error}
-              label={this.state.label}
-              type="radio"
-              htmlFor="isRadioButton"
-              name="radioCheck"
+              focussed={this.state.focussed}
+              type="radiobutton"
+              placeholderText="example placeholder"
+              field={this.state.field}
               label="option one"
-              checked={this.state.checked}
+              form={this.state.form}
             />
             <FormikRadiobutton
               error={this.state.error}
-              label={this.state.label}
-              type="radio"
-              htmlFor="isRadioButton"
-              name="radioCheck"
+              focussed={this.state.focussed}
+              type="radiobutton"
+              placeholderText="example placeholder"
+              field={this.state.field}
               label="When a label is really long it just shows on multiple lines."
-              checked={this.state.checked}
+              form={this.state.form}
             />
           </div>
         </ReactSpecimen>

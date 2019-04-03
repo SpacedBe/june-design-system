@@ -9,7 +9,7 @@ export default class FormikCheckboxPage extends React.Component {
     this.state = {
       error: false,
       checked: false,
-      name: "",
+      focussed: false,
       label: "",
       field: {
         name: 'example-input',
@@ -24,30 +24,92 @@ export default class FormikCheckboxPage extends React.Component {
     }
   }
 
+  toggleTouched() {
+    this.setState({
+      focussed: !this.state.focussed,
+      form: {
+        ...this.state.form,
+        touched: {
+          'example-input': !this.state.form.touched['example-input'],
+        }
+      }
+    });
+  }
+
+  toggleServerError() {
+    this.setState({
+      serverErrors: {
+          'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
+      }
+    });
+  }
+
+  toggleError() {
+    this.setState({
+      error: !this.state.error,
+      form: {
+        ...this.state.form,
+        errors: {
+          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
+        }
+      }
+    });
+  }
+
   render() {
     return (
       <Page>
-        ## Radiobutton
+        <div>
+          <div>
+            <label htmlFor="isTouched">Touched</label>
+            <input
+              type="checkbox"
+              name="isTouched"
+              value={this.state.focussed}
+              onChange={() => this.toggleTouched()}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="hasError">Error</label>
+            <input
+              type="checkbox"
+              name="hasError"
+              value={this.state.error}
+              onChange={() => this.toggleError()}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="hasServerError">has server error?</label>
+            <input
+              type="checkbox"
+              name="hasServerError"
+              onChange={() => this.toggleServerError()}
+            />
+          </div>
+        </div>
+        ## Checkbox
         <ReactSpecimen span={3}>
           <div>
-            <FormikCheckbox
-              error={this.state.error}
-              label={this.state.label}
-              type="checkbox"
-              htmlFor="isCheckbox"
-              name="checkboxCheck"
-              label="option one"
-              checked={this.state.checked}
-            />
-            <FormikCheckbox
-              error={this.state.error}
-              label={this.state.label}
-              type="checkbox"
-              htmlFor="isCheckbox"
-              name="checkboxCheck"
-              label="When a label is really long it just shows on multiple lines."
-              checked={this.state.checked}
-            />
+          <FormikCheckbox
+            error={this.state.error}
+            focussed={this.state.focussed}
+            type="checkbox"
+            placeholderText="example placeholder"
+            field={this.state.field}
+            label="option one"
+            form={this.state.form}
+          />
+          <FormikCheckbox
+            error={this.state.error}
+            focussed={this.state.focussed}
+            type="checkbox"
+            placeholderText="example placeholder"
+            field={this.state.field}
+            label="When a label is really long it just shows on multiple lines."
+            form={this.state.form}
+          />
           </div>
         </ReactSpecimen>
       </Page>
