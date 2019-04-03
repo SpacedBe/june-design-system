@@ -11,7 +11,7 @@ type Props = {
   clicked?: any,
   className?: string;
   id?: string,
-  iconButton?: any,
+  iconOnlyWithBorder?: any,
   changeUpClicked: any;
   changeDownClicked: any;
 }
@@ -36,18 +36,18 @@ export class Counter extends React.Component<Props>{
     this.props.changeDownClicked(e.target.value);
   }
   render(){
-    return(
+    return (
       <CounterDiv {...this.props} onClick={this.props.onClick}>
         <span>{this.props.clicked}</span>
         <Button
-          iconButton={<IconRemove />}
+          iconOnlyWithBorder={<IconRemove />}
           onClick={this.handleCountDown}
         />
         <Button
-          iconButton={<IconAdd />}
+          iconOnlyWithBorder={<IconAdd />}
           onClick={this.handleCountUp}
         />
       </CounterDiv>
-    )
+    );
   }
 }

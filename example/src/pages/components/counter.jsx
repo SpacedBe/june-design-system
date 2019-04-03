@@ -16,7 +16,6 @@ export default class CounterPage extends React.Component {
       this.setState({
         clicked: this.state.clicked + 1
       });
-      console.log(this.state.clicked);
     }
 
   changeDownClicked() {
@@ -25,7 +24,6 @@ export default class CounterPage extends React.Component {
         clicked: this.state.clicked - 1
       });
     }
-    console.log(this.state.clicked);
   }
     render(){
         return (

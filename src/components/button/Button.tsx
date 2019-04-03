@@ -33,7 +33,7 @@ type Props = {
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
-  iconButton?: any,
+  iconOnlyWithBorder?: any,
   outlined?: boolean,
   loading?: boolean,
   percentageDone?: number,
@@ -81,7 +81,7 @@ const Label = styled.span`
   opacity: 1;
   font-family: ${styleVariables.fontPrimary}
 `
-const OnlyIconButton = styled.button`
+const IconOnlyWithBorder = styled.button`
   svg {
     fill: ${styleVariables.colorGray};
     font-size: ${styleVariables.fontSizeXxl};
@@ -90,11 +90,11 @@ const OnlyIconButton = styled.button`
   border: none;
 `;
 
-const OnlyIconBorder = styled(OnlyIconButton)`
+const OnlyIconBorder = styled(IconOnlyWithBorder)`
   border: 2px solid ${styleVariables.colorPrimaryLight};
   width: 30px;
   height: 30px;
-`
+`;
 
 const Flex = styled.div`
   display: flex;
@@ -177,7 +177,7 @@ export class Button extends React.Component<Props> {
     let buttonContent;
     let isDisabled = (this.props.loading || this.props.disabled);
 
-    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly || this.props.iconButton;
+    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly || this.props.iconOnlyWithBorder;
 
       if (!hasIcon) {
       buttonContent = (
@@ -260,22 +260,26 @@ export class Button extends React.Component<Props> {
 
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
-        <OnlyIconButton
+        <IconOnlyWithBorder
           className={this.props.className}
           id={this.props.id}
         >
           <div>
             <IconOnly>{this.props.iconOnly}</IconOnly>
           </div>
-        </OnlyIconButton>
+        </IconOnlyWithBorder>
       );
     }
 
-    if (hasIcon && this.props.iconButton) {
+    if (hasIcon && this.props.iconOnlyWithBorder) {
       buttonContent = (
-        <OnlyIconBorder onClick={this.props.onClick} className={this.props.className} id={this.props.id}>
+        <OnlyIconBorder
+          onClick={this.props.onClick}
+          className={this.props.className}
+          id={this.props.id}
+        >
           <Flex>
-            <IconOnly>{this.props.iconButton}</IconOnly>
+            <IconOnly>{this.props.iconOnlyWithBorder}</IconOnly>
           </Flex>
         </OnlyIconBorder>
       );

@@ -69,7 +69,6 @@ export default class ButtonPage extends React.Component {
     this.setState({
       clickedCounter: this.state.clickedCounter + 1
     });
-    console.log(this.state.clickedCounter);
   }
 
   changeDownClicked() {
@@ -78,7 +77,6 @@ export default class ButtonPage extends React.Component {
         clickedCounter: this.state.clickedCounter - 1
 
       });
-      console.log(this.state.clickedCounter);
     }
   }
   render() {

@@ -214,7 +214,6 @@ export default class ButtonPage extends React.Component {
         <ReactSpecimen span={3}>
           <FormikInput
             required
-            label="Label Value"
             error={this.state.error}
             disabled={this.state.disabled}
             type={this.state.type}
@@ -252,11 +251,7 @@ export default class ButtonPage extends React.Component {
         ## Autocomplete
         <ReactSpecimen span={3}>
           <FormikInput
-            tooltip={
-              <Button size={"small"}>
-                <IconQuestionmark />
-              </Button>
-            }
+            tooltip={<Button iconOnly={<IconQuestionmark />} />}
             label="Label Value"
             error={this.state.error}
             disabled={this.state.disabled}
