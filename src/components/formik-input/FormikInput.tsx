@@ -43,6 +43,7 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   border: ${props => props.error ? `2px solid ${styleVariables.colorRed}` : `2px solid ${styleVariables.colorGrayLight}`};
   color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   padding: 10px 10px 10px 10px;
+  margin-right: 20px;
   border-radius: 2.5px;
   background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
@@ -53,7 +54,6 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   &::placeholder {
      color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
   }
-  margin-bottom: 20px;
 `;
 
 const InputBoxLeft = styled.div<{
@@ -92,6 +92,7 @@ const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
   outline: none;
   background-color: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
+  width: 100%;
 `
 
 const IconSmall = styled.span<{ disabled?: boolean }>`
@@ -113,22 +114,22 @@ const Flex = styled.div`
   width: 100%;
   justify-content: space-between;
 `
-
-const Label = styled.label<{ disabled?: boolean, error?: boolean }>`
+const LabelStyle = styled.span<{ disabled?: boolean; error?: boolean }>`
+  font-size: ${styleVariables.fontSizeM};
+  font-family: ${styleVariables.fontSecondary};
   padding-bottom: 5px;
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   color: ${props =>
     props.error ? `${styleVariables.colorRed}` : `${styleVariables.black}`};
-  font-family: ${styleVariables.fontSecondary};
-  font-size: ${styleVariables.fontSizeM}
 `;
+
 export class FormikInput extends React.Component<Props> {
   render() {
     const FieldName = this.props.field.name;
+    const label = this.props.label;
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];
 
-    let Tag = 'span';
     let buttonContent;
 
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd || this.props.required;
@@ -205,11 +206,6 @@ export class FormikInput extends React.Component<Props> {
     if (hasIcon && this.props.required) {
       buttonContent = (
         <div>
-          <Flex>
-            <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>
-              {this.props.label}
-            </Label>
-          </Flex>
           <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
           </InputBoxRight>
@@ -221,10 +217,7 @@ export class FormikInput extends React.Component<Props> {
       buttonContent = (
         <div>
           <Flex>
-            <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>
-              {this.props.label}
-              <IconSmall disabled={this.props.disabled}>{this.props.tooltip}</IconSmall>
-            </Label>
+            <IconSmall disabled={this.props.disabled}>{this.props.tooltip}</IconSmall>
           </Flex>
           <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled} type={this.props.type}></Input>
@@ -234,14 +227,16 @@ export class FormikInput extends React.Component<Props> {
     }
 
     return (
-      <Tag>
+      <div>
+        <LabelStyle
+          error={this.props.error}
+          disabled={this.props.disabled}
+        >
+          {label}
+        </LabelStyle>
         {buttonContent}
-        <Tag>
-          {
-            touched && errors && <div>{errors}</div>
-          }
-        </Tag>
-      </Tag>
-    )
+        <span>{touched && errors && <div>{errors}</div>}</span>
+      </div>
+    );
   }
 }

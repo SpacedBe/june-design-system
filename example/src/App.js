@@ -115,6 +115,13 @@ export default class App extends Component {
                   import("./pages/components/separator")
                 )
               },
+              {
+                path: "counter",
+                title: "Counter",
+                component: pageLoader(() =>
+                  import("./pages/components/counter")
+                )
+              },
                {
                 path: "footer",
                 title: "Footer",

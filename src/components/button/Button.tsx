@@ -12,6 +12,7 @@ import { loadStyleVariables } from "../../scripts/loadStyleVariables";
 const styleVariables = loadStyleVariables();
 
 const sizes = {
+  xsmall: '20px',
   small: '30px',
   medium: '40px',
   large: '51px',
@@ -28,26 +29,23 @@ const colors = {
 type Props = {
   id?: string,
   label?: string | React.ReactNode,
-  component?: any,
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
+  iconButtonWithBorder?: any,
   outlined?: boolean,
   loading?: boolean,
-  percentageDone?: number,
   wide?: boolean,
-  size?: 'small' | 'medium' | 'large',
+  size?: 'xsmall' | 'small' | 'medium' | 'large',
   rounded?: boolean,
-  spaced?: boolean,
   clear?: boolean,
   color?: 'red' | 'green' | 'blue' | 'yellow' | 'facebook',
-  href?: string,
   disabled?: boolean,
   target?: string,
   type?: string,
   onClick?: any,
-  successMessage?: any[],
   className?: string;
+  percentageDone?: any;
 };
 
 const Icon = styled.div`
@@ -87,6 +85,17 @@ const OnlyIconButton = styled.button`
   background-color: transparent;
   border: none;
 `;
+
+const OnlyIconWithBorder = styled(OnlyIconButton)`
+  border: 2px solid ${styleVariables.colorPrimaryLight};
+  width: 30px;
+  height: 30px;
+`;
+
+const Flex = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 const NormalButton = styled.button<{
   target?: string;
@@ -164,7 +173,7 @@ export class Button extends React.Component<Props> {
     let buttonContent;
     let isDisabled = (this.props.loading || this.props.disabled);
 
-    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly;
+    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly || this.props.iconButtonWithBorder;
 
       if (!hasIcon) {
       buttonContent = (
@@ -214,7 +223,6 @@ export class Button extends React.Component<Props> {
             <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
           </div>
         </NormalButton>
-
       )
     }
 
@@ -255,6 +263,16 @@ export class Button extends React.Component<Props> {
             <IconOnly>{this.props.iconOnly}</IconOnly>
           </div>
         </OnlyIconButton>
+      );
+    }
+
+    if (hasIcon && this.props.iconButtonWithBorder) {
+      buttonContent = (
+        <OnlyIconWithBorder onClick={this.props.onClick} className={this.props.className} id={this.props.id}>
+          <Flex>
+            <IconOnly>{this.props.iconButtonWithBorder}</IconOnly>
+          </Flex>
+        </OnlyIconWithBorder>
       );
     }
 

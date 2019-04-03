@@ -53,7 +53,6 @@ const InputDiv = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  margin-bottom: 20px;
 `;
 
 const Round = styled.div`
