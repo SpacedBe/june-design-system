@@ -40,11 +40,11 @@ export class Counter extends React.Component<Props>{
       <CounterDiv {...this.props} onClick={this.props.onClick}>
         <span>{this.props.clicked}</span>
         <Button
-          iconOnlyWithBorder={<IconRemove />}
+          iconButtonWithBorder={<IconRemove />}
           onClick={this.handleCountDown}
         />
         <Button
-          iconOnlyWithBorder={<IconAdd />}
+          iconButtonWithBorder={<IconAdd />}
           onClick={this.handleCountUp}
         />
       </CounterDiv>
