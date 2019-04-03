@@ -21,7 +21,7 @@ type Props = {
   placeholderText: string;
   error: boolean,
   focussed: boolean,
-  required?: any,
+  required?: boolean,
 };
 
 const styleVariables = loadStyleVariables();

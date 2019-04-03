@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Button, IconSettings, IconQuestionmark, IconAdd, IconRemove} from 'june-design-system';
+import {Button, IconSettings, IconQuestionmark} from 'june-design-system';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -15,8 +15,8 @@ export default class ButtonPage extends React.Component {
       content: 'Foobar',
       color: 'green',
       wide: false,
-      clickedCounter: 0,
-      clicked: 0,
+      selectedColor: '',
+      clicked: 0
     };
   }
 
@@ -64,20 +64,6 @@ export default class ButtonPage extends React.Component {
     });
   }
 
-  changeUpClicked() {
-    this.setState({
-      clickedCounter: this.state.clickedCounter + 1
-    });
-  }
-
-  changeDownClicked() {
-    if (this.state.clickedCounter >= 1) {
-      this.setState({
-        clickedCounter: this.state.clickedCounter - 1
-
-      });
-    }
-  }
   render() {
     return (
       <Page>
@@ -188,14 +174,6 @@ export default class ButtonPage extends React.Component {
           <Button iconOnly={<IconSettings />}>
             Button with only an icon
           </Button>
-        </ReactSpecimen>
-        ## Button with Icon Add / Remove
-        <ReactSpecimen span={3}>
-          <Button
-            htmlfor="isClicked"
-            onClick={() => this.changeDownClicked()}
-            iconButtonWithBorder={<IconRemove />}
-          />
         </ReactSpecimen>
         ## Only with questionmark
         <ReactSpecimen span={3}>
