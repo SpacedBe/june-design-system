@@ -56,18 +56,6 @@ export default class FormikCheckboxPage extends React.Component {
     });
   }
 
-  changeDisable() {
-    this.setState({
-      disabled: !this.state.disabled,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
-  }
-
   render() {
     return (
       <Page>
@@ -100,25 +88,14 @@ export default class FormikCheckboxPage extends React.Component {
               onChange={() => this.toggleServerError()}
             />
           </div>
-
-          <div>
-            <label htmlFor="isDisabled">Disabled?</label>
-            <input
-              type="checkbox"
-              value={this.state.disabled}
-              name="isDisabled"
-              onChange={() => this.changeDisable()}
-            />
-          </div>
         </div>
-        ## Radiobutton
+        ## Checkbox
         <ReactSpecimen span={3}>
           <div>
           <FormikCheckbox
             error={this.state.error}
             focussed={this.state.focussed}
             type="checkbox"
-            disabled={this.state.disabled}
             placeholderText="example placeholder"
             field={this.state.field}
             label="option one"
@@ -128,7 +105,6 @@ export default class FormikCheckboxPage extends React.Component {
             error={this.state.error}
             focussed={this.state.focussed}
             type="checkbox"
-            disabled={this.state.disabled}
             placeholderText="example placeholder"
             field={this.state.field}
             label="When a label is really long it just shows on multiple lines."
