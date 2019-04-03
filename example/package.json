@@ -6,10 +6,12 @@
   "private": true,
   "dependencies": {
     "catalog": "^3.6.0",
+    "formik": "^1.5.2",
     "june-design-system": "link:..",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-intl": "^2.8.0",
     "react-scripts": "^1.1.4",
     "styled-components": "^4.1.3"
   },
