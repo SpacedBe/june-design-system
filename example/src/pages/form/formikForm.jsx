@@ -158,23 +158,32 @@ export default class FormPage extends React.Component{
                   <h2>Form Section Title</h2>
                   <p>Select atleast one option below.*</p>
                   <Field
-                    label="Toggle with an icon"
                     component={FormikToggle}
-                    tooltipToggle={<IconQuestionmark />}
-                    iconRight={<IconElectricity />}
-                  />
-                  <Field
+                    name="regular"
                     label="Regular Toggle"
-                    component={FormikToggle}
+                    field={this.state.field}
+                    form={this.state.form}
                   />
                   <Field
-                    label="Toggle with a long label discription"
                     component={FormikToggle}
+                    label="Toggle with a long label discription"
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                  <Field
+                    component={FormikToggle}
+                    tooltip={<IconQuestionmark/>}
+                    icon={<IconElectricity/>}
+                    label="Toggle with an icon"
+                    field={this.state.field}
+                    form={this.state.form}
                   />
                  <Field
-                   label="Toggle with a long label discription and an info icon"
-                   component={FormikToggle}
-                   tooltipToggle={<IconQuestionmark />}
+                    component={FormikToggle}
+                    tooltip={<IconQuestionmark/>}
+                    label="Toggle with a long label discription and an info icon"
+                    field={this.state.field}
+                    form={this.state.form}
                  />
                   <div/>
                 </div>
