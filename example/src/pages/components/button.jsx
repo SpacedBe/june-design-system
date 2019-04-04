@@ -175,12 +175,11 @@ export default class ButtonPage extends React.Component {
             Button with only an icon
           </Button>
         </ReactSpecimen>
-        ## Only with questionmark
+        ## Only an icon, with border
         <ReactSpecimen span={3}>
-          <Button iconQuestionmark={<IconQuestionmark />}>
-            Button with only an icon
-          </Button>
+          <Button iconButtonWithBorder={<IconSettings />}></Button>
         </ReactSpecimen>
+
         ## Loading
         <ReactSpecimen span={3}>
           <Button loading="true" percentageDone="30">
