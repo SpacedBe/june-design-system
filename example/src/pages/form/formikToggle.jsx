@@ -40,7 +40,7 @@ export default class FormikTogglePage extends React.Component {
         <ReactSpecimen span={3}>
           <FormikToggle
             tooltip={<IconQuestionmark/>}
-            iconRight={<IconElectricity/>}
+            icon={<IconElectricity/>}
             label="Toggle with an icon"
             field={this.state.field}
             form={this.state.form}
