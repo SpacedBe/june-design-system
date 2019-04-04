@@ -100,6 +100,7 @@ export default class FormikRadiobuttonPage extends React.Component{
               field={this.state.field}
               label="option one"
               form={this.state.form}
+              name="radio"
             />
             <FormikRadiobutton
               error={this.state.error}
@@ -109,6 +110,7 @@ export default class FormikRadiobuttonPage extends React.Component{
               field={this.state.field}
               label="When a label is really long it just shows on multiple lines."
               form={this.state.form}
+              name="radio"
             />
           </div>
         </ReactSpecimen>
