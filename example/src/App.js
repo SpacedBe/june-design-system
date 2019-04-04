@@ -142,6 +142,13 @@ export default class App extends Component {
             title: "Form",
             pages: [
               {
+                path: "formGroup",
+                title: "Form Group",
+                component: pageLoader(() =>
+                  import("./pages/form/formGroup")
+                )
+              },
+              {
                 path: "input",
                 title: "Input",
                 component: pageLoader(() =>
