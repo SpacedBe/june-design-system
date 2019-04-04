@@ -86,7 +86,7 @@ export class FormikSelect extends React.Component<Props> {
           disabled={this.props.disabled}
         >
           {this.props.options.map(item => (
-            <Option key={item.value} value={item.label}>
+            <Option key={item.value} value={item.value}>
               {item.label}
             </Option>
           ))}
