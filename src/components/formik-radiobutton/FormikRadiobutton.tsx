@@ -15,7 +15,7 @@ type Props = {
     ['touched']: boolean;
   };
   ['serverErrors']: string;
-  nameButton?:any,
+  nameButton?:string,
   label: string,
   validationMessage: string;
   checked: boolean;
