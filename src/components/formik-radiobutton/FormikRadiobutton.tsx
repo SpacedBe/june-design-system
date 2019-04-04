@@ -81,8 +81,6 @@ const Label = styled.label<{ error?: boolean }>`
 
 export class FormikRadiobutton extends React.Component<Props> {
   render() {
-    console.log(this.props);
-
     const FieldName = this.props.field.name;
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
     const touched = this.props.form.touched[FieldName];

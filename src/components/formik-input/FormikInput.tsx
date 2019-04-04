@@ -131,8 +131,6 @@ const LabelStyle = styled.span<{ disabled?: boolean; error?: boolean }>`
 
 export class FormikInput extends React.Component<Props> {
   render() {
-    console.log(this.props);
-
     const FieldName = this.props.field.name;
     const label = this.props.label;
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
