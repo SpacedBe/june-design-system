@@ -15,7 +15,7 @@ type Props = {
     ['touched']: boolean;
   };
   ['serverErrors']: string;
-  nameButton?:string,
+
   label: string,
   validationMessage: string;
   checked: boolean;
@@ -92,7 +92,6 @@ export class FormikRadiobutton extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="radio"
-              name={this.props.nameButton}
             />
             <Span error={this.props.error} />
           </Round>

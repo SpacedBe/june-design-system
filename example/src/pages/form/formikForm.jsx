@@ -121,14 +121,14 @@ export default class FormPage extends React.Component{
                   <FormGroup>
                     <Field
                       label="Option One"
-                      nameButton="radiobutton"
+                      name="radiobutton"
                       component={FormikRadiobutton}
                     />
                  </FormGroup>
                  <FormGroup>
                     <Field
                       label="Option Two"
-                      nameButton="radiobutton"
+                      name="radiobutton"
                       component={FormikRadiobutton}
                     />
                  </FormGroup>
