@@ -4,11 +4,11 @@
 
 import * as React from "react";
 import styled from "styled-components";
-import { loadStyleVariables } from "../../scripts/loadStyleVariables";
+import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 
 interface Option {
   label: string,
-   value: string,
+  value: string,
 }
 
 type Props = {
@@ -19,12 +19,12 @@ type Props = {
     ['errors']: string;
     ['touched']: boolean;
   };
+
   ['serverErrors']: string;
-  userInput?: string,
+
   options: Option[],
   label?: string,
   error: boolean,
-  focussed: boolean,
   disabled: boolean,
 }
 const styleVariables = loadStyleVariables();
@@ -33,12 +33,11 @@ const styleVariables = loadStyleVariables();
 const Select = styled.select<{
   error?: boolean;
   disabled?: boolean;
-  focussed?: boolean;
 }>`
   border: ${props =>
-    props.error
-      ? `2px solid ${styleVariables.colorRed}`
-      : `2px solid ${styleVariables.colorGrayLight}`};
+  props.error
+    ? `2px solid ${styleVariables.colorRed}`
+    : `2px solid ${styleVariables.colorGrayLight}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
   background: ${styleVariables.colorWhite};
@@ -56,16 +55,17 @@ const Label = styled.label<{
 }>`
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   color: ${props =>
-    props.error
-      ? `${styleVariables.colorRed}`
-      : `${styleVariables.colorGrayLight}`};
+  props.error
+    ? `${styleVariables.colorRed}`
+    : `${styleVariables.colorGrayLight}`};
 `;
 
 const Option = styled.option`
   color: ${`${styleVariables.colorGray}`};
 `;
-export class FormikSelect extends React.Component<Props>{
-  render(){
+
+export class FormikSelect extends React.Component<Props> {
+  render() {
 
     const FieldName = this.props.field.name;
     const touched = this.props.form.touched[FieldName];
@@ -76,14 +76,14 @@ export class FormikSelect extends React.Component<Props>{
         <Label
           error={this.props.error}
           disabled={this.props.disabled}
-          htmlFor={FieldName}
-        >
+          htmlFor={FieldName}>
           {this.props.label}
         </Label>
+
         <Select
+          {...this.props.field}
           error={this.props.error}
           disabled={this.props.disabled}
-          focussed={this.props.focussed}
         >
           {this.props.options.map(item => (
             <Option key={item.value} value={item.label}>
