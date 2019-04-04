@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, FormikInput, FormikSelect, FormikCheckbox, FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button, FormikTextarea} from "june-design-system";
+import { Container, FormGroup,FormikInput, FormikSelect, FormikCheckbox, FormikRadiobutton, FormikToggle, IconQuestionmark, IconElectricity, Button, FormikTextarea} from "june-design-system";
 import { Field, Form, Formik } from "formik";
 import { string } from "prop-types";
 
@@ -59,51 +59,58 @@ export default class FormPage extends React.Component{
                     section.
                   </p>
                   <div>
-                    <Field
-                      placeholder="email"
-                      name="email"
-                      type="email"
-                      label="Email*"
-                      component={FormikInput}
-                    />
-
-                    <Field
-                      placeholder="email"
-                      name="password"
-                      type="password"
-                      label="Password*"
-                      component={FormikInput}
-                    />
-
+                    <FormGroup>
+                      <Field
+                        placeholder="email"
+                        name="email"
+                        type="email"
+                        label="Email*"
+                        component={FormikInput}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Field
+                        placeholder="email"
+                        name="password"
+                        type="password"
+                        label="Password*"
+                        component={FormikInput}
+                      />
+                    </FormGroup>
                     <div className={"flex"}>
-                      <Field
-                        placeholder="postalcode"
-                        name="postalcode"
-                        type="text"
-                        label="Postal Code*"
-                        component={FormikInput}
-                      />
-                      <Field
-                        placeholder="city"
-                        name="city"
-                        type="number"
-                        label="City*"
-                        component={FormikInput}
-                      />
+                      <FormGroup>
+                        <Field
+                          placeholder="postalcode"
+                          name="postalcode"
+                          type="text"
+                          label="Postal Code*"
+                          component={FormikInput}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Field
+                          placeholder="city"
+                          name="city"
+                          type="number"
+                          label="City*"
+                          component={FormikInput}
+                        />
+                      </FormGroup>
                     </div>
-                    <Field
-                      label="Gender"
-                      options={[
-                        { label: "ONE", value: "1" },
-                        { label: "TWO", value: "2" },
-                        { label: "THREE", value: "3" },
-                        { label: "FOUR", value: "4" }
-                      ]}
-                      component={FormikSelect}
-                    />
+                    <FormGroup>
+                      <Field
+                        label="Gender"
+                        options={[
+                          { label: "ONE", value: "1" },
+                          { label: "TWO", value: "2" },
+                          { label: "THREE", value: "3" },
+                          { label: "FOUR", value: "4" }
+                        ]}
+                        component={FormikSelect}
+                      />
+                    </FormGroup>
                   </div>
                 </div>
-
                 <div className={"container"}>
                   <div>
                     <p>
@@ -111,81 +118,96 @@ export default class FormPage extends React.Component{
                       here.*
                     </p>
                   </div>
-                  <Field
-                    label="Option One"
-                    name="radiobutton"
-                    type="radio"
-                    component={FormikRadiobutton}
-                  />
-                  <Field
-                    label="Option Two"
-                    name="radiobutton"
-                    type="radio"
-                    component={FormikRadiobutton}
-                  />
+                  <FormGroup>
+                    <Field
+                      label="Option One"
+                      name="radiobutton"
+                      type="radio"
+                      component={FormikRadiobutton}
+                    />
+                  </FormGroup>
+                 <FormGroup>
+                    <Field
+                      label="Option Two"
+                      name="radiobutton"
+                      type="radio"
+                      component={FormikRadiobutton}
+                    />
+                 </FormGroup>
                 </div>
-
                 <div className={"container"}>
                   <div>
                     <p>
                       The question linked to the checkboxes is asked here.
                     </p>
-                    <Field
-                      component={FormikCheckbox}
-                      type="checkbox"
-                      label="option one"
-                    />
-                    <Field
-                      component={FormikCheckbox}
-                      type="checkbox"
-                      label="When a label is really long it just shows on multiple lines."
-                    />
+                    <FormGroup>
+                      <Field
+                        component={FormikCheckbox}
+                        type="checkbox"
+                        label="option one"
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Field
+                        component={FormikCheckbox}
+                        type="checkbox"
+                        label="When a label is really long it just shows on multiple lines."
+                      />
+                    </FormGroup>
                   </div>
                 </div>
-
                 <div className={"container"}>
-                <Field
-                  component={FormikTextarea}
-                   required
-                    label="Textarea *"
-                    type="text"
-                    placeholderText=""
-                    field={this.state.field}
-                />
+                  <FormGroup>
+                    <Field
+                      component={FormikTextarea}
+                      required
+                      label="Textarea *"
+                      type="text"
+                      placeholderText=""
+                      field={this.state.field}
+                    />
+                  </FormGroup>
                 </div>
 
                 <div className={"container"}>
                   <h2>Form Section Title</h2>
                   <p>Select atleast one option below.*</p>
-                  <Field
-                    component={FormikToggle}
-                    name="regular"
-                    label="Regular Toggle"
-                    field={this.state.field}
-                    form={this.state.form}
-                  />
-                  <Field
-                    component={FormikToggle}
-                    label="Toggle with a long label discription"
-                    field={this.state.field}
-                    form={this.state.form}
-                  />
-                  <Field
-                    component={FormikToggle}
-                    tooltip={<IconQuestionmark/>}
-                    icon={<IconElectricity/>}
-                    label="Toggle with an icon"
-                    field={this.state.field}
-                    form={this.state.form}
-                  />
-                 <Field
-                    component={FormikToggle}
-                    tooltip={<IconQuestionmark/>}
-                    label="Toggle with a long label discription and an info icon"
-                    field={this.state.field}
-                    form={this.state.form}
-                 />
-                  <div/>
+                  <FormGroup>
+                    <Field
+                      component={FormikToggle}
+                      name="regular"
+                      label="Regular Toggle"
+                      field={this.state.field}
+                      form={this.state.form}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                      <Field
+                        component={FormikToggle}
+                        label="Toggle with a long label discription"
+                        field={this.state.field}
+                        form={this.state.form}
+                      />
+                  </FormGroup>
+                  <FormGroup>
+                      <Field
+                        component={FormikToggle}
+                        tooltip={<IconQuestionmark />}
+                        icon={<IconElectricity />}
+                        label="Toggle with an icon"
+                        field={this.state.field}
+                        form={this.state.form}
+                      />
+                  </FormGroup>
+                  <FormGroup>
+                      <Field
+                        component={FormikToggle}
+                        tooltip={<IconQuestionmark />}
+                        label="Toggle with a long label discription and an info icon"
+                        field={this.state.field}
+                        form={this.state.form}
+                      />
+                  </FormGroup>
                 </div>
                 <div className={"button"}>
                   <Button
