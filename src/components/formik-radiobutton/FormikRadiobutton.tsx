@@ -15,7 +15,6 @@ type Props = {
     ['touched']: boolean;
   };
   ['serverErrors']: string;
-  name:string,
   label: string,
   validationMessage: string;
   checked: boolean;
@@ -27,7 +26,7 @@ type Props = {
 
 const styleVariables = loadStyleVariables();
 
-const Input = styled.input.attrs({ type: "radio" })`
+const Input = styled.input`
   opacity: 0;
   z-index: ${styleVariables.ziCheckbox};
   position: absolute;
@@ -92,7 +91,6 @@ export class FormikRadiobutton extends React.Component<Props> {
             <Input
               {...this.props.field}
               type="radio"
-              name={this.props.name}
             />
             <Span error={this.props.error} />
           </Round>

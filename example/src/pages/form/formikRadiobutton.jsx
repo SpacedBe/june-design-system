@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, ReactSpecimen } from "catalog";
-import { FormikRadiobutton} from "june-design-system";
+import { FormikRadiobutton, FormGroup } from "june-design-system";
 
 export default class FormikRadiobuttonPage extends React.Component{
   constructor(props){
@@ -92,26 +92,30 @@ export default class FormikRadiobuttonPage extends React.Component{
         ## Radiobutton
         <ReactSpecimen span={3}>
           <div>
-            <FormikRadiobutton
-              error={this.state.error}
-              focussed={this.state.focussed}
-              type="radiobutton"
-              placeholderText="example placeholder"
-              field={this.state.field}
-              label="option one"
-              form={this.state.form}
-              name="radio"
-            />
-            <FormikRadiobutton
-              error={this.state.error}
-              focussed={this.state.focussed}
-              type="radiobutton"
-              placeholderText="example placeholder"
-              field={this.state.field}
-              label="When a label is really long it just shows on multiple lines."
-              form={this.state.form}
-              name="radio"
-            />
+            <FormGroup>
+              <FormikRadiobutton
+                error={this.state.error}
+                focussed={this.state.focussed}
+                type="radio"
+                placeholderText="example placeholder"
+                field={this.state.field}
+                label="option one"
+                form={this.state.form}
+                name="radioTestName"
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormikRadiobutton
+                error={this.state.error}
+                focussed={this.state.focussed}
+                type="radio"
+                placeholderText="example placeholder"
+                field={this.state.field}
+                label="When a label is really long it just shows on multiple lines."
+                form={this.state.form}
+                name="radioTestName"
+              />
+            </FormGroup>
           </div>
         </ReactSpecimen>
       </Page>
