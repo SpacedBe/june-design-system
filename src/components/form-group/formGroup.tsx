@@ -18,7 +18,6 @@ const FormGroupStyled = styled.div`
 
 export class FormGroup extends React.Component<Props> {
   render() {
-
     return (
       <FormGroupStyled>
         {this.props.children}
