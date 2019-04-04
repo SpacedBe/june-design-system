@@ -101,8 +101,6 @@ export class FormikToggle extends React.Component<Props> {
   }
 
   render() {
-    console.log(this.props);
-
     let tooltip;
 
     if (!this.props.tooltip && !this.props.icon) {
