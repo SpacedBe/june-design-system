@@ -10,6 +10,7 @@ type Props = {
   field: {
     name: string;
   };
+
   form: {
     ['errors']: string;
     ['touched']: boolean;

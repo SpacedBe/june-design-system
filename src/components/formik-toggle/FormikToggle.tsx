@@ -4,42 +4,24 @@
 
 import * as React from "react";
 import styled from "styled-components";
-import { loadStyleVariables } from "../../scripts/loadStyleVariables";
+import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 
 type Props = {
   field: {
     name: string;
   };
+
   validationMessage: string;
   label: string;
   placeholderText: string;
-  tooltipToggle?: any;
-  focussed: boolean;
-  iconRight?: any;
-
-  iconOn?: any;
-  iconOff?: any;
-
-  checked?: boolean;
-  checkedTooltip?: boolean;
-  checkedIconTooltip?: boolean;
-
-  value?: any;
-  changeChecked?: any;
-
-  onCheckedChange: any;
-  onCheckedChangeTooltip: any;
-  onCheckedChangeIconTooltip: any;
+  tooltip?: any;
+  focused: boolean;
+  icon?: any;
 };
 
 const styleVariables = loadStyleVariables();
 
-const ToggleInput = styled.input<{
-  value?: any;
-  onCheckedChange?: void;
-  onCheckedChangeTooltip?: void;
-  onCheckedChangeIconTooltip?: void;
-}>`
+const ToggleInput = styled.input<{}>`
   z-index: ${styleVariables.ziCheckbox};
   opacity: 0;
   width: 40px;
@@ -88,17 +70,6 @@ const Switch = styled.span`
   transition: transform ${styleVariables.transitionspeedNormal} ease-in;
 `;
 
-const Content = styled.p`
-  opacity: 0.5;
-  margin-top: 0.5px;
-  margin-left: 25px;
-  color: ${styleVariables.colorGrayDark};
-  svg {
-    margin-bottom: 2px;
-    font-size: 0.6em;
-  }
-`;
-
 const Div = styled.div`
   display: flex;
   justify-content: space-between;
@@ -107,6 +78,7 @@ const Div = styled.div`
 `;
 
 const LabelBeforeToggle = styled.label`
+  display: inline;
   width: 70%;
   line-height: 1.5em;
   font-family: ${styleVariables.fontSecondary};
@@ -115,105 +87,61 @@ const LabelBeforeToggle = styled.label`
 
 const Icon = styled.span`
   font-size: 1.5em;
-`
+`;
 
 const FlexDiv = styled.div`
   display: flex;
   flex-flow: row;
   width: 50%;
-`
+`;
 
 export class FormikToggle extends React.Component<Props> {
   constructor(props: any) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChangeTooltip = this.handleChangeTooltip.bind(this);
-    this.handleChangeIconTooltip = this.handleChangeIconTooltip.bind(this);
-  }
-
-  handleChange(e: any) {
-    this.props.onCheckedChange(e.target.value);
-  }
-
-  handleChangeTooltip(e: any){
-    this.props.onCheckedChangeTooltip(e.target.value);
-  }
-
-  handleChangeIconTooltip(e: any){
-    this.props.onCheckedChangeIconTooltip(e.target.value);
   }
 
   render() {
-    const hasTooltip = this.props.tooltipToggle || this.props.iconRight;
-    let toggleContent;
+    let tooltip;
 
-    if (!hasTooltip) {
-      toggleContent = (
-        <Div>
+    if (!this.props.tooltip && !this.props.icon) {
+      tooltip = (<LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>);
+    }
+
+    if (this.props.tooltip) {
+      tooltip = (
+        <div>
+          <Icon>{this.props.tooltip}</Icon>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-            <div>
-            <ToggleInput
-              {...this.props.field}
-              type="checkbox"
-              value={this.props.checked}
-              onChange={this.handleChange}
-            />
-            <Label>
-              <Switch></Switch>
-              <Content>{this.props.iconOff}</Content>
-            </Label>
-            </div>
-        </Div>
+        </div>
       );
     }
 
-    if (hasTooltip && this.props.tooltipToggle) {
-       toggleContent = (
-        <Div>
-          <Icon>{this.props.tooltipToggle}</Icon>
+    if (this.props.icon && this.props.tooltip) {
+      tooltip = (
+        <FlexDiv>
+          <Icon>{this.props.tooltip}</Icon>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <div>
-            <ToggleInput
-              {...this.props.field}
-              type="checkbox"
-              value={this.props.checkedTooltip}
-              onChange={this.handleChangeTooltip}
-            />
-            <Label>
-              <Switch/>
-               <Content>{this.props.iconOff}</Content>
-            </Label>
-          </div>
-        </Div>
+          <Icon>{this.props.icon}</Icon>
+        </FlexDiv>
       );
     }
 
-    if (hasTooltip && this.props.iconRight && this.props.tooltipToggle) {
-      toggleContent = (
-        <Div>
-          <FlexDiv>
-            <Icon>{this.props.tooltipToggle}</Icon>
-            <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-            <Icon>{this.props.iconRight}</Icon>
-          </FlexDiv>
-          <div>
-            <ToggleInput
-              {...this.props.field}
-              type="checkbox"
-              value={this.props.checkedIconTooltip}
-              onChange={this.handleChangeIconTooltip}
-            />
-            <Label>
-              <Switch />
-              <Content>{this.props.iconOff}</Content>
-            </Label>
-          </div>
-        </Div>
-      );
-    }
     return (
       <div>
-        {toggleContent}
+        <Div>
+          {tooltip}
+
+          <div>
+            <ToggleInput
+              {...this.props.field}
+              type="checkbox"
+            />
+
+            <Label>
+              <Switch></Switch>
+            </Label>
+          </div>
+        </Div>
       </div>
     );
   }

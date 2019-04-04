@@ -118,6 +118,7 @@ export default class ButtonPage extends React.Component {
             />
           </div>
         </div>
+
         ## Input field no icon
         <ReactSpecimen span={3}>
           <FormikInput
@@ -132,6 +133,7 @@ export default class ButtonPage extends React.Component {
             current={this.state.current}
           />
         </ReactSpecimen>
+
         ## Input field icon left
         <ReactSpecimen span={3}>
           <FormikInput
