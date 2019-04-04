@@ -62,7 +62,7 @@ const Textarea = styled.textarea<{ error?: boolean; disabled?: boolean }>`
   background: ${styleVariables.colorWhite};
   opacity: ${props => props.disabled ? '0.5' : '1'};
   width: 100%;
-
+  resize: none;
 `;
 
 const Flex = styled.div`
