@@ -20,8 +20,6 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 20px;
-  margin-bottom: 40px;
 `;
 
 const Entry = styled.div`

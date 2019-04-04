@@ -143,19 +143,22 @@ $comp-large-size: 51px;
 $comp-size: $comp-medium-size;
 $comp-regular-size: $comp-size;
 
-/*********/
+/************/
 /* Textarea */
-/*********/
-
+/************/
 $textarea-small: 50px;
 $textarea-medium: 100px;
 $textarea-large: 150px;
 $textarea-xlarge: 200px;
 
 
-/***********/
+/***************/
 /* Transitions */
-/***********/
-
+/***************/
 $transitionspeed-normal: 0.2s;
 $transitionspeed-faster: 0.6s;
+
+/***********/
+/* Spacing */
+/***********/
+$spacing-normal: 20px;

@@ -8,6 +8,7 @@ export * from './components/header/Header';
 export * from './components/footer/Footer';
 export * from './components/counter/Counter';
 export * from './icons';
+export * from "./components/form-group/formGroup";
 export * from "./components/formik-input/FormikInput";
 export * from "./components/formik-toggle/FormikToggle";
 export * from "./components/formik-select/FormikSelect";
