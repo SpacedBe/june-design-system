@@ -193,7 +193,35 @@ $font-path: '/assets/fonts/' !default;
 
 & {
   font-family: $font-body !important;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: $heading-line-height;
+  margin: 0;
+  font-family: $font-headings;
+}
+
+h1, .h1 {
+  font-size: $font-size-xxl;
+  margin-bottom: $spacing-l;
+}
+
+h2, .h2 {
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-m;
+}
+
+h3, .h3 {
   font-size: $font-size-l;
+  margin-bottom: $spacing-s;
+}
+
+p {
+  font-size: $font-size-m;
+  font-family: $font-secondary;
 }
 
 .primaryFont {
@@ -227,26 +255,6 @@ $font-path: '/assets/fonts/' !default;
 .central {
   display: flex;
   margin: 0 auto;
-}
-
-/*FONT_SIZES*/
-h1 {
-  font-size: $font-size-xxl;
-  font-family: $font-primary;
-}
-
-h2 {
-  font-size: $font-size-xl;
-}
-
-h3 {
-  font-size: $font-size-l;
-  font-family: $font-secondary;
-}
-
-p {
-  font-size: $font-size-m;
-  font-family: $font-secondary;
 }
 
 .explainer {
