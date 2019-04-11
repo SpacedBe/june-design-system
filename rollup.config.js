@@ -10,7 +10,12 @@ import svgr from '@svgr/rollup';
 import pkg from './package.json';
 
 export default {
-  external: ['styled-components'],
+  external: [
+    'react',
+    'react-proptypes',
+    'styled-components',
+    'react-autocomplete',
+  ],
   input: 'src/index.tsx',
   output: [
     {
@@ -18,15 +23,9 @@ export default {
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
-      globals: {'styled-components': 'styled'},
     },
-    {
-      file: pkg.module,
-      format: 'es',
-      exports: 'named',
-      sourcemap: true
-    }
   ],
+
   plugins: [
     external(),
     postcss({
@@ -41,7 +40,7 @@ export default {
     }),
     commonjs(),
     copy([
-      {files: 'src/theme/**/*', dest: 'dist'}
+      {files: 'src/theme/**/*', dest: 'dist/scss'}
     ])
   ]
 }

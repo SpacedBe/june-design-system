@@ -18,3 +18,4 @@ export * from "./components/formik-checkbox/FormikCheckbox";
 export * from "./components/formik-textarea/FormikTextarea";
 export * from "./components/separator/Separator";
 export * from './scripts/loadStyleVariables';
+export * from "./components/formik-auto-fill/FormikAutoFill";
