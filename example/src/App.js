@@ -191,8 +191,8 @@ export default class App extends Component {
                 )
               },
               {
-                path: "form",
-                title: "Form",
+                path: "formExample",
+                title: "Example of a form",
                 component: pageLoader(() =>
                   import("./pages/form/formikForm")
                 )

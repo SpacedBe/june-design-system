@@ -13,7 +13,7 @@ export default class FormGroupPage extends React.Component {
     return (
       <Page>
         <p>A form group adds a margin on the bottom of the wrapped element.</p>
-        <ReactSpecimen span={3}>
+        <ReactSpecimen>
           <FormGroup>
             This is a form group.
           </FormGroup>

@@ -202,6 +202,7 @@ h3 {
   line-height: $heading-line-height;
   margin: 0;
   font-family: $font-headings;
+  font-weight: $font-weight-bold;
 }
 
 h1, .h1 {
@@ -234,13 +235,13 @@ p {
 
 .primaryLink {
   font-size: $font-size-m;
-  color: #1BA598;
+  color: $color-primary;
   text-decoration: underline;
 }
 
 .secondaryLink {
   font-size: $font-size-m;
-  color: #BFBFBF;
+  color: $text-color;
   text-decoration: underline;
 }
 
