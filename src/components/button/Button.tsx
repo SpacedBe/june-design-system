@@ -76,7 +76,9 @@ const Label = styled.span`
   @include transition(opacity);
   opacity: 1;
   font-family: ${styleVariables.fontPrimary}
+  text-transform: capitalize;
 `;
+
 const OnlyIconButton = styled.button`
   svg {
     fill: ${styleVariables.colorGray};
