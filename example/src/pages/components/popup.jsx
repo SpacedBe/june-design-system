@@ -1,0 +1,81 @@
+import React from 'react';
+import {Page, ReactSpecimen} from 'catalog';
+import {Popup, Button, IconQuestionmark} from 'june-design-system';
+import monster from "../../assets/images/monster.png"
+
+export default class PopupPage extends React.Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      show: false,
+      title: '',
+      text: '',
+      id: '',
+      placeholder: '',
+      className: '',
+      img: ''
+    };
+  }
+
+  changeInputPopup(event) {
+    console.log('aaa', event);
+    this.setState({
+      title: event.title,
+      text: event.name,
+      placeholder: event.placeholder,
+      show: true,
+      className: "popup--afterClick",
+      img: monster
+    })
+  }
+
+  handleClose(event) {
+    this.setState({
+      show: false,
+      title: '',
+      text: '',
+      id: '',
+      placeholder: '',
+      className: '',
+      img: ''
+    })
+  }
+
+  render() {
+    const toggleClass = this.state.show ? "popup afterClick" : "";
+    return (
+      <div>
+        <Page>
+          showing? {this.state.show}
+
+          <div>
+            <p>Click this button to show popup</p>
+            <Button onClick={(event) => this.changeInputPopup({
+              title: 'This is a title',
+              name: 'Wat wil dit zeggen?',
+              placeholder: 'blabla.',
+              show: true
+            })}
+            >Show the popup</Button>
+
+            <Button onClick={(event) => this.changeInputPopup({
+              value: '1',
+              name: 'Wat wil dit zeggen?',
+              placeholder: 'blabla.',
+              show: true
+            })}
+                    iconOnly={<IconQuestionmark/>}
+            >Show the popup</Button>
+          </div>
+          <Popup title={this.state.title}
+                 show={this.state.show}
+                 close={(event) => this.handleClose({show: false})}>
+            This is an amazing popup that transcludes the content!
+          </Popup>
+        </Page>
+      </div>
+    )
+  }
+}

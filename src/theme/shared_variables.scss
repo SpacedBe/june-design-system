@@ -180,3 +180,29 @@ $spacing-m: $spacing-baseline;
 $spacing-l: $spacing-baseline * 2;
 $spacing-xl: $spacing-l * 2;
 
+:root {
+  // Use this tool to generate rich color sets:
+  // https://ionicframework.com/docs/theming/color-generator
+  --color-primary: #46ACA6;
+  --color-primary-rgb: 70, 172, 166;
+  --color-primary-contrast: #ffffff;
+  --color-primary-contrast-rgb: 255, 255, 255;
+  --color-primary-shade: #3e9792;
+  --color-primary-tint: #59b4af;
+
+  --color-white: #ffffff;
+  --color-dark: #000000;
+
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Open Sans', sans-serif;
+
+  --spacing-baseline: 1em;
+  --spacing-s: calc(var(--spacing-baseline) / 2);
+  --spacing-m: var(--spacing-baseline);
+  --spacing-l: calc(var(--spacing-baseline) * 2);
+  --spacing-xl: calc(var(spacing-l) * 2);
+
+  @media only screen and (min-width: 400px) {
+    --spacing-baseline: 1.714em;
+  }
+}

@@ -7,7 +7,7 @@ const styleVariables = loadStyleVariables();
 const StyledContainer = styled.div`
   max-width: ${styleVariables.screenXs};
   margin: 0 auto;
-  padding: 5px 20px;
+  padding: var(--spacing-m);
 `;
 
 export class Container extends React.Component {

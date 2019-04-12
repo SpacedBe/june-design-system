@@ -102,10 +102,11 @@ export default class App extends Component {
                 }
               },
               {
-                path: "tooltip",
-                title: "Tooltip",
+                path: "popup",
+                title: "Popup",
                 component: pageLoader(() =>
-                  import("./pages/components/tooltip")
+                  import("./pages/components/popup")
+
                 )
               },
               {

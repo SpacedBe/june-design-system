@@ -8476,6 +8476,13 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+reflexbox@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/reflexbox/-/reflexbox-3.0.1.tgz#8c4876520c508d2ae743c71d4f9fb92d6ad38993"
+  integrity sha512-BF2RwqMLJ/WHkQHBi32ktOMWZJGgf4lY0Z/bLMh0Zr59/7O6czqh7U09Suo/9hcT6vbr/Uz738fC5pKWj0s7/w==
+  dependencies:
+    prop-types "^15.5.10"
+
 regenerate-unicode-properties@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-7.0.0.tgz#107405afcc4a190ec5ed450ecaa00ed0cafa7a4c"
