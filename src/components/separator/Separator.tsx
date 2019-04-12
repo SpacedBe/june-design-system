@@ -14,22 +14,21 @@ const Flex = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 10px 0;
-`
+`;
 
 const Content = styled.span`
   padding: 5px;
   color: ${styleVariables.colorPrimary};
   font-size: ${styleVariables.fontSizeM};
   font-family: ${styleVariables.fontSecondary};
-`
+`;
 
-export class Separator extends React.Component{
-  constructor(props: any){
+export class Separator extends React.Component {
+  constructor(props: any) {
     super(props);
   }
 
-  render(){
+  render() {
     return (
       <Flex {...this.props}>
         <Line/>

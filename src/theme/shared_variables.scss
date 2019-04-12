@@ -7,7 +7,7 @@
 $color-black: #2C0B2A;
 $color-white: #FFF;
 
-$color-primary :#46ACA6;
+$color-primary: #46ACA6;
 $color-primary-light: #DFF2F2;
 
 $text-color: #888E90;
@@ -17,6 +17,7 @@ $color-gray-dark: #949A9E;
 $color-gray-darker: #333;
 $color-gray-light: #CCC;
 $color-gray-lighter: #EEE;
+$color-error: #FF5757;
 
 $color-green: #1BA598;
 $green-alternate: #23B3A5;
@@ -55,22 +56,32 @@ $water: $color-blue-light;
 /* Fonts */
 /*********/
 
+$body-line-height: 1.4;
+$heading-line-height: 1.2;
+
 $font-body: 'Montserrat', sans-serif;
 $font-headings: 'Montserrat', sans-serif;
 $font-buttons: 'Montserrat', sans-serif;
 $font-primary: 'Montserrat', sans-serif;
 $font-secondary: 'Open Sans', sans-serif;
 
-/*********/
+/**************/
 /* Font sizes */
-/*********/
+/**************/
+$font-size-xs: 0.714em;
+$font-size-s: 0.857em;
+$font-size-m: 1em;
+$font-size-l: 1.143em;
+$font-size-xl: 1.286em;
+$font-size-xxl: 1.429em;
 
-$font-size-xs: 10px;
-$font-size-s: 12px;
-$font-size-m: 14px;
-$font-size-l: 16px;
-$font-size-xl: 18px;
-$font-size-xxl: 20px;
+/***************/
+/* Font weight */
+/***************/
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
 
 /***********/
 /* Gutters */
@@ -129,7 +140,7 @@ $smallerphone: '(min-width: #{$screen-xxxs})';
 /******************/
 /* Refactor these */
 /*****************/
- $state-hover: 'html:not(.touchevents) &:not([disabled]):not(.is-disabled):hover';
+$state-hover: 'html:not(.touchevents) &:not([disabled]):not(.is-disabled):hover';
 
 $gratis-img-width: 85px;
 $gratis-img-height: 42px;
@@ -161,4 +172,11 @@ $transitionspeed-faster: 0.6s;
 /***********/
 /* Spacing */
 /***********/
-$spacing-normal: 20px;
+
+$spacing-baseline: 1.714em;
+
+$spacing-s: $spacing-baseline / 2;
+$spacing-m: $spacing-baseline;
+$spacing-l: $spacing-baseline * 2;
+$spacing-xl: $spacing-l * 2;
+

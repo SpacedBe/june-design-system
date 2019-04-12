@@ -13,7 +13,7 @@ const styleVariables = loadStyleVariables();
 type Props = {};
 
 const FormGroupStyled = styled.div`
-  margin-bottom: ${styleVariables.spacingNormal};
+  margin-bottom: ${styleVariables.spacingM};
 `;
 
 export class FormGroup extends React.Component<Props> {

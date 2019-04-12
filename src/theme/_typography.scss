@@ -13,7 +13,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/Montserrat/subset-Montserrat-Medium.woff') format('woff'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Medium.ttf') format('truetype'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Medium.svg#Montserrat-Medium') format('svg');
-  font-weight: 500;
+  font-weight: $font-weight-medium;
   font-style: normal;
 }
 
@@ -26,21 +26,8 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/Montserrat/subset-Montserrat-BoldItalic.woff') format('woff'),
   url('#{$font-path}/Montserrat/subset-Montserrat-BoldItalic.ttf') format('truetype'),
   url('#{$font-path}/Montserrat/subset-Montserrat-BoldItalic.svg#Montserrat-BoldItalic') format('svg');
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBold.eot');
-  src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBold.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBold.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBold.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBold.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBold.svg#Montserrat-ExtraBold') format('svg');
-  font-weight: 800;
-  font-style: normal;
 }
 
 @font-face {
@@ -52,20 +39,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/Montserrat/subset-Montserrat-Light.woff') format('woff'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Light.ttf') format('truetype'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Light.svg#Montserrat-Light') format('svg');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLight.eot');
-  src: local('Montserrat ExtraLight'), local('Montserrat-ExtraLight'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLight.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLight.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLight.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLight.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLight.svg#Montserrat-ExtraLight') format('svg');
-  font-weight: 200;
+  font-weight: $font-weight-light;
   font-style: normal;
 }
 
@@ -78,7 +52,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/Montserrat/subset-Montserrat-MediumItalic.woff') format('woff'),
   url('#{$font-path}/Montserrat/subset-Montserrat-MediumItalic.ttf') format('truetype'),
   url('#{$font-path}/Montserrat/subset-Montserrat-MediumItalic.svg#Montserrat-MediumItalic') format('svg');
-  font-weight: 500;
+  font-weight: $font-weight-medium;
   font-style: italic;
 }
 
@@ -91,59 +65,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/Montserrat/subset-Montserrat-LightItalic.woff') format('woff'),
   url('#{$font-path}/Montserrat/subset-Montserrat-LightItalic.ttf') format('truetype'),
   url('#{$font-path}/Montserrat/subset-Montserrat-LightItalic.svg#Montserrat-LightItalic') format('svg');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-SemiBold.eot');
-  src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBold.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBold.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBold.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBold.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBoldItalic.eot');
-  src: local('Montserrat ExtraBold Italic'), local('Montserrat-ExtraBoldItalic'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBoldItalic.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBoldItalic.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBoldItalic.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraBoldItalic.svg#Montserrat-ExtraBoldItalic') format('svg');
-  font-weight: 800;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-Black.eot');
-  src: local('Montserrat Black'), local('Montserrat-Black'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Black.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Black.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Black.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Black.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Black.svg#Montserrat-Black') format('svg');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLightItalic.eot');
-  src: local('Montserrat ExtraLight Italic'), local('Montserrat-ExtraLightItalic'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLightItalic.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLightItalic.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLightItalic.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ExtraLightItalic.svg#Montserrat-ExtraLightItalic') format('svg');
-  font-weight: 200;
+  font-weight: $font-weight-light;
   font-style: italic;
 }
 
@@ -156,33 +78,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/Montserrat/subset-Montserrat-Italic.woff') format('woff'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Italic.ttf') format('truetype'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Italic.svg#Montserrat-Italic') format('svg');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-Thin.eot');
-  src: local('Montserrat Thin'), local('Montserrat-Thin'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Thin.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Thin.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Thin.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Thin.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-Thin.svg#Montserrat-Thin') format('svg');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-ThinItalic.eot');
-  src: local('Montserrat Thin Italic'), local('Montserrat-ThinItalic'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ThinItalic.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ThinItalic.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ThinItalic.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ThinItalic.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-ThinItalic.svg#Montserrat-ThinItalic') format('svg');
-  font-weight: 100;
+  font-weight: $font-weight-normal;
   font-style: italic;
 }
 
@@ -195,21 +91,8 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/Montserrat/subset-Montserrat-Regular.woff') format('woff'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Regular.ttf') format('truetype'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Regular.svg#Montserrat-Regular') format('svg');
-  font-weight: normal;
+  font-weight: $font-weight-normal;
   font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-SemiBoldItalic.eot');
-  src: local('Montserrat SemiBold Italic'), local('Montserrat-SemiBoldItalic'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBoldItalic.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBoldItalic.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBoldItalic.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-SemiBoldItalic.svg#Montserrat-SemiBoldItalic') format('svg');
-  font-weight: 600;
-  font-style: italic;
 }
 
 @font-face {
@@ -221,39 +104,14 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/Montserrat/subset-Montserrat-Bold.woff') format('woff'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Bold.ttf') format('truetype'),
   url('#{$font-path}/Montserrat/subset-Montserrat-Bold.svg#Montserrat-Bold') format('svg');
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Montserrat';
-  src: url('#{$font-path}/Montserrat/subset-Montserrat-BlackItalic.eot');
-  src: local('Montserrat Black Italic'), local('Montserrat-BlackItalic'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-BlackItalic.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-BlackItalic.woff2') format('woff2'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-BlackItalic.woff') format('woff'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-BlackItalic.ttf') format('truetype'),
-  url('#{$font-path}/Montserrat/subset-Montserrat-BlackItalic.svg#Montserrat-BlackItalic') format('svg');
-  font-weight: 900;
-  font-style: italic;
-}
 
 /************/
 /* OpenSans */
 /************/
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('#{$font-path}/OpenSans/subset-OpenSans-SemiBold.eot');
-  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBold.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBold.woff2') format('woff2'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBold.woff') format('woff'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBold.ttf') format('truetype'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBold.svg#OpenSans-SemiBold') format('svg');
-  font-weight: 600;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'Open Sans';
@@ -264,33 +122,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/OpenSans/subset-OpenSans-BoldItalic.woff') format('woff'),
   url('#{$font-path}/OpenSans/subset-OpenSans-BoldItalic.ttf') format('truetype'),
   url('#{$font-path}/OpenSans/subset-OpenSans-BoldItalic.svg#OpenSans-BoldItalic') format('svg');
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('#{$font-path}/OpenSans/subset-OpenSans-SemiBoldItalic.eot');
-  src: local('Open Sans SemiBold Italic'), local('OpenSans-SemiBoldItalic'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBoldItalic.woff2') format('woff2'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBoldItalic.woff') format('woff'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBoldItalic.ttf') format('truetype'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-SemiBoldItalic.svg#OpenSans-SemiBoldItalic') format('svg');
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  src: url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBoldItalic.eot');
-  src: local('Open Sans ExtraBold Italic'), local('OpenSans-ExtraBoldItalic'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBoldItalic.woff2') format('woff2'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBoldItalic.woff') format('woff'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBoldItalic.ttf') format('truetype'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBoldItalic.svg#OpenSans-ExtraBoldItalic') format('svg');
-  font-weight: 800;
+  font-weight: $font-weight-bold;
   font-style: italic;
 }
 
@@ -303,7 +135,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/OpenSans/subset-OpenSans-Bold.woff') format('woff'),
   url('#{$font-path}/OpenSans/subset-OpenSans-Bold.ttf') format('truetype'),
   url('#{$font-path}/OpenSans/subset-OpenSans-Bold.svg#OpenSans-Bold') format('svg');
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   font-style: normal;
 }
 
@@ -316,7 +148,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/OpenSans/subset-OpenSans-Light.woff') format('woff'),
   url('#{$font-path}/OpenSans/subset-OpenSans-Light.ttf') format('truetype'),
   url('#{$font-path}/OpenSans/subset-OpenSans-Light.svg#OpenSans-Light') format('svg');
-  font-weight: 300;
+  font-weight: $font-weight-light;
   font-style: normal;
 }
 
@@ -329,7 +161,7 @@ $font-path: '/assets/fonts/' !default;
   url('#{$font-path}/OpenSans/subset-OpenSans-LightItalic.woff') format('woff'),
   url('#{$font-path}/OpenSans/subset-OpenSans-LightItalic.ttf') format('truetype'),
   url('#{$font-path}/OpenSans/subset-OpenSans-LightItalic.svg#OpenSans-LightItalic') format('svg');
-  font-weight: 300;
+  font-weight: $font-weight-light;
   font-style: italic;
 }
 
@@ -359,90 +191,82 @@ $font-path: '/assets/fonts/' !default;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Open Sans';
-  src: url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBold.eot');
-  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBold.eot?#iefix') format('embedded-opentype'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBold.woff2') format('woff2'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBold.woff') format('woff'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBold.ttf') format('truetype'),
-  url('#{$font-path}/OpenSans/subset-OpenSans-ExtraBold.svg#OpenSans-ExtraBold') format('svg');
-  font-weight: 800;
-  font-style: normal;
-}
-
 & {
-  font-family: $font-body!important;
+  font-family: $font-body !important;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: $heading-line-height;
+  margin: 0;
+  font-family: $font-headings;
+  font-weight: $font-weight-bold;
+}
+
+h1, .h1 {
+  font-size: $font-size-xxl;
+  margin-bottom: $spacing-l;
+}
+
+h2, .h2 {
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-m;
+}
+
+h3, .h3 {
   font-size: $font-size-l;
+  margin-bottom: $spacing-s;
 }
 
-.primaryFont{
-  font-family: $font-body;
-}
-
-.secondaryFont{
+p {
+  font-size: $font-size-m;
   font-family: $font-secondary;
 }
 
-.primaryLink{
-   font-size: $font-size-m;
-   color: #1BA598;
-   text-decoration: underline;
+.primaryFont {
+  font-family: $font-body;
 }
-.secondaryLink {
+
+.secondaryFont {
+  font-family: $font-secondary;
+}
+
+.primaryLink {
   font-size: $font-size-m;
-  color: #BFBFBF;
+  color: $color-primary;
   text-decoration: underline;
 }
 
-.buttonSize{
+.secondaryLink {
+  font-size: $font-size-m;
+  color: $text-color;
+  text-decoration: underline;
+}
+
+.buttonSize {
   font-size: $font-size-s;
 }
 
-.labelSize{
+.labelSize {
   font-size: $font-size-s;
 }
 
-.central{
+.central {
   display: flex;
   margin: 0 auto;
 }
 
-/*FONT_SIZES*/
-h1{
-  font-size: $font-size-xxl;
-  font-family: $font-primary;
-}
-
-h2{
- font-size: $font-size-xl;
-}
-
-h3{
- font-size: $font-size-l;
- font-family: $font-secondary;
-}
-
-p{
-  font-size: $font-size-m;
-  font-family: $font-secondary;
-}
-
-span{
-  font-size: $font-size-m;
-  font-family: $font-secondary;
-}
-
-.explainer{
+.explainer {
   font-size: $font-size-s;
   font-family: $font-secondary;
 }
 
-.small{
+.small {
   font-size: $font-size-m;
 }
 
-.mini{
-font-size: $font-size-xs;
+.mini {
+  font-size: $font-size-xs;
 }

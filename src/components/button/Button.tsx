@@ -7,7 +7,7 @@ import * as React from 'react';
 import {Loader} from "../loader/Loader";
 import styled from 'styled-components';
 
-import { loadStyleVariables } from "../../scripts/loadStyleVariables";
+import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 
 const styleVariables = loadStyleVariables();
 
@@ -76,7 +76,7 @@ const Label = styled.span`
   @include transition(opacity);
   opacity: 1;
   font-family: ${styleVariables.fontPrimary}
-`
+`;
 const OnlyIconButton = styled.button`
   svg {
     fill: ${styleVariables.colorGray};
@@ -95,7 +95,7 @@ const OnlyIconWithBorder = styled(OnlyIconButton)`
 const Flex = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 
 const NormalButton = styled.button<{
   target?: string;
@@ -110,43 +110,43 @@ const NormalButton = styled.button<{
   inverted?: boolean;
 }>`
   background: ${props => {
-    if (props.outlined || props.clear) {
-      return `none`;
-    } else if (props.disabled) {
-      return `${styleVariables.colorGray}`;
-    } else if (props.color) {
-      return colors[props.color || ""];
-    } else {
-      return `${styleVariables.colorPrimary}`;
-    }
-  }};
+  if (props.outlined || props.clear) {
+    return `none`;
+  } else if (props.disabled) {
+    return `${styleVariables.colorGray}`;
+  } else if (props.color) {
+    return colors[props.color || ""];
+  } else {
+    return `${styleVariables.colorPrimary}`;
+  }
+}};
   border-radius: ${props =>
-    props.rounded ? `${styleVariables.compSmallSize}` : `${styleVariables.compRadius}`};
+  props.rounded ? `${styleVariables.compSmallSize}` : `${styleVariables.compRadius}`};
 
   border: 2px solid ${props => {
-    if (props.outlined) {
-      return colors[props.color || ""];
-    }
-    if (props.disabled) {
-      return `2px solid ${styleVariables.colorGray}`;
-    }
-    if (props.color) {
-      return colors[props.color  || ""];
-    } else {
-      return `${styleVariables.colorPrimary}`;
-    }
-  }};
+  if (props.outlined) {
+    return colors[props.color || ""];
+  }
+  if (props.disabled) {
+    return `2px solid ${styleVariables.colorGray}`;
+  }
+  if (props.color) {
+    return colors[props.color || ""];
+  } else {
+    return `${styleVariables.colorPrimary}`;
+  }
+}};
 
   color: ${props => {
-    if (props.outlined || props.clear) {
-      return colors[props.color || ""];
-    } else {
-      return `${styleVariables.colorWhite}`;
-    }
-  }};
+  if (props.outlined || props.clear) {
+    return colors[props.color || ""];
+  } else {
+    return `${styleVariables.colorWhite}`;
+  }
+}};
   cursor: pointer;
   font-family: ${styleVariables.fontbuttons};
-  font-weight: 600;
+  font-weight: ${styleVariables.fontWeightBold};
   font-size: ${styleVariables.fontSizeM};
   outline: 0;
   padding: 0 ${styleVariables.gutter};
@@ -166,16 +166,17 @@ const NormalButton = styled.button<{
 `;
 
 export class Button extends React.Component<Props> {
-   static defaultProps = {
+  static defaultProps = {
     size: 'medium',
   };
+
   render() {
     let buttonContent;
     let isDisabled = (this.props.loading || this.props.disabled);
 
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly || this.props.iconButtonWithBorder;
 
-      if (!hasIcon) {
+    if (!hasIcon) {
       buttonContent = (
         <NormalButton
           className={this.props.className}
@@ -192,11 +193,11 @@ export class Button extends React.Component<Props> {
           target={this.props.target}
         >
           <div>
-            <Label>{this.props.children}</Label >
+            <Label>{this.props.children}</Label>
             <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
           </div>
         </NormalButton>
-      )
+      );
     }
 
     if (hasIcon && this.props.iconLeft) {
@@ -223,7 +224,7 @@ export class Button extends React.Component<Props> {
             <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
           </div>
         </NormalButton>
-      )
+      );
     }
 
     if (hasIcon && this.props.iconRight) {
@@ -242,15 +243,15 @@ export class Button extends React.Component<Props> {
           rounded={this.props.rounded}
           target={this.props.target}
         >
-        <div>
-          <Icon>
-            <Label>{this.props.children}</Label>
-            <IconRight>{this.props.iconRight}</IconRight>
-          </Icon>
-          <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-        </div>
+          <div>
+            <Icon>
+              <Label>{this.props.children}</Label>
+              <IconRight>{this.props.iconRight}</IconRight>
+            </Icon>
+            <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
+          </div>
         </NormalButton>
-      )
+      );
     }
 
     if (hasIcon && this.props.iconOnly) {
