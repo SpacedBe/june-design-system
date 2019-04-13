@@ -2,37 +2,105 @@
  * @class Popup
  */
 import * as React from 'react';
-import { Button } from '../button/Button';
-import { IconClose } from '../../icons';
+import {Button} from '../button/Button';
+import styled from 'styled-components';
+import {Container} from '../container/Container';
+import {IconClose, IconQuestionmark} from '../../icons';
 
 type Props = {
-  id?: string,
-  label: string,
-  component: any,
-  text?: string,
-  title?: string,
+  title: string,
   show?: boolean,
-  classNames: string[],
-  placeholder?:string,
-  className?: string,
-  img: string,
-
-  close: () => void,
+  close: any,
 }
 
-export class Popup extends React.Component<Props>{
-  render(){
+const PopupStyled = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  font-family: var(--font-secondary);
+  color: var(--color-primary-contrast);
+  background-color: rgba(var(--color-primary-rgb), 0.95);
+  
+  text-align: center;
+ 
+  @media only screen and (min-width: 400px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 
-    return(
-      <div className={this.props.className} id={this.props.id}>
-        <div>
-            <h1>{this.props.title}</h1>
-            <h3>{this.props.text}</h3>
-            <p>{this.props.placeholder}</p>
-            <Button onClick={() => this.props.close()} iconOnly={<IconClose></IconClose>}></Button>
-            <img width="300" src={this.props.img}></img>
-        </div>
-      </div>
+const ControlsStyled = styled.div`
+ display: flex;
+ justify-content: flex-end;
+ 
+  @media only screen and (min-width: 400px) {
+    padding: var(--spacing-s) var(--spacing-s) 0;
+  }
+`;
+
+const BorderStyled = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  
+  svg {
+    fill: var(--color-white);
+  }  
+  
+  h3 {
+    margin-top: 0;
+  }
+  
+  @media only screen and (min-width: 400px) {
+    justify-content: flex-start;
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    border-radius: 10px;
+    padding-top: 8px;
+    margin: var(--spacing-l) 0;  
+    max-height: 450px;
+    
+    svg {
+      fill: var(--color-dark)
+    }  
+    
+    .contents {
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 0 var(--spacing-l) var(--spacing-l);
+    }
+  }
+`;
+
+export class Popup extends React.Component<Props> {
+  render() {
+    const popup = (<PopupStyled {...this.props}>
+      <Container>
+        <BorderStyled>
+          <ControlsStyled>
+            <Button onClick={() => this.props.close()}
+                    iconOnly={<IconClose fill={'white'} fontSize={'20px'}></IconClose>}></Button>
+          </ControlsStyled>
+          <div className={'contents'}>
+            <span>
+              <IconQuestionmark fontSize={'70px'}/>
+            </span>
+            <h3 className={'no-margin margin-bottom'}>{this.props.title}</h3>
+            <div>
+              {this.props.children}
+            </div>
+          </div>
+        </BorderStyled>
+      </Container>
+    </PopupStyled>);
+
+    return (
+      this.props.show ? popup : ''
     );
   }
 }
