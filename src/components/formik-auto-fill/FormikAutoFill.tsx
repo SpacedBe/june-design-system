@@ -65,6 +65,10 @@ export class FormikAutoFill extends React.Component<Props, State> {
     const touched = this.props.form.touched[FieldName];
     const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
 
+    const inputProps = {
+      disabled: this.props.disabled,
+    };
+
     return (
       <div>
         <label
@@ -73,7 +77,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
         </label>
 
         <Autocomplete
-          inputProps={{autoComplete: 'nope'}}
+          inputProps={inputProps}
           items={this.state.data}
           value={this.state.value}
           renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
