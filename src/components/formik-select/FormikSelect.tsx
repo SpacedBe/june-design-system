@@ -5,6 +5,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import {loadStyleVariables} from "../../scripts/loadStyleVariables";
+import {getIn} from 'formik';
 
 interface Option {
   label: string,
@@ -66,23 +67,23 @@ const Option = styled.option`
 
 export class FormikSelect extends React.Component<Props> {
   render() {
-
-    const FieldName = this.props.field.name;
-    const touched = this.props.form.touched[FieldName];
-    const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
+    const name = this.props.field.name;
+    const label = this.props.label;
+    const error = getIn(this.props.form.errors, name);
+    const touched = getIn(this.props.form.touched, name);
+    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     return (
       <div>
         <Label
-          error={this.props.error}
+          error={!!errors}
           disabled={this.props.disabled}
-          htmlFor={FieldName}>
-          {this.props.label}
+          htmlFor={name}>
+          {label}
         </Label>
 
         <Select
           {...this.props.field}
-          error={this.props.error}
           disabled={this.props.disabled}
         >
           {this.props.options.map(item => (

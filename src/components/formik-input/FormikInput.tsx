@@ -5,6 +5,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {loadStyleVariables} from "../../scripts/loadStyleVariables";
+import {getIn} from 'formik';
 
 type Props = {
   field: {
@@ -131,10 +132,11 @@ const ErrorMessageStyled = styled.span`
 
 export class FormikInput extends React.Component<Props> {
   render() {
-    const FieldName = this.props.field.name;
+    const name = this.props.field.name;
     const label = this.props.label;
-    const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
-    const touched = this.props.form.touched[FieldName];
+    const error = getIn(this.props.form.errors, name);
+    const touched = getIn(this.props.form.touched, name);
+    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     let inputContent;
 
@@ -143,7 +145,8 @@ export class FormikInput extends React.Component<Props> {
 
     if (!hasIcon) {
       inputContent = (
-        <InputBoxLeft error={touched && errors} disabled={this.props.disabled} focussed={this.props.focussed}>
+        <InputBoxLeft error={touched && errors} disabled={this.props.disabled}
+                      focussed={this.props.focussed}>
           <Input {...this.props.field}
                  placeholder={this.props.placeholderText}
                  disabled={this.props.disabled}
@@ -155,7 +158,8 @@ export class FormikInput extends React.Component<Props> {
 
     if (hasIcon && this.props.iconLeft) {
       inputContent = (
-        <InputBoxLeft error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
+        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+                      focussed={this.props.focussed}>
           <IconSmall>{this.props.iconLeft}</IconSmall>
           <InputWithIconLeft {...this.props.field} placeholder={this.props.placeholderText}
                              type={this.props.type}></InputWithIconLeft>
@@ -165,7 +169,8 @@ export class FormikInput extends React.Component<Props> {
 
     if (hasIcon && this.props.iconRight) {
       inputContent = (
-        <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
+        <InputBoxRight error={this.props.error} disabled={this.props.disabled}
+                       focussed={this.props.focussed}>
           <Input {...this.props.field}
                  placeholder={this.props.placeholderText}
                  disabled={this.props.disabled}
@@ -178,8 +183,10 @@ export class FormikInput extends React.Component<Props> {
 
     if (hasIcon && this.props.buttonRight) {
       inputContent = (
-        <InputBoxLeft error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
-          <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled}
+        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+                      focussed={this.props.focussed}>
+          <Input {...this.props.field} placeholder={this.props.placeholderText}
+                 disabled={this.props.disabled}
                  type={this.props.type}></Input>
           <ButtonSmall disabled={this.props.disabled}>{this.props.buttonRight}</ButtonSmall>
         </InputBoxLeft>
@@ -189,8 +196,10 @@ export class FormikInput extends React.Component<Props> {
     if (hasButton && this.props.buttonOutsideRight) {
       inputContent = (
         <Flex>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled}
+          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
+                         focussed={this.props.focussed}>
+            <Input {...this.props.field} placeholder={this.props.placeholderText}
+                   disabled={this.props.disabled}
                    type={this.props.type}></Input>
           </InputBoxRight>
           <IconSmall disabled={this.props.disabled}>{this.props.buttonOutsideRight}</IconSmall>
@@ -202,8 +211,10 @@ export class FormikInput extends React.Component<Props> {
       inputContent = (
         <Flex>
           <IconBig>{this.props.iconFront}</IconBig>
-          <InputBoxLeft error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled}
+          <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+                        focussed={this.props.focussed}>
+            <Input {...this.props.field} placeholder={this.props.placeholderText}
+                   disabled={this.props.disabled}
                    type={this.props.type}></Input>
           </InputBoxLeft>
         </Flex>
@@ -213,8 +224,10 @@ export class FormikInput extends React.Component<Props> {
     if (hasIcon && this.props.iconEnd) {
       inputContent = (
         <Flex>
-          <InputBoxLeft error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled}
+          <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+                        focussed={this.props.focussed}>
+            <Input {...this.props.field} placeholder={this.props.placeholderText}
+                   disabled={this.props.disabled}
                    type={this.props.type}></Input>
           </InputBoxLeft>
           <IconBig>{this.props.iconEnd}</IconBig>
@@ -225,8 +238,10 @@ export class FormikInput extends React.Component<Props> {
     if (hasIcon && this.props.required) {
       inputContent = (
         <div>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled}
+          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
+                         focussed={this.props.focussed}>
+            <Input {...this.props.field} placeholder={this.props.placeholderText}
+                   disabled={this.props.disabled}
                    type={this.props.type}></Input>
           </InputBoxRight>
         </div>
@@ -239,8 +254,10 @@ export class FormikInput extends React.Component<Props> {
           <Flex>
             <IconSmall disabled={this.props.disabled}>{this.props.tooltip}</IconSmall>
           </Flex>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled} focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText} disabled={this.props.disabled}
+          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
+                         focussed={this.props.focussed}>
+            <Input {...this.props.field} placeholder={this.props.placeholderText}
+                   disabled={this.props.disabled}
                    type={this.props.type}></Input>
           </InputBoxRight>
         </div>

@@ -5,6 +5,7 @@
 import * as React from 'react';
 import styled from "styled-components";
 import { loadStyleVariables } from "../../scripts/loadStyleVariables";
+import {getIn} from 'formik';
 
 type Props = {
   field: {
@@ -79,23 +80,25 @@ const Label = styled.label<{ error?: boolean; }>`
 
 export class FormikCheckbox extends React.Component<Props> {
   render() {
-    const FieldName = this.props.field.name;
-    const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
-    const touched = this.props.form.touched[FieldName];
+    const name = this.props.field.name;
+    const label = this.props.label;
+    const error = getIn(this.props.form.errors, name);
+    const touched = getIn(this.props.form.touched, name);
+    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     return (
       <div>
         <InputDiv>
           <Checkbox
-            error={this.props.error}
+            error={!!errors}
           >
             <Input
               {...this.props.field}
               type="checkbox"
             />
-            <Span error={this.props.error} />
+            <Span error={!!errors} />
           </Checkbox>
-          <Label error={this.props.error}>{this.props.label}</Label>
+          <Label error={!!errors}>{label}</Label>
         </InputDiv>
         {
           touched && errors && <div>{errors}</div>
