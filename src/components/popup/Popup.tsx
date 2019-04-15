@@ -70,7 +70,7 @@ const BorderStyled = styled.div`
     }  
     
     .contents {
-      max-height: 300px;
+      max-height: 400px;
       overflow-y: auto;
       padding: 0 var(--spacing-l) var(--spacing-l);
     }
