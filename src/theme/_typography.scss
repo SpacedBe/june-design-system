@@ -199,6 +199,7 @@ $font-path: '/assets/fonts/' !default;
 h1,
 h2,
 h3 {
+  color: inherit;
   line-height: $heading-line-height;
   margin: 0;
   font-family: $font-headings;
@@ -225,6 +226,10 @@ p {
   font-family: $font-secondary;
 }
 
+a {
+  color: inherit;
+}
+
 .primaryFont {
   font-family: $font-body;
 }
@@ -233,16 +238,19 @@ p {
   font-family: $font-secondary;
 }
 
-.primaryLink {
+.primaryLink,
+.secondaryLink {
   font-size: $font-size-m;
-  color: $color-primary;
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.primaryLink {
+  color: $color-primary;
 }
 
 .secondaryLink {
-  font-size: $font-size-m;
   color: $text-color;
-  text-decoration: underline;
 }
 
 .buttonSize {
