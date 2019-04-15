@@ -6,6 +6,7 @@ import * as React from "react";
 // @ts-ignore
 import Autocomplete, {State} from 'react-autocomplete';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
+import {getIn} from 'formik';
 
 
 type Props = {
@@ -61,9 +62,11 @@ export class FormikAutoFill extends React.Component<Props, State> {
   }
 
   render() {
-    const FieldName = this.props.field.name;
-    const touched = this.props.form.touched[FieldName];
-    const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
+    const name = this.props.field.name;
+    const label = this.props.label;
+    const error = getIn(this.props.form.errors, name);
+    const touched = getIn(this.props.form.touched, name);
+    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     const inputProps = {
       disabled: this.props.disabled,
@@ -72,8 +75,8 @@ export class FormikAutoFill extends React.Component<Props, State> {
     return (
       <div>
         <label
-          htmlFor={FieldName}>
-          {this.props.label}
+          htmlFor={name}>
+          {label}
         </label>
 
         <Autocomplete

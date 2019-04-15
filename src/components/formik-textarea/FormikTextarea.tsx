@@ -5,6 +5,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {loadStyleVariables} from "../../scripts/loadStyleVariables";
+import {getIn} from 'formik';
 
 const sizes = {
   small: "50px",
@@ -87,27 +88,34 @@ export class FormikTextarea extends React.Component<Props> {
   };
 
   render() {
-    const FieldName = this.props.field.name;
-    const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
-    const touched = this.props.form.touched[FieldName];
+    const name = this.props.field.name;
+    const label = this.props.label;
+    const error = getIn(this.props.form.errors, name);
+    const touched = getIn(this.props.form.touched, name);
+    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
+
     let buttonContent;
     buttonContent = (
       <div>
         <Flex>
-          <Label error={this.props.error} disabled={this.props.disabled} htmlFor={FieldName}>
-            {this.props.label}
+          <Label error={!!errors} disabled={this.props.disabled} htmlFor={name}>
+            {label}
           </Label>
         </Flex>
-        <InputBoxRight size={this.props.size} error={this.props.error} disabled={this.props.disabled}
-                       focussed={this.props.focussed}>
-          <Textarea {...this.props.field} placeholder={this.props.placeholderText}
-                    disabled={this.props.disabled}></Textarea>
+        <InputBoxRight size={this.props.size}
+                       error={!!errors}
+                       disabled={this.props.disabled}>
+          <Textarea {...this.props.field}
+                    placeholder={this.props.placeholderText}
+                    disabled={this.props.disabled}>
+          </Textarea>
         </InputBoxRight>
       </div>
     );
     return (
       <span>
         {buttonContent}
+
         <span>
           {
             touched && errors && <div>{errors}</div>

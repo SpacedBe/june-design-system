@@ -4,11 +4,16 @@
 
 import * as React from 'react';
 import styled from "styled-components";
-import { loadStyleVariables } from "../../scripts/loadStyleVariables";
+import {loadStyleVariables} from "../../scripts/loadStyleVariables";
+import {getIn} from 'formik';
 
 type Props = {
   field: {
     name: string;
+    value: string;
+    disabled: boolean;
+    onChange: () => {};
+    OnBlur: () => {};
   };
   form: {
     ['errors']: string;
@@ -20,8 +25,8 @@ type Props = {
   checked: boolean;
   placeholderText: string;
   error: boolean;
-  focussed: boolean;
   required?: boolean;
+  value: string;
 };
 
 const styleVariables = loadStyleVariables();
@@ -37,19 +42,7 @@ const Input = styled.input`
   &:checked ~ span {
     opacity: 1;
   }
-;`
-
-
-const Span = styled.span<{ error?: boolean }>`
-  display: inline-block;
-  margin: 3px;
-  width: 15px;
-  height: 15px;
-  opacity: 0;
-  border-radius: 30px;
-  position: relative;
-  background-color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGreen}`};
-`;
+;`;
 
 const InputDiv = styled.div`
   display: flex;
@@ -71,6 +64,17 @@ const Round = styled.div<{ error?: boolean; }>`
   border: ${props => props.error ? `2px solid ${styleVariables.colorRed}` : `2px solid ${styleVariables.colorGreen}`};
 `;
 
+const Span = styled.span<{ error?: boolean }>`
+  display: inline-block;
+  margin: 3px;
+  width: 15px;
+  height: 15px;
+  opacity: 0;
+  border-radius: 30px;
+  position: relative;
+  background-color: ${styleVariables.colorGreen}};
+`;
+
 const Label = styled.label<{ error?: boolean }>`
   margin-left: 35px;
   font-family: ${styleVariables.fontSecondary};
@@ -80,21 +84,28 @@ const Label = styled.label<{ error?: boolean }>`
 
 export class FormikRadiobutton extends React.Component<Props> {
   render() {
-    const FieldName = this.props.field.name;
-    const errors = (this.props.serverErrors && this.props.serverErrors[FieldName]) || this.props.form.errors[FieldName];
-    const touched = this.props.form.touched[FieldName];
+    const {name, value} = this.props.field;
+    const label = this.props.label;
+    const error = getIn(this.props.form.errors, name);
+    const touched = getIn(this.props.form.touched, name);
+    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
+    const checked = this.props.value == value;
 
     return (
       <div>
         <InputDiv>
-          <Round error={this.props.error}>
+          <Round error={!!errors}>
             <Input
-              {...this.props.field}
+              name={this.props.field.name}
+              value={this.props.value}
+              disabled={this.props.field.disabled}
+              onChange={this.props.field.onChange}
+              checked={checked}
               type="radio"
             />
-            <Span error={this.props.error} />
+            <Span error={errors} />
           </Round>
-          <Label error={this.props.error}>{this.props.label}</Label>
+          <Label>{label}</Label>
         </InputDiv>
         {
           touched && errors && <div>{errors}</div>
