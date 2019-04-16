@@ -90,7 +90,9 @@ export default class FormPage extends React.Component {
                             name="password"
                             type="password"
                             label="Password*"
+                            hint="Min. 8 characters"
                             component={FormikInput}
+                            validate={() => 'This is a validation message' }
                           />
                         </FormGroup>
                         <div className={"flex"}>
@@ -228,7 +230,6 @@ export default class FormPage extends React.Component {
                         clear={false}
                         color="green"
                         disabled
-                        onClick={0}
                         outlined={false}
                         rounded={false}
                         wide={false}
