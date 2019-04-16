@@ -1,7 +1,6 @@
 export * from './components/button/Button';
 export * from './components/FAB/Fab';
 export * from './components/popup/Popup';
-export * from './components/loader/Loader';
 export * from './components/stepper/Stepper';
 export * from './components/container/Container';
 export * from './components/header/Header';
