@@ -1,6 +1,6 @@
 import React from "react";
-import {Page, ReactSpecimen, render} from "catalog";
-import {FormikToggle, IconQuestionmark, IconElectricity, IconOff, IconOn} from "june-design-system";
+import {Page, ReactSpecimen} from "catalog";
+import {FormikToggle, IconQuestionmark, IconElectricity} from "june-design-system";
 
 export default class FormikTogglePage extends React.Component {
 
