@@ -8,7 +8,6 @@ export default class ButtonPage extends React.Component {
 
     this.state = {
       rounded: false,
-      outlined: false,
       clear: false,
       disabled: false,
       size: 'medium',
@@ -23,12 +22,6 @@ export default class ButtonPage extends React.Component {
   changeRounded() {
     this.setState({
       rounded: !this.state.rounded,
-    });
-  }
-
-  changeOutlined() {
-    this.setState({
-      outlined: !this.state.outlined,
     });
   }
 
@@ -73,7 +66,6 @@ export default class ButtonPage extends React.Component {
             size={this.state.size}
             rounded={this.state.rounded}
             clear={this.state.clear}
-            outlined={this.state.outlined}
             disabled={this.state.disabled}
             wide={this.state.wide}
             color={this.state.color}
@@ -90,16 +82,6 @@ export default class ButtonPage extends React.Component {
               value={this.state.rounded}
               name="isRounded"
               onChange={() => this.changeRounded()}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="isOutlined">Outlined?</label>
-            <input
-              type="checkbox"
-              value={this.state.outlined}
-              name="isOutlined"
-              onChange={() => this.changeOutlined()}
             />
           </div>
 

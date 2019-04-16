@@ -230,7 +230,6 @@ export default class FormPage extends React.Component {
                         clear={false}
                         color="green"
                         disabled
-                        outlined={false}
                         rounded={false}
                         wide={false}
                       >
