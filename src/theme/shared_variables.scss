@@ -190,13 +190,27 @@ $spacing-xl: $spacing-l * 2;
   --color-primary-shade: #3e9792;
   --color-primary-tint: #59b4af;
 
+  --color-gray: #BFBFBF;
+  --color-gray-dark: #949A9E;
+  --color-gray-darker: #333;
+  --color-gray-light: #CCC;
+  --color-gray-lighter: #EEE;
+
   --color-white: #ffffff;
   --color-dark: #000000;
 
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Open Sans', sans-serif;
 
+  --font-size-xs: 0.714em;
+  --font-size-s: 0.857em;
+  --font-size-m: 1em;
+  --font-size-l: 1.143em;
+  --font-size-xl: 1.286em;
+  --font-size-xxl: 1.429em;
+
   --spacing-baseline: 1em;
+  --spacing-xs: calc(var(--spacing-s) / 2);
   --spacing-s: calc(var(--spacing-baseline) / 2);
   --spacing-m: var(--spacing-baseline);
   --spacing-l: calc(var(--spacing-baseline) * 2);
@@ -205,4 +219,12 @@ $spacing-xl: $spacing-l * 2;
   @media only screen and (min-width: 400px) {
     --spacing-baseline: 1.714em;
   }
+
+  --screen-xxxs: 370px;
+  --screen-xxs: 400px;
+  --screen-xs: 480px;
+  --screen-sm: 800px;
+  --screen-md: 992px;
+  --screen-lg: 1420px;
+  --screen-xl: 1600px;
 }

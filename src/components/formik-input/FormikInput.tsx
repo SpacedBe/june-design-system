@@ -32,6 +32,7 @@ type Props = {
   iconEnd?: any,
   buttonOutsideRight?: any,
   tooltip?: any,
+  hint?: string,
   required?: any,
   current?: boolean,
   classNames?: string[],
@@ -77,6 +78,7 @@ const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?
   display: flex;
   height: 45px;
   box-sizing: border-box;
+  margin-bottom: var(--spacing-xs);
 `;
 
 const InputWithIconLeft = styled.input`
@@ -84,6 +86,7 @@ const InputWithIconLeft = styled.input`
   margin-left: 10px;
   background-color: ${styleVariables.colorWhite};
   outline: none;
+  margin-bottom: var(--spacing-xs);
 `;
 
 const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
@@ -123,11 +126,17 @@ const LabelStyle = styled.span<{ disabled?: boolean; error?: boolean }>`
   color: ${props => props.error ? `${styleVariables.colorError}` : `${styleVariables.black}`};
 `;
 
+const HintStyled = styled.span`
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-light);
+  margin-bottom: var(--spacing-xs);
+`;
+
 const ErrorMessageStyled = styled.span`
-  margin-top: 5px;
   font-size: ${styleVariables.fontSizeS};
   color: ${styleVariables.colorError};
   font-weight: ${styleVariables.fontWeightBold};
+  margin-bottom: var(--spacing-xs);
 `;
 
 export class FormikInput extends React.Component<Props> {
@@ -264,6 +273,10 @@ export class FormikInput extends React.Component<Props> {
       );
     }
 
+    const hintContent = (
+      <HintStyled>{this.props.hint}</HintStyled>
+    );
+
     return (
       <InputStyled>
         <LabelStyle error={touched && errors}
@@ -271,6 +284,7 @@ export class FormikInput extends React.Component<Props> {
           {label}
         </LabelStyle>
         {inputContent}
+        {this.props.hint && hintContent}
         {touched && errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
       </InputStyled>
     );
