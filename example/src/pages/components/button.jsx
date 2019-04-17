@@ -12,7 +12,7 @@ export default class ButtonPage extends React.Component {
       disabled: false,
       size: 'medium',
       content: 'Foobar',
-      color: 'green',
+      color: 'primary',
       wide: false,
       selectedColor: '',
       clicked: 0
@@ -144,42 +144,33 @@ export default class ButtonPage extends React.Component {
           </div>
         </div>
         ## Icon on the left
-        <ReactSpecimen span={3}>
+        <ReactSpecimen>
           <Button iconLeft={<IconSettings />}>Button with icon</Button>
         </ReactSpecimen>
         ## Icon on the right
-        <ReactSpecimen span={3}>
+        <ReactSpecimen>
           <Button iconRight={<IconSettings />}> Button with icon</Button>
         </ReactSpecimen>
         ## Only an icon
-        <ReactSpecimen span={3}>
+        <ReactSpecimen>
           <Button iconOnly={<IconSettings />}>
             Button with only an icon
           </Button>
         </ReactSpecimen>
         ## Only an icon, with border
-        <ReactSpecimen span={3}>
-          <Button iconButtonWithBorder={<IconSettings />}></Button>
+        <ReactSpecimen>
+          <Button iconButtonWithBorder={<IconSettings />}/>
         </ReactSpecimen>
 
         ## Loading
-        <ReactSpecimen span={3}>
-          <Button loading="true" percentageDone="30">
+        <ReactSpecimen>
+          <Button loading="true">
             Loading button
           </Button>
         </ReactSpecimen>
-        <ReactSpecimen span={3}>
-          <Button loading="true" percentageDone="60">
-            Loading button
-          </Button>
-        </ReactSpecimen>
-        <ReactSpecimen span={3}>
-          <Button loading="true" percentageDone="90">
-            Loading button
-          </Button>
-        </ReactSpecimen>
+
         # Click events
-        <ReactSpecimen span={3}>
+        <ReactSpecimen>
           <Button htmlfor="isClicked" onClick={() => this.changeClicked()}>
             Click
           </Button>

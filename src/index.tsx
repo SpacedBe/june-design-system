@@ -1,3 +1,4 @@
+export * from './helpers/color';
 export * from './components/button/Button';
 export * from './components/FAB/Fab';
 export * from './components/popup/Popup';
