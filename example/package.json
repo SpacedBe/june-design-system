@@ -8,17 +8,24 @@
     "catalog": "^3.6.0",
     "formik": "^1.5.2",
     "june-design-system": "link:..",
+    "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-intl": "^2.8.0",
-    "react-scripts": "^1.1.4",
+    "react-scripts": "2.1.4",
     "styled-components": "^4.1.3"
   },
   "scripts": {
-    "start": "node_modules/.bin/react-scripts start",
-    "build": "node_modules/.bin/react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "node_modules/.bin/react-scripts test --env=jsdom",
     "eject": "node_modules/.bin/react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

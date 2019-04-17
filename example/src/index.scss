@@ -1,3 +1,9 @@
+@import '~june-design-system/dist/scss/shared_variables';
+
+.june-design-system {
+  @import '~june-design-system/dist/scss/main.scss';
+}
+
 body {
   margin: 0;
   padding: 0;
