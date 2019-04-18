@@ -205,7 +205,7 @@ $spacing-xl: $spacing-l * 2;
   --color-disabled: var(--color-gray);
 
   --color-white: #ffffff;
-  --color-dark: #000000;
+  --color-dark: #172328;
 
 
   --font-primary: 'Montserrat', sans-serif;
@@ -231,7 +231,11 @@ $spacing-xl: $spacing-l * 2;
   --spacing-s: calc(var(--spacing-baseline) / 2);
   --spacing-m: var(--spacing-baseline);
   --spacing-l: calc(var(--spacing-baseline) * 2);
-  --spacing-xl: calc(var(spacing-l) * 2);
+  --spacing-xl: calc(var(--spacing-l) * 2);
+
+  --border-radius-s: 2px;
+
+  --box-shadow-m: 0 2px 4px 0 rgba(0,0,0,0.5);
 
   @media only screen and (min-width: 400px) {
     --spacing-baseline: 1.714em;

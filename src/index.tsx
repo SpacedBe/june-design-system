@@ -3,6 +3,7 @@ export * from './components/button/Button';
 export * from './components/FAB/Fab';
 export * from './components/popup/Popup';
 export * from './components/stepper/Stepper';
+export * from './components/snackbar/Snackbar';
 export * from './components/container/Container';
 export * from './components/header/Header';
 export * from './components/footer/Footer';

@@ -138,6 +138,13 @@ export default class App extends Component {
                   import("./pages/components/header")
                 )
               },
+              {
+                path: "snackbar",
+                title: "Snackbar",
+                component: pageLoader(() =>
+                  import("./pages/components/snackbar")
+                )
+              },
             ]
           },
           {
