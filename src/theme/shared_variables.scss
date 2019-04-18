@@ -191,9 +191,9 @@ $spacing-xl: $spacing-l * 2;
   --color-primary-tint: #59b4af;
 
   --color-facebook: #39599E;
-  --color-facebook-rgb: 57,89,158;
+  --color-facebook-rgb: 57, 89, 158;
   --color-facebook-contrast: #ffffff;
-  --color-facebook-contrast-rgb: 255,255,255;
+  --color-facebook-contrast-rgb: 255, 255, 255;
   --color-facebook-shade: #324e8b;
   --color-facebook-tint: #4d6aa8;
 
@@ -206,7 +206,7 @@ $spacing-xl: $spacing-l * 2;
 
   --color-white: #ffffff;
   --color-dark: #172328;
-
+  --color-error: #FF5757;
 
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Open Sans', sans-serif;
@@ -235,7 +235,7 @@ $spacing-xl: $spacing-l * 2;
 
   --border-radius-s: 2px;
 
-  --box-shadow-m: 0 2px 4px 0 rgba(0,0,0,0.5);
+  --box-shadow-m: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 
   @media only screen and (min-width: 400px) {
     --spacing-baseline: 1.714em;

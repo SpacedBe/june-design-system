@@ -179,6 +179,13 @@ export default class App extends Component {
                 )
               },
               {
+                path: "formError",
+                title: "Form Error",
+                component: pageLoader(() =>
+                  import("./pages/form/formError")
+                )
+              },
+              {
                 path: "toggle",
                 title: "Toggle",
                 component: pageLoader(() =>
