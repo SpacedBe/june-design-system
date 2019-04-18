@@ -25,6 +25,7 @@ label {
 /*FORM - formikForm.jsx*/
 
 .form {
+  text-align: center;
   margin: 0 auto;
 }
 
@@ -38,12 +39,6 @@ label {
 .form .flex{
   display: flex;
   justify-content: space-between;
-}
-
-.form .button{
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
 }
 
 /*POPUP - popup.jsx*/

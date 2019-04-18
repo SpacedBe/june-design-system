@@ -4,8 +4,8 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 import {getIn} from 'formik';
+import Color from "../../helpers/color";
 
 type Props = {
   field: {
@@ -38,7 +38,7 @@ type Props = {
   classNames?: string[],
 };
 
-const styleVariables = loadStyleVariables();
+const colorHelper = new Color();
 
 const InputStyled = styled.div`
   display: flex;
@@ -50,29 +50,29 @@ const InputStyled = styled.div`
 const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean }>`
   width: 100%;
   box-sizing: border-box;
-  border: ${props => props.error ? `2px solid ${styleVariables.colorError}` : `2px solid ${styleVariables.colorGrayLight}`};
-  color: ${props => props.error ? `${styleVariables.colorError}` : `${styleVariables.colorGrayLight}`};
+  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
+  color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
   padding: 10px 10px 10px 10px;
   margin-right: 20px;
   border-radius: 2.5px;
-  background-color: ${styleVariables.colorWhite};
+  background-color: ${colorHelper.getColor('white')};
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
   justify-content: space-between;
   height: 45px;
   &::placeholder {
-     color: ${props => props.error ? `${styleVariables.colorError}` : `${styleVariables.colorGrayLight}`};
+     color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
   }
 `;
 
 const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?: boolean; }>`
   width: 100%;
-  border: ${props => props.error ? `2px solid ${styleVariables.colorError}` : `2px solid ${styleVariables.colorGrayLight}`};
-  color: ${props => props.error ? `${styleVariables.colorError}` : `${styleVariables.colorGrayLight}`};
+  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error'}` : `2px solid ${colorHelper.getColor('gray-light')}`};
+  color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light'}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
-  background-color: ${styleVariables.colorWhite};
+  background-color: ${colorHelper.getColor('white')};
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   outline: none;
   display: flex;
@@ -84,7 +84,7 @@ const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?
 const InputWithIconLeft = styled.input`
   border: none;
   margin-left: 10px;
-  background-color: ${styleVariables.colorWhite};
+  background-color: ${colorHelper.getColor('white')};
   outline: none;
   margin-bottom: var(--spacing-xs);
 `;
@@ -92,22 +92,22 @@ const InputWithIconLeft = styled.input`
 const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
   border: none;
   outline: none;
-  background-color: ${styleVariables.colorWhite};
+  background-color: ${colorHelper.getColor('white')};
   opacity: ${props => props.disabled ? '0.5' : '1'};
   width: 100%;
 `;
 
 const IconSmall = styled.span<{ disabled?: boolean }>`
-  font-size: ${styleVariables.fontSizeXxl};
+  font-size: var(--icon-size-s);
   opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
 
 const IconBig = styled.span`
-  font-size: ${styleVariables.fontSizeXxl};
+  font-size: var(--font-size-m);
 `;
 
 const ButtonSmall = styled.button<{ disabled?: boolean }>`
-  font-size: ${styleVariables.fontSizeM};
+  font-size: var(--font-size-m);
   opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
 
@@ -119,11 +119,10 @@ const Flex = styled.div`
 `;
 
 const LabelStyle = styled.span<{ disabled?: boolean; error?: boolean }>`
-  font-size: ${styleVariables.fontSizeM};
-  font-family: ${styleVariables.fontSecondary};
-  padding-bottom: 5px;
-  opacity: ${props => (props.disabled ? "0.5" : "1")};
-  color: ${props => props.error ? `${styleVariables.colorError}` : `${styleVariables.black}`};
+  font-family: var(--font-secondary);
+  padding-bottom: var(--spacing-xs);
+  color: ${props => (props.disabled ? colorHelper.getColor('disabled') : colorHelper.getColor('dark'))};
+  color: ${props => props.error ? colorHelper.getColor('error') : colorHelper.getColor('dark')};
 `;
 
 const HintStyled = styled.span`
@@ -133,9 +132,9 @@ const HintStyled = styled.span`
 `;
 
 const ErrorMessageStyled = styled.span`
-  font-size: ${styleVariables.fontSizeS};
-  color: ${styleVariables.colorError};
-  font-weight: ${styleVariables.fontWeightBold};
+  font-size: var(--font-size-s);
+  color: ${colorHelper.getColor('error')};
+  font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-xs);
 `;
 

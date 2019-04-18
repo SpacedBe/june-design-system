@@ -10,7 +10,8 @@ import {
   IconQuestionmark,
   IconElectricity,
   Button,
-  FormikTextarea
+  FormikTextarea,
+  FormError
 } from "june-design-system";
 import {Field, Form, Formik} from "formik";
 import {string} from "prop-types";
@@ -92,7 +93,7 @@ export default class FormPage extends React.Component {
                             label="Password*"
                             hint="Min. 8 characters"
                             component={FormikInput}
-                            validate={() => 'This is a validation message' }
+                            validate={() => 'This is a validation message'}
                           />
                         </FormGroup>
                         <div className={"flex"}>
@@ -225,7 +226,11 @@ export default class FormPage extends React.Component {
                         />
                       </FormGroup>
                     </div>
-                    <div className={"button"}>
+                    <FormGroup>
+                      <FormError>This is an example server error!</FormError>
+                    </FormGroup>
+
+                    <FormGroup>
                       <Button
                         clear={false}
                         color="green"
@@ -235,7 +240,7 @@ export default class FormPage extends React.Component {
                       >
                         Verzenden
                       </Button>
-                    </div>
+                    </FormGroup>
                   </section>
                 </div>
               </Form>
