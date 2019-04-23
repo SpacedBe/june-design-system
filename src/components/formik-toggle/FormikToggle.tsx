@@ -19,7 +19,7 @@ type Props = {
 };
 
 const ToggleInput = styled.input<{}>`
-  z-index: var(--zi-x);
+  z-index: var(--zi-200);
   opacity: 0;
   width: 40px;
   height: 15px;
@@ -30,7 +30,7 @@ const ToggleInput = styled.input<{}>`
   }
   &:checked ~ label {
     background: var(--color-primary);
-    border: 2px solid var(--color-primary);
+    border: 2px solid var(--color-primary-shade);
     transition: transform var(--transition-speed-normal) ease-in;
   }
 
