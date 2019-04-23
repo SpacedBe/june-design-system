@@ -63,7 +63,7 @@ const Label = styled.label<{
 `;
 
 const Option = styled.option`
-  color: ${`var(--color-gray)`};
+  color: var(--color-gray);
 `;
 
 export class FormikSelect extends React.Component<Props> {
