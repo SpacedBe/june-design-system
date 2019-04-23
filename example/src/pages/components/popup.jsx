@@ -1,7 +1,6 @@
 import React from 'react';
-import {Page, ReactSpecimen} from 'catalog';
+import {Page} from 'catalog';
 import {Popup, Button, IconQuestionmark} from 'june-design-system';
-import monster from "../../assets/images/monster.png"
 
 export default class PopupPage extends React.Component {
 
@@ -27,7 +26,6 @@ export default class PopupPage extends React.Component {
       placeholder: event.placeholder,
       show: true,
       className: "popup--afterClick",
-      img: monster
     })
   }
 
@@ -44,7 +42,6 @@ export default class PopupPage extends React.Component {
   }
 
   render() {
-    const toggleClass = this.state.show ? "popup afterClick" : "";
     return (
       <div>
         <Page>

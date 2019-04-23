@@ -62,8 +62,6 @@ const Checkbox = styled.div<{ error?: boolean;}>`
   border-radius: 15%;
   top: 0px;
   left: 0px;
-  position: absolute;
-  content: "";
   display: inline-block;
   visibility: visible;
   background-color: ${styleVariables.colorWhite};
@@ -71,11 +69,12 @@ const Checkbox = styled.div<{ error?: boolean;}>`
 `;
 
 const Label = styled.label<{ error?: boolean; }>`
-  margin-left: 35px;
+  margin-left: var(--spacing-m);
   position: relative;
   font-family: ${styleVariables.fontSecondary};
   font-size: ${styleVariables.fontSizeM};
   color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorBlack}`};
+  text-align: left;
 `;
 
 export class FormikCheckbox extends React.Component<Props> {

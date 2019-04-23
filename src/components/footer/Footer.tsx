@@ -3,11 +3,12 @@
  */
 import * as React from 'react';
 import styled from 'styled-components';
-import { loadStyleVariables } from "../../scripts/loadStyleVariables";
+import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 
 const styleVariables = loadStyleVariables();
 
 const FooterDiv = styled.div`
+  padding: var(--spacing-m);
   overflow: hidden;
   background-color: ${styleVariables.colorWhite};
   display: flex;
@@ -16,12 +17,12 @@ const FooterDiv = styled.div`
   box-shadow: 0px -3px 10px ${styleVariables.colorGrayLighter};
 `;
 
-export class Footer extends React.Component{
-  render(){
-    return(
+export class Footer extends React.Component {
+  render() {
+    return (
       <FooterDiv {...this.props}>
         {this.props.children}
       </FooterDiv>
-    )
+    );
   }
 }

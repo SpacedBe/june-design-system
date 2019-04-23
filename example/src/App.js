@@ -16,6 +16,7 @@ export default class App extends Component {
   render() {
     return (
       <Catalog
+        className='june-design-system'
         title="June Design System"
         styles={["./styles/main.css"]}
         pages={[
@@ -137,6 +138,13 @@ export default class App extends Component {
                   import("./pages/components/header")
                 )
               },
+              {
+                path: "snackbar",
+                title: "Snackbar",
+                component: pageLoader(() =>
+                  import("./pages/components/snackbar")
+                )
+              },
             ]
           },
           {
@@ -168,6 +176,13 @@ export default class App extends Component {
                 title: "Select",
                 component: pageLoader(() =>
                   import("./pages/form/formikSelect")
+                )
+              },
+              {
+                path: "formError",
+                title: "Form Error",
+                component: pageLoader(() =>
+                  import("./pages/form/formError")
                 )
               },
               {

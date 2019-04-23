@@ -9,6 +9,8 @@ import copy from 'rollup-plugin-copy-glob';
 import svgr from '@svgr/rollup';
 import pkg from './package.json';
 
+const isWatching = process.argv.includes('-w') || process.argv.includes('--watch');
+
 export default {
   external: [
     'react',
@@ -41,6 +43,6 @@ export default {
     commonjs(),
     copy([
       {files: 'src/theme/**/*', dest: 'dist/scss'}
-    ])
+    ], { verbose: true, watch: isWatching })
   ]
 }

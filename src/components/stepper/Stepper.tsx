@@ -16,7 +16,6 @@ const styleVariables = loadStyleVariables();
 
 const Wrapper = styled.div`
   display: flex;
-  flex-grow: 1;
   justify-content: center;
   align-items: center;
   position: relative;

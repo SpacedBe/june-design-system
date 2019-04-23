@@ -30,6 +30,9 @@ type Props = {
 }
 const styleVariables = loadStyleVariables();
 
+const WrapperStyled = styled.div`
+  text-align: left;
+`;
 
 const Select = styled.select<{
   error?: boolean;
@@ -74,10 +77,10 @@ export class FormikSelect extends React.Component<Props> {
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     return (
-      <div>
+      <WrapperStyled>
         <Label
-          error={!!errors}
           disabled={this.props.disabled}
+          error={!!errors}
           htmlFor={name}>
           {label}
         </Label>
@@ -93,7 +96,7 @@ export class FormikSelect extends React.Component<Props> {
           ))}
         </Select>
         {touched && errors && <div>{errors}</div>}
-      </div>
+      </WrapperStyled>
     );
   }
 }

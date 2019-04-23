@@ -1,8 +1,8 @@
 import React from 'react';
-import { Page, ReactSpecimen, render } from 'catalog';
-import { FormikSelect } from 'june-design-system';
+import {Page, ReactSpecimen} from 'catalog';
+import {FormikSelect} from 'june-design-system';
 
-export default class FormikSelectPage extends React.Component{
+export default class FormikSelectPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,8 +20,8 @@ export default class FormikSelectPage extends React.Component{
         'example-input': null,
       },
       form: {
-        errors: { 'example-input': null },
-        touched: { 'example-input': false },
+        errors: {'example-input': null},
+        touched: {'example-input': false},
       }
     };
   }
@@ -71,7 +71,6 @@ export default class FormikSelectPage extends React.Component{
   }
 
   onChange = e => {
-    const userInput = e.currentTarget.value;
     this.setState({
       userInput: e.currentTarget.value
     });
@@ -125,10 +124,10 @@ export default class FormikSelectPage extends React.Component{
           <FormikSelect
             label="Gender"
             options={[
-              { label: "ONE", value: "1" },
-              { label: "TWO", value: "2" },
-              { label: "THREE", value: "3" },
-              { label: "FOUR", value: "4" }
+              {label: "ONE", value: "1"},
+              {label: "TWO", value: "2"},
+              {label: "THREE", value: "3"},
+              {label: "FOUR", value: "4"}
             ]}
             htmlFor="isSelect"
             error={this.state.error}

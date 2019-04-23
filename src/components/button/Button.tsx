@@ -4,12 +4,11 @@
  */
 
 import * as React from 'react';
-import {Loader} from "../loader/Loader";
 import styled from 'styled-components';
+import {Spinner} from "../spinner/spinner";
+import Color from "../../helpers/color";
 
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
-
-const styleVariables = loadStyleVariables();
+let color = new Color();
 
 const sizes = {
   xsmall: '20px',
@@ -18,65 +17,62 @@ const sizes = {
   large: '51px',
 };
 
-const colors = {
-  red: `${styleVariables.colorRed}`,
-  green: `${styleVariables.colorGreen}`,
-  blue: `${styleVariables.colorBlue}`,
-  yellow: `${styleVariables.colorYellow}`,
-  facebook: `${styleVariables.colorBlueFacebook}`
-};
-
 type Props = {
-  id?: string,
   label?: string | React.ReactNode,
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
   iconButtonWithBorder?: any,
-  outlined?: boolean,
   loading?: boolean,
   wide?: boolean,
   size?: 'xsmall' | 'small' | 'medium' | 'large',
   rounded?: boolean,
   clear?: boolean,
-  color?: 'red' | 'green' | 'blue' | 'yellow' | 'facebook',
+  color?: string,
   disabled?: boolean,
   target?: string,
   type?: "button" | "reset" | "submit" | undefined,
   onClick?: any,
-  className?: string;
-  percentageDone?: any;
 };
 
 const Icon = styled.div`
   display: flex;
   align-items: center;
-  font-size: ${styleVariables.fontSizeM};
-  fill: ${styleVariables.colorWhite};
+  font-size: var(--font-size-m);
+  
+  svg {
+    fill: ${props => color.getColorContrast(props.color)};
+    font-size: 2em;
+  }
+  
   &:hover {
-    fill: ${styleVariables.colorWhite};
+    fill: var(--color-white);
   }
 `;
 
-const IconOnly = styled.span`
-  fill: ${styleVariables.colorWhite};
-  padding: 0.2em;
-  font-size: ${styleVariables.fontSizeM};
+const IconOnly = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: ${props => color.getColor(props.color)};
+  font-size: 3em;
   cursor: pointer;
 `;
 
 const IconLeft = styled.span`
+  display: flex;
   margin-right: 8px;
 `;
 
 const IconRight = styled.span`
+  display: flex;
   margin-left: 8px;
 `;
 
 const Label = styled.span`
-  @include transition(opacity);
+  transition: opacity var(--transition-speed-normal) ease-in-out;
   opacity: 1;
-  font-family: ${styleVariables.fontPrimary}
+  font-family: var(--font-primary);
   text-transform: capitalize;
 `;
 
@@ -86,115 +82,99 @@ const OnlyIconButton = styled.button`
 `;
 
 const OnlyIconWithBorder = styled(OnlyIconButton)`
-  border: 2px solid ${styleVariables.colorPrimaryLight};
-  width: 30px;
-  height: 30px;
+  border: 2px solid ${props => color.getColorTint(props.color)};
 `;
 
-const Flex = styled.div`
+const FlexStyled = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const NormalButton = styled.button<{
-  target?: string;
-  onClick?: void;
-  size?: string;
-  rounded?: boolean;
-  clear?: boolean;
-  outlined?: boolean;
-  disabled?: boolean;
-  wide?: boolean;
-  color?: string;
-  inverted?: boolean;
-}>`
-  background: ${props => {
-  if (props.outlined || props.clear) {
-    return `none`;
-  } else if (props.disabled) {
-    return `${styleVariables.colorGray}`;
-  } else if (props.color) {
-    return colors[props.color || ""];
-  } else {
-    return `${styleVariables.colorPrimary}`;
+const NormalButton = styled.button<any>`
+  color: ${props => {
+  if (props.clear && props.disabled) {
+    return color.getColor('gray');
   }
+
+  if (props.clear) {
+    return color.getColor(props.color);
+  }
+
+  return color.getColorContrast(props.color);
 }};
-  border-radius: ${props =>
-  props.rounded ? `${styleVariables.compSmallSize}` : `${styleVariables.compRadius}`};
+
+  background-color: ${props => {
+  if (props.clear) {
+    return 'transparent;';
+  }
+
+  if (props.disabled) {
+    return color.getColor('gray');
+  }
+
+  return color.getColor(props.color);
+}};
 
   border: 2px solid ${props => {
-  if (props.outlined) {
-    return colors[props.color || ""];
-  }
   if (props.disabled) {
-    return `2px solid ${styleVariables.colorGray}`;
+    return color.getColor('gray');
   }
-  if (props.color) {
-    return colors[props.color || ""];
-  } else {
-    return `${styleVariables.colorPrimary}`;
-  }
+
+  return color.getColor(props.color);
 }};
 
-  color: ${props => {
-  if (props.outlined || props.clear) {
-    return colors[props.color || ""];
-  } else {
-    return `${styleVariables.colorWhite}`;
-  }
-}};
-  cursor: pointer;
-  font-family: ${styleVariables.fontbuttons};
-  font-weight: ${styleVariables.fontWeightBold};
-  font-size: ${styleVariables.fontSizeM};
-  outline: 0;
-  padding: 0 ${styleVariables.gutter};
+  cursor: ${props => props.disabled ? 'initial' : 'pointer'};
+  border-radius: ${props => props.rounded ? '30px' : '3px'};
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-m);
+  outline: none;
+  padding: 0 var(--spacing-m);
   position: relative;
   text-align: center;
-  width: ${props => (props.wide ? "100%" : "")};
+  width: ${props => (props.wide ? '100%' : 'auto')};
   text-decoration: none;
   letter-spacing: 0.8px;
-  transition: 0.2s ease-in-out;
+  transition: all var(--transition-speed-normal) ease-in-out;
   line-height: ${props => sizes[props.size || "medium"]};
 
   &:hover {
-    background-color: ${styleVariables.greenDarker};
-    color: ${styleVariables.colorWhite};
-    border: 2px solid  ${styleVariables.greenDarker}
+    background-color: ${props => props.disabled ? '' : color.getColorShade(props.color)};
+    border: 2px solid ${props => props.disabled ? color.getColor('gray') : color.getColorShade(props.color)};
+    color: ${props => props.disabled ? '' : color.getColorContrast(props.color)};
+  }
+`;
+
+const ButtonContainerStyled = styled.div`
+  > *:nth-child(2) {
+    margin-left: var(--spacing-m);
+    vertical-align: middle;
   }
 `;
 
 export class Button extends React.Component<Props> {
   static defaultProps = {
     size: 'medium',
+    color: 'primary',
   };
 
   render() {
     let buttonContent;
-    let isDisabled = (this.props.loading || this.props.disabled);
-
     const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly || this.props.iconButtonWithBorder;
 
     if (!hasIcon) {
       buttonContent = (
         <NormalButton
-          className={this.props.className}
-          id={this.props.id}
-          disabled={isDisabled}
+          disabled={this.props.loading || this.props.disabled}
           color={this.props.color}
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
           clear={this.props.clear}
           onClick={this.props.onClick}
-          outlined={this.props.outlined}
           rounded={this.props.rounded}
-          target={this.props.target}
-        >
-          <div>
-            <Label>{this.props.children}</Label>
-            <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-          </div>
+          target={this.props.target}>
+          <Label>{this.props.children}</Label>
         </NormalButton>
       );
     }
@@ -202,26 +182,19 @@ export class Button extends React.Component<Props> {
     if (hasIcon && this.props.iconLeft) {
       buttonContent = (
         <NormalButton
-          className={this.props.className}
-          id={this.props.id}
-          disabled={isDisabled}
+          disabled={this.props.loading || this.props.disabled}
           color={this.props.color}
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
           clear={this.props.clear}
           onClick={this.props.onClick}
-          outlined={this.props.outlined}
           rounded={this.props.rounded}
-          target={this.props.target}
-        >
-          <div>
-            <Icon>
-              <IconLeft>{this.props.iconLeft}</IconLeft>
-              <Label>{this.props.children}</Label>
-            </Icon>
-            <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-          </div>
+          target={this.props.target}>
+          <Icon>
+            <IconLeft>{this.props.iconLeft}</IconLeft>
+            <Label>{this.props.children}</Label>
+          </Icon>
         </NormalButton>
       );
     }
@@ -229,61 +202,51 @@ export class Button extends React.Component<Props> {
     if (hasIcon && this.props.iconRight) {
       buttonContent = (
         <NormalButton
-          className={this.props.className}
-          id={this.props.id}
-          disabled={isDisabled}
+          disabled={this.props.loading || this.props.disabled}
           color={this.props.color}
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
           clear={this.props.clear}
           onClick={this.props.onClick}
-          outlined={this.props.outlined}
           rounded={this.props.rounded}
-          target={this.props.target}
-        >
-          <div>
-            <Icon>
-              <Label>{this.props.children}</Label>
-              <IconRight>{this.props.iconRight}</IconRight>
-            </Icon>
-            <Loader loading={this.props.loading} percentage={this.props.percentageDone}/>
-          </div>
+          target={this.props.target}>
+          <Icon>
+            <Label>{this.props.children}</Label>
+            <IconRight>{this.props.iconRight}</IconRight>
+          </Icon>
         </NormalButton>
       );
     }
 
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
-        <OnlyIconButton {...this.props}
-                        className={this.props.className}
-                        id={this.props.id}
-                        onClick={this.props.onClick}>
-          <div>
-            <IconOnly>{this.props.iconOnly}</IconOnly>
-          </div>
+        <OnlyIconButton>
+          <IconOnly>{this.props.iconOnly}</IconOnly>
         </OnlyIconButton>
       );
     }
 
     if (hasIcon && this.props.iconButtonWithBorder) {
       buttonContent = (
-        <OnlyIconWithBorder onClick={this.props.onClick}
-                            className={this.props.className}
-                            id={this.props.id}>
-          <Flex>
+        <OnlyIconWithBorder>
+          <FlexStyled>
             <IconOnly>{this.props.iconButtonWithBorder}</IconOnly>
-          </Flex>
+          </FlexStyled>
         </OnlyIconWithBorder>
       );
     }
 
+    const spinnerContent = (
+      <Spinner color={color.getColor('primary')}/>
+    );
+
     return (
-      <div>
-        {
-          buttonContent
-        }
-      </div>
+      <ButtonContainerStyled {...this.props}
+                             onClick={this.props.onClick}>
+        {buttonContent}
+        {this.props.loading && spinnerContent}
+      </ButtonContainerStyled>
 
     );
   }

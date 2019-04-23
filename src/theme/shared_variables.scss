@@ -190,14 +190,23 @@ $spacing-xl: $spacing-l * 2;
   --color-primary-shade: #3e9792;
   --color-primary-tint: #59b4af;
 
+  --color-facebook: #39599E;
+  --color-facebook-rgb: 57, 89, 158;
+  --color-facebook-contrast: #ffffff;
+  --color-facebook-contrast-rgb: 255, 255, 255;
+  --color-facebook-shade: #324e8b;
+  --color-facebook-tint: #4d6aa8;
+
   --color-gray: #BFBFBF;
   --color-gray-dark: #949A9E;
   --color-gray-darker: #333;
   --color-gray-light: #CCC;
   --color-gray-lighter: #EEE;
+  --color-disabled: var(--color-gray);
 
   --color-white: #ffffff;
-  --color-dark: #000000;
+  --color-dark: #172328;
+  --color-error: #FF5757;
 
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Open Sans', sans-serif;
@@ -209,12 +218,24 @@ $spacing-xl: $spacing-l * 2;
   --font-size-xl: 1.286em;
   --font-size-xxl: 1.429em;
 
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --icon-size-s: 1em;
+  --icon-size-m: 2em;
+
   --spacing-baseline: 1em;
   --spacing-xs: calc(var(--spacing-s) / 2);
   --spacing-s: calc(var(--spacing-baseline) / 2);
   --spacing-m: var(--spacing-baseline);
   --spacing-l: calc(var(--spacing-baseline) * 2);
-  --spacing-xl: calc(var(spacing-l) * 2);
+  --spacing-xl: calc(var(--spacing-l) * 2);
+
+  --border-radius-s: 2px;
+
+  --box-shadow-m: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 
   @media only screen and (min-width: 400px) {
     --spacing-baseline: 1.714em;
@@ -227,4 +248,7 @@ $spacing-xl: $spacing-l * 2;
   --screen-md: 992px;
   --screen-lg: 1420px;
   --screen-xl: 1600px;
+
+  --transition-speed-normal: 0.2s;
+  --transition-speed-faster: 0.6s;
 }

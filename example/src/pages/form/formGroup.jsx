@@ -1,6 +1,6 @@
 import React from "react";
 import {Page, ReactSpecimen} from "catalog";
-import {FormGroup, Button} from "june-design-system";
+import {FormGroup} from "june-design-system";
 
 export default class FormGroupPage extends React.Component {
   constructor(props) {
