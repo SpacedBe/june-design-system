@@ -4,7 +4,6 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 import {getIn} from 'formik';
 
 const sizes = {
@@ -38,30 +37,38 @@ type Props = {
   classNames?: string[],
 };
 
-const styleVariables = loadStyleVariables();
-
-const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean, size?: string; }>`
-  border: ${props => props.error ? `2px solid ${styleVariables.colorRed}` : `2px solid ${styleVariables.colorGrayLight}`};
-  color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
+const InputBoxRight = styled.div<{
+  error?: boolean;
+  disabled?: boolean;
+  focussed?: boolean;
+  size?: string;
+}>`
+  border: ${props =>
+    props.error
+      ? `2px solid var(--color-error)`
+      : `2px solid var(--color-gray-light)`};
+  color: ${props =>
+    props.error ? `var(--color-error)` : `var(--color-gray-light)`};
   padding: 10px;
   border-radius: 2.5px;
-  background: ${styleVariables.colorWhite};
-  opacity: ${props => props.disabled ? '0.5' : '1'};
+  background: var(--color-white);
+  opacity: ${props => (props.disabled ? '0.5' : '1')};
   outline: none;
   display: flex;
   justify-content: space-between;
-  height: ${props => sizes[props.size || "medium"]};
+  height: ${props => sizes[props.size || 'medium']};
 
   &::placeholder {
-     color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorGrayLight}`};
+    color: ${props =>
+      props.error ? `var(--color-error)` : `var(--color-gray-light)`};
   }
 `;
 
 const Textarea = styled.textarea<{ error?: boolean; disabled?: boolean }>`
   border: none;
   outline: none;
-  background: ${styleVariables.colorWhite};
-  opacity: ${props => props.disabled ? '0.5' : '1'};
+  background: var(--color-white);
+  opacity: ${props => (props.disabled ? '0.5' : '1')};
   width: 100%;
   resize: none;
 `;
@@ -75,11 +82,10 @@ const Flex = styled.div`
 
 const Label = styled.label<{ disabled?: boolean; error?: boolean }>`
   padding-bottom: 5px;
-  opacity: ${props => (props.disabled ? "0.5" : "1")};
-  color: ${props =>
-  props.error ? `${styleVariables.colorRed}` : `${styleVariables.black}`};
-  font-family: ${styleVariables.fontSecondary};
-  font-size: ${styleVariables.fontSizeM};
+  opacity: ${props => (props.disabled ? '0.5' : '1')};
+  color: ${props => (props.error ? `var(--color-error)` : `var(--color-dark)`)};
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-m);
 `;
 
 export class FormikTextarea extends React.Component<Props> {
