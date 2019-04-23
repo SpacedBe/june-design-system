@@ -226,6 +226,10 @@ $spacing-xl: $spacing-l * 2;
   --icon-size-s: 1em;
   --icon-size-m: 2em;
 
+  --zi-x: 100;
+  --zi-y: 200;
+  --zi-z: 300;
+
   --spacing-baseline: 1em;
   --spacing-xs: calc(var(--spacing-s) / 2);
   --spacing-s: calc(var(--spacing-baseline) / 2);
