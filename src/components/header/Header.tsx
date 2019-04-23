@@ -10,7 +10,7 @@ const HeaderDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0.5px 1px var(--color-primary-lime);
+  box-shadow: 0px 0.5px 1px rgba(var(--color-primary-rgb), 0.25);
 `;
 
 export class Header extends React.Component {
