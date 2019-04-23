@@ -76,70 +76,68 @@ export default class ButtonPage extends React.Component {
         </ReactSpecimen>
         <div>
           <div>
-            <label htmlFor="isRounded">Rounded?</label>
+            <label htmlFor='isRounded'>Rounded?</label>
             <input
-              type="checkbox"
+              type='checkbox'
               value={this.state.rounded}
-              name="isRounded"
+              name='isRounded'
               onChange={() => this.changeRounded()}
             />
           </div>
 
           <div>
-            <label htmlFor="isDisabled">Disabled?</label>
+            <label htmlFor='isDisabled'>Disabled?</label>
             <input
-              type="checkbox"
+              type='checkbox'
               value={this.state.disabled}
-              name="isDisabled"
+              name='isDisabled'
               onChange={() => this.changeDisable()}
             />
           </div>
 
           <div>
-            <label htmlFor="isClear">Clear?</label>
+            <label htmlFor='isClear'>Clear?</label>
             <input
-              type="checkbox"
+              type='checkbox'
               value={this.state.clear}
-              name="isClear"
+              name='isClear'
               onChange={() => this.changeClear()}
             />
           </div>
 
           <div>
-            <label htmlFor="isFullWidth">Full width?</label>
+            <label htmlFor='isFullWidth'>Full width?</label>
             <input
-              type="checkbox"
+              type='checkbox'
               value={this.state.wide}
-              name="isFullWidth"
+              name='isFullWidth'
               onChange={() => this.changeWide()}
             />
           </div>
 
           <div>
-            <label htmlFor="color">Color</label>
+            <label htmlFor='color'>Color</label>
             <select
-              name="color"
+              name='color'
               value={this.state.color}
               onChange={event => this.changeColor(event)}
             >
-              <option value="red">red</option>
-              <option value="green">green</option>
-              <option value="blue">blue</option>
-              <option value="yellow">yellow</option>
-              <option value="facebook">facebook</option>
+              <option value='primary'>green</option>
+              <option value='error'>red</option>
+              <option value='facebook'>blue</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="size">Size</label>
+            <label htmlFor='size'>Size</label>
             <select
-              name="size"
+              name='size'
               value={this.state.size}
               onChange={event => this.changeSize(event)}
             >
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
+              <option value='small'>Small</option>
+              <option value='medium'>Medium</option>
+              <option value='large'>Large</option>
             </select>
           </div>
         </div>
@@ -159,19 +157,15 @@ export default class ButtonPage extends React.Component {
         </ReactSpecimen>
         ## Only an icon, with border
         <ReactSpecimen>
-          <Button iconButtonWithBorder={<IconSettings />}/>
+          <Button iconButtonWithBorder={<IconSettings />} />
         </ReactSpecimen>
-
         ## Loading
         <ReactSpecimen>
-          <Button loading="true">
-            Loading button
-          </Button>
+          <Button loading='true'>Loading button</Button>
         </ReactSpecimen>
-
         # Click events
         <ReactSpecimen>
-          <Button htmlfor="isClicked" onClick={() => this.changeClicked()}>
+          <Button htmlfor='isClicked' onClick={() => this.changeClicked()}>
             Click
           </Button>
         </ReactSpecimen>
