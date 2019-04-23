@@ -12,7 +12,6 @@ interface Step {
 type Props = {
   steps: Step[];
   currentStepIndex: number;
-  color?: string;
 }
 
 const Wrapper = styled.div`
@@ -31,7 +30,7 @@ const Label = styled.div`
   position: absolute;
   top: 30px;
   text-transform: uppercase;
-  color: ${props => color.getColor(props.color)};
+  color: ${color.getColor("gray-dark")};
   font-size: var(--font-size-xs);
   font-family: var(--font-secondary);
 `;
@@ -64,8 +63,8 @@ const Dot = styled.div<{ large?: boolean; color?: string; current?: boolean }>`
   height: ${props => (props.large ? "20px" : "6px")};
   background-color: ${props =>
     props.current
-      ? color.getColorContrast(props.color)
-      : color.getColor(props.color)};
+      ? color.getColorContrast("primary")
+      : color.getColor("primary")};
   border: ${props =>
     props.current ? `5px solid ${color.getColor(props.color)}` : "none"};
   border-radius: 50%;
