@@ -2,8 +2,8 @@
  * @class FormikSelect
  */
 
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 import {getIn} from 'formik';
 
 interface Option {

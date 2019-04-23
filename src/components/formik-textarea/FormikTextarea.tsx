@@ -7,10 +7,10 @@ import styled from 'styled-components';
 import {getIn} from 'formik';
 
 const sizes = {
-  small: "50px",
-  medium: "100px",
-  large: "150px",
-  xlarge: "200px"
+  small: '50px',
+  medium: '100px',
+  large: '150px',
+  xlarge: '200px'
 };
 
 type Props = {
