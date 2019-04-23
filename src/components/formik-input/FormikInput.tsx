@@ -81,20 +81,18 @@ const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?
   margin-bottom: var(--spacing-xs);
 `;
 
-const InputWithIconLeft = styled.input`
-  border: none;
-  margin-left: 10px;
-  background-color: ${colorHelper.getColor('white')};
-  outline: none;
-  margin-bottom: var(--spacing-xs);
-`;
-
 const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
+  font-size: var(--font-size-s);
+  color: var(--color-dark);
   border: none;
   outline: none;
-  background-color: ${colorHelper.getColor('white')};
+  background-color: var(--color-white);
   opacity: ${props => props.disabled ? '0.5' : '1'};
   width: 100%;
+`;
+
+const InputWithIconLeft = styled(Input)`
+  margin-left: 10px;
 `;
 
 const IconSmall = styled.span<{ disabled?: boolean }>`
@@ -122,16 +120,16 @@ const LabelStyle = styled.span<{ disabled?: boolean; error?: boolean }>`
   font-family: var(--font-secondary);
   padding-bottom: var(--spacing-xs);
   color: ${props => {
-    if (props.disabled) {
-      return colorHelper.getColor('disabled');
-    }
-  
-    if (props.error) {
-      return colorHelper.getColor('error');
-    }
-  
-    return colorHelper.getColor('dark');
-  }};
+  if (props.disabled) {
+    return colorHelper.getColor('disabled');
+  }
+
+  if (props.error) {
+    return colorHelper.getColor('error');
+  }
+
+  return colorHelper.getColor('dark');
+}};
 `;
 
 const HintStyled = styled.span`
