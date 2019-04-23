@@ -193,7 +193,7 @@ $font-path: '/assets/fonts/' !default;
 
 & {
   font-family: $font-body !important;
-  font-size: 14px;
+  font-size: var(--font-size-s)
 }
 
 h1,
@@ -222,7 +222,7 @@ h3, .h3 {
 }
 
 p {
-  font-size: $font-size-m;
+  font-size: var(--font-size-m);
   font-family: $font-secondary;
 }
 
@@ -253,22 +253,8 @@ a {
   color: $text-color;
 }
 
-.buttonSize {
-  font-size: $font-size-s;
-}
-
-.labelSize {
-  font-size: $font-size-s;
-}
-
-.central {
-  display: flex;
-  margin: 0 auto;
-}
-
-.explainer {
-  font-size: $font-size-s;
-  font-family: $font-secondary;
+.font-large {
+  font-size: var(--font-size-l);
 }
 
 .small {

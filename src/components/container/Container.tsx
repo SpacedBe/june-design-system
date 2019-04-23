@@ -5,6 +5,7 @@ import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 const styleVariables = loadStyleVariables();
 
 const StyledContainer = styled.div`
+  width: 100%;
   max-width: ${styleVariables.screenXs};
   margin: 0 auto;
   padding: var(--spacing-m);

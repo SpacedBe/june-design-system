@@ -24,7 +24,7 @@ type Props = {
   placeholderText: string;
   error: boolean,
   focussed: boolean,
-  disabled: boolean,
+  disabled?: boolean,
   iconLeft?: any,
   iconRight?: any,
   buttonRight?: any,
@@ -121,8 +121,17 @@ const Flex = styled.div`
 const LabelStyle = styled.span<{ disabled?: boolean; error?: boolean }>`
   font-family: var(--font-secondary);
   padding-bottom: var(--spacing-xs);
-  color: ${props => (props.disabled ? colorHelper.getColor('disabled') : colorHelper.getColor('dark'))};
-  color: ${props => props.error ? colorHelper.getColor('error') : colorHelper.getColor('dark')};
+  color: ${props => {
+    if (props.disabled) {
+      return colorHelper.getColor('disabled');
+    }
+  
+    if (props.error) {
+      return colorHelper.getColor('error');
+    }
+  
+    return colorHelper.getColor('dark');
+  }};
 `;
 
 const HintStyled = styled.span`
