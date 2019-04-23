@@ -4,7 +4,6 @@
 
 import * as React from 'react';
 import styled from "styled-components";
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 import {getIn} from 'formik';
 
 type Props = {
@@ -29,11 +28,9 @@ type Props = {
   value: string;
 };
 
-const styleVariables = loadStyleVariables();
-
 const Input = styled.input`
   opacity: 0;
-  z-index: ${styleVariables.ziCheckbox};
+  z-index: var(--zi-200);
   position: absolute;
   cursor: pointer;
   width: 20px;
@@ -50,18 +47,21 @@ const InputDiv = styled.div`
   position: relative;
 `;
 
-const Round = styled.div<{ error?: boolean; }>`
+const Round = styled.div<{ error?: boolean }>`
   width: 21px;
   height: 21px;
   border-radius: 15px;
   top: 0px;
   left: 0px;
   position: absolute;
-  content: "";
+  content: '';
   display: inline-block;
   visibility: visible;
-  background-color: ${styleVariables.colorWhite};
-  border: ${props => props.error ? `2px solid ${styleVariables.colorRed}` : `2px solid ${styleVariables.colorGreen}`};
+  background-color: var(--color-white);
+  border: ${props =>
+    props.error
+      ? `2px solid var(--color-error)`
+      : `2px solid var(--color-primary)`};
 `;
 
 const Span = styled.span<{ error?: boolean }>`
@@ -72,14 +72,16 @@ const Span = styled.span<{ error?: boolean }>`
   opacity: 0;
   border-radius: 30px;
   position: relative;
-  background-color: ${styleVariables.colorGreen}};
+  background-color: ${props =>
+    props.error ? `var(--color-error)` : `var(--color-primary)`};
 `;
 
 const Label = styled.label<{ error?: boolean }>`
   margin-left: 35px;
-  font-family: ${styleVariables.fontSecondary};
-  font-size: ${styleVariables.fontSizeM};
-  color: ${props => props.error ? `${styleVariables.colorRed}` : `${styleVariables.colorBlack}`};
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-m);
+  color: ${props =>
+    props.error ? `var(--color-error)` : `var(--color-dark)`};
 `;
 
 export class FormikRadiobutton extends React.Component<Props> {
