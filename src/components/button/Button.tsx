@@ -38,7 +38,6 @@ type Props = {
 const Icon = styled.div`
   display: flex;
   align-items: center;
-  font-size: var(--font-size-xs);
 
   svg {
     fill: ${props => color.getColorContrast(props.color)};
@@ -55,7 +54,7 @@ const IconOnly = styled.div`
   align-items: center;
   justify-content: center;
   fill: ${props => color.getColor(props.color)};
-  font-size: 3em;
+  font-size: 2em;
   cursor: pointer;
 `;
 
@@ -84,6 +83,7 @@ const OnlyIconButton = styled.button`
 
 const OnlyIconWithBorder = styled(OnlyIconButton)`
   border: 2px solid ${props => color.getColorTint(props.color)};
+  border-radius: 15%;
 `;
 
 const FlexStyled = styled.div`
