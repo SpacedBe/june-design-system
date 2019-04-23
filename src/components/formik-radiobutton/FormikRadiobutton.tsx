@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import {getIn} from 'formik';
 
 type Props = {
@@ -73,7 +73,9 @@ const Span = styled.span<{ error?: boolean }>`
   border-radius: 30px;
   position: relative;
   background-color: ${props =>
-    props.error ? `var(--color-error)` : `var(--color-primary)`};
+    props.error
+    ? `var(--color-error)`
+    : `var(--color-primary)`};
 `;
 
 const Label = styled.label<{ error?: boolean }>`
@@ -81,7 +83,9 @@ const Label = styled.label<{ error?: boolean }>`
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
   color: ${props =>
-    props.error ? `var(--color-error)` : `var(--color-dark)`};
+    props.error
+    ? `var(--color-error)`
+    : `var(--color-dark)`};
 `;
 
 export class FormikRadiobutton extends React.Component<Props> {
@@ -103,7 +107,7 @@ export class FormikRadiobutton extends React.Component<Props> {
               disabled={this.props.field.disabled}
               onChange={this.props.field.onChange}
               checked={checked}
-              type="radio"
+              type='radio'
             />
             <Span error={errors} />
           </Round>

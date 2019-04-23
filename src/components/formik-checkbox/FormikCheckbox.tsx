@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import {getIn} from 'formik';
 
 type Props = {
@@ -44,7 +44,9 @@ const Span = styled.span<{ error?: boolean }>`
   opacity: 0;
   position: relative;
   background-color: ${props =>
-    props.error ? `var(--color-error)` : `var(--color-primary)`};
+    props.error
+    ? `var(--color-error)`
+    : `var(--color-primary)`};
 `;
 
 const InputDiv = styled.div`
@@ -75,7 +77,9 @@ const Label = styled.label<{ error?: boolean }>`
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
   color: ${props =>
-    props.error ? `var(--color-error)` : `var(--color-dark)`};
+    props.error
+    ? `var(--color-error)`
+    : `var(--color-dark)`};
   text-align: left;
 `;
 
@@ -95,7 +99,7 @@ export class FormikCheckbox extends React.Component<Props> {
           >
             <Input
               {...this.props.field}
-              type="checkbox"
+              type='checkbox'
             />
             <Span error={!!errors} />
           </Checkbox>
