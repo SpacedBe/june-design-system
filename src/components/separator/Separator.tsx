@@ -1,13 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
+import Color from '../../helpers/color';
 
-const styleVariables = loadStyleVariables();
+let color = new Color();
 
 const Line = styled.div`
-  border-top: 1px solid ${styleVariables.colorPrimary};
+  border-top: 1px solid rgba(var(--color-primary-rgb), 0.25);
   width: 100%;
-  opacity: 0.3;
 `;
 
 const Flex = styled.div`
@@ -18,9 +17,9 @@ const Flex = styled.div`
 
 const Content = styled.span`
   padding: 5px;
-  color: ${styleVariables.colorPrimary};
-  font-size: ${styleVariables.fontSizeM};
-  font-family: ${styleVariables.fontSecondary};
+  color: ${color.getColor('primary')};
+  font-size: var(--font-size-m);
+  font-family: var(--font-secondary);
 `;
 
 export class Separator extends React.Component {
