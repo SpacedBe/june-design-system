@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {IconCheck} from '../../icons';
-import Color from "../../helpers/color";
+import Color from '../../helpers/color';
 
 let color = new Color();
 
@@ -30,7 +30,7 @@ const Label = styled.div`
   position: absolute;
   top: 30px;
   text-transform: uppercase;
-  color: ${color.getColor("gray-dark")};
+  color: ${color.getColor('gray-dark')};
   font-size: var(--font-size-xs);
   font-family: var(--font-secondary);
 `;
@@ -59,14 +59,14 @@ const lastStepStyle = {
 };
 
 const Dot = styled.div<{ large?: boolean; color?: string; current?: boolean }>`
-  width: ${props => (props.large ? "20px" : "6px")};
-  height: ${props => (props.large ? "20px" : "6px")};
+  width: ${props => (props.large ? '20px' : '6px')};
+  height: ${props => (props.large ? '20px' : '6px')};
   background-color: ${props =>
     props.current
-      ? color.getColorContrast("primary")
-      : color.getColor("primary")};
+      ? color.getColorContrast('primary')
+      : color.getColor('primary')};
   border: ${props =>
-    props.current ? `5px solid ${color.getColor(props.color)}` : "none"};
+    props.current ? `5px solid ${color.getColor(props.color)}` : 'none'};
   border-radius: 50%;
   position: relative;
   z-index: 1;
