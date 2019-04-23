@@ -223,8 +223,14 @@ $spacing-xl: $spacing-l * 2;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
 
-  --icon-size-s: 1em;
+  --icon-size-xs: 1em;
+  --icon-size-s: 1.5em;
   --icon-size-m: 2em;
+
+  --zi-100: 100;
+  --zi-150: 150;
+  --zi-200: 200;
+  --zi-300: 300;
 
   --spacing-baseline: 1em;
   --spacing-xs: calc(var(--spacing-s) / 2);

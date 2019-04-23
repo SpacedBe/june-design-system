@@ -30,7 +30,7 @@ const Label = styled.div`
   position: absolute;
   top: 30px;
   text-transform: uppercase;
-  color: ${color.getColor('gray-dark')};
+  color: var(--color-gray-dark);
   font-size: var(--font-size-xs);
   font-family: var(--font-secondary);
 `;
@@ -66,7 +66,7 @@ const Dot = styled.div<{ large?: boolean; color?: string; current?: boolean }>`
       ? color.getColorContrast('primary')
       : color.getColor('primary')};
   border: ${props =>
-    props.current ? `5px solid ${color.getColor(props.color)}` : 'none'};
+    props.current ? `5px solid var(--color-primary)` : 'none'};
   border-radius: 50%;
   position: relative;
   z-index: 1;

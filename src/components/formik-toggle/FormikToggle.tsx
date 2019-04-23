@@ -2,9 +2,8 @@
  * @class FormikToggle
  */
 
-import * as React from "react";
-import styled from "styled-components";
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
+import * as React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   field: {
@@ -19,29 +18,27 @@ type Props = {
   icon?: any;
 };
 
-const styleVariables = loadStyleVariables();
-
 const ToggleInput = styled.input<{}>`
-  z-index: ${styleVariables.ziCheckbox};
+  z-index: var(--zi-200);
   opacity: 0;
   width: 40px;
   height: 15px;
   position: absolute;
   &:checked ~ label span {
     transform: translatex(30px);
-    transition: transform ${styleVariables.transitionspeedNormal} ease-in;
+    transition: transform var(--transition-speed-normal) ease-in;
   }
   &:checked ~ label {
-    background: ${styleVariables.colorGreen};
-    border: 2px solid ${styleVariables.greenDark};
-    transition: transform ${styleVariables.transitionspeedNormal} ease-in;
+    background: var(--color-primary);
+    border: 2px solid var(--color-primary-shade);
+    transition: transform var(--transition-speed-normal) ease-in;
   }
 
   &:checked ~ label p {
     opacity: 1;
     content: I;
     transform: translateX(-20px);
-    color: ${styleVariables.colorWhite};
+    color: var(--color-white);
   }
 `;
 
@@ -52,10 +49,10 @@ const Label = styled.label`
   border-radius: 30px;
   position: relative;
   cursor: pointer;
-  background: ${styleVariables.colorGrayLight};
-  border: 2px solid ${styleVariables.colorGray};
-  font-family: ${styleVariables.fontSecondary};
-  font-size: ${styleVariables.fontSizeL};
+  background: var(--color-gray-light);
+  border: 2px solid var(--color-gray);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-l);
 `;
 
 const Switch = styled.span`
@@ -65,9 +62,9 @@ const Switch = styled.span`
   left: -10px;
   top: -7px;
   border-radius: 25px;
-  background: ${styleVariables.colorWhite};
-  border: 2px solid ${styleVariables.colorGray};
-  transition: transform ${styleVariables.transitionspeedNormal} ease-in;
+  background: var(--color-white);
+  border: 2px solid var(--color-gray);
+  transition: transform var(--transition-speed-normal) ease-in;
 `;
 
 const Div = styled.div`
@@ -81,8 +78,8 @@ const LabelBeforeToggle = styled.label`
   display: inline;
   width: 70%;
   line-height: 1.5em;
-  font-family: ${styleVariables.fontSecondary};
-  font-size: ${styleVariables.fontSizeL};
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-l);
 `;
 
 const Icon = styled.span`
@@ -134,7 +131,7 @@ export class FormikToggle extends React.Component<Props> {
           <div>
             <ToggleInput
               {...this.props.field}
-              type="checkbox"
+              type='checkbox'
             />
 
             <Label>
