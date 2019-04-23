@@ -1,12 +1,9 @@
 import styled from "styled-components";
 import * as React from "react";
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
-
-const styleVariables = loadStyleVariables();
 
 const StyledContainer = styled.div`
   width: 100%;
-  max-width: ${styleVariables.screenXs};
+  max-width: var(--screen-xs);
   margin: 0 auto;
   padding: var(--spacing-m);
 `;
