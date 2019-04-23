@@ -13,13 +13,16 @@ const sizes = {
 };
 
 const Host = styled.div<Props>`
-  width: ${props =>
-    sizes[props.size || 'medium']}; // TS does not recognize defaultProps
+  width: ${props => sizes[props.size || 'medium']}; // TS does not recognize defaultProps
   height: ${props => sizes[props.size || 'medium']};
   background-color: ${props =>
-    props.inverted ? `var(--color-primary)` : 'transparent'};
+    props.inverted
+      ? `var(--color-primary)`
+      : 'transparent'};
   color: ${props =>
-    props.inverted ? `var(--color-white)` : `var(--color-primary)`};
+    props.inverted
+      ? `var(--color-white)`
+      : `var(--color-primary)`};
   border: 2px solid var(--color-primary);
   border-radius: 50%;
   font-size: 20px;

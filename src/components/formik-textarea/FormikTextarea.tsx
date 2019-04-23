@@ -48,7 +48,9 @@ const InputBoxRight = styled.div<{
       ? `2px solid var(--color-error)`
       : `2px solid var(--color-gray-light)`};
   color: ${props =>
-    props.error ? `var(--color-error)` : `var(--color-gray-light)`};
+    props.error
+      ? `var(--color-error)`
+      : `var(--color-gray-light)`};
   padding: 10px;
   border-radius: 2.5px;
   background: var(--color-white);
@@ -60,7 +62,9 @@ const InputBoxRight = styled.div<{
 
   &::placeholder {
     color: ${props =>
-      props.error ? `var(--color-error)` : `var(--color-gray-light)`};
+      props.error
+        ? `var(--color-error)`
+        : `var(--color-gray-light)`};
   }
 `;
 
