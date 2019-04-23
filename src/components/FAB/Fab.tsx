@@ -1,12 +1,10 @@
 import * as React from "react";
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
 import styled from "styled-components";
 
 type Props = {
   size?: 'small' | 'medium' | 'large';
   inverted?: boolean;
 };
-const styleVariables = loadStyleVariables();
 
 const sizes = {
   small: '34px',
@@ -15,11 +13,14 @@ const sizes = {
 };
 
 const Host = styled.div<Props>`
-  width: ${props => sizes[props.size || 'medium']}; // TS does not recognize defaultProps
+  width: ${props =>
+    sizes[props.size || 'medium']}; // TS does not recognize defaultProps
   height: ${props => sizes[props.size || 'medium']};
-  background-color: ${props => props.inverted ? styleVariables.colorPrimary : 'transparent'};
-  color: ${props => props.inverted ? styleVariables.colorWhite : styleVariables.colorPrimary};
-  border: 2px solid ${styleVariables.colorPrimary};
+  background-color: ${props =>
+    props.inverted ? `var(--color-primary)` : 'transparent'};
+  color: ${props =>
+    props.inverted ? `var(--color-white)` : `var(--color-primary)`};
+  border: 2px solid var(--color-primary);
   border-radius: 50%;
   font-size: 20px;
   cursor: pointer;
@@ -32,18 +33,28 @@ const Host = styled.div<Props>`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  transition: all .2s;
+  transition: all 0.2s;
 
   svg {
-    fill: ${props => props.inverted ? styleVariables.colorWhite : styleVariables.colorPrimary};
+    fill: ${props =>
+      props.inverted ? `var(--color-white)` : `var(--color-primary)`};
   }
 
   &:hover {
-    background-color: ${props => props.inverted ? styleVariables.colorWhite : styleVariables.colorPrimary};
-    color: ${props => props.inverted ? styleVariables.colorPrimary : styleVariables.colorWhite};
+    background-color: ${props =>
+      props.inverted
+        ? `var(--color-white)`
+        : `var(--color-primary)`};
+    color: ${props =>
+      props.inverted
+        ? `var(--color-primary)`
+        : `var(--color-white)`};
 
     svg {
-      fill: ${props => props.inverted ? styleVariables.colorPrimary : styleVariables.colorWhite};
+      fill: ${props =>
+        props.inverted
+          ? `var(--color-primary)`
+          : `var(--color-white)`};
     }
   }
 `;
