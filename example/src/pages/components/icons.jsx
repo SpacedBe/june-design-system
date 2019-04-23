@@ -1,6 +1,16 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {IconSettings, IconSavings, IconPreferences, IconWater, IconWaterBattery, IconCheck} from 'june-design-system';
+import {
+  IconSettings,
+  IconSavings,
+  IconPreferences,
+  IconWater,
+  IconWaterBattery,
+  IconCheck,
+  IconPhone,
+  IconChat,
+  IconMail
+} from 'june-design-system';
 
 export default class IconPage extends React.Component {
 
@@ -25,6 +35,15 @@ export default class IconPage extends React.Component {
           </ReactSpecimen>
           <ReactSpecimen>
             <IconCheck></IconCheck>
+          </ReactSpecimen>
+          <ReactSpecimen>
+            <IconMail></IconMail>
+          </ReactSpecimen>
+          <ReactSpecimen>
+            <IconPhone></IconPhone>
+          </ReactSpecimen>
+          <ReactSpecimen>
+            <IconChat></IconChat>
           </ReactSpecimen>
         </div>
       </Page>

@@ -8,6 +8,9 @@ import {
   IconSettings,
   IconWater,
   IconWaterBattery,
+  IconPhone,
+  IconMail,
+  IconChat,
   Stepper,
   Fab,
 } from 'june-design-system';
@@ -44,7 +47,10 @@ export default class App extends Component {
                   IconSavings,
                   IconSettings,
                   IconWater,
-                  IconWaterBattery
+                  IconWaterBattery,
+                  IconPhone,
+                  IconChat,
+                  IconMail
                 }
               }
             ]
