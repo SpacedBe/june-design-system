@@ -82,8 +82,10 @@ const OnlyIconButton = styled.button`
 `;
 
 const OnlyIconWithBorder = styled(OnlyIconButton)`
-  border: 2px solid ${props => color.getColorTint(props.color)};
-  border-radius: 15%;
+  border: 2px solid rgba(var(--color-primary-rgb), 0.25);
+  padding: 5px 5px 5px 5px;
+}
+
 `;
 
 const FlexStyled = styled.div`
