@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {IconCheck} from '../../icons';
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
+import Color from "../../helpers/color";
+
+let color = new Color();
 
 interface Step {
   label: string,
@@ -10,9 +12,8 @@ interface Step {
 type Props = {
   steps: Step[];
   currentStepIndex: number;
+  color?: string;
 }
-
-const styleVariables = loadStyleVariables();
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,15 +31,15 @@ const Label = styled.div`
   position: absolute;
   top: 30px;
   text-transform: uppercase;
-  color: ${styleVariables.textColor};
-  font-size: ${styleVariables.fontSizeXs};
-  font-family: ${styleVariables.fontSecondary};
+  color: ${props => color.getColor(props.color)};
+  font-size: var(--font-size-xs);
+  font-family: var(--font-secondary);
 `;
 
 const Line = styled.div`
   position: absolute;
   width: 100%;
-  border-bottom: 2px solid ${styleVariables.colorPrimaryLight};
+  border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.25);
   z-index: 0;
 `;
 
@@ -58,11 +59,15 @@ const lastStepStyle = {
   width: '15%',
 };
 
-const Dot = styled.div<{ large?: boolean, color?: string, current?: boolean }>`
-  width: ${props => props.large ? '20px' : '6px'};
-  height: ${props => props.large ? '20px' : '6px'};
-  background-color: ${props => props.current ? styleVariables.white : styleVariables.colorPrimary};
-  border: ${props => props.current ? `5px solid ${styleVariables.colorPrimary}` : 'none'};
+const Dot = styled.div<{ large?: boolean; color?: string; current?: boolean }>`
+  width: ${props => (props.large ? "20px" : "6px")};
+  height: ${props => (props.large ? "20px" : "6px")};
+  background-color: ${props =>
+    props.current
+      ? color.getColorContrast(props.color)
+      : color.getColor(props.color)};
+  border: ${props =>
+    props.current ? `5px solid ${color.getColor(props.color)}` : "none"};
   border-radius: 50%;
   position: relative;
   z-index: 1;
