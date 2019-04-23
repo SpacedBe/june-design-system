@@ -3,17 +3,14 @@
  */
 import * as React from 'react';
 import styled from "styled-components";
-import { loadStyleVariables } from "../../scripts/loadStyleVariables";
-
-const styleVariables = loadStyleVariables();
 
 const HeaderDiv = styled.div`
   overflow: hidden;
-  background-color: ${styleVariables.colorWhite};
+  background-color: var(--color-white);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0.5px 1px ${styleVariables.greenLime};
+  box-shadow: 0px 0.5px 1px rgba(var(--color-primary-rgb), 0.25);
 `;
 
 export class Header extends React.Component {
