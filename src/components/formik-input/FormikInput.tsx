@@ -68,8 +68,8 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
 
 const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?: boolean; }>`
   width: 100%;
-  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error'}` : `2px solid ${colorHelper.getColor('gray-light')}`};
-  color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light'}`};
+  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
+  color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
   background-color: ${colorHelper.getColor('white')};
