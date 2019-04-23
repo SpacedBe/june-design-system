@@ -40,7 +40,9 @@ const Host = styled.div<Props>`
 
   svg {
     fill: ${props =>
-      props.inverted ? `var(--color-white)` : `var(--color-primary)`};
+      props.inverted
+        ? `var(--color-white)`
+        : `var(--color-primary)`};
   }
 
   &:hover {
