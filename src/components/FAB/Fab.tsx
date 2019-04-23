@@ -48,7 +48,7 @@ const Host = styled.div<Props>`
   &:hover {
     background-color: ${props =>
       props.inverted
-        ? `var(--color-white)`
+        ? 'transparent'
         : `var(--color-primary)`};
     color: ${props =>
       props.inverted
