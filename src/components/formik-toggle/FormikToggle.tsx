@@ -86,7 +86,7 @@ const LabelBeforeToggle = styled.label`
 `;
 
 const Icon = styled.span`
-  font-size: 1.5em;
+  font-size: var(--font-size-xxl);
 `;
 
 const FlexDiv = styled.div`
