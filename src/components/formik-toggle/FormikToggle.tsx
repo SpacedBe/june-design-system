@@ -2,11 +2,8 @@
  * @class FormikToggle
  */
 
-import * as React from "react";
-import styled from "styled-components";
-import Color from '../../helpers/color';
-
-let color = new Color();
+import * as React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   field: {
@@ -32,8 +29,8 @@ const ToggleInput = styled.input<{}>`
     transition: transform var(--transition-speed-normal) ease-in;
   }
   &:checked ~ label {
-    background: ${color.getColor('primary')};
-    border: 2px solid ${color.getColorShade('primary')};
+    background: var(--color-primary);
+    border: 2px solid var(--color-primary);
     transition: transform var(--transition-speed-normal) ease-in;
   }
 
@@ -41,7 +38,7 @@ const ToggleInput = styled.input<{}>`
     opacity: 1;
     content: I;
     transform: translateX(-20px);
-    color: ${color.getColor('white')};
+    color: var(--color-white);
   }
 `;
 
@@ -52,8 +49,8 @@ const Label = styled.label`
   border-radius: 30px;
   position: relative;
   cursor: pointer;
-  background: ${color.getColor('gray-light')};
-  border: 2px solid ${color.getColor('gray')};
+  background: var(--color-gray-light);
+  border: 2px solid var(--color-gray);
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
 `;
@@ -65,8 +62,8 @@ const Switch = styled.span`
   left: -10px;
   top: -7px;
   border-radius: 25px;
-  background: ${color.getColor('white')};
-  border: 2px solid ${color.getColor('gray')};
+  background: var(--color-white);
+  border: 2px solid var(--color-gray);
   transition: transform var(--transition-speed-normal) ease-in;
 `;
 
@@ -86,7 +83,7 @@ const LabelBeforeToggle = styled.label`
 `;
 
 const Icon = styled.span`
-  font-size: var(--font-size-xxl);
+  font-size: 1.5em;
 `;
 
 const FlexDiv = styled.div`
@@ -134,7 +131,7 @@ export class FormikToggle extends React.Component<Props> {
           <div>
             <ToggleInput
               {...this.props.field}
-              type="checkbox"
+              type='checkbox'
             />
 
             <Label>

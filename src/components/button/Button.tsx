@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import {Spinner} from "../spinner/spinner";
 import Color from "../../helpers/color";
 
-let color = new Color();
+const color = new Color();
 
 const sizes = {
   xsmall: '20px',
@@ -39,12 +39,12 @@ const Icon = styled.div`
   display: flex;
   align-items: center;
   font-size: var(--font-size-m);
-  
+
   svg {
     fill: ${props => color.getColorContrast(props.color)};
     font-size: 2em;
   }
-  
+
   &:hover {
     fill: var(--color-white);
   }

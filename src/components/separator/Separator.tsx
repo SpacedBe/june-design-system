@@ -1,8 +1,5 @@
-import * as React from "react";
-import styled from "styled-components";
-import Color from '../../helpers/color';
-
-let color = new Color();
+import * as React from 'react';
+import styled from 'styled-components';
 
 const Line = styled.div`
   border-top: 1px solid rgba(var(--color-primary-rgb), 0.25);
@@ -17,7 +14,7 @@ const Flex = styled.div`
 
 const Content = styled.span`
   padding: 5px;
-  color: ${color.getColor('primary')};
+  color: var(--color-primary);
   font-size: var(--font-size-m);
   font-family: var(--font-secondary);
 `;
