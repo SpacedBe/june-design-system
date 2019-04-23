@@ -22,6 +22,7 @@ const PopupStyled = styled.div`
   height: 100%;
   z-index: 999;
   font-family: var(--font-secondary);
+  font-size: var(--font-size-l);
   color: var(--color-primary-contrast);
   background-color: rgba(var(--color-primary-rgb), 0.95);
   
