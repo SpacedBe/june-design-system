@@ -74,8 +74,8 @@ const Span = styled.span<{ error?: boolean }>`
   position: relative;
   background-color: ${props =>
     props.error
-    ? `var(--color-error)`
-    : `var(--color-primary)`};
+      ? `var(--color-error)`
+      : `var(--color-primary)`};
 `;
 
 const Label = styled.label<{ error?: boolean }>`
@@ -84,8 +84,8 @@ const Label = styled.label<{ error?: boolean }>`
   font-size: var(--font-size-m);
   color: ${props =>
     props.error
-    ? `var(--color-error)`
-    : `var(--color-dark)`};
+      ? `var(--color-error)`
+      : `var(--color-dark)`};
 `;
 
 export class FormikRadiobutton extends React.Component<Props> {
