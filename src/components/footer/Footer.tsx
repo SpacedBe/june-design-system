@@ -3,18 +3,15 @@
  */
 import * as React from 'react';
 import styled from 'styled-components';
-import {loadStyleVariables} from "../../scripts/loadStyleVariables";
-
-const styleVariables = loadStyleVariables();
 
 const FooterDiv = styled.div`
   padding: var(--spacing-m);
   overflow: hidden;
-  background-color: ${styleVariables.colorWhite};
+  background-color: var(--color-white);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px -3px 10px ${styleVariables.colorGrayLighter};
+  box-shadow: 0px -3px 10px var(--color-gray-lighter);
 `;
 
 export class Footer extends React.Component {
