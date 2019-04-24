@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {FormikCheckbox} from 'june-design-system';
+import {Flex} from 'reflexbox';
 
 export default class FormikCheckboxPage extends React.Component {
   constructor(props) {
@@ -58,61 +59,84 @@ export default class FormikCheckboxPage extends React.Component {
 
   render() {
     return (
-      <Page>
-        <div>
-          <div>
-            <label htmlFor='isTouched'>Touched</label>
-            <input
-              type='checkbox'
-              name='isTouched'
-              value={this.state.focussed}
-              onChange={() => this.toggleTouched()}
-            />
-          </div>
+      <div className='buttons'>
+        <Page>
+          ## Checkbox
+          <Flex>
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'isTouched',
+                  value: this.state.focussed,
+                  onChange: () => this.toggleTouched()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Touched'
+                type='checkbox'
+              />
+            </div>
 
-          <div>
-            <label htmlFor='hasError'>Error</label>
-            <input
-              type='checkbox'
-              name='hasError'
-              value={this.state.error}
-              onChange={() => this.toggleError()}
-            />
-          </div>
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'hasError',
+                  value: this.state.error,
+                  onChange: () => this.toggleError()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Error'
+                type='checkbox'
+              />
+            </div>
 
-          <div>
-            <label htmlFor='hasServerError'>has server error?</label>
-            <input
-              type='checkbox'
-              name='hasServerError'
-              onChange={() => this.toggleServerError()}
-            />
-          </div>
-        </div>
-        ## Checkbox
-        <ReactSpecimen span={3}>
-          <div>
-            <FormikCheckbox
-              error={this.state.error}
-              focussed={this.state.focussed}
-              type='checkbox'
-              placeholderText='example placeholder'
-              field={this.state.field}
-              label='option one'
-              form={this.state.form}
-            />
-            <FormikCheckbox
-              error={this.state.error}
-              focussed={this.state.focussed}
-              type='checkbox'
-              placeholderText='example placeholder'
-              field={this.state.field}
-              label='When a label is really long it just shows on multiple lines.'
-              form={this.state.form}
-            />
-          </div>
-        </ReactSpecimen>
-      </Page>
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'hasServerError',
+                  onChange: () => this.toggleServerError()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Has Server Error'
+                type='checkbox'
+              />
+            </div>
+          </Flex>
+          <ReactSpecimen span={3}>
+            <div>
+              <FormikCheckbox
+                error={this.state.error}
+                focussed={this.state.focussed}
+                type='checkbox'
+                placeholderText='example placeholder'
+                field={this.state.field}
+                label='option one'
+                form={this.state.form}
+              />
+              <FormikCheckbox
+                error={this.state.error}
+                focussed={this.state.focussed}
+                type='checkbox'
+                placeholderText='example placeholder'
+                field={this.state.field}
+                label='When a label is really long it just shows on multiple lines.'
+                form={this.state.form}
+              />
+            </div>
+          </ReactSpecimen>
+        </Page>
+      </div>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, ReactSpecimen } from 'catalog';
-import { Separator } from 'june-design-system';
+import { Separator, FormikInput } from 'june-design-system';
+import { Flex } from 'reflexbox'
 
 export default class FabPage extends React.Component {
   constructor(props) {
@@ -16,20 +17,33 @@ export default class FabPage extends React.Component {
   }
 
   render(){
-    return(
+    return (
       <Page>
         ## Separator
         <ReactSpecimen span={3}>
-          <Separator>
-            {this.state.content}
-          </Separator>
+          <Separator>{this.state.content}</Separator>
         </ReactSpecimen>
-        <div>
-          <label htmlFor="content">Content</label>
-          <input type="text" value={this.state.content} name="content"
-            onChange={(event) => this.changeContent(event)} />
+
+        <div className={'input-group'}>
+          <FormikInput
+            disabled={false}
+            error={false}
+            field={{
+              name: 'content',
+              value: this.state.content,
+              onChange: event => this.changeContent(event)
+            }}
+            form={{
+              errors: { 'example-input': null },
+              touched: { 'example-input': false }
+            }}
+            label='Content'
+            placeholderText='example placeholder'
+            required
+            type='text'
+          />
         </div>
       </Page>
-    )
+    );
   }
 }

@@ -30,6 +30,7 @@ type Props = {
 
 const WrapperStyled = styled.div`
   text-align: left;
+  width: 100%;
 `;
 
 const Select = styled.select<{
@@ -56,10 +57,9 @@ const Label = styled.label<{
   disabled?: boolean;
 }>`
   opacity: ${props => (props.disabled ? '0.5' : '1')};
-  color: ${props =>
-    props.error
-      ? `var(--color-error)`
-      : `var(--color-gray-light)`};
+  color: ${props => (props.error ? `var(--color-error)` : `var(--color-dark)`)};
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-m);
 `;
 
 const Option = styled.option`

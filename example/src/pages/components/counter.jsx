@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from 'catalog';
+import { Page, ReactSpecimen } from 'catalog';
 import { Counter } from 'june-design-system';
 
 export default class CounterPage extends React.Component {
@@ -29,12 +29,13 @@ export default class CounterPage extends React.Component {
         return (
           <Page>
             # Counter
-            <Counter
-              changeUpClicked={this.changeUpClicked}
-              changeDownClicked={this.changeDownClicked}
-              clicked={this.state.clicked}
-            >
-            </Counter>
+            <ReactSpecimen>
+              <Counter
+                changeUpClicked={this.changeUpClicked}
+                changeDownClicked={this.changeDownClicked}
+                clicked={this.state.clicked}
+              />
+            </ReactSpecimen>
           </Page>
         );
     }

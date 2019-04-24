@@ -1,6 +1,7 @@
 import React from 'react';
 import { Page, ReactSpecimen } from 'catalog';
-import { FormikTextarea } from 'june-design-system';
+import { FormikTextarea, FormikCheckbox } from 'june-design-system';
+import { Flex } from 'reflexbox';
 
 export default class FormikTextareaPage extends React.Component {
   constructor(props) {
@@ -76,62 +77,91 @@ export default class FormikTextareaPage extends React.Component {
 
   render() {
     return (
-      <Page>
-        <div>
-          <div>
-            <label htmlFor="isTouched">Touched</label>
-            <input
-              type="checkbox"
-              name="isTouched"
-              value={this.state.focussed}
-              onChange={() => this.toggleTouched()}
-            />
-          </div>
+      <div className='buttons'>
+        <Page>
+          ## Textarea
+          <Flex>
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'isTouched',
+                  value: this.state.focussed,
+                  onChange: () => this.toggleTouched()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Touched'
+                type='checkbox'
+              />
+            </div>
 
-          <div>
-            <label htmlFor="hasError">Error</label>
-            <input
-              type="checkbox"
-              name="hasError"
-              value={this.state.error}
-              onChange={() => this.toggleError()}
-            />
-          </div>
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'hasError',
+                  value: this.state.error,
+                  onChange: () => this.toggleError()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Error'
+                type='checkbox'
+              />
+            </div>
 
-          <div>
-            <label htmlFor="hasServerError">has server error?</label>
-            <input
-              type="checkbox"
-              name="hasServerError"
-              onChange={() => this.toggleServerError()}
-            />
-          </div>
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'hasServerError',
+                  onChange: () => this.toggleServerError()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Has Server Error'
+                type='checkbox'
+              />
+            </div>
 
-          <div>
-            <label htmlFor="isDisabled">Disabled?</label>
-            <input
-              type="checkbox"
-              value={this.state.disabled}
-              name="isDisabled"
-              onChange={() => this.changeDisable()}
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'isDisabled',
+                  onChange: () => this.changeDisable()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Disabled'
+                type='checkbox'
+              />
+            </div>
+          </Flex>
+          <ReactSpecimen span={3}>
+            <FormikTextarea
+              required
+              label='Textarea *'
+              size={'xlarge'}
+              error={this.state.error}
+              disabled={this.state.disabled}
+              type={this.state.type}
+              placeholderText='example placeholder'
+              field={this.state.field}
+              form={this.state.form}
             />
-          </div>
-        </div>
-        ## Textarea
-        <ReactSpecimen span={3}>
-          <FormikTextarea
-            required
-            label="Textarea *"
-            size={"xlarge"}
-            error={this.state.error}
-            disabled={this.state.disabled}
-            type={this.state.type}
-            placeholderText="example placeholder"
-            field={this.state.field}
-            form={this.state.form}
-          />
-        </ReactSpecimen>
-      </Page>
+          </ReactSpecimen>
+        </Page>
+      </div>
     );
   }
 }

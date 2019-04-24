@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Stepper} from 'june-design-system';
+import {Stepper, Button} from 'june-design-system';
+import {Flex} from 'reflexbox';
 
 export default class StepPage extends React.Component {
   constructor(props) {
@@ -8,10 +9,10 @@ export default class StepPage extends React.Component {
 
     this.state = {
       steps: [
-        {label: 'foo'},
-        {label: 'bar'},
-        {label: 'baz'},
-        {label: 'bam'},
+        { label: 'step 1' },
+        { label: 'step 2' },
+        { label: 'step 3' },
+        { label: 'step 4' }
       ],
       currentStepIndex: 0
     };
@@ -23,7 +24,7 @@ export default class StepPage extends React.Component {
     }
 
     this.setState({
-      steps: [...this.state.steps, {label: 'New'}]
+      steps: [...this.state.steps, {label: 'New step'}]
     });
   }
 
@@ -60,19 +61,31 @@ export default class StepPage extends React.Component {
   render() {
 
     return (
-      <Page>
-        <ReactSpecimen>
-          <Stepper steps={this.state.steps} currentStepIndex={this.state.currentStepIndex}/>
-        </ReactSpecimen>
-
-        <div>
-          <p>Controls</p>
-          <button onClick={() => this.addStep()}>Add one step</button>
-          <button onClick={() => this.removeStep()}>Remove one step</button>
-          <button onClick={() => this.decrementCurrentStep()}>Decrement step</button>
-          <button onClick={() => this.incrementCurrentStep()}>Increment step</button>
-        </div>
-      </Page>
-    )
+      <div className="stepper">
+        <Page>
+          ## Stepper Controls
+          <Flex justify={'space-between'}>
+            <Button className="buttonWrapper" clear={false} disabled={false} onClick={() => this.addStep()} rounded={false} wide={false} size='small'>
+              Add one step
+            </Button>
+            <Button className="buttonWrapper" clear={false} disabled={false} onClick={() => this.removeStep()} rounded={false} wide={false} size='small'>
+              Remove one step
+            </Button>
+            <Button className="buttonWrapper" clear={false} disabled={false} onClick={() => this.decrementCurrentStep()} rounded={false} wide={false} size='small'>
+              Uncomplete one step
+            </Button>
+            <Button className="buttonWrapper" clear={false} disabled={false} onClick={() => this.incrementCurrentStep()} rounded={false} wide={false} size='small'>
+              Complete one step
+            </Button>
+          </Flex>
+          <ReactSpecimen>
+            <Stepper
+              steps={this.state.steps}
+              currentStepIndex={this.state.currentStepIndex}
+            />
+          </ReactSpecimen>
+        </Page>
+      </div>
+    );
   }
 }

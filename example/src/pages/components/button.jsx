@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Button, IconSettings, FormikCheckbox} from 'june-design-system';
+import {Button, IconSettings, FormikCheckbox, FormikSelect} from 'june-design-system';
 import { Flex } from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
@@ -12,7 +12,7 @@ export default class ButtonPage extends React.Component {
       clear: false,
       disabled: false,
       size: 'medium',
-      content: 'Foobar',
+      content: 'Button',
       color: 'primary',
       wide: false,
       selectedColor: '',
@@ -77,73 +77,125 @@ export default class ButtonPage extends React.Component {
                 {this.state.content}
               </Button>
             </ReactSpecimen>
-            <Flex justify={'space-between'}>
-              <div className='wrapper'>
-                <label htmlFor='isRounded'>Rounded</label>
-                <input
-                  className=''
-                  type='checkbox'
-                  value={this.state.rounded}
-                  name='isRounded'
-                  onChange={() => this.changeRounded()}
-                />
-              </div>
+            <Flex justify={'space-between'} column>
+              <Flex>
+                <div className='wrapper'>
+                  <FormikCheckbox
+                    error={false}
+                    field={{
+                      name: 'isRounded',
+                      value: this.state.rounded,
+                      onChange: () => this.changeRounded()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Rounded'
+                    type='checkbox'
+                  />
+                </div>
 
-              <div className='wrapper'>
-                <label htmlFor='isDisabled'>Disabled</label>
-                <input
-                  type='checkbox'
-                  value={this.state.disabled}
-                  name='isDisabled'
-                  onChange={() => this.changeDisable()}
-                />
-              </div>
+                <div className='wrapper'>
+                  <FormikCheckbox
+                    error={false}
+                    field={{
+                      name: 'isDisabled',
+                      value: this.state.disabled,
+                      onChange: () => this.changeDisable()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Disabled'
+                    type='checkbox'
+                  />
+                </div>
 
-              <div className='wrapper'>
-                <label htmlFor='isClear'>Clear</label>
-                <input
-                  type='checkbox'
-                  value={this.state.clear}
-                  name='isClear'
-                  onChange={() => this.changeClear()}
-                />
-              </div>
+                <div className='wrapper'>
+                  <FormikCheckbox
+                    error={false}
+                    field={{
+                      name: 'isClear',
+                      value: this.state.clear,
+                      onChange: () => this.changeClear()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Clear'
+                    type='checkbox'
+                  />
+                </div>
 
-              <div className='wrapper'>
-                <label htmlFor='isFullWidth'>Full width</label>
-                <input
-                  type='checkbox'
-                  value={this.state.wide}
-                  name='isFullWidth'
-                  onChange={() => this.changeWide()}
-                />
-              </div>
-
-              <div className='wrapper'>
-                <label htmlFor='color'>Color</label>
-                <select
-                  name='color'
-                  value={this.state.color}
-                  onChange={event => this.changeColor(event)}
-                >
-                  <option value='primary'>green</option>
-                  <option value='error'>red</option>
-                  <option value='facebook'>blue</option>
-                </select>
-              </div>
-
-              <div className='wrapper'>
-                <label htmlFor='size'>Size</label>
-                <select
-                  name='size'
-                  value={this.state.size}
-                  onChange={event => this.changeSize(event)}
-                >
-                  <option value='small'>Small</option>
-                  <option value='medium'>Medium</option>
-                  <option value='large'>Large</option>
-                </select>
-              </div>
+                <div className='wrapper'>
+                  <FormikCheckbox
+                    error={false}
+                    field={{
+                      name: 'isFullWidth',
+                      value: this.state.wide,
+                      onChange: () => this.changeWide()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Full Width'
+                    type='checkbox'
+                  />
+                </div>
+              </Flex>
+              <Flex>
+                <div className='wrapper'>
+                  <FormikSelect
+                    disabled={false}
+                    error={false}
+                    field={{
+                      name: 'color',
+                      value: this.state.color,
+                      onChange: event => this.changeColor(event)
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    htmlFor='isSelect'
+                    label='Color'
+                    options={[
+                      { label: 'green', value: 'primary' },
+                      { label: 'red', value: 'error' },
+                      { label: 'facebook', value: 'facebook' },
+                      { label: 'google', value: 'google' }
+                    ]}
+                    touched={false}
+                  />
+                </div>
+                <div className='wrapper'>
+                  <FormikSelect
+                    disabled={false}
+                    error={false}
+                    field={{
+                      name: 'size',
+                      value: this.state.size,
+                      onChange: event => this.changeSize(event)
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    htmlFor='isSelect'
+                    label='Size'
+                    options={[
+                      { label: 'small', value: 'small' },
+                      { label: 'medium', value: 'medium' },
+                      { label: 'large', value: 'large' }
+                    ]}
+                    touched={false}
+                  />
+                </div>
+              </Flex>
             </Flex>
           </div>
           ## Icon on the left
@@ -169,6 +221,7 @@ export default class ButtonPage extends React.Component {
             <Button loading='true'>Loading button</Button>
           </ReactSpecimen>
           # Click events
+          <p>Clicked {this.state.clicked} times</p>
           <ReactSpecimen>
             <Button
               htmlfor='isClicked'
@@ -177,7 +230,6 @@ export default class ButtonPage extends React.Component {
               Click
             </Button>
           </ReactSpecimen>
-          <p>Clicked {this.state.clicked} times</p>
         </Page>
       </div>
     );

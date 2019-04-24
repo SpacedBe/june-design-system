@@ -60,7 +60,7 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed
   outline: none;
   display: flex;
   justify-content: space-between;
-  height: 45px;
+  height: 48px;
   &::placeholder {
      color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
   }
@@ -76,7 +76,7 @@ const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?
   opacity: ${props => (props.disabled ? "0.5" : "1")};
   outline: none;
   display: flex;
-  height: 45px;
+  height: 48px;
   box-sizing: border-box;
   margin-bottom: var(--spacing-xs);
 `;
@@ -160,7 +160,7 @@ export class FormikInput extends React.Component<Props> {
 
     if (!hasIcon) {
       inputContent = (
-        <InputBoxLeft error={touched && errors} disabled={this.props.disabled}
+        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
                       focussed={this.props.focussed}>
           <Input {...this.props.field}
                  placeholder={this.props.placeholderText}
@@ -266,9 +266,6 @@ export class FormikInput extends React.Component<Props> {
     if (hasButton && this.props.tooltip) {
       inputContent = (
         <div>
-          <Flex>
-            <IconSmall disabled={this.props.disabled}>{this.props.tooltip}</IconSmall>
-          </Flex>
           <InputBoxRight error={this.props.error} disabled={this.props.disabled}
                          focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText}
