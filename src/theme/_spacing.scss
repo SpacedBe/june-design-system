@@ -5,35 +5,35 @@
 }
 
 .margin-bottom {
-  margin-bottom: $spacing-m;
+  margin-bottom: var(--spacing-m);
 }
 
 .margin-top {
-  margin-top: $spacing-m;
+  margin-top: var(--spacing-m);
 }
 
 .margin-start {
-  margin-left: $spacing-m;
+  margin-left: var(--spacing-m);
 }
 
 .margin-end {
-  margin-right: $spacing-m;
+  margin-right: var(--spacing-m);
 }
 
 // Paddings
 
 .padding-bottom {
-  margin-bottom: $spacing-m;
+  margin-bottom: var(--spacing-m);
 }
 
 .padding-top {
-  margin-top: $spacing-m;
+  margin-top: var(--spacing-m);
 }
 
 .padding-start {
-  margin-left: $spacing-m;
+  margin-left: var(--spacing-m);
 }
 
 .padding-end {
-  margin-right: $spacing-m;
+  margin-right: var(--spacing-m);
 }
