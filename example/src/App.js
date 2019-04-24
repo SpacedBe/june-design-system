@@ -20,27 +20,27 @@ export default class App extends Component {
     return (
       <Catalog
         className='june-design-system'
-        title="June Design System"
-        styles={["./styles/main.css"]}
+        title='June Design System'
+        styles={['./styles/main.css']}
         pages={[
           {
-            path: "/",
-            title: "Introduction",
-            content: pageLoader("./pages/intro.md")
+            path: '/',
+            title: 'Introduction',
+            content: pageLoader('./pages/intro.md')
           },
           {
-            title: "Design",
+            title: 'Design',
             pages: [
               {
-                path: "typography",
-                title: "Typography",
-                content: pageLoader("/pages/design/typography.md")
+                path: 'typography',
+                title: 'Typography',
+                content: pageLoader('/pages/design/typography.md')
               },
               {
-                path: "icons",
-                title: "Icons",
+                path: 'icons',
+                title: 'Icons',
                 component: pageLoader(() =>
-                  import("./pages/components/icons")
+                  import('./pages/components/icons')
                 ),
                 imports: {
                   IconPreferences,
@@ -56,31 +56,31 @@ export default class App extends Component {
             ]
           },
           {
-            title: "Layout",
+            title: 'Layout',
             pages: [
               {
-                path: "container",
-                title: "Containers",
-                content: pageLoader("/pages/layout/container.md"),
+                path: 'container',
+                title: 'Containers',
+                content: pageLoader('/pages/layout/container.md'),
                 imports: {}
               },
               {
-                path: "typograph",
-                title: "Typograph",
+                path: 'typograph',
+                title: 'Typograph',
                 component: pageLoader(() =>
-                  import("./pages/components/typograph")
+                  import('./pages/components/typograph')
                 )
               }
             ]
           },
           {
-            title: "Components",
+            title: 'Components',
             pages: [
               {
-                path: "buttons",
-                title: "Buttons",
+                path: 'buttons',
+                title: 'Buttons',
                 component: pageLoader(() =>
-                  import("./pages/components/button")
+                  import('./pages/components/button')
                 ),
                 imports: {
                   Button,
@@ -88,20 +88,20 @@ export default class App extends Component {
                 }
               },
               {
-                path: "fab",
-                title: "FAB",
+                path: 'fab',
+                title: 'FAB',
                 component: pageLoader(() =>
-                  import("./pages/components/fab")
+                  import('./pages/components/fab')
                 ),
                 imports: {
                   Fab
                 }
               },
               {
-                path: "stepper",
-                title: "Stepper",
+                path: 'stepper',
+                title: 'Stepper',
                 component: pageLoader(() =>
-                  import("./pages/components/stepper")
+                  import('./pages/components/stepper')
                 ),
                 imports: {
                   Stepper,
@@ -109,114 +109,113 @@ export default class App extends Component {
                 }
               },
               {
-                path: "popup",
-                title: "Popup",
+                path: 'popup',
+                title: 'Popup',
                 component: pageLoader(() =>
-                  import("./pages/components/popup")
-
+                  import('./pages/components/popup')
                 )
               },
               {
-                path: "separator",
-                title: "Separator",
+                path: 'separator',
+                title: 'Separator',
                 component: pageLoader(() =>
-                  import("./pages/components/separator")
+                  import('./pages/components/separator')
                 )
               },
               {
-                path: "counter",
-                title: "Counter",
+                path: 'counter',
+                title: 'Counter',
                 component: pageLoader(() =>
-                  import("./pages/components/counter")
-                )
-              },
-               {
-                path: "footer",
-                title: "Footer",
-                component: pageLoader(() =>
-                  import("./pages/components/footer")
+                  import('./pages/components/counter')
                 )
               },
               {
-                path: "header",
-                title: "Header",
+                path: 'header',
+                title: 'Header',
                 component: pageLoader(() =>
-                  import("./pages/components/header")
+                  import('./pages/components/header')
                 )
               },
               {
-                path: "snackbar",
-                title: "Snackbar",
+                path: 'footer',
+                title: 'Footer',
                 component: pageLoader(() =>
-                  import("./pages/components/snackbar")
+                  import('./pages/components/footer')
                 )
               },
+              {
+                path: 'snackbar',
+                title: 'Snackbar',
+                component: pageLoader(() =>
+                  import('./pages/components/snackbar')
+                )
+              }
             ]
           },
           {
-            title: "Form",
+            title: 'Form',
             pages: [
               {
-                path: "formGroup",
-                title: "Form Group",
+                path: 'formGroup',
+                title: 'Form Group',
                 component: pageLoader(() =>
-                  import("./pages/form/formGroup")
+                  import('./pages/form/formGroup')
                 )
               },
               {
-                path: "input",
-                title: "Input",
+                path: 'input',
+                title: 'Input',
                 component: pageLoader(() =>
-                  import("./pages/form/formikInput")
+                  import('./pages/form/formikInput')
                 )
               },
               {
-                path: "textarea",
-                title: "Textarea",
+                path: 'textarea',
+                title: 'Textarea',
                 component: pageLoader(() =>
-                  import("./pages/form/formikTextarea.jsx")
+                  import('./pages/form/formikTextarea.jsx')
                 )
               },
               {
-                path: "select",
-                title: "Select",
+                path: 'select',
+                title: 'Select',
                 component: pageLoader(() =>
-                  import("./pages/form/formikSelect")
+                  import('./pages/form/formikSelect')
                 )
               },
               {
-                path: "formError",
-                title: "Form Error",
+                path: 'formError',
+                title: 'Form Error',
                 component: pageLoader(() =>
-                  import("./pages/form/formError")
+                  import('./pages/form/formError')
                 )
               },
               {
-                path: "toggle",
-                title: "Toggle",
+                path: 'toggle',
+                title: 'Toggle',
                 component: pageLoader(() =>
-                  import("./pages/form/formikToggle")
+                  import('./pages/form/formikToggle')
                 )
               },
               {
-                path: "radiobutton",
-                title: "Radiobutton",
+                path: 'radiobutton',
+                title: 'Radiobutton',
                 component: pageLoader(() =>
-                  import("./pages/form/formikRadiobutton")
+                  import('./pages/form/formikRadiobutton')
                 )
               },
               {
-                path: "checkbox",
-                title: "Checkbox",
+                path: 'checkbox',
+                title: 'Checkbox',
                 component: pageLoader(() =>
-                  import("./pages/form/formikCheckbox")
+                  import('./pages/form/formikCheckbox')
                 )
               },
               {
-                path: "formExample",
-                title: "Example of a form",
+                path: 'formExample',
+                title: 'Example of a form',
                 component: pageLoader(() =>
-                  import("./pages/form/formikForm")
+                  import('./pages/form/formikForm')
                 )
               }
             ]

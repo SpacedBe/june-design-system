@@ -20,6 +20,7 @@ const CounterDiv = styled.div<{ onClick?: void }>`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 10%;
 `;
 
 const SpanStyled = styled.span`

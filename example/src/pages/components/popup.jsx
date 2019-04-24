@@ -45,8 +45,7 @@ export default class PopupPage extends React.Component {
     return (
       <div>
         <Page>
-          showing? {this.state.show}
-
+          ## Popup showing {this.state.show}
           <div>
             <p>Click this button to show popup</p>
             <Button onClick={(event) => this.changeInputPopup({
