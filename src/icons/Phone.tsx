@@ -8,7 +8,7 @@ const SvgPhone = (props: React.SVGProps<SVGSVGElement>) => (
         id="phone_svg__a"
       />
     </defs>
-    <use fill="#46ACA6" xlinkHref="#phone_svg__a" fillRule="evenodd" />
+    <use xlinkHref="#phone_svg__a" />
   </svg>
 );
 

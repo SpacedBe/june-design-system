@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-    <title>Icons / Chat</title>
-    <desc>Created with Sketch.</desc>
     <defs>
         <path d="M15,7.8 C10.6991667,7.8 7.2,11.0298353 7.2,15 C7.2,18.9701647 10.6991667,22.2 15,22.2 C16.2129,22.2 17.3989333,21.9412235 18.4736,21.4456941 L20.5176333,22.1127529 C20.6974667,22.1716235 20.8829333,22.2 21.0666667,22.2 C21.5186333,22.2 21.9619333,22.0267765 22.2925667,21.7040471 C22.7566667,21.2500235 22.9187333,20.5783059 22.7107333,19.9692706 L22.0594333,18.0625412 C22.5460667,17.1079059 22.8,16.0634824 22.8,15 C22.8,11.0298353 19.3008333,7.8 15,7.8 M15,9.6 C18.3128571,9.6 21,12.0175385 21,15 C21,16.0343077 20.6742857,17.0021538 20.1128571,17.8246154 L21,20.4 L18.2785714,19.5193846 C17.3357143,20.076 16.2085714,20.4 15,20.4 C11.6871429,20.4 9,17.9824615 9,15 C9,12.0175385 11.6871429,9.6 15,9.6" id="path-1"></path>
     </defs>
-    <g id="Icons-/-Chat" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Icons-/-Chat" stroke="none" stroke-width="1">
         <mask id="mask-2" fill="white">
             <use xlink:href="#path-1"></use>
         </mask>
-        <use id="Color" fill="#46ACA6" xlink:href="#path-1"></use>
+        <use id="Color" xlink:href="#path-1"></use>
     </g>
 </svg>
