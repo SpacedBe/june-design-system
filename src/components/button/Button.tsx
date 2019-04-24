@@ -11,10 +11,10 @@ import Color from "../../helpers/color";
 const color = new Color();
 
 const sizes = {
-  xsmall: '20px',
-  small: '30px',
-  medium: '40px',
-  large: '51px',
+  xsmall: '15px',
+  small: '25px',
+  medium: '35px',
+  large: '45px',
 };
 
 type Props = {

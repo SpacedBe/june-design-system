@@ -240,10 +240,11 @@ export default class ButtonPage extends React.Component {
               form={this.state.form}
             />
           </ReactSpecimen>
-          ## Input field label
+          ## Input field with label
           <ReactSpecimen span={3}>
             <FormikInput
-              required
+              toolTip={<IconQuestionmark />}
+              label='Label Value'
               error={this.state.error}
               disabled={this.state.disabled}
               type={this.state.type}
@@ -267,29 +268,24 @@ export default class ButtonPage extends React.Component {
           </ReactSpecimen>
           ## Input field with tooltip
           <ReactSpecimen span={3}>
-            <FormikInput
-              toolTip={<IconQuestionmark />}
-              label='Label Value'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
-          ## Autocomplete
-          <ReactSpecimen span={3}>
-            <FormikInput
-              tooltip={<Button iconOnly={<IconQuestionmark />} />}
-              label='Label Value'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
+            <div>
+              <Flex align={'center'}>
+                <label>Label Value</label>
+                <Button iconOnly={<IconQuestionmark />}>
+                  Show the popup
+                </Button>
+              </Flex>
+              <FormikInput
+                tooltip={<Button iconOnly={<IconQuestionmark />} />}
+                label=''
+                error={this.state.error}
+                disabled={this.state.disabled}
+                type={this.state.type}
+                placeholderText='example placeholder'
+                field={this.state.field}
+                form={this.state.form}
+              />
+            </div>
           </ReactSpecimen>
         </Page>
       </div>
