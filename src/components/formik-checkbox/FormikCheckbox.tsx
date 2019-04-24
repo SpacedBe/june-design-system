@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
 import {getIn} from 'formik';
 
 type Props = {
@@ -23,6 +23,10 @@ type Props = {
   focussed: boolean,
   required?: boolean,
 };
+
+const WrapperStyled = styled.div`
+  text-align: left;
+`;
 
 const Input = styled.input`
   opacity: 0;
@@ -49,11 +53,12 @@ const Span = styled.span<{ error?: boolean }>`
       : `var(--color-primary)`};
 `;
 
-const InputDiv = styled.div`
+const CheckBoxWrapperStyled = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  margin-bottom: 20px;
+  text-align: left;
+  margin-bottom: var(--spacing-s);
 `;
 
 const Checkbox = styled.div<{ error?: boolean }>`
@@ -69,6 +74,13 @@ const Checkbox = styled.div<{ error?: boolean }>`
     props.error
       ? `2px solid var(--color-error)`
       : `2px solid var(--color-primary)`};
+`;
+
+const ErrorMessageStyled = styled.span`
+  font-size: var(--font-size-s);
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
 `;
 
 const Label = styled.label<{ error?: boolean }>`
@@ -88,27 +100,21 @@ export class FormikCheckbox extends React.Component<Props> {
     const name = this.props.field.name;
     const label = this.props.label;
     const error = getIn(this.props.form.errors, name);
-    const touched = getIn(this.props.form.touched, name);
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     return (
-      <div>
-        <InputDiv>
-          <Checkbox
-            error={!!errors}
-          >
+      <WrapperStyled>
+        <CheckBoxWrapperStyled>
+          <Checkbox error={!!errors}>
             <Input
               {...this.props.field}
-              type='checkbox'
-            />
-            <Span error={!!errors} />
+              type="checkbox"/>
+            <Span error={!!errors}/>
           </Checkbox>
-          <Label error={!!errors}>{label}</Label>
-        </InputDiv>
-        {
-          touched && errors && <div>{errors}</div>
-        }
-      </div>
+          <Label dangerouslySetInnerHTML={{__html: label}} error={!!errors}></Label>
+        </CheckBoxWrapperStyled>
+        {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
+      </WrapperStyled>
     );
   }
 }
