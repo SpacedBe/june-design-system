@@ -76,13 +76,6 @@ const Checkbox = styled.div<{ error?: boolean }>`
       : `2px solid var(--color-primary)`};
 `;
 
-const ErrorMessageStyled = styled.span`
-  font-size: var(--font-size-s);
-  color: var(--color-error);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-xs);
-`;
-
 const Label = styled.label<{ error?: boolean }>`
   margin-left: var(--spacing-m);
   position: relative;
@@ -113,7 +106,6 @@ export class FormikCheckbox extends React.Component<Props> {
           </Checkbox>
           <Label dangerouslySetInnerHTML={{__html: label}} error={!!errors}></Label>
         </CheckBoxWrapperStyled>
-        {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
       </WrapperStyled>
     );
   }
