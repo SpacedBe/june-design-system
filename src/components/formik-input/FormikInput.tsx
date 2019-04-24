@@ -101,7 +101,7 @@ const IconSmall = styled.span<{ disabled?: boolean }>`
 `;
 
 const IconBig = styled.span`
-  font-size: var(--font-size-xxl);
+  font-size: var(--font-size-m);
 `;
 
 const ButtonSmall = styled.button<{ disabled?: boolean }>`
