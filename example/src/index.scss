@@ -1,7 +1,9 @@
 @import '~june-design-system/dist/scss/shared_variables';
+@import 'button.scss';
 
 .june-design-system {
   @import '~june-design-system/dist/scss/main.scss';
+  @import 'button.scss';
 }
 
 body {
@@ -74,19 +76,4 @@ label {
   right: 10px;
   color: white;
 
-}
-
-
-/*Style Changes Error / Touched */
-
-.div{
-  padding: 10px;
-  display: flex;
-  width: 15rem;
-}
-
-.flexBox{
-  display: flex;
-  flex-flow: column-reverse;
-  width: 100%;
 }
