@@ -266,9 +266,6 @@ export class FormikInput extends React.Component<Props> {
     if (hasButton && this.props.tooltip) {
       inputContent = (
         <div>
-          {/* <Flex>
-            <IconSmall disabled={this.props.disabled}>{this.props.tooltip}</IconSmall>
-          </Flex> */}
           <InputBoxRight error={this.props.error} disabled={this.props.disabled}
                          focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText}
