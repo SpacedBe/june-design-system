@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {Button, IconSettings, FormikCheckbox} from 'june-design-system';
+import { Flex } from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -75,7 +76,7 @@ export default class ButtonPage extends React.Component {
               {this.state.content}
             </Button>
           </ReactSpecimen>
-          <div className="flexStyle">
+          <Flex justify={'space-between'}>
             <div className='div'>
               <label htmlFor='isRounded'>Rounded</label>
               <input
@@ -142,7 +143,7 @@ export default class ButtonPage extends React.Component {
                 <option value='large'>Large</option>
               </select>
             </div>
-          </div>
+          </Flex>
         </div>
         ## Icon on the left
         <ReactSpecimen>

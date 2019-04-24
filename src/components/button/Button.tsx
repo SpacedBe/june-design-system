@@ -41,7 +41,7 @@ const Icon = styled.div`
 
   svg {
     fill: ${props => color.getColorContrast(props.color)};
-    font-size: 2em;
+    font-size: var(--icon-size-m);
   }
 
   &:hover {
@@ -54,7 +54,7 @@ const IconOnly = styled.div`
   align-items: center;
   justify-content: center;
   fill: ${props => color.getColor(props.color)};
-  font-size: 2em;
+  font-size: var(--icon-size-m);
   cursor: pointer;
 `;
 
@@ -83,7 +83,7 @@ const OnlyIconButton = styled.button`
 
 const OnlyIconWithBorder = styled(OnlyIconButton)`
   border: 2px solid rgba(var(--color-primary-rgb), 0.25);
-  padding: 5px 5px 5px 5px;
+  padding: var(--spacing-xs);
 }
 
 `;

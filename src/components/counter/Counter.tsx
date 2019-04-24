@@ -23,9 +23,9 @@ const CounterDiv = styled.div<{ onClick?: void }>`
 `;
 
 const SpanStyled = styled.span`
-  padding-right: 10px;
+  padding-right: var(--spacing-s);
   font-size: var(--font-size-l);
-`
+`;
 
 export class Counter extends React.Component<Props>{
   constructor(props: any){
