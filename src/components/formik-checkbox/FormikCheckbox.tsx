@@ -58,7 +58,7 @@ const CheckBoxWrapperStyled = styled.div`
   align-items: center;
   position: relative;
   text-align: left;
-  margin-bottom: var(--spacing-s);
+  margin-bottom: var(--spacing-xs);
 `;
 
 const Checkbox = styled.div<{ error?: boolean }>`

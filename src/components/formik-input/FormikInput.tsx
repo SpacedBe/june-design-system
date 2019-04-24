@@ -82,7 +82,7 @@ const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?
 `;
 
 const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-m);
   color: var(--color-dark);
   border: none;
   outline: none;
@@ -101,7 +101,7 @@ const IconSmall = styled.span<{ disabled?: boolean }>`
 `;
 
 const IconBig = styled.span`
-  font-size: var(--font-size-m);
+  font-size: var(--icon-size-m);
 `;
 
 const ButtonSmall = styled.button<{ disabled?: boolean }>`

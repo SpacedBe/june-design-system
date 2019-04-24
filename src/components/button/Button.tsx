@@ -73,7 +73,7 @@ const Label = styled.span`
   opacity: 1;
   font-family: var(--font-primary);
   text-transform: capitalize;
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-m);
 `;
 
 const OnlyIconButton = styled.button`

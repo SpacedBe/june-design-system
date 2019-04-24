@@ -6,6 +6,7 @@ const StyledContainer = styled.div`
   max-width: var(--screen-xs);
   margin: 0 auto;
   padding: var(--spacing-m);
+  box-sizing: border-box;
 `;
 
 export class Container extends React.Component {
