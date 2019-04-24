@@ -75,7 +75,7 @@ export default class ButtonPage extends React.Component {
               {this.state.content}
             </Button>
           </ReactSpecimen>
-          <div className="flex">
+          <div className="flexStyle">
             <div className='div'>
               <label htmlFor='isRounded'>Rounded</label>
               <input
