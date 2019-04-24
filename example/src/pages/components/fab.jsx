@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {Fab, IconCheck, FormikSelect, FormikCheckbox, FormikInput} from 'june-design-system';
+import {Flex} from 'reflexbox';
 
 export default class FabPage extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ export default class FabPage extends React.Component {
     return (
       <Page>
         ## FAB
-        <div className='flexColumn'>
+        <Flex>
           <p>
             The Floating Action Button accepts any children you throw at it,
             for example text or an icon.
@@ -93,7 +94,7 @@ export default class FabPage extends React.Component {
               />
             </div>
           </div>
-        </div>
+        </Flex>
         <ReactSpecimen>
           <Fab size={this.state.size} inverted={this.state.inverted}>
             {this.state.content}
