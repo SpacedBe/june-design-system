@@ -160,7 +160,7 @@ export default class ButtonPage extends React.Component {
         </ReactSpecimen>
         ## Only an icon, with border
         <ReactSpecimen>
-          <Button iconButtonWithBorder={<IconSettings />} />
+          <Button iconButtonWithBorder={<IconSettings />}/>
         </ReactSpecimen>
         ## Loading
         <ReactSpecimen>
