@@ -22,6 +22,11 @@ const CounterDiv = styled.div<{ onClick?: void }>`
   align-items: center;
 `;
 
+const SpanStyled = styled.span`
+  padding-right: var(--spacing-s);
+  font-size: var(--font-size-l);
+`;
+
 export class Counter extends React.Component<Props>{
   constructor(props: any){
     super(props);
@@ -38,7 +43,7 @@ export class Counter extends React.Component<Props>{
   render(){
     return (
       <CounterDiv {...this.props} onClick={this.props.onClick}>
-        <span>{this.props.clicked}</span>
+        <SpanStyled>{this.props.clicked}</SpanStyled>
         <Button
           iconButtonWithBorder={<IconRemove />}
           onClick={this.handleCountDown}

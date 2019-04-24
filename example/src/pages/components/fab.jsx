@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Fab, IconCheck} from 'june-design-system';
+import {Fab, IconCheck, FormikSelect, FormikCheckbox, FormikInput} from 'june-design-system';
+import {Flex} from 'reflexbox';
 
 export default class FabPage extends React.Component {
   constructor(props) {
@@ -29,8 +30,71 @@ export default class FabPage extends React.Component {
     return (
       <Page>
         ## FAB
+        <Flex>
+          <p>
+            The Floating Action Button accepts any children you throw at it,
+            for example text or an icon.
+          </p>
+          <div className='flexStyle'>
+            <div>
+              <div className={'input-group'}>
+                <FormikInput
+                  disabled={false}
+                  error={false}
+                  field={{ name: 'content', value: this.state.content, onChange: event => this.changeContent(event) }}
+                  form={{
+                    errors: { 'example-input': null },
+                    touched: { 'example-input': false }
+                  }}
+                  label='Content'
+                  placeholderText='example placeholder'
+                  required
+                  type='text'
+                />
+              </div>
+            </div>
 
-        <p>The Floating Action Button accepts any children you throw at it, for example text or an icon.</p>
+            <div className={'input-group'}>
+              <FormikSelect
+                disabled={false}
+                error={false}
+                field={{
+                  name: 'size',
+                  value: this.state.size,
+                  onChange: event => this.changeSize(event)
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                htmlFor='isSelect'
+                label='Size'
+                options={[
+                  { label: 'small', value: 'small' },
+                  { label: 'medium (default)', value: 'medium' },
+                  { label: 'large', value: 'large' }
+                ]}
+                touched={false}
+              />
+            </div>
+            <div className={'input-group'}>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'isInverted',
+                  value: this.state.inverted,
+                  onChange: () => this.changeInversion()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Inverted'
+                type='checkbox'
+              />
+            </div>
+          </div>
+        </Flex>
         <ReactSpecimen>
           <Fab size={this.state.size} inverted={this.state.inverted}>
             {this.state.content}
@@ -38,31 +102,10 @@ export default class FabPage extends React.Component {
         </ReactSpecimen>
         <ReactSpecimen>
           <Fab size={this.state.size} inverted={this.state.inverted}>
-            <IconCheck/>
+            <IconCheck />
           </Fab>
         </ReactSpecimen>
-        <div>
-          <div className={'input-group'}>
-            <label htmlFor="content">Content</label>
-            <input type="text" value={this.state.content} name="content"
-                   onChange={(event) => this.changeContent(event)}/>
-          </div>
-
-          <div className={'input-group'}>
-            <label htmlFor="size">Size</label>
-            <select name="size" value={this.state.size} onChange={(event) => this.changeSize(event)}>
-              <option value="small">small</option>
-              <option value="medium">medium (default)</option>
-              <option value="large">large</option>
-            </select>
-          </div>
-
-          <div className={'input-group'}>
-            <label htmlFor="inverted">Inverted?</label>
-            <input type="checkbox" value={this.state.inverted} name="isInverted" onChange={() => this.changeInversion()}/>
-          </div>
-        </div>
       </Page>
-    )
+    );
   }
 }

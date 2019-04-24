@@ -38,11 +38,10 @@ type Props = {
 const Icon = styled.div`
   display: flex;
   align-items: center;
-  font-size: var(--font-size-m);
 
   svg {
     fill: ${props => color.getColorContrast(props.color)};
-    font-size: 2em;
+    font-size: var(--icon-size-m);
   }
 
   &:hover {
@@ -55,7 +54,7 @@ const IconOnly = styled.div`
   align-items: center;
   justify-content: center;
   fill: ${props => color.getColor(props.color)};
-  font-size: 3em;
+  font-size: var(--icon-size-m);
   cursor: pointer;
 `;
 
@@ -74,6 +73,7 @@ const Label = styled.span`
   opacity: 1;
   font-family: var(--font-primary);
   text-transform: capitalize;
+  font-size: var(--font-size-xl);
 `;
 
 const OnlyIconButton = styled.button`
@@ -82,7 +82,10 @@ const OnlyIconButton = styled.button`
 `;
 
 const OnlyIconWithBorder = styled(OnlyIconButton)`
-  border: 2px solid ${props => color.getColorTint(props.color)};
+  border: 2px solid rgba(var(--color-primary-rgb), 0.25);
+  padding: var(--spacing-xs);
+}
+
 `;
 
 const FlexStyled = styled.div`
@@ -127,7 +130,7 @@ const NormalButton = styled.button<any>`
   border-radius: ${props => props.rounded ? '30px' : '3px'};
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-m);
+
   outline: none;
   padding: 0 var(--spacing-m);
   position: relative;

@@ -213,7 +213,13 @@ $spacing-xl: $spacing-l * 2;
 
   --color-white: #ffffff;
   --color-dark: #172328;
+
   --color-error: #FF5757;
+  --color-error-rgb: 255,87,87;
+  --color-error-contrast: #ffffff;
+  --color-error-contrast-rgb: 255,255,255;
+  --color-error-shade: #e04d4d;
+  --color-error-tint: #ff6868;
 
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Open Sans', sans-serif;

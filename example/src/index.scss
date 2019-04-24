@@ -1,4 +1,5 @@
 @import '~june-design-system/dist/scss/shared_variables';
+@import 'button.scss';
 
 .june-design-system {
   @import '~june-design-system/dist/scss/main.scss';
@@ -75,4 +76,3 @@ label {
   color: white;
 
 }
-

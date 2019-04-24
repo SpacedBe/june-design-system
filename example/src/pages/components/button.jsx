@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Button, IconSettings} from 'june-design-system';
+import {Button, IconSettings, FormikCheckbox} from 'june-design-system';
+import { Flex } from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -59,124 +60,126 @@ export default class ButtonPage extends React.Component {
 
   render() {
     return (
-      <Page>
-        ## Buttons
-        <ReactSpecimen>
-          <Button
-            size={this.state.size}
-            rounded={this.state.rounded}
-            clear={this.state.clear}
-            disabled={this.state.disabled}
-            wide={this.state.wide}
-            color={this.state.color}
-            onClick={this.state.clicked}
-          >
-            {this.state.content}
-          </Button>
-        </ReactSpecimen>
-        <div>
-          <div>
-            <label htmlFor="isRounded">Rounded?</label>
-            <input
-              type="checkbox"
-              value={this.state.rounded}
-              name="isRounded"
-              onChange={() => this.changeRounded()}
-            />
-          </div>
+      <div className='buttons'>
+        <Page>
+          ## Buttons
+          <div className='flexBox'>
+            <ReactSpecimen>
+              <Button
+                size={this.state.size}
+                rounded={this.state.rounded}
+                clear={this.state.clear}
+                disabled={this.state.disabled}
+                wide={this.state.wide}
+                color={this.state.color}
+                onClick={this.state.clicked}
+              >
+                {this.state.content}
+              </Button>
+            </ReactSpecimen>
+            <Flex justify={'space-between'}>
+              <div className='wrapper'>
+                <label htmlFor='isRounded'>Rounded</label>
+                <input
+                  className=''
+                  type='checkbox'
+                  value={this.state.rounded}
+                  name='isRounded'
+                  onChange={() => this.changeRounded()}
+                />
+              </div>
 
-          <div>
-            <label htmlFor="isDisabled">Disabled?</label>
-            <input
-              type="checkbox"
-              value={this.state.disabled}
-              name="isDisabled"
-              onChange={() => this.changeDisable()}
-            />
-          </div>
+              <div className='wrapper'>
+                <label htmlFor='isDisabled'>Disabled</label>
+                <input
+                  type='checkbox'
+                  value={this.state.disabled}
+                  name='isDisabled'
+                  onChange={() => this.changeDisable()}
+                />
+              </div>
 
-          <div>
-            <label htmlFor="isClear">Clear?</label>
-            <input
-              type="checkbox"
-              value={this.state.clear}
-              name="isClear"
-              onChange={() => this.changeClear()}
-            />
-          </div>
+              <div className='wrapper'>
+                <label htmlFor='isClear'>Clear</label>
+                <input
+                  type='checkbox'
+                  value={this.state.clear}
+                  name='isClear'
+                  onChange={() => this.changeClear()}
+                />
+              </div>
 
-          <div>
-            <label htmlFor="isFullWidth">Full width?</label>
-            <input
-              type="checkbox"
-              value={this.state.wide}
-              name="isFullWidth"
-              onChange={() => this.changeWide()}
-            />
-          </div>
+              <div className='wrapper'>
+                <label htmlFor='isFullWidth'>Full width</label>
+                <input
+                  type='checkbox'
+                  value={this.state.wide}
+                  name='isFullWidth'
+                  onChange={() => this.changeWide()}
+                />
+              </div>
 
-          <div>
-            <label htmlFor="color">Color</label>
-            <select
-              name="color"
-              value={this.state.color}
-              onChange={event => this.changeColor(event)}
+              <div className='wrapper'>
+                <label htmlFor='color'>Color</label>
+                <select
+                  name='color'
+                  value={this.state.color}
+                  onChange={event => this.changeColor(event)}
+                >
+                  <option value='primary'>green</option>
+                  <option value='error'>red</option>
+                  <option value='facebook'>blue</option>
+                </select>
+              </div>
+
+              <div className='wrapper'>
+                <label htmlFor='size'>Size</label>
+                <select
+                  name='size'
+                  value={this.state.size}
+                  onChange={event => this.changeSize(event)}
+                >
+                  <option value='small'>Small</option>
+                  <option value='medium'>Medium</option>
+                  <option value='large'>Large</option>
+                </select>
+              </div>
+            </Flex>
+          </div>
+          ## Icon on the left
+          <ReactSpecimen>
+            <Button iconLeft={<IconSettings />}>Button with icon</Button>
+          </ReactSpecimen>
+          ## Icon on the right
+          <ReactSpecimen>
+            <Button iconRight={<IconSettings />}> Button with icon</Button>
+          </ReactSpecimen>
+          ## Only an icon
+          <ReactSpecimen>
+            <Button iconOnly={<IconSettings />}>
+              Button with only an icon
+            </Button>
+          </ReactSpecimen>
+          ## Only an icon, with border
+          <ReactSpecimen>
+            <Button iconButtonWithBorder={<IconSettings />} />
+          </ReactSpecimen>
+          ## Loading
+          <ReactSpecimen>
+            <Button loading='true'>Loading button</Button>
+          </ReactSpecimen>
+          # Click events
+          <ReactSpecimen>
+            <Button
+              htmlfor='isClicked'
+              onClick={() => this.changeClicked()}
             >
-              <option value="red">red</option>
-              <option value="green">green</option>
-              <option value="blue">blue</option>
-              <option value="yellow">yellow</option>
-              <option value="facebook">facebook</option>
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="size">Size</label>
-            <select
-              name="size"
-              value={this.state.size}
-              onChange={event => this.changeSize(event)}
-            >
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </div>
-        </div>
-        ## Icon on the left
-        <ReactSpecimen>
-          <Button iconLeft={<IconSettings />}>Button with icon</Button>
-        </ReactSpecimen>
-        ## Icon on the right
-        <ReactSpecimen>
-          <Button iconRight={<IconSettings />}> Button with icon</Button>
-        </ReactSpecimen>
-        ## Only an icon
-        <ReactSpecimen>
-          <Button iconOnly={<IconSettings />}>
-            Button with only an icon
-          </Button>
-        </ReactSpecimen>
-        ## Only an icon, with border
-        <ReactSpecimen>
-          <Button iconButtonWithBorder={<IconSettings />}/>
-        </ReactSpecimen>
-
-        ## Loading
-        <ReactSpecimen>
-          <Button loading="true">
-            Loading button
-          </Button>
-        </ReactSpecimen>
-
-        # Click events
-        <ReactSpecimen>
-          <Button htmlfor="isClicked" onClick={() => this.changeClicked()}>
-            Click
-          </Button>
-        </ReactSpecimen>
-        <p>Clicked {this.state.clicked} times</p>
-      </Page>
+              Click
+            </Button>
+          </ReactSpecimen>
+          <p>Clicked {this.state.clicked} times</p>
+        </Page>
+      </div>
     );
   }
 }

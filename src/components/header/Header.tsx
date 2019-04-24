@@ -5,12 +5,14 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const HeaderDiv = styled.div`
+  padding: var(--spacing-m);
   overflow: hidden;
   background-color: var(--color-white);
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0px 0.5px 1px rgba(var(--color-primary-rgb), 0.25);
+  width: 100%;
 `;
 
 export class Header extends React.Component {

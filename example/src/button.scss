@@ -1,0 +1,14 @@
+/* button */
+.buttons{
+  .wrapper{
+    padding: 10px;
+    display: flex;
+    width: 15rem;
+  }
+
+  .flexBox{
+    display: flex;
+    flex-flow: column-reverse;
+    width: 100%;
+  }
+}
