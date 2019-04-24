@@ -76,3 +76,25 @@ label {
 
 }
 
+
+/*Style Changes Error / Touched */
+
+.div{
+  padding: 10px;
+  display: flex;
+  width: 15rem;
+}
+
+.flex{
+  display: flex;
+}
+
+.flexBox{
+  display: flex;
+  flex-flow: column-reverse;
+  width: 100%;
+}
+
+.checkBox{
+
+}
