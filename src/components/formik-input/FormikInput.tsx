@@ -87,10 +87,8 @@ const IconSmall = styled.span<{ disabled?: boolean }>`
   display: inline-flex;
 `;
 
-const IconBig = styled.span<any>`
+const IconBig = styled(IconSmall)`
   font-size: var(--icon-size-m);
-  opacity: ${props => (props.disabled ? "0.5" : "1")};
-  display: inline-flex;
 `;
 
 const ButtonSmall = styled.button<{ disabled?: boolean }>`
