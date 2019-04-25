@@ -21,6 +21,13 @@ export default class App extends Component {
       <Catalog
         className='june-design-system'
         title='June Design System'
+        logoSrc={['/static/assets/images/juneLogo.png']}
+        theme={[
+          {
+            background: '#3087e8',
+            linkColor: '"#3d8279'
+          }
+        ]}
         styles={['./styles/main.css']}
         pages={[
           {
