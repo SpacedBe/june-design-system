@@ -26,7 +26,8 @@
     "@types/react-is": "^16.5.0",
     "awesome-debounce-promise": "^2.1.0",
     "classnames": "^2.2.6",
-    "reflexbox": "^3.0.1"
+    "reflexbox": "^3.0.1",
+    "rollup-plugin-images": "^1.0.0"
   },
   "peerDependencies": {
     "@types/react-autocomplete": "^1.8.5",

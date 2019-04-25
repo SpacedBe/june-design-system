@@ -8832,6 +8832,13 @@ rollup-plugin-copy-glob@^0.3.0:
     glob "7.1.3"
     glob-parent "3.1.0"
 
+rollup-plugin-images@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-images/-/rollup-plugin-images-1.0.0.tgz#60a670d32dbc946b279b1b3ca2bc3450b8475beb"
+  integrity sha512-9FgD8kysN3JNvzmjO/ynndQOZ1CMvVDtja6p5kJRV6pO3qjEx2onebVAnEEHNBZFSreVynqlNsZ/3Dq4bA/srg==
+  dependencies:
+    rollup-pluginutils "^2.0.1"
+
 rollup-plugin-node-resolve@^3.3.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.4.0.tgz#908585eda12e393caac7498715a01e08606abc89"

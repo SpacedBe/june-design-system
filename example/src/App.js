@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Catalog, pageLoader} from 'catalog';
+import logo from './assets/images/june-logo.svg';
 
 import {
   Button,
@@ -21,13 +22,22 @@ export default class App extends Component {
       <Catalog
         className='june-design-system'
         title='June Design System'
-        logoSrc={['/static/assets/images/juneLogo.png']}
-        theme={[
+        logoSrc={logo}
+        theme={
           {
-            background: '#3087e8',
-            linkColor: '"#3d8279'
+            pageHeadingBackground: "#46aca6",
+            pageHeadingTextColor: "#f6f6f6",
+            pageHeadingHeight: 250,
+            sidebarColorText: "#172328",
+            sidebarColorTextActive: "#e85257",
+            fontFamily: "'Montserrat', sans-serif",
+            fontHeading: "'Open Sans', sans-serif",
+            fontWeight: "Bold",
+            navBarTextColor: "#3d8279",
+            navBarBackground: "#f6f6f6"
+
           }
-        ]}
+        }
         styles={['./styles/main.css']}
         pages={[
           {
