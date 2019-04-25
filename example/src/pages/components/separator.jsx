@@ -1,7 +1,6 @@
 import React from 'react';
 import { Page, ReactSpecimen } from 'catalog';
 import { Separator, FormikInput } from 'june-design-system';
-import { Flex } from 'reflexbox'
 
 export default class FabPage extends React.Component {
   constructor(props) {
