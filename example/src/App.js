@@ -37,6 +37,11 @@ export default class App extends Component {
                 content: pageLoader('/pages/design/typography.md')
               },
               {
+                path: 'colors',
+                title: 'Colors',
+                content: pageLoader('/pages/design/colors.md')
+              },
+              {
                 path: 'icons',
                 title: 'Icons',
                 component: pageLoader(() =>
