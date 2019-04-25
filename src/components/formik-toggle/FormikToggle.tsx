@@ -76,10 +76,10 @@ const Div = styled.div`
 
 const LabelBeforeToggle = styled.label`
   display: inline;
-  width: 70%;
+  padding-left: var(--spacing-s);
   line-height: 1.5em;
   font-family: var(--font-secondary);
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-m);
 `;
 
 const Icon = styled.span`
@@ -106,10 +106,10 @@ export class FormikToggle extends React.Component<Props> {
 
     if (this.props.tooltip) {
       tooltip = (
-        <div>
+        <FlexDiv>
           <Icon>{this.props.tooltip}</Icon>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-        </div>
+        </FlexDiv>
       );
     }
 

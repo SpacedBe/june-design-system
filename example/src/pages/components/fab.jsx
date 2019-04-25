@@ -36,8 +36,8 @@ export default class FabPage extends React.Component {
             The Floating Action Button accepts any children you throw at it,
             for example text or an icon.
           </p>
-          <Flex justify={'space-between'} align={'center'}>
-            <div className={'input-group'}>
+          <Flex justify={'space-between'} align={'flex-start'} column>
+            <div className="spacingBaseline">
               <FormikCheckbox
                 error={false}
                 field={{
@@ -53,29 +53,7 @@ export default class FabPage extends React.Component {
                 type='checkbox'
               />
             </div>
-            <div>
-              <div className={'input-group'}>
-                <FormikInput
-                  disabled={false}
-                  error={false}
-                  field={{
-                    name: 'content',
-                    value: this.state.content,
-                    onChange: event => this.changeContent(event)
-                  }}
-                  form={{
-                    errors: { 'example-input': null },
-                    touched: { 'example-input': false }
-                  }}
-                  label='Content'
-                  placeholderText='example placeholder'
-                  required
-                  type='text'
-                />
-              </div>
-            </div>
-
-            <div className={'input-group'}>
+            <div className="spacingBaseline">
               <FormikSelect
                 disabled={false}
                 error={false}
@@ -97,6 +75,27 @@ export default class FabPage extends React.Component {
                 ]}
                 touched={false}
               />
+            </div>
+            <div>
+              <div className="spacingBaseline">
+                <FormikInput
+                  disabled={false}
+                  error={false}
+                  field={{
+                    name: 'content',
+                    value: this.state.content,
+                    onChange: event => this.changeContent(event)
+                  }}
+                  form={{
+                    errors: { 'example-input': null },
+                    touched: { 'example-input': false }
+                  }}
+                  label='Content'
+                  placeholderText='example placeholder'
+                  required
+                  type='text'
+                />
+              </div>
             </div>
           </Flex>
         </Flex>

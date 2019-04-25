@@ -112,7 +112,7 @@ export default class ButtonPage extends React.Component {
                 type='checkbox'
               />
             </div>
-            
+
             <div className='wrapper'>
               <FormikCheckbox
                 error={false}
@@ -211,7 +211,19 @@ export default class ButtonPage extends React.Component {
           ## Input field icon end
           <ReactSpecimen span={3}>
             <FormikInput
-              iconEnd={<IconElectricity/>}
+              iconEnd={<IconElectricity />}
+              label=''
+              error={this.state.error}
+              disabled={this.state.disabled}
+              type={this.state.type}
+              placeholderText='example placeholder'
+              field={this.state.field}
+              form={this.state.form}
+            />
+          </ReactSpecimen>
+          ## Input field with label
+          <ReactSpecimen span={3}>
+            <FormikInput
               label='Label Value'
               error={this.state.error}
               disabled={this.state.disabled}
@@ -236,8 +248,6 @@ export default class ButtonPage extends React.Component {
               form={this.state.form}
             />
           </ReactSpecimen>
-
-
         </Page>
       </div>
     );

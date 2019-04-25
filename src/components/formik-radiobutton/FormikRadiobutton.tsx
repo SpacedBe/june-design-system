@@ -5,6 +5,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {getIn} from 'formik';
+import Color from "../../helpers/color";
 
 type Props = {
   field: {
@@ -27,6 +28,8 @@ type Props = {
   required?: boolean;
   value: string;
 };
+
+const colorHelper = new Color();
 
 const Input = styled.input`
   opacity: 0;
@@ -88,6 +91,13 @@ const Label = styled.label<{ error?: boolean }>`
       : `var(--color-dark)`};
 `;
 
+const ErrorMessageStyled = styled.span`
+  font-size: var(--font-size-s);
+  color: ${colorHelper.getColor('error')};
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+`;
+
 export class FormikRadiobutton extends React.Component<Props> {
   render() {
     const {name, value} = this.props.field;
@@ -111,10 +121,10 @@ export class FormikRadiobutton extends React.Component<Props> {
             />
             <Span error={errors} />
           </Round>
-          <Label>{label}</Label>
+          <Label dangerouslySetInnerHTML={{ __html: label }} error={!!errors}></Label>
         </InputDiv>
         {
-          touched && errors && <div>{errors}</div>
+          touched && errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>
         }
       </div>
 

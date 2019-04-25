@@ -60,7 +60,7 @@ const InputboxIconStyled = styled.div<{ error?: boolean, disabled?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   &::placeholder {
      color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
   }
@@ -116,6 +116,8 @@ const FlexStyled = styled.div`
 const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   font-family: var(--font-secondary);
   padding-bottom: var(--spacing-xs);
+  display: flex;
+  align-items: center;
   color: ${props => {
   if (props.disabled) {
     return colorHelper.getColor('disabled');

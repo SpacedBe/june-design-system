@@ -5,6 +5,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {getIn} from 'formik';
+import Color from "../../helpers/color";
 
 interface Option {
   label: string,
@@ -26,11 +27,14 @@ type Props = {
   label?: string,
   error: boolean,
   disabled: boolean,
-}
+};
 
-const WrapperStyled = styled.div`
+const colorHelper = new Color();
+
+const WrapperStyled = styled.div<{error?: boolean; disabled?: boolean;}>`
   text-align: left;
   width: 100%;
+
 `;
 
 const Select = styled.select<{
@@ -43,7 +47,7 @@ const Select = styled.select<{
       : `2px solid var(--color-gray-light)`};
   padding: 10px 10px 10px 10px;
   border-radius: 2.5px;
-  background: var(--color-whites);
+  background: var(--color-white);
   outline: none;
   display: flex;
   opacity: ${props => (props.disabled ? '0.5' : '1')};
@@ -57,13 +61,23 @@ const Label = styled.label<{
   disabled?: boolean;
 }>`
   opacity: ${props => (props.disabled ? '0.5' : '1')};
-  color: ${props => (props.error ? `var(--color-error)` : `var(--color-dark)`)};
+  color: ${props =>
+    props.error
+      ? `var(--color-error)`
+      : `var(--color-gray-light)`};
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
 `;
 
 const Option = styled.option`
   color: var(--color-gray);
+`;
+
+const ErrorMessageStyled = styled.span`
+  font-size: var(--font-size-s);
+  color: ${colorHelper.getColor('error')};
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
 `;
 
 export class FormikSelect extends React.Component<Props> {
@@ -75,10 +89,10 @@ export class FormikSelect extends React.Component<Props> {
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     return (
-      <WrapperStyled>
+      <WrapperStyled disabled={this.props.disabled} error={!!errors}>
         <Label
           disabled={this.props.disabled}
-          error={!!errors}
+          error={this.props.error}
           htmlFor={name}>
           {label}
         </Label>
@@ -86,6 +100,7 @@ export class FormikSelect extends React.Component<Props> {
         <Select
           {...this.props.field}
           disabled={this.props.disabled}
+          error={this.props.error}
         >
           {this.props.options.map(item => (
             <Option key={item.value} value={item.value}>
@@ -93,7 +108,7 @@ export class FormikSelect extends React.Component<Props> {
             </Option>
           ))}
         </Select>
-        {touched && errors && <div>{errors}</div>}
+        {touched && errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
       </WrapperStyled>
     );
   }
