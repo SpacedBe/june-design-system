@@ -35,7 +35,6 @@ export default class App extends Component {
             fontWeight: "Bold",
             navBarTextColor: "#3d8279",
             navBarBackground: "#f6f6f6"
-
           }
         }
         styles={['./styles/main.css']}
