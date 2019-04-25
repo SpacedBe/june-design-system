@@ -47,38 +47,24 @@ const InputStyled = styled.div`
   text-align: left;
 `;
 
-const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean }>`
-  width: 100%;
+const InputboxIconStyled = styled.div<any>`
+  position: relative;
   box-sizing: border-box;
-  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
+  width: 100%;
   color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
-  padding: 10px 10px 10px 10px;
-  margin-right: 20px;
-  border-radius: 2.5px;
   background-color: ${colorHelper.getColor('white')};
+  padding: var(--spacing-s);
+  margin-right: var(--spacing-s);
+  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
+  border-radius: 3px;
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
   justify-content: space-between;
-  height: 48px;
+  
   &::placeholder {
      color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
   }
-`;
-
-const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?: boolean; }>`
-  width: 100%;
-  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
-  color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
-  padding: 10px 10px 10px 10px;
-  border-radius: 2.5px;
-  background-color: ${colorHelper.getColor('white')};
-  opacity: ${props => (props.disabled ? "0.5" : "1")};
-  outline: none;
-  display: flex;
-  height: 48px;
-  box-sizing: border-box;
-  margin-bottom: var(--spacing-xs);
 `;
 
 const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
@@ -92,16 +78,19 @@ const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
 `;
 
 const InputWithIconLeft = styled(Input)`
-  margin-left: 10px;
+  padding-left: var(--icon-size-xs);
 `;
 
 const IconSmall = styled.span<{ disabled?: boolean }>`
   font-size: var(--icon-size-s);
   opacity: ${props => (props.disabled ? "0.5" : "1")};
+  display: inline-flex;
 `;
 
-const IconBig = styled.span`
+const IconBig = styled.span<any>`
   font-size: var(--icon-size-m);
+  opacity: ${props => (props.disabled ? "0.5" : "1")};
+  display: inline-flex;
 `;
 
 const ButtonSmall = styled.button<{ disabled?: boolean }>`
@@ -160,31 +149,31 @@ export class FormikInput extends React.Component<Props> {
 
     if (!hasIcon) {
       inputContent = (
-        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                       focussed={this.props.focussed}>
           <Input {...this.props.field}
                  placeholder={this.props.placeholderText}
                  disabled={this.props.disabled}
                  type={this.props.type}>
           </Input>
-        </InputBoxLeft>
+        </InputboxIconStyled>
       );
     }
 
     if (hasIcon && this.props.iconLeft) {
       inputContent = (
-        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                       focussed={this.props.focussed}>
           <IconSmall>{this.props.iconLeft}</IconSmall>
           <InputWithIconLeft {...this.props.field} placeholder={this.props.placeholderText}
                              type={this.props.type}></InputWithIconLeft>
-        </InputBoxLeft>
+        </InputboxIconStyled>
       );
     }
 
     if (hasIcon && this.props.iconRight) {
       inputContent = (
-        <InputBoxRight error={this.props.error} disabled={this.props.disabled}
+        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                        focussed={this.props.focussed}>
           <Input {...this.props.field}
                  placeholder={this.props.placeholderText}
@@ -192,31 +181,31 @@ export class FormikInput extends React.Component<Props> {
                  type={this.props.type}>
           </Input>
           <IconSmall>{this.props.iconRight}</IconSmall>
-        </InputBoxRight>
+        </InputboxIconStyled>
       );
     }
 
     if (hasIcon && this.props.buttonRight) {
       inputContent = (
-        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                       focussed={this.props.focussed}>
           <Input {...this.props.field} placeholder={this.props.placeholderText}
                  disabled={this.props.disabled}
                  type={this.props.type}></Input>
           <ButtonSmall disabled={this.props.disabled}>{this.props.buttonRight}</ButtonSmall>
-        </InputBoxLeft>
+        </InputboxIconStyled>
       );
     }
 
     if (hasButton && this.props.buttonOutsideRight) {
       inputContent = (
         <Flex>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
+          <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                          focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText}
                    disabled={this.props.disabled}
                    type={this.props.type}></Input>
-          </InputBoxRight>
+          </InputboxIconStyled>
           <IconSmall disabled={this.props.disabled}>{this.props.buttonOutsideRight}</IconSmall>
         </Flex>
       );
@@ -226,12 +215,12 @@ export class FormikInput extends React.Component<Props> {
       inputContent = (
         <Flex>
           <IconBig>{this.props.iconFront}</IconBig>
-          <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+          <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                         focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText}
                    disabled={this.props.disabled}
                    type={this.props.type}></Input>
-          </InputBoxLeft>
+          </InputboxIconStyled>
         </Flex>
       );
     }
@@ -239,12 +228,12 @@ export class FormikInput extends React.Component<Props> {
     if (hasIcon && this.props.iconEnd) {
       inputContent = (
         <Flex>
-          <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
+          <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                         focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText}
                    disabled={this.props.disabled}
                    type={this.props.type}></Input>
-          </InputBoxLeft>
+          </InputboxIconStyled>
           <IconBig>{this.props.iconEnd}</IconBig>
         </Flex>
       );
@@ -253,12 +242,12 @@ export class FormikInput extends React.Component<Props> {
     if (hasIcon && this.props.required) {
       inputContent = (
         <div>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
+          <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                          focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText}
                    disabled={this.props.disabled}
                    type={this.props.type}></Input>
-          </InputBoxRight>
+          </InputboxIconStyled>
         </div>
       );
     }
@@ -266,12 +255,12 @@ export class FormikInput extends React.Component<Props> {
     if (hasButton && this.props.tooltip) {
       inputContent = (
         <div>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
+          <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}
                          focussed={this.props.focussed}>
             <Input {...this.props.field} placeholder={this.props.placeholderText}
                    disabled={this.props.disabled}
                    type={this.props.type}></Input>
-          </InputBoxRight>
+          </InputboxIconStyled>
         </div>
       );
     }

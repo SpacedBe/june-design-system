@@ -75,6 +75,7 @@ const Textarea = styled.textarea<{ error?: boolean; disabled?: boolean }>`
   opacity: ${props => (props.disabled ? '0.5' : '1')};
   width: 100%;
   resize: none;
+  font-size: var(--font-size-m);
 `;
 
 const Flex = styled.div`
