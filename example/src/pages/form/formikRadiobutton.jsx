@@ -122,7 +122,7 @@ export default class FormikRadiobuttonPage extends React.Component{
                   type='radio'
                   placeholderText='example placeholder'
                   field={this.state.field}
-                  label='option one'
+                  label='Option one'
                   form={this.state.form}
                   name='radioTestName'
                 />

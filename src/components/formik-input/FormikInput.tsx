@@ -278,7 +278,7 @@ export class FormikInput extends React.Component<Props> {
 
     return (
       <WrapperStyled>
-        <LabelStyled error={touched && errors}
+        <LabelStyled error={!!errors}
                      disabled={this.props.disabled}>
           {label}
         </LabelStyled>

@@ -82,13 +82,15 @@ const Span = styled.span<{ error?: boolean }>`
 `;
 
 const Label = styled.label<{ error?: boolean }>`
-  margin-left: 35px;
+  margin-left: var(--spacing-l);
+  position: relative;
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
   color: ${props =>
     props.error
       ? `var(--color-error)`
       : `var(--color-dark)`};
+  text-align: left;
 `;
 
 const ErrorMessageStyled = styled.span`

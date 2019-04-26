@@ -28,21 +28,22 @@ label {
 /*FORM - formikForm.jsx*/
 
 .form {
-  text-align: center;
   margin: 0 auto;
+  .container{
+    border-bottom: 2px solid #DFF2F2;
+    max-width: 450px;
+    margin: 10px;
+    padding-bottom: 20px;
+  }
+  .flex{
+    display: flex;
+    justify-content: space-between;
+  }
+  .center{
+    text-align: center
+  }
 }
 
-.form .container {
-  border-bottom: 2px solid #DFF2F2;
-  max-width: 450px;
-  margin: 10px;
-  padding-bottom: 20px;
-}
-
-.form .flex{
-  display: flex;
-  justify-content: space-between;
-}
 
 /*POPUP - popup.jsx*/
 

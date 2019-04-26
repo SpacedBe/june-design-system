@@ -62,6 +62,7 @@ export default class FormPage extends React.Component {
   render() {
     return (
       <Page>
+      ## Example Form
         <ReactSpecimen>
           <Container>
             <Formik>
@@ -69,8 +70,8 @@ export default class FormPage extends React.Component {
                 <div className={'form'}>
                   <section className={'page'}>
                     <div className={'container'}>
-                      <h2>Form Section Title</h2>
-                      <p>
+                      <h2 className={'center'}>Form Section Title</h2>
+                      <p className={'center'}>
                         The title right above is to divide the from into
                         clear sections. This text gives more information for
                         every section.
@@ -119,22 +120,17 @@ export default class FormPage extends React.Component {
                         </div>
                         <FormGroup>
                           <Field
-
-                          />
-                        </FormGroup>
-                        {/* <FormGroup>
-                          <Field
-                            label="Gender"
-                            htmlFor='isSelect'
+                            label='Gender'
                             options={[
-                              {label: "ONE", value: "1"},
-                              {label: "TWO", value: "2"},
-                              {label: "THREE", value: "3"},
-                              {label: "FOUR", value: "4"}
+                              { label: 'Male', value: '1' },
+                              { label: 'Female', value: '2' },
+                              { label: 'X', value: '3' }
                             ]}
+                            htmlFor='isSelect'
+                            name="genderSelect"
                             component={FormikSelect}
-                          />
-                        </FormGroup> */}
+                            />
+                        </FormGroup>
                       </div>
                     </div>
                     <div className={'container'}>
@@ -238,13 +234,13 @@ export default class FormPage extends React.Component {
                         />
                       </FormGroup>
                     </div>
-                    <FormGroup>
+                    <FormGroup className={'center'}>
                       <FormError>
                         This is an example server error!
                       </FormError>
                     </FormGroup>
 
-                    <FormGroup>
+                    <FormGroup className={'center'}>
                       <Button
                         clear={false}
                         color='green'

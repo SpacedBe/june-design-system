@@ -25,14 +25,14 @@ export default class App extends Component {
         logoSrc={logo}
         theme={
           {
-            pageHeadingBackground: "#46aca6",
+            pageHeadingBackground: "var(--color-primary)",
             pageHeadingTextColor: "#f6f6f6",
             pageHeadingHeight: 250,
-            sidebarColorText: "#172328",
+            sidebarColorText: "var(--color-dark)",
             sidebarColorTextActive: "#e85257",
-            fontFamily: "'Montserrat', sans-serif",
-            fontHeading: "'Open Sans', sans-serif",
-            fontWeight: "Bold",
+            fontFamily: "var(--font-primary)",
+            fontHeading: "var(--font-secondary)",
+            fontWeight: "var(--font-weight-bold)",
             navBarTextColor: "#3d8279",
             navBarBackground: "#f6f6f6"
           }
@@ -50,7 +50,9 @@ export default class App extends Component {
               {
                 path: 'typography',
                 title: 'Typography',
-                content: pageLoader('/pages/design/typography.md')
+                component: pageLoader(() =>
+                  import('./pages/components/typograph')
+                )
               },
               {
                 path: 'colors',
@@ -85,13 +87,6 @@ export default class App extends Component {
                 content: pageLoader('/pages/layout/container.md'),
                 imports: {}
               },
-              {
-                path: 'typograph',
-                title: 'Typograph',
-                component: pageLoader(() =>
-                  import('./pages/components/typograph')
-                )
-              }
             ]
           },
           {
