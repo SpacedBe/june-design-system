@@ -196,7 +196,7 @@ $font-weight-bold: 700;
 }
 
 & {
-  font-family: var(--font-primary) !important;
+  font-family: var(--font-primary);
   font-size: var(--font-size-s)
 }
 
@@ -268,3 +268,4 @@ a {
 .mini {
   font-size: var(--font-size-xs);
 }
+

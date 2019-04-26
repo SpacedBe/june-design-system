@@ -49,7 +49,6 @@ const WrapperStyled = styled.div`
 
 const InputboxIconStyled = styled.div<{ error?: boolean, disabled?: boolean }>`
   position: relative;
-  box-sizing: border-box;
   width: 100%;
   background-color: ${colorHelper.getColor('white')};
   padding: var(--spacing-s);

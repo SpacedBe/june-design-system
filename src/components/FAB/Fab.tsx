@@ -35,7 +35,6 @@ const Host = styled.div<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
   transition: all 0.2s;
 
   svg {

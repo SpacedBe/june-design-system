@@ -66,7 +66,6 @@ const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
 `;
 
 const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
-   box-sizing: border-box;
    width: 100%;
    font-size: var(--font-size-m);
    background-color: var(--color-white);

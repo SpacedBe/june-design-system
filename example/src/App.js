@@ -20,7 +20,6 @@ export default class App extends Component {
   render() {
     return (
       <Catalog
-        className='june-design-system'
         title='June Design System'
         logoSrc={logo}
         theme={
@@ -37,7 +36,6 @@ export default class App extends Component {
             navBarBackground: "#f6f6f6"
           }
         }
-        styles={['./styles/main.css']}
         pages={[
           {
             path: '/',

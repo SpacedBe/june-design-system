@@ -14,7 +14,6 @@ type Props = {
 }
 
 const PopupStyled = styled.div`
-  box-sizing: border-box;
   position: absolute;
   top: 0;
   left: 0;

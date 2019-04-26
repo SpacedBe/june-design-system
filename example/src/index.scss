@@ -1,21 +1,22 @@
 @import '~june-design-system/dist/scss/shared_variables';
-@import 'button.scss';
-@import 'stepper.scss';
-@import 'separator.scss';
-
-.june-design-system {
-  @import '~june-design-system/dist/scss/main.scss';
-}
+@import 'styling/button';
+@import 'styling/stepper';
+@import 'styling/separator';
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+
+  @import '~june-design-system/dist/scss/main.scss';
 }
+
+// todo: clean this up below
 
 label {
   display: block;
 }
+
 .pop
 .input-group {
   margin-bottom: 8px;
