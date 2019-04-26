@@ -1,9 +1,9 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikAutoFill, FormikCheckbox, Button} from 'june-design-system';
+import {FormikAutoFill, FormikCheckbox} from 'june-design-system';
 import {Flex} from 'reflexbox';
 
-export default class ButtonPage extends React.Component {
+export default class FormikAutoFillPage extends React.Component {
   constructor(props) {
     super(props);
 

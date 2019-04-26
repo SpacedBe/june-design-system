@@ -147,7 +147,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
 
           </LabelStyled>
           <Autocomplete inputProps={inputProps}
-                        items={[{id:'0',name:'ABC'},{id:'1',name:'DEF'},{id:'2',name:'GHI'},{id:'3',name:'JKL'},{id:'4',name:'MNO'}]}
+                        items={[{id:'0',name:'ABC', value:"0 - ABC"},{id:'1',name:'DEF',value:"1 - DEF"},{id:'2',name:'GHI',value:"2 - GHI"},{id:'3',name:'JKL',value:"3 - JKL"},{id:'4',name:'MNO',value:"4 - MNO"}]}
                         value={this.state.value}
                         renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled)}
                         renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
@@ -166,8 +166,9 @@ export class FormikAutoFill extends React.Component<Props, State> {
       value: val,
       selected: item,
     });
+    console.log(this.state.value);
 
-    this.props.onChange(item);
+    // this.props.onChange(item);
   }
 
   onChange(e: any) {
