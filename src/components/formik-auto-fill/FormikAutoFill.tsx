@@ -83,12 +83,15 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
 
 const InputLoadingStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    width: 100%;
+   padding-top: -1.5px;
    font-size: var(--font-size-m);
    background-color: var(--color-white);
    color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
    padding: var(--spacing-s);
-   border: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
-   border-radius: 3px;
+   border-bottom: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
+   border-right: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
+   border-left: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
+   border-radius: 1px;
    opacity: ${props => props.disabled ? '0.5' : '1'};
    outline: none;
 `;
@@ -199,8 +202,8 @@ export class FormikAutoFill extends React.Component<Props, State> {
 
   renderItem(item: Item, isHighlighted: boolean) {
     return (
-      <InputLoadingStyled style={{background: isHighlighted ? 'lightgray' : 'white'}} key={item.id}>
-        {item.id}-{item.name}
+      <InputLoadingStyled style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}} key={item.id}>
+        {item.id} - {item.name}
       </InputLoadingStyled>
     );
   }
