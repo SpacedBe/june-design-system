@@ -18,7 +18,6 @@ export class Spinner extends React.Component<Props> {
       height: 25px;
       
       div {
-        box-sizing: border-box;
         display: block;
         position: absolute;
         width: 25px;

@@ -5,7 +5,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const FooterDiv = styled.div`
-  box-sizing: border-box;
   padding: var(--spacing-l);
   overflow: hidden;
   background-color: var(--color-white);
