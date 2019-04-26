@@ -7,7 +7,7 @@ import * as React from "react";
 import Autocomplete, {State} from 'react-autocomplete';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import {getIn} from 'formik';
-
+import styled from "styled-components";
 
 type Props = {
   field: {
@@ -42,6 +42,42 @@ interface State {
   data: Item[],
 }
 
+const WrapperStyled = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  text-align: left;
+`;
+
+const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
+  font-family: var(--font-secondary);
+  padding-bottom: var(--spacing-xs);
+  color: ${props => {
+  if (props.disabled) {
+    return 'var(--color-disabled)';
+  }
+
+  if (props.error) {
+    return 'var(--color-error)';
+  }
+
+  return 'var(--color-dark)';
+}};
+`;
+
+const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
+   box-sizing: border-box;
+   width: 100%;
+   font-size: var(--font-size-m);
+   background-color: var(--color-white);
+   color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
+   padding: var(--spacing-s);
+   border: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
+   border-radius: 3px;
+   opacity: ${props => props.disabled ? '0.5' : '1'};
+   outline: none;
+`;
+
 export class FormikAutoFill extends React.Component<Props, State> {
   private fetch: any;
 
@@ -69,28 +105,28 @@ export class FormikAutoFill extends React.Component<Props, State> {
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     const inputProps = {
+      error: this.props.error,
       disabled: this.props.disabled,
     };
 
     return (
-      <div>
-        <label
-          htmlFor={name}>
+      <WrapperStyled>
+        <LabelStyled error={this.props.error}
+                     disabled={this.props.disabled}>
           {label}
-        </label>
+        </LabelStyled>
 
-        <Autocomplete
-          inputProps={inputProps}
-          items={this.state.data}
-          value={this.state.value}
-          renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
-          getItemValue={(val: any) => this.getItemValue(val)}
-          onChange={(val: any) => this.onChange(val)}
-          onSelect={(val: any, item: Item) => this.onSelect(val, item)}
-        />
+        <Autocomplete inputProps={inputProps}
+                      items={this.state.data}
+                      value={this.state.value}
+                      renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled)}
+                      renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
+                      getItemValue={(val: any) => this.getItemValue(val)}
+                      onChange={(val: any) => this.onChange(val)}
+                      onSelect={(val: any, item: Item) => this.onSelect(val, item)}/>
 
         {touched && errors && <div>{errors}</div>}
-      </div>
+      </WrapperStyled>
     );
   }
 
@@ -123,6 +159,14 @@ export class FormikAutoFill extends React.Component<Props, State> {
       .then((data: any[]) => {
         this.setState({data: data || []});
       });
+  }
+
+  renderInput(props: any, hasError: boolean, isDisabled: boolean) {
+    return (
+      <InputStyled {...props}
+                   error={hasError}
+                   disabled={isDisabled} />
+    );
   }
 
   renderItem(item: Item, isHighlighted: boolean) {

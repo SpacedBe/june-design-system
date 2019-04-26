@@ -184,6 +184,13 @@ export default class App extends Component {
                 )
               },
               {
+                path: 'autofill',
+                title: 'Autofill',
+                component: pageLoader(() =>
+                  import('./pages/form/formikAutofill.jsx')
+                )
+              },
+              {
                 path: 'formError',
                 title: 'Form Error',
                 component: pageLoader(() =>
