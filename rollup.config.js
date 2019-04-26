@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript2';
+import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
@@ -11,6 +11,10 @@ import svgr from '@svgr/rollup';
 import pkg from './package.json';
 
 const isWatching = process.argv.includes('-w') || process.argv.includes('--watch');
+
+const extensions = [
+  '.js', '.jsx', '.ts', '.tsx',
+];
 
 export default {
   external: [
@@ -36,15 +40,21 @@ export default {
     }),
     url(),
     svgr(),
-    resolve(),
     images(),
-    typescript({
-      rollupCommonJSResolveHack: true,
-      clean: true
+    resolve({ extensions }),
+    babel({
+      extensions,
+      include: ['src/**/*']
     }),
     commonjs(),
     copy([
-      {files: 'src/theme/**/*', dest: 'dist/scss'}
-    ], { verbose: true, watch: isWatching })
+      {
+        files: 'src/theme/**/*',
+        dest: 'dist/scss'
+      }
+    ], {
+      verbose: true,
+      watch: isWatching
+    })
   ]
 }

@@ -16,7 +16,9 @@ import {
   Fab,
 } from 'june-design-system';
 
-export default class App extends Component {
+import { hot } from 'react-hot-loader/root';
+
+class App extends Component {
   render() {
     return (
       <Catalog
@@ -246,3 +248,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default hot(App);
