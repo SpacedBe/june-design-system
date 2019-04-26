@@ -12,14 +12,15 @@ export default class StepPage extends React.Component {
         { label: 'step 1' },
         { label: 'step 2' },
         { label: 'step 3' },
-        { label: 'step 4' }
+
       ],
       currentStepIndex: 0
     };
   }
 
   addStep() {
-    if (this.state.steps.length >= 6) {
+    if (this.state.steps.length >= 4) {
+      console.log(this.state.steps.length)
       return;
     }
 
@@ -30,7 +31,12 @@ export default class StepPage extends React.Component {
 
   removeStep() {
     let updatedSteps = [...this.state.steps];
-    updatedSteps.splice(-1, 1);
+    if(this.state.steps.length >= 2){
+      updatedSteps.splice(-1, 1);
+    }
+    if(this.state.steps.length <=2){
+      return;
+    }
 
     this.setState({
       steps: updatedSteps
@@ -78,11 +84,13 @@ export default class StepPage extends React.Component {
               Complete one step
             </Button>
           </Flex>
-          <ReactSpecimen>
-            <Stepper
-              steps={this.state.steps}
-              currentStepIndex={this.state.currentStepIndex}
-            />
+          <ReactSpecimen >
+            <div className="paddingLarge">
+              <Stepper
+                steps={this.state.steps}
+                currentStepIndex={this.state.currentStepIndex}
+              />
+            </div>
           </ReactSpecimen>
         </Page>
       </div>

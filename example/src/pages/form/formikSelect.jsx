@@ -138,6 +138,7 @@ export default class FormikSelectPage extends React.Component {
                 error={false}
                 field={{
                   name: 'isDisabled',
+                  value: this.state.disabled,
                   onChange: () => this.changeDisable()
                 }}
                 form={{
@@ -153,10 +154,9 @@ export default class FormikSelectPage extends React.Component {
             <FormikSelect
               label='Gender'
               options={[
-                { label: 'ONE', value: '1' },
-                { label: 'TWO', value: '2' },
-                { label: 'THREE', value: '3' },
-                { label: 'FOUR', value: '4' }
+                { label: 'Male', value: '1' },
+                { label: 'Female', value: '2' },
+                { label: 'X', value: '3' }
               ]}
               htmlFor='isSelect'
               error={this.state.error}

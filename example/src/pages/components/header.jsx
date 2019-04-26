@@ -12,6 +12,7 @@ export default class FixedHeaderPage extends React.Component {
   render() {
     return (
       <Page>
+      ## Header
         <Header>
         </Header>
       </Page>

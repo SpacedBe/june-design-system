@@ -17,6 +17,7 @@ export default class IconPage extends React.Component {
   render() {
     return (
       <Page>
+      ## Icons
         <div>
           <ReactSpecimen>
             <IconPreferences></IconPreferences>

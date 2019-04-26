@@ -5,6 +5,7 @@ import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
 import copy from 'rollup-plugin-copy-glob';
+import images from 'rollup-plugin-images';
 
 import svgr from '@svgr/rollup';
 import pkg from './package.json';
@@ -36,6 +37,7 @@ export default {
     url(),
     svgr(),
     resolve(),
+    images(),
     typescript({
       rollupCommonJSResolveHack: true,
       clean: true

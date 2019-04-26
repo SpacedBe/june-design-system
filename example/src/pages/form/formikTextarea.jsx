@@ -136,6 +136,7 @@ export default class FormikTextareaPage extends React.Component {
                 error={false}
                 field={{
                   name: 'isDisabled',
+                  value: this.state.disabled,
                   onChange: () => this.changeDisable()
                 }}
                 form={{

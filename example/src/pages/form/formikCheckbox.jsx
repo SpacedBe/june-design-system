@@ -121,7 +121,7 @@ export default class FormikCheckboxPage extends React.Component {
                 type='checkbox'
                 placeholderText='example placeholder'
                 field={this.state.field}
-                label='option one'
+                label='Option one'
                 form={this.state.form}
               />
               <FormikCheckbox

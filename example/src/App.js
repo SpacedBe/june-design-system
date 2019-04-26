@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Catalog, pageLoader} from 'catalog';
+import logo from './assets/images/june-logo.svg';
 
 import {
   Button,
@@ -21,6 +22,21 @@ export default class App extends Component {
       <Catalog
         className='june-design-system'
         title='June Design System'
+        logoSrc={logo}
+        theme={
+          {
+            pageHeadingBackground: "var(--color-primary)",
+            pageHeadingTextColor: "#f6f6f6",
+            pageHeadingHeight: 250,
+            sidebarColorText: "var(--color-dark)",
+            sidebarColorTextActive: "#e85257",
+            fontFamily: "var(--font-primary)",
+            fontHeading: "var(--font-secondary)",
+            fontWeight: "var(--font-weight-bold)",
+            navBarTextColor: "#3d8279",
+            navBarBackground: "#f6f6f6"
+          }
+        }
         styles={['./styles/main.css']}
         pages={[
           {
@@ -34,7 +50,14 @@ export default class App extends Component {
               {
                 path: 'typography',
                 title: 'Typography',
-                content: pageLoader('/pages/design/typography.md')
+                component: pageLoader(() =>
+                  import('./pages/components/typograph')
+                )
+              },
+              {
+                path: 'colors',
+                title: 'Colors',
+                content: pageLoader('/pages/design/colors.md')
               },
               {
                 path: 'icons',
@@ -64,13 +87,6 @@ export default class App extends Component {
                 content: pageLoader('/pages/layout/container.md'),
                 imports: {}
               },
-              {
-                path: 'typograph',
-                title: 'Typograph',
-                component: pageLoader(() =>
-                  import('./pages/components/typograph')
-                )
-              }
             ]
           },
           {

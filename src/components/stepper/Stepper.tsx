@@ -86,7 +86,7 @@ export class Stepper extends React.Component<Props> {
     this.validateSteps(this.props.steps);
 
     let lineStyle = {
-      width: ((this.props.steps.length - 2) * 25 + (2 * 12)) + '%'
+      width: ((this.props.steps.length - 2) * 25 + (2 * 15)) + '%'
     };
 
     return (
