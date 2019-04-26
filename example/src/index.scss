@@ -3,14 +3,13 @@
 @import 'stepper.scss';
 @import 'separator.scss';
 
-.june-design-system {
-  @import '~june-design-system/dist/scss/main.scss';
-}
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+
+  @import '~june-design-system/dist/scss/main.scss';
 }
 
 label {
