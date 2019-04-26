@@ -166,9 +166,6 @@ export class FormikAutoFill extends React.Component<Props, State> {
       value: val,
       selected: item,
     });
-    console.log(this.state.value);
-
-    // this.props.onChange(item);
   }
 
   onChange(e: any) {
