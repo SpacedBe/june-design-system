@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikAutoFill, FormikCheckbox} from 'june-design-system';
+import {FormikAutoFill, FormikCheckbox, Button} from 'june-design-system';
 import {Flex} from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
@@ -77,7 +77,7 @@ export default class ButtonPage extends React.Component {
     return (
       <div className='buttons'>
         <Page>
-          ## Input Fields
+          ## Autofill
           <Flex>
             <div className='wrapper'>
               <FormikCheckbox

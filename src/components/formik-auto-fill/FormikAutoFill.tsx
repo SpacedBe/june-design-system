@@ -7,7 +7,11 @@ import * as React from "react";
 import Autocomplete, {State} from 'react-autocomplete';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import {getIn} from 'formik';
+import {Spinner} from "../spinner/spinner";
 import styled from "styled-components";
+import Color from "../../helpers/color";
+
+const color = new Color();
 
 type Props = {
   field: {
@@ -19,7 +23,6 @@ type Props = {
   };
 
   ['serverErrors']: string;
-
   label?: string,
   error: boolean,
   disabled: boolean,
@@ -47,6 +50,7 @@ const WrapperStyled = styled.div`
   flex-flow: column;
   justify-content: flex-start;
   text-align: left;
+  padding-left: var(--spacing-m);
 `;
 
 const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
@@ -76,6 +80,11 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
    opacity: ${props => props.disabled ? '0.5' : '1'};
    outline: none;
 `;
+
+const FlexStyled = styled.div`
+  display: flex;
+  align-items: center;
+`
 
 export class FormikAutoFill extends React.Component<Props, State> {
   private fetch: any;
@@ -108,11 +117,18 @@ export class FormikAutoFill extends React.Component<Props, State> {
       disabled: this.props.disabled,
     };
 
+    const spinnerContent = (
+      <Spinner color={color.getColor('primary')}/>
+    );
+
     return (
+      <FlexStyled>
+         {spinnerContent}
       <WrapperStyled>
         <LabelStyled error={this.props.error}
-                     disabled={this.props.disabled}>
+                    disabled={this.props.disabled}>
           {label}
+
         </LabelStyled>
 
         <Autocomplete inputProps={inputProps}
@@ -125,7 +141,10 @@ export class FormikAutoFill extends React.Component<Props, State> {
                       onSelect={(val: any, item: Item) => this.onSelect(val, item)}/>
 
         {touched && errors && <div>{errors}</div>}
-      </WrapperStyled>
+     </WrapperStyled>
+
+      </FlexStyled>
+
     );
   }
 
