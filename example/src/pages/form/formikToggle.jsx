@@ -51,7 +51,7 @@ export default class FormikTogglePage extends React.Component {
         <ReactSpecimen span={3}>
           <FormikToggle
             tooltip={<IconQuestionmark/>}
-            label="Toggle with a long label discription and info icon"
+            label="Toggle with a long label discription and an info icon"
             field={this.state.field}
             form={this.state.form}
           />
