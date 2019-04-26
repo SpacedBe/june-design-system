@@ -84,8 +84,6 @@ const OnlyIconButton = styled.button`
 const OnlyIconWithBorder = styled(OnlyIconButton)`
   border: 2px solid rgba(var(--color-primary-rgb), 0.25);
   padding: var(--spacing-xs);
-}
-
 `;
 
 const FlexStyled = styled.div`
@@ -117,7 +115,7 @@ const NormalButton = styled.button<any>`
 
   return color.getColor(props.color);
 }};
-
+  
   border: 2px solid ${props => {
   if (props.disabled) {
     return color.getColor('gray');

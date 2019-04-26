@@ -40,50 +40,35 @@ type Props = {
 
 const colorHelper = new Color();
 
-const InputStyled = styled.div`
+const WrapperStyled = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   text-align: left;
 `;
 
-const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean, focussed?: boolean }>`
-  width: 100%;
+const InputboxIconStyled = styled.div<{ error?: boolean, disabled?: boolean }>`
+  position: relative;
   box-sizing: border-box;
-  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
-  color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
-  padding: 10px 10px 10px 10px;
-  margin-right: 20px;
-  border-radius: 2.5px;
+  width: 100%;
   background-color: ${colorHelper.getColor('white')};
+  padding: var(--spacing-s);
+  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
+  border-radius: 3px;
   opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
   justify-content: space-between;
-  height: 48px;
+  align-items: center;
+  
   &::placeholder {
      color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
   }
 `;
 
-const InputBoxLeft = styled.div<{ error?: boolean; disabled?: boolean; focussed?: boolean; }>`
-  width: 100%;
-  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
-  color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('gray-light')}`};
-  padding: 10px 10px 10px 10px;
-  border-radius: 2.5px;
-  background-color: ${colorHelper.getColor('white')};
-  opacity: ${props => (props.disabled ? "0.5" : "1")};
-  outline: none;
-  display: flex;
-  height: 48px;
-  box-sizing: border-box;
-  margin-bottom: var(--spacing-xs);
-`;
-
-const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
+const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
   font-size: var(--font-size-m);
-  color: var(--color-dark);
+  color: ${props => props.error ? `${colorHelper.getColor('error')}` : `${colorHelper.getColor('dark')}`};
   border: none;
   outline: none;
   background-color: var(--color-white);
@@ -91,32 +76,44 @@ const Input = styled.input<{ error?: boolean; disabled?: boolean }>`
   width: 100%;
 `;
 
-const InputWithIconLeft = styled(Input)`
-  margin-left: 10px;
+const InputWithIconLeftStyled = styled(InputStyled)`
+  padding-left: var(--icon-size-m);
 `;
 
-const IconSmall = styled.span<{ disabled?: boolean }>`
-  font-size: var(--icon-size-s);
+const IconSmallStyled = styled.span<{ disabled?: boolean, hasIconRight?: boolean }>`
+  display: flex;
+  position: absolute;
+  ${props => props.hasIconRight ? 'right: var(--spacing-xs)' : 'left: var(--spacing-xs)'};
   opacity: ${props => (props.disabled ? "0.5" : "1")};
+  font-size: var(--icon-size-s);
 `;
 
-const IconBig = styled.span`
+const IconBigStyled = styled(IconSmallStyled)`
   font-size: var(--icon-size-m);
 `;
 
-const ButtonSmall = styled.button<{ disabled?: boolean }>`
-  font-size: var(--font-size-m);
+const IconOutsideLeftStyled = styled(IconBigStyled)`
+  position: relative;
+  left: auto;
+`;
+
+const ButtonOutsideRightStyled = styled.span<{ disabled?: boolean }>`
+  opacity: ${props => (props.disabled ? "0.5" : "1")};
+  margin-left: var(--spacing-s);
+`;
+
+const ButtonWrapperStyled = styled.button<{ disabled?: boolean }>`
   opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
 
-const Flex = styled.div`
+const FlexStyled = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: space-between;
 `;
 
-const LabelStyle = styled.span<{ disabled?: boolean; error?: boolean }>`
+const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   font-family: var(--font-secondary);
   padding-bottom: var(--spacing-xs);
   color: ${props => {
@@ -135,14 +132,14 @@ const LabelStyle = styled.span<{ disabled?: boolean; error?: boolean }>`
 const HintStyled = styled.span`
   font-size: var(--font-size-xs);
   color: var(--color-gray-light);
-  margin-bottom: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
 `;
 
 const ErrorMessageStyled = styled.span`
   font-size: var(--font-size-s);
-  color: ${colorHelper.getColor('error')};
+  color: var(--color-error);
   font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
 `;
 
 export class FormikInput extends React.Component<Props> {
@@ -155,124 +152,121 @@ export class FormikInput extends React.Component<Props> {
 
     let inputContent;
 
-    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd || this.props.required;
-    const hasButton = this.props.buttonOutsideRight || this.props.tooltip;
+    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.buttonRight || this.props.iconFront || this.props.iconEnd;
+    const hasButton = this.props.buttonOutsideRight;
 
     if (!hasIcon) {
       inputContent = (
-        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
-                      focussed={this.props.focussed}>
-          <Input {...this.props.field}
-                 placeholder={this.props.placeholderText}
-                 disabled={this.props.disabled}
-                 type={this.props.type}>
-          </Input>
-        </InputBoxLeft>
+        <InputboxIconStyled error={this.props.error}
+                            disabled={this.props.disabled}>
+          <InputStyled {...this.props.field}
+                       error={this.props.error}
+                       placeholder={this.props.placeholderText}
+                       disabled={this.props.disabled}
+                       type={this.props.type}>
+          </InputStyled>
+        </InputboxIconStyled>
       );
     }
 
     if (hasIcon && this.props.iconLeft) {
       inputContent = (
-        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
-                      focussed={this.props.focussed}>
-          <IconSmall>{this.props.iconLeft}</IconSmall>
-          <InputWithIconLeft {...this.props.field} placeholder={this.props.placeholderText}
-                             type={this.props.type}></InputWithIconLeft>
-        </InputBoxLeft>
+        <InputboxIconStyled error={this.props.error}
+                            disabled={this.props.disabled}>
+          <IconSmallStyled hasIconRight={this.props.iconRight}>{this.props.iconLeft}</IconSmallStyled>
+          <InputWithIconLeftStyled {...this.props.field}
+                                   error={this.props.error}
+                                   placeholder={this.props.placeholderText}
+                                   type={this.props.type}></InputWithIconLeftStyled>
+        </InputboxIconStyled>
       );
     }
 
     if (hasIcon && this.props.iconRight) {
       inputContent = (
-        <InputBoxRight error={this.props.error} disabled={this.props.disabled}
-                       focussed={this.props.focussed}>
-          <Input {...this.props.field}
-                 placeholder={this.props.placeholderText}
-                 disabled={this.props.disabled}
-                 type={this.props.type}>
-          </Input>
-          <IconSmall>{this.props.iconRight}</IconSmall>
-        </InputBoxRight>
+        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}>
+          <InputStyled {...this.props.field}
+                       error={this.props.error}
+                       placeholder={this.props.placeholderText}
+                       disabled={this.props.disabled}
+                       type={this.props.type}>
+          </InputStyled>
+          <IconSmallStyled hasIconRight={this.props.iconRight}>{this.props.iconRight}</IconSmallStyled>
+        </InputboxIconStyled>
       );
     }
 
     if (hasIcon && this.props.buttonRight) {
       inputContent = (
-        <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
-                      focussed={this.props.focussed}>
-          <Input {...this.props.field} placeholder={this.props.placeholderText}
-                 disabled={this.props.disabled}
-                 type={this.props.type}></Input>
-          <ButtonSmall disabled={this.props.disabled}>{this.props.buttonRight}</ButtonSmall>
-        </InputBoxLeft>
+        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}>
+          <InputStyled {...this.props.field}
+                       error={this.props.error}
+                       placeholder={this.props.placeholderText}
+                       disabled={this.props.disabled}
+                       type={this.props.type}></InputStyled>
+          <ButtonWrapperStyled disabled={this.props.disabled}>{this.props.buttonRight}</ButtonWrapperStyled>
+        </InputboxIconStyled>
       );
     }
 
     if (hasButton && this.props.buttonOutsideRight) {
       inputContent = (
-        <Flex>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
-                         focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText}
-                   disabled={this.props.disabled}
-                   type={this.props.type}></Input>
-          </InputBoxRight>
-          <IconSmall disabled={this.props.disabled}>{this.props.buttonOutsideRight}</IconSmall>
-        </Flex>
+        <FlexStyled>
+          <InputboxIconStyled error={this.props.error}
+                              disabled={this.props.disabled}>
+            <InputStyled {...this.props.field}
+                         error={this.props.error}
+                         placeholder={this.props.placeholderText}
+                         disabled={this.props.disabled}
+                         type={this.props.type}></InputStyled>
+          </InputboxIconStyled>
+          <ButtonOutsideRightStyled disabled={this.props.disabled}>
+            {this.props.buttonOutsideRight}
+          </ButtonOutsideRightStyled>
+        </FlexStyled>
       );
     }
 
     if (hasIcon && this.props.iconFront) {
       inputContent = (
-        <Flex>
-          <IconBig>{this.props.iconFront}</IconBig>
-          <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
-                        focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText}
-                   disabled={this.props.disabled}
-                   type={this.props.type}></Input>
-          </InputBoxLeft>
-        </Flex>
+        <FlexStyled>
+          <IconOutsideLeftStyled>{this.props.iconFront}</IconOutsideLeftStyled>
+          <InputboxIconStyled error={this.props.error}
+                              disabled={this.props.disabled}>
+            <InputStyled {...this.props.field}
+                         error={this.props.error}
+                         placeholder={this.props.placeholderText}
+                         disabled={this.props.disabled}
+                         type={this.props.type}></InputStyled>
+          </InputboxIconStyled>
+        </FlexStyled>
       );
     }
 
     if (hasIcon && this.props.iconEnd) {
       inputContent = (
-        <Flex>
-          <InputBoxLeft error={this.props.error} disabled={this.props.disabled}
-                        focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText}
-                   disabled={this.props.disabled}
-                   type={this.props.type}></Input>
-          </InputBoxLeft>
-          <IconBig>{this.props.iconEnd}</IconBig>
-        </Flex>
+        <FlexStyled>
+          <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}>
+            <InputStyled {...this.props.field}
+                         placeholder={this.props.placeholderText}
+                         error={this.props.error}
+                         disabled={this.props.disabled}
+                         type={this.props.type}></InputStyled>
+          </InputboxIconStyled>
+          <IconOutsideLeftStyled>{this.props.iconEnd}</IconOutsideLeftStyled>
+        </FlexStyled>
       );
     }
 
     if (hasIcon && this.props.required) {
       inputContent = (
-        <div>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
-                         focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText}
-                   disabled={this.props.disabled}
-                   type={this.props.type}></Input>
-          </InputBoxRight>
-        </div>
-      );
-    }
-
-    if (hasButton && this.props.tooltip) {
-      inputContent = (
-        <div>
-          <InputBoxRight error={this.props.error} disabled={this.props.disabled}
-                         focussed={this.props.focussed}>
-            <Input {...this.props.field} placeholder={this.props.placeholderText}
-                   disabled={this.props.disabled}
-                   type={this.props.type}></Input>
-          </InputBoxRight>
-        </div>
+        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}>
+          <InputStyled {...this.props.field}
+                       placeholder={this.props.placeholderText}
+                       error={this.props.error}
+                       disabled={this.props.disabled}
+                       type={this.props.type}></InputStyled>
+        </InputboxIconStyled>
       );
     }
 
@@ -281,15 +275,15 @@ export class FormikInput extends React.Component<Props> {
     );
 
     return (
-      <InputStyled>
-        <LabelStyle error={touched && errors}
-                    disabled={this.props.disabled}>
+      <WrapperStyled>
+        <LabelStyled error={touched && errors}
+                     disabled={this.props.disabled}>
           {label}
-        </LabelStyle>
+        </LabelStyled>
         {inputContent}
         {this.props.hint && hintContent}
         {touched && errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
-      </InputStyled>
+      </WrapperStyled>
     );
   }
 }

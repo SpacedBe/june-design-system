@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import { FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark, FormikCheckbox} from 'june-design-system';
+import {FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark, FormikCheckbox} from 'june-design-system';
 import {Flex} from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
@@ -18,12 +18,9 @@ export default class ButtonPage extends React.Component {
       field: {
         name: 'example-input',
       },
-      serverErrors: {
-        'example-input': null,
-      },
       form: {
-        errors: { 'example-input': null },
-        touched: { 'example-input': false },
+        errors: {'example-input': null},
+        touched: {'example-input': false},
       }
     }
   }
@@ -43,7 +40,7 @@ export default class ButtonPage extends React.Component {
   toggleServerError() {
     this.setState({
       serverErrors: {
-          'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
+        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
       }
     });
   }
@@ -72,8 +69,8 @@ export default class ButtonPage extends React.Component {
     });
   }
 
-  onChangeUserInput(event){
-    this.setState({ userInput: event.target.value })
+  onChangeUserInput(event) {
+    this.setState({userInput: event.target.value})
   };
 
   render() {
@@ -91,8 +88,8 @@ export default class ButtonPage extends React.Component {
                   onChange: () => this.toggleTouched()
                 }}
                 form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
+                  errors: {'example-input': null},
+                  touched: {'example-input': false}
                 }}
                 label='Touched'
                 type='checkbox'
@@ -108,30 +105,14 @@ export default class ButtonPage extends React.Component {
                   onChange: () => this.toggleError()
                 }}
                 form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
+                  errors: {'example-input': null},
+                  touched: {'example-input': false}
                 }}
                 label='Error'
                 type='checkbox'
               />
             </div>
-
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'hasServerError',
-                  onChange: () => this.toggleServerError()
-                }}
-                form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
-                }}
-                label='Has Server Error'
-                type='checkbox'
-              />
-            </div>
-
+            
             <div className='wrapper'>
               <FormikCheckbox
                 error={false}
@@ -140,8 +121,8 @@ export default class ButtonPage extends React.Component {
                   onChange: () => this.changeDisable()
                 }}
                 form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
+                  errors: {'example-input': null},
+                  touched: {'example-input': false}
                 }}
                 label='Disabled'
                 type='checkbox'
@@ -151,7 +132,7 @@ export default class ButtonPage extends React.Component {
           ## Input field no icon
           <ReactSpecimen span={3}>
             <FormikInput
-              label=''
+              label='Label Value'
               error={this.state.error}
               focussed={this.state.focussed}
               type={this.state.type}
@@ -165,8 +146,8 @@ export default class ButtonPage extends React.Component {
           ## Input field icon left
           <ReactSpecimen span={3}>
             <FormikInput
-              iconLeft={<IconCalender />}
-              label=''
+              iconLeft={<IconCalender/>}
+              label='Label Value'
               error={this.state.error}
               disabled={this.state.disabled}
               type={this.state.type}
@@ -178,8 +159,8 @@ export default class ButtonPage extends React.Component {
           ## Input field icon right
           <ReactSpecimen span={3}>
             <FormikInput
-              iconRight={<IconCalender />}
-              label=''
+              iconRight={<IconCalender/>}
+              label='Label Value'
               error={this.state.error}
               disabled={this.state.disabled}
               type={this.state.type}
@@ -192,7 +173,7 @@ export default class ButtonPage extends React.Component {
           <ReactSpecimen span={3}>
             <FormikInput
               iconRight={<Button size={'medium'}>copy</Button>}
-              label=''
+              label='Label Value'
               error={this.state.error}
               disabled={this.state.disabled}
               type={this.state.type}
@@ -217,8 +198,8 @@ export default class ButtonPage extends React.Component {
           ## Input field icon lead
           <ReactSpecimen span={3}>
             <FormikInput
-              iconFront={<IconElectricity />}
-              label=''
+              iconFront={<IconElectricity/>}
+              label='Label Value'
               error={this.state.error}
               disabled={this.state.disabled}
               type={this.state.type}
@@ -230,20 +211,7 @@ export default class ButtonPage extends React.Component {
           ## Input field icon end
           <ReactSpecimen span={3}>
             <FormikInput
-              iconEnd={<IconElectricity />}
-              label=''
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
-          ## Input field with label
-          <ReactSpecimen span={3}>
-            <FormikInput
-              toolTip={<IconQuestionmark />}
+              iconEnd={<IconElectricity/>}
               label='Label Value'
               error={this.state.error}
               disabled={this.state.disabled}
@@ -253,40 +221,23 @@ export default class ButtonPage extends React.Component {
               form={this.state.form}
             />
           </ReactSpecimen>
-          ## Input field required
+
+          ## Input with a hint
           <ReactSpecimen span={3}>
             <FormikInput
               required
               label='Label Value *'
               error={this.state.error}
               disabled={this.state.disabled}
+              hint={'this is a hint'}
               type={this.state.type}
               placeholderText='example placeholder'
               field={this.state.field}
               form={this.state.form}
             />
           </ReactSpecimen>
-          ## Input field with tooltip
-          <ReactSpecimen span={3}>
-            <div>
-              <Flex align={'center'}>
-                <label>Label Value</label>
-                <Button iconOnly={<IconQuestionmark />}>
-                  Show the popup
-                </Button>
-              </Flex>
-              <FormikInput
-                tooltip={<Button iconOnly={<IconQuestionmark />} />}
-                label=''
-                error={this.state.error}
-                disabled={this.state.disabled}
-                type={this.state.type}
-                placeholderText='example placeholder'
-                field={this.state.field}
-                form={this.state.form}
-              />
-            </div>
-          </ReactSpecimen>
+
+
         </Page>
       </div>
     );
