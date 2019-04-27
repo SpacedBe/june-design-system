@@ -83,7 +83,6 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
 
 const InputLoadingStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    width: 100%;
-   padding-top: -1.5px;
    font-size: var(--font-size-m);
    background-color: var(--color-white);
    color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
@@ -144,7 +143,6 @@ export class FormikAutoFill extends React.Component<Props, State> {
           <LabelStyled error={this.props.error}
                       disabled={this.props.disabled}>
             {label}
-
           </LabelStyled>
           <Autocomplete inputProps={inputProps}
                         items={[{id:'0',name:'ABC', value:"0 - ABC"},{id:'1',name:'DEF',value:"1 - DEF"},{id:'2',name:'GHI',value:"2 - GHI"},{id:'3',name:'JKL',value:"3 - JKL"},{id:'4',name:'MNO',value:"4 - MNO"}]}
