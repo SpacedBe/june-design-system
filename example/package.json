@@ -13,11 +13,10 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-intl": "^2.8.0",
-    "react-scripts": "2.1.4",
     "styled-components": "^4.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "node_modules/.bin/react-scripts test --env=jsdom",
     "eject": "node_modules/.bin/react-scripts eject"
@@ -27,5 +26,11 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "react-app-rewire-hot-loader": "^2.0.1",
+    "react-app-rewired": "^2.1.3",
+    "react-hot-loader": "^4.8.4",
+    "react-scripts": "2.1.4"
+  }
 }
