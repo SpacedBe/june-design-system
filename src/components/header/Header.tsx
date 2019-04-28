@@ -5,7 +5,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const HeaderDiv = styled.div`
-  padding: var(--spacing-m);
   overflow: hidden;
   background-color: var(--color-white);
   display: flex;
