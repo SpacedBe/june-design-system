@@ -9,7 +9,9 @@ import {
   IconCheck,
   IconPhone,
   IconChat,
-  IconMail
+  IconMail,
+  IconElectricity,
+  IconGas
 } from 'june-design-system';
 
 export default class IconPage extends React.Component {
@@ -45,6 +47,12 @@ export default class IconPage extends React.Component {
           </ReactSpecimen>
           <ReactSpecimen>
             <IconChat></IconChat>
+          </ReactSpecimen>
+          <ReactSpecimen>
+            <IconElectricity></IconElectricity>
+          </ReactSpecimen>
+          <ReactSpecimen>
+            <IconGas></IconGas>
           </ReactSpecimen>
         </div>
       </Page>
