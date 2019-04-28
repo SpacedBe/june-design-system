@@ -67,29 +67,38 @@ const Switch = styled.span`
   transition: transform var(--transition-speed-normal) ease-in;
 `;
 
-const Div = styled.div`
+const WrapperStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0px;
+  margin-bottom: var(--spacing-s);
+  padding-bottom: var(--spacing-s);
+  border-bottom: 1px solid rgba(var(--color-primary-rgb), .25);
+`;
+
+const TooltipWrapperStyled = styled.div`
+  marign-right: var(--spacing-s);
+`;
+
+const TooltipIconStyled = styled.span`
+  font-size: var(--icon-size-s);
 `;
 
 const LabelBeforeToggle = styled.label`
-  display: inline;
-  padding-left: var(--spacing-s);
-  line-height: 1.5em;
+  display: flex;
   font-family: var(--font-secondary);
-  font-size: var(--font-size-m);
+  margin-right: var(--spacing-s);
 `;
 
-const Icon = styled.span`
-  font-size: 1.5em;
+const LabelBeforeToggleIconStyled = styled.span`
+  display: flex;
+  font-size: var(--icon-size-l);
 `;
 
 const FlexDiv = styled.div`
   display: flex;
-  flex-flow: row;
-  width: 50%;
+  align-items: center;
+  flex: 1;
 `;
 
 export class FormikToggle extends React.Component<Props> {
@@ -107,7 +116,7 @@ export class FormikToggle extends React.Component<Props> {
     if (this.props.tooltip) {
       tooltip = (
         <FlexDiv>
-          <Icon>{this.props.tooltip}</Icon>
+          <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
         </FlexDiv>
       );
@@ -116,17 +125,19 @@ export class FormikToggle extends React.Component<Props> {
     if (this.props.icon && this.props.tooltip) {
       tooltip = (
         <FlexDiv>
-          <Icon>{this.props.tooltip}</Icon>
+          <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>
           <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-          <Icon>{this.props.icon}</Icon>
+          <LabelBeforeToggleIconStyled>{this.props.icon}</LabelBeforeToggleIconStyled>
         </FlexDiv>
       );
     }
 
     return (
       <div>
-        <Div>
-          {tooltip}
+        <WrapperStyled>
+          <TooltipWrapperStyled>
+            {tooltip}
+          </TooltipWrapperStyled>
 
           <div>
             <ToggleInput
@@ -138,7 +149,7 @@ export class FormikToggle extends React.Component<Props> {
               <Switch></Switch>
             </Label>
           </div>
-        </Div>
+        </WrapperStyled>
       </div>
     );
   }

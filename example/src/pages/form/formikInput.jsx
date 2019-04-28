@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark, FormikCheckbox} from 'june-design-system';
+import {FormikInput, IconCalender, Button, IconElectricity, FormikCheckbox} from 'june-design-system';
 import {Flex} from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
