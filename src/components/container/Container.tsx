@@ -5,7 +5,10 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: var(--screen-xs);
   margin: 0 auto;
-  padding: var(--spacing-m);
+  
+  @media only screen and (max-width: 500px) {
+    padding: var(--spacing-m);
+  }
 `;
 
 export class Container extends React.Component {
@@ -14,7 +17,7 @@ export class Container extends React.Component {
       <StyledContainer {...this.props}>
         {this.props.children}
       </StyledContainer>
-    )
+    );
   }
 
 }
