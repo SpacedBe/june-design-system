@@ -42,7 +42,7 @@ const Input = styled.input`
 
 const Span = styled.span<{ error?: boolean }>`
   display: inline-block;
-  margin: 3px;
+  margin: 2px;
   width: 15px;
   height: 15px;
   opacity: 0;
@@ -62,8 +62,8 @@ const CheckBoxWrapperStyled = styled.div`
 `;
 
 const Checkbox = styled.div<{ error?: boolean }>`
-  width: 21px;
-  height: 21px;
+  width: 23px;
+  height: 23px;
   border-radius: 15%;
   top: 0px;
   left: 0px;
