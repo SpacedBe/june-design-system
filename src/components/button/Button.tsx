@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import {Spinner} from "../spinner/spinner";
 import Color from "../../helpers/color";
 
-const color = new Color();
+const colorHelper = new Color();
 
 const sizes = {
   xsmall: '15px',
@@ -35,12 +35,12 @@ type Props = {
   onClick?: any,
 };
 
-const Icon = styled.div`
+const Icon = styled.div<{color: string}>`
   display: flex;
   align-items: center;
 
   svg {
-    fill: ${props => color.getColorContrast(props.color)};
+    fill: ${props => colorHelper.getColorContrast(props.color)};
     font-size: var(--icon-size-m);
   }
 
@@ -49,13 +49,13 @@ const Icon = styled.div`
   }
 `;
 
-const IconOnly = styled.div`
+const IconOnly = styled.div<{color: string}>`
   display: flex;
   align-items: center;
   justify-content: center;
-  fill: ${props => color.getColor(props.color)};
   font-size: var(--icon-size-m);
   cursor: pointer;
+   fill: ${props => colorHelper.getColor(props.color)};
 `;
 
 const IconLeft = styled.span`
@@ -94,14 +94,14 @@ const FlexStyled = styled.div`
 const NormalButton = styled.button<any>`
   color: ${props => {
   if (props.clear && props.disabled) {
-    return color.getColor('gray');
+    return colorHelper.getColor('gray');
   }
 
   if (props.clear) {
-    return color.getColor(props.color);
+    return colorHelper.getColor(props.color);
   }
 
-  return color.getColorContrast(props.color);
+  return colorHelper.getColorContrast(props.color);
 }};
 
   background-color: ${props => {
@@ -110,18 +110,18 @@ const NormalButton = styled.button<any>`
   }
 
   if (props.disabled) {
-    return color.getColor('gray');
+    return colorHelper.getColor('gray');
   }
 
-  return color.getColor(props.color);
+  return colorHelper.getColor(props.color);
 }};
   
   border: 2px solid ${props => {
   if (props.disabled) {
-    return color.getColor('gray');
+    return colorHelper.getColor('gray');
   }
 
-  return color.getColor(props.color);
+  return colorHelper.getColor(props.color);
 }};
 
   cursor: ${props => props.disabled ? 'initial' : 'pointer'};
@@ -140,9 +140,9 @@ const NormalButton = styled.button<any>`
   line-height: ${props => sizes[props.size || "medium"]};
 
   &:hover {
-    background-color: ${props => props.disabled ? '' : color.getColorShade(props.color)};
-    border: 2px solid ${props => props.disabled ? color.getColor('gray') : color.getColorShade(props.color)};
-    color: ${props => props.disabled ? '' : color.getColorContrast(props.color)};
+    background-color: ${props => props.disabled ? '' : colorHelper.getColorShade(props.color)};
+    border: 2px solid ${props => props.disabled ? colorHelper.getColor('gray') : colorHelper.getColorShade(props.color)};
+    color: ${props => props.disabled ? '' : colorHelper.getColorContrast(props.color)};
   }
 `;
 
@@ -223,7 +223,7 @@ export class Button extends React.Component<Props> {
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
         <OnlyIconButton>
-          <IconOnly>{this.props.iconOnly}</IconOnly>
+          <IconOnly color={this.props.color}>{this.props.iconOnly}</IconOnly>
         </OnlyIconButton>
       );
     }
@@ -239,7 +239,7 @@ export class Button extends React.Component<Props> {
     }
 
     const spinnerContent = (
-      <Spinner color={color.getColor('primary')}/>
+      <Spinner color={colorHelper.getColor('primary')}/>
     );
 
     return (
