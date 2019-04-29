@@ -71,8 +71,8 @@ const WrapperStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-s);
-  padding-bottom: var(--spacing-s);
+  margin-bottom: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
   border-bottom: 1px solid rgba(var(--color-primary-rgb), .25);
 `;
 
@@ -81,18 +81,21 @@ const TooltipWrapperStyled = styled.div`
 `;
 
 const TooltipIconStyled = styled.span`
-  font-size: var(--icon-size-s);
+  font-size: var(--icon-size-xs);
+  line-height: 0;
+  margin-right: var(--spacing-s);
 `;
 
 const LabelBeforeToggleStyled = styled.label`
   display: flex;
   font-family: var(--font-secondary);
+  font-size: var(--font-size-l);
   margin-right: var(--spacing-s);
 `;
 
 const LabelBeforeToggleIconStyled = styled.span`
   display: flex;
-  font-size: var(--icon-size-l);
+  font-size: var(--icon-size-xl);
 `;
 
 const FlexDivStyled = styled.div`
