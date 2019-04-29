@@ -73,7 +73,6 @@ const Label = styled.span`
   transition: opacity var(--transition-speed-normal) ease-in-out;
   opacity: 1;
   font-family: var(--font-primary);
-  text-transform: capitalize;
 `;
 
 const OnlyIconButtonStyled = styled.button`
