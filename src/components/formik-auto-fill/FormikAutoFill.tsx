@@ -88,7 +88,7 @@ const InputLoadingStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    width: 100%;
    font-size: var(--font-size-m);
    background-color: var(--color-error);
-   color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
+   color: ${props => props.error ? 'var(--color-white)' : 'var(--color-dark)'};
    padding: var(--spacing-s);
    border-bottom: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
    border-right: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
@@ -162,7 +162,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
                         items={this.state.items}
                         value={this.state.value}
                         renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled)}
-                        renderItem={(item: Item, isHighlighted: boolean) => this.renderItem(item,isHighlighted)}
+                        renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item,isHighlighted)}
                         getItemValue={(val: any) => this.getItemValue(val)}
                         onChange={(val: any) => this.onChange(val)}
                         onSelect={(val: any, item: Item) => this.onSelect(val, item)}
@@ -200,7 +200,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
   retrieveDataAsynchronously(searchText: string) {
     this.fetch(searchText)
       .then((items: any[]) => {
-        this.setState({ items: items || [] });
+        this.setState({items: items|| []});
       });
   }
 
