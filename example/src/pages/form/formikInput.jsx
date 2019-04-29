@@ -169,19 +169,6 @@ export default class ButtonPage extends React.Component {
               form={this.state.form}
             />
           </ReactSpecimen>
-          ## Input field button inside
-          <ReactSpecimen span={3}>
-            <FormikInput
-              iconRight={<Button size={'medium'}>copy</Button>}
-              label='Label Value'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
           ## Input field button outside
           <ReactSpecimen span={3}>
             <FormikInput

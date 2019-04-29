@@ -51,7 +51,7 @@ const InputboxIconStyled = styled.div<{ error?: boolean, disabled?: boolean }>`
   position: relative;
   width: 100%;
   background-color: ${colorHelper.getColor('white')};
-  padding: var(--spacing-m);
+  padding: 1.1em;
   border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
   border-radius: 3px;
   opacity: ${props => props.disabled ? '0.5' : '1'};
@@ -94,7 +94,6 @@ const IconBigStyled = styled(IconSmallStyled)`
 const IconOutsideLeftStyled = styled(IconBigStyled)`
   position: relative;
   left: auto;
-  font-size: var(--font-size-s);
 `;
 
 const ButtonOutsideRightStyled = styled.span<{ disabled?: boolean }>`
