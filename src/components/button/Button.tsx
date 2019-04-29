@@ -108,7 +108,7 @@ const NormalButton = styled.button<any>`
 
   background-color: ${props => {
   if (props.outlined || props.clear) {
-    return 'transparent;';
+    return 'rgba(0,0,0,0)';
   }
 
   if (props.disabled) {
