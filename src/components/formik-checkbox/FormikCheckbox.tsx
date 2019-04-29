@@ -9,18 +9,21 @@ import {getIn} from 'formik';
 type Props = {
   field: {
     name: string;
+    value: any;
   };
+
   form: {
     ['errors']: string;
     ['touched']: boolean;
   };
+
   ['serverErrors']: string;
+
   label: string,
   validationMessage: string;
   checked: boolean;
   placeholderText: string;
   error: boolean,
-  focussed: boolean,
   required?: boolean,
 };
 

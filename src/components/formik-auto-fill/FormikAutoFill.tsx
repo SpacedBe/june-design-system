@@ -114,7 +114,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
     };
 
     this.fetch = AwesomeDebouncePromise(
-      (searchText) => this.props.fetch(searchText),
+      (searchText: string) => this.props.fetch(searchText),
       500,
       {},
     );

@@ -3,17 +3,14 @@
  */
 import * as React from 'react';
 import styled from 'styled-components';
-import { Button } from "../button/Button";
-import { IconAdd, IconRemove } from "../../icons";
+import {Button} from "../button/Button";
+import {IconAdd, IconRemove} from "../../icons";
 
 type Props = {
-  onClick?: any,
-  clicked?: any,
   className?: string;
   id?: string,
-  iconOnlyWithBorder?: any,
-  changeUpClicked: any;
-  changeDownClicked: any;
+  onClickUp: any;
+  onClickDown: any;
 }
 
 const CounterDiv = styled.div<{ onClick?: void }>`
@@ -23,35 +20,37 @@ const CounterDiv = styled.div<{ onClick?: void }>`
   width: 10%;
 `;
 
-const SpanStyled = styled.span`
-  padding-right: var(--spacing-s);
-  font-size: var(--font-size-l);
-`;
-
-export class Counter extends React.Component<Props>{
-  constructor(props: any){
+export class Counter extends React.Component<Props> {
+  constructor(props: any) {
     super(props);
-    this.handleCountUp = this.handleCountUp.bind(this);
-    this.handleCountDown = this.handleCountDown.bind(this);
   }
 
-  handleCountUp(e: any){
-    this.props.changeUpClicked(e.target.value);
+  onClickUp(e: any) {
+    if (this.props.onClickUp) {
+      this.props.onClickUp(e.target.value);
+    }
   }
-  handleCountDown(e: any) {
-    this.props.changeDownClicked(e.target.value);
+
+  onClickDown(e: any) {
+    if (this.props.onClickDown) {
+      this.props.onClickDown(e.target.value);
+    }
   }
-  render(){
+
+  render() {
+    const {id, className} = this.props;
+
     return (
-      <CounterDiv {...this.props} onClick={this.props.onClick}>
-        <SpanStyled>{this.props.clicked}</SpanStyled>
+      <CounterDiv id={id} className={className}>
         <Button
-          iconButtonWithBorder={<IconRemove />}
-          onClick={this.handleCountDown}
+          type='button'
+          iconButtonWithBorder={<IconRemove/>}
+          onClick={(e: any) => this.onClickDown(e)}
         />
         <Button
-          iconButtonWithBorder={<IconAdd />}
-          onClick={this.handleCountUp}
+          type='button'
+          iconButtonWithBorder={<IconAdd/>}
+          onClick={(e: any) => this.onClickUp(e)}
         />
       </CounterDiv>
     );
