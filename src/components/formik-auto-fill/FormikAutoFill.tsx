@@ -26,7 +26,7 @@ type Props = {
   label?: string,
   error: boolean,
   disabled: boolean,
-  data: Item[],
+  items: Item[],
 
   fetch: (text: string) => Promise<any>;
   onChange: (selected: any) => void;
@@ -43,7 +43,7 @@ interface State {
   name: string,
   value: string,
   selected?: any,
-  data: Item[],
+  items: Item[],
   loading: boolean,
 }
 
@@ -87,7 +87,7 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
 const InputLoadingStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    width: 100%;
    font-size: var(--font-size-m);
-   background-color: var(--color-white);
+   background-color: var(--color-error);
    color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
    padding: var(--spacing-s);
    border-bottom: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
@@ -104,7 +104,6 @@ const SpinnerStyled = styled.div`
   right: 52%;
 `;
 
-
 const FlexStyled = styled.div`
   display: flex;
   align-items: center;
@@ -119,7 +118,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
     this.state = {
       name: props.field.name,
       value: "",
-      data: [],
+      items: [],
       loading: false,
     };
 
@@ -143,6 +142,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
     const inputProps = {
       error: this.props.error,
       disabled: this.props.disabled,
+      placeholder: 'testing placeholder',
     };
 
     const spinnerContent = (
@@ -159,15 +159,14 @@ export class FormikAutoFill extends React.Component<Props, State> {
             {label}
           </LabelStyled>
           <Autocomplete inputProps={inputProps}
-                        items={this.state.data}
+                        items={this.state.items}
                         value={this.state.value}
                         renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled)}
-                        renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
+                        renderItem={(item: Item, isHighlighted: boolean) => this.renderItem(item,isHighlighted)}
                         getItemValue={(val: any) => this.getItemValue(val)}
                         onChange={(val: any) => this.onChange(val)}
                         onSelect={(val: any, item: Item) => this.onSelect(val, item)}
                         />
-
           {touched && errors && <div>{errors}</div>}
         </WrapperStyled>
          {setTimeout(() => true, 1000) && spinnerContent}
@@ -189,20 +188,19 @@ export class FormikAutoFill extends React.Component<Props, State> {
       selected: null,
       loading: true,
     });
-
     this.props.onChange(null);
 
     if (e.target.value && e.target.value.length > 2) {
       this.retrieveDataAsynchronously(e.target.value);
     } else {
-      this.setState({data: []});
+      this.setState({items: []});
     }
   }
 
   retrieveDataAsynchronously(searchText: string) {
     this.fetch(searchText)
-      .then((data: any[]) => {
-        this.setState({data: data || []});
+      .then((items: any[]) => {
+        this.setState({ items: items || [] });
       });
   }
 
@@ -215,14 +213,12 @@ export class FormikAutoFill extends React.Component<Props, State> {
   }
 
   renderItem(item: Item, isHighlighted: boolean) {
-    return (
-      this.props.data.map(item => {
-          <InputLoadingStyled style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}}
+      return(
+         <InputLoadingStyled style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}}
                               key={item.id}>
             {item.id} - {item.name}
           </InputLoadingStyled>
-      })
-    );
+      )
   }
 
   getItemValue(item: Item) {
