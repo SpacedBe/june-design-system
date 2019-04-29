@@ -80,6 +80,7 @@ const OnlyIconButtonStyled = styled.button`
   outline: none;
   background-color: transparent;
   border: none;
+  padding: 0;
 `;
 
 const OnlyIconWithBorder = styled(OnlyIconButtonStyled)`
