@@ -32,6 +32,13 @@ const ToggleInput = styled.input<{}>`
     background: var(--color-primary);
     border: 2px solid var(--color-primary-shade);
     transition: transform var(--transition-speed-normal) ease-in;
+    :after {
+      content: 'I';
+      visibility: visible;
+      display: block;
+      position: absolute;
+      transform: translateX(2px);
+    }
   }
 
   &:checked ~ label p {
@@ -53,6 +60,17 @@ const Label = styled.label`
   border: 2px solid var(--color-gray);
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
+  :after {
+    top: -2px;
+    left: 4px;
+    font-size: 10px;
+    content: 'O';
+    visibility: visible;
+    display: block;
+    color: var(--color-white);
+    position: absolute;
+    transform: translateX(20px);
+  }
 `;
 
 const Switch = styled.span`
