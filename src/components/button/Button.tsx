@@ -49,13 +49,13 @@ const Icon = styled.div<{color: string}>`
   }
 `;
 
-const IconOnly = styled.div<{color: string}>`
+const IconOnlyStyled = styled.div<{color?: string}>`
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: var(--icon-size-m);
   cursor: pointer;
-   fill: ${props => colorHelper.getColor(props.color)};
+  fill: ${props => colorHelper.getColor(props.color)};
 `;
 
 const IconLeft = styled.span`
@@ -76,12 +76,13 @@ const Label = styled.span`
   font-size: var(--font-size-m);
 `;
 
-const OnlyIconButton = styled.button`
+const OnlyIconButtonStyled = styled.button`
+  outline: none;
   background-color: transparent;
   border: none;
 `;
 
-const OnlyIconWithBorder = styled(OnlyIconButton)`
+const OnlyIconWithBorder = styled(OnlyIconButtonStyled)`
   border: 2px solid rgba(var(--color-primary-rgb), 0.25);
   padding: var(--spacing-xs);
 `;
@@ -222,9 +223,9 @@ export class Button extends React.Component<Props> {
 
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
-        <OnlyIconButton>
-          <IconOnly color={this.props.color}>{this.props.iconOnly}</IconOnly>
-        </OnlyIconButton>
+        <OnlyIconButtonStyled {...this.props}>
+          <IconOnlyStyled color={this.props.color}>{this.props.iconOnly}</IconOnlyStyled>
+        </OnlyIconButtonStyled>
       );
     }
 
@@ -232,7 +233,7 @@ export class Button extends React.Component<Props> {
       buttonContent = (
         <OnlyIconWithBorder>
           <FlexStyled>
-            <IconOnly>{this.props.iconButtonWithBorder}</IconOnly>
+            <IconOnlyStyled>{this.props.iconButtonWithBorder}</IconOnlyStyled>
           </FlexStyled>
         </OnlyIconWithBorder>
       );
