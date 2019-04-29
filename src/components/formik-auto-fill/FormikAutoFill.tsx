@@ -7,7 +7,7 @@ import * as React from "react";
 import Autocomplete, {State} from 'react-autocomplete';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import {getIn} from 'formik';
-import {Spinner} from "../spinner/spinner";
+import {Spinner} from "../spinner/Spinner";
 import styled from "styled-components";
 import Color from "../../helpers/color";
 
