@@ -107,6 +107,7 @@ export class FormikRadiobutton extends React.Component<Props> {
     const error = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
+
     const checked = this.props.value == value;
 
     return (

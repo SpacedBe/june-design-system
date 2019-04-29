@@ -8,6 +8,7 @@ import styled from 'styled-components';
 type Props = {
   field: {
     name: string;
+    value: any;
   };
 
   validationMessage: string;
@@ -145,6 +146,7 @@ export class FormikToggle extends React.Component<Props> {
           <div>
             <ToggleInput
               {...this.props.field}
+              checked={this.props.field.value}
               type='checkbox'
             />
 

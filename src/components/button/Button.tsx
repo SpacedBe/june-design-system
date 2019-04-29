@@ -5,7 +5,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import {Spinner} from "../spinner/spinner";
+import {Spinner} from "../spinner/Spinner";
 import Color from "../../helpers/color";
 
 const colorHelper = new Color();
