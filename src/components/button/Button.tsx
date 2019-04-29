@@ -27,6 +27,7 @@ type Props = {
   wide?: boolean,
   size?: 'xsmall' | 'small' | 'medium' | 'large',
   rounded?: boolean,
+  outlined?: boolean,
   clear?: boolean,
   color?: string,
   disabled?: boolean,
@@ -35,7 +36,7 @@ type Props = {
   onClick?: any,
 };
 
-const Icon = styled.div<{color: string}>`
+const Icon = styled.div<{ color?: string }>`
   display: flex;
   align-items: center;
 
@@ -49,7 +50,7 @@ const Icon = styled.div<{color: string}>`
   }
 `;
 
-const IconOnlyStyled = styled.div<{color?: string}>`
+const IconOnlyStyled = styled.div<{ color?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,7 +74,6 @@ const Label = styled.span`
   opacity: 1;
   font-family: var(--font-primary);
   text-transform: capitalize;
-  font-size: var(--font-size-m);
 `;
 
 const OnlyIconButtonStyled = styled.button`
@@ -94,12 +94,13 @@ const FlexStyled = styled.div`
 `;
 
 const NormalButton = styled.button<any>`
+  font-size: var(--font-size-m);
   color: ${props => {
-  if (props.clear && props.disabled) {
+  if (props.outlined && props.disabled) {
     return colorHelper.getColor('gray');
   }
 
-  if (props.clear) {
+  if (props.outlined || props.clear) {
     return colorHelper.getColor(props.color);
   }
 
@@ -107,7 +108,7 @@ const NormalButton = styled.button<any>`
 }};
 
   background-color: ${props => {
-  if (props.clear) {
+  if (props.outlined || props.clear) {
     return 'transparent;';
   }
 
@@ -121,6 +122,10 @@ const NormalButton = styled.button<any>`
   border: 2px solid ${props => {
   if (props.disabled) {
     return colorHelper.getColor('gray');
+  }
+
+  if (props.clear) {
+    return 'rgba(0,0,0,0)';
   }
 
   return colorHelper.getColor(props.color);
@@ -142,10 +147,38 @@ const NormalButton = styled.button<any>`
   line-height: ${props => sizes[props.size || "medium"]};
 
   &:hover {
-    background-color: ${props => props.disabled ? '' : colorHelper.getColorShade(props.color)};
-    border: 2px solid ${props => props.disabled ? colorHelper.getColor('gray') : colorHelper.getColorShade(props.color)};
-    color: ${props => props.disabled ? '' : colorHelper.getColorContrast(props.color)};
+    background-color: ${props => {
+  if (props.disabled || props.clear) {
+    return '';
   }
+
+  return colorHelper.getColorShade(props.color);
+}};
+    border: 2px solid ${props => {
+  if (props.disabled) {
+    return colorHelper.getColor('gray');
+  }
+
+  if (props.clear) {
+    return 'rgba(0,0,0,0)';
+  }
+
+  return colorHelper.getColorShade(props.color);
+}};
+    
+    
+    color: ${props => {
+  if (props.disabled) {
+    return '';
+  }
+
+  if (props.clear) {
+    return colorHelper.getColorShade(props.color);
+  }
+
+  return colorHelper.getColorContrast(props.color);
+}};
+ }
 `;
 
 const ButtonContainerStyled = styled.div`
@@ -173,6 +206,7 @@ export class Button extends React.Component<Props> {
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
+          outlined={this.props.outlined}
           clear={this.props.clear}
           onClick={this.props.onClick}
           rounded={this.props.rounded}
@@ -190,6 +224,7 @@ export class Button extends React.Component<Props> {
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
+          outlined={this.props.outlined}
           clear={this.props.clear}
           onClick={this.props.onClick}
           rounded={this.props.rounded}
@@ -210,7 +245,7 @@ export class Button extends React.Component<Props> {
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
-          clear={this.props.clear}
+          outlined={this.props.outlined}
           onClick={this.props.onClick}
           rounded={this.props.rounded}
           target={this.props.target}>
