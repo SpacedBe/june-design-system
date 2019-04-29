@@ -77,14 +77,14 @@ const WrapperStyled = styled.div`
 `;
 
 const TooltipWrapperStyled = styled.div`
-  marign-right: var(--spacing-s);
+  margin-right: var(--spacing-s);
 `;
 
 const TooltipIconStyled = styled.span`
   font-size: var(--icon-size-s);
 `;
 
-const LabelBeforeToggle = styled.label`
+const LabelBeforeToggleStyled = styled.label`
   display: flex;
   font-family: var(--font-secondary);
   margin-right: var(--spacing-s);
@@ -95,7 +95,7 @@ const LabelBeforeToggleIconStyled = styled.span`
   font-size: var(--icon-size-l);
 `;
 
-const FlexDiv = styled.div`
+const FlexDivStyled = styled.div`
   display: flex;
   align-items: center;
   flex: 1;
@@ -110,25 +110,25 @@ export class FormikToggle extends React.Component<Props> {
     let tooltip;
 
     if (!this.props.tooltip && !this.props.icon) {
-      tooltip = (<LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>);
+      tooltip = (<LabelBeforeToggleStyled>{this.props.label}</LabelBeforeToggleStyled>);
     }
 
     if (this.props.tooltip) {
       tooltip = (
-        <FlexDiv>
+        <FlexDivStyled>
           <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>
-          <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
-        </FlexDiv>
+          <LabelBeforeToggleStyled>{this.props.label}</LabelBeforeToggleStyled>
+        </FlexDivStyled>
       );
     }
 
     if (this.props.icon && this.props.tooltip) {
       tooltip = (
-        <FlexDiv>
+        <FlexDivStyled>
           <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>
-          <LabelBeforeToggle>{this.props.label}</LabelBeforeToggle>
+          <LabelBeforeToggleStyled>{this.props.label}</LabelBeforeToggleStyled>
           <LabelBeforeToggleIconStyled>{this.props.icon}</LabelBeforeToggleIconStyled>
-        </FlexDiv>
+        </FlexDivStyled>
       );
     }
 
