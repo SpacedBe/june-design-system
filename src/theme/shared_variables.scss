@@ -42,8 +42,8 @@
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Open Sans', sans-serif;
 
-  --line-height-body: 1.2;
-  --line-height-headings: 1.4;
+  --line-height-body: 1.4;
+  --line-height-headings: 1.6;
 
   --font-size-xs: 0.714em;
   --font-size-s: 0.857em;
@@ -60,7 +60,13 @@
   --icon-size-xs: 1em;
   --icon-size-s: 1.5em;
   --icon-size-m: 2em;
+  --icon-size-l: 2.5em;
+  --icon-size-xl: 3em;
 
+
+  --zi--50: -50;
+  --zi-0: 0;
+  --zi-50: 50;
   --zi-100: 100;
   --zi-150: 150;
   --zi-200: 200;
@@ -73,13 +79,14 @@
   --spacing-l: calc(var(--spacing-baseline) * 2);
   --spacing-xl: calc(var(--spacing-l) * 2);
 
+  @media only screen and (min-width: 400px) {
+    --spacing-baseline: 1.214em;
+  }
+
   --border-radius-s: 2px;
 
   --box-shadow-m: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 
-  @media only screen and (min-width: 400px) {
-    --spacing-baseline: 1.714em;
-  }
 
   --screen-xxxs: 370px;
   --screen-xxs: 400px;

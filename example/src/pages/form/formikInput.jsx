@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikInput, IconCalender, Button, IconElectricity, IconQuestionmark, FormikCheckbox} from 'june-design-system';
+import {FormikInput, IconCalender, Button, IconElectricity, FormikCheckbox} from 'june-design-system';
 import {Flex} from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
@@ -160,19 +160,6 @@ export default class ButtonPage extends React.Component {
           <ReactSpecimen span={3}>
             <FormikInput
               iconRight={<IconCalender/>}
-              label='Label Value'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
-          ## Input field button inside
-          <ReactSpecimen span={3}>
-            <FormikInput
-              iconRight={<Button size={'medium'}>copy</Button>}
               label='Label Value'
               error={this.state.error}
               disabled={this.state.disabled}

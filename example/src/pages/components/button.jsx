@@ -1,7 +1,7 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {Button, IconSettings, FormikCheckbox, FormikSelect} from 'june-design-system';
-import { Flex } from 'reflexbox';
+import {Flex} from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ export default class ButtonPage extends React.Component {
 
     this.state = {
       rounded: false,
+      outlined: false,
       clear: false,
       disabled: false,
       size: 'medium',
@@ -23,6 +24,12 @@ export default class ButtonPage extends React.Component {
   changeRounded() {
     this.setState({
       rounded: !this.state.rounded,
+    });
+  }
+
+  changeOutline() {
+    this.setState({
+      outlined: !this.state.outlined
     });
   }
 
@@ -68,13 +75,13 @@ export default class ButtonPage extends React.Component {
               <Button
                 size={this.state.size}
                 rounded={this.state.rounded}
+                outlined={this.state.outlined}
                 clear={this.state.clear}
                 disabled={this.state.disabled}
                 wide={this.state.wide}
                 color={this.state.color}
-                onClick={this.state.clicked}
-              >
-                {this.state.content}
+                onClick={this.state.clicked}>
+                  {this.state.content}
               </Button>
             </ReactSpecimen>
             <Flex justify={'space-between'} column>
@@ -88,8 +95,8 @@ export default class ButtonPage extends React.Component {
                       onChange: () => this.changeRounded()
                     }}
                     form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
                     }}
                     label='Rounded'
                     type='checkbox'
@@ -105,10 +112,27 @@ export default class ButtonPage extends React.Component {
                       onChange: () => this.changeDisable()
                     }}
                     form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
                     }}
                     label='Disabled'
+                    type='checkbox'
+                  />
+                </div>
+
+                <div className='wrapper'>
+                  <FormikCheckbox
+                    error={false}
+                    field={{
+                      name: 'isOutlined',
+                      value: this.state.outlined,
+                      onChange: () => this.changeOutline()
+                    }}
+                    form={{
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
+                    }}
+                    label='Outlined'
                     type='checkbox'
                   />
                 </div>
@@ -122,8 +146,8 @@ export default class ButtonPage extends React.Component {
                       onChange: () => this.changeClear()
                     }}
                     form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
                     }}
                     label='Clear'
                     type='checkbox'
@@ -139,8 +163,8 @@ export default class ButtonPage extends React.Component {
                       onChange: () => this.changeWide()
                     }}
                     form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
                     }}
                     label='Full Width'
                     type='checkbox'
@@ -158,16 +182,16 @@ export default class ButtonPage extends React.Component {
                       onChange: event => this.changeColor(event)
                     }}
                     form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
                     }}
                     htmlFor='isSelect'
                     label='Color'
                     options={[
-                      { label: 'green', value: 'primary' },
-                      { label: 'red', value: 'error' },
-                      { label: 'facebook', value: 'facebook' },
-                      { label: 'google', value: 'google' }
+                      {label: 'green', value: 'primary'},
+                      {label: 'red', value: 'error'},
+                      {label: 'facebook', value: 'facebook'},
+                      {label: 'google', value: 'google'}
                     ]}
                     touched={false}
                   />
@@ -182,15 +206,15 @@ export default class ButtonPage extends React.Component {
                       onChange: event => this.changeSize(event)
                     }}
                     form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
                     }}
                     htmlFor='isSelect'
                     label='Size'
                     options={[
-                      { label: 'small', value: 'small' },
-                      { label: 'medium', value: 'medium' },
-                      { label: 'large', value: 'large' }
+                      {label: 'small', value: 'small'},
+                      {label: 'medium', value: 'medium'},
+                      {label: 'large', value: 'large'}
                     ]}
                     touched={false}
                   />
@@ -200,21 +224,21 @@ export default class ButtonPage extends React.Component {
           </div>
           ## Icon on the left
           <ReactSpecimen>
-            <Button iconLeft={<IconSettings />}>Button with icon</Button>
+            <Button iconLeft={<IconSettings/>}>Button with icon</Button>
           </ReactSpecimen>
           ## Icon on the right
           <ReactSpecimen>
-            <Button iconRight={<IconSettings />}> Button with icon</Button>
+            <Button iconRight={<IconSettings/>}> Button with icon</Button>
           </ReactSpecimen>
           ## Only an icon
           <ReactSpecimen>
-            <Button iconOnly={<IconSettings />}>
+            <Button iconOnly={<IconSettings/>}>
               Button with only an icon
             </Button>
           </ReactSpecimen>
           ## Only an icon, with border
           <ReactSpecimen>
-            <Button iconButtonWithBorder={<IconSettings />} />
+            <Button iconButtonWithBorder={<IconSettings/>}/>
           </ReactSpecimen>
           ## Loading
           <ReactSpecimen>

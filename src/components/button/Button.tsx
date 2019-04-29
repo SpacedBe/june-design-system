@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import {Spinner} from "../spinner/spinner";
 import Color from "../../helpers/color";
 
-const color = new Color();
+const colorHelper = new Color();
 
 const sizes = {
   xsmall: '15px',
@@ -27,6 +27,7 @@ type Props = {
   wide?: boolean,
   size?: 'xsmall' | 'small' | 'medium' | 'large',
   rounded?: boolean,
+  outlined?: boolean,
   clear?: boolean,
   color?: string,
   disabled?: boolean,
@@ -35,12 +36,12 @@ type Props = {
   onClick?: any,
 };
 
-const Icon = styled.div`
+const Icon = styled.div<{ color?: string }>`
   display: flex;
   align-items: center;
 
   svg {
-    fill: ${props => color.getColorContrast(props.color)};
+    fill: ${props => colorHelper.getColorContrast(props.color)};
     font-size: var(--icon-size-m);
   }
 
@@ -49,13 +50,13 @@ const Icon = styled.div`
   }
 `;
 
-const IconOnly = styled.div`
+const IconOnlyStyled = styled.div<{ color?: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  fill: ${props => color.getColor(props.color)};
   font-size: var(--icon-size-m);
   cursor: pointer;
+  fill: ${props => colorHelper.getColor(props.color)};
 `;
 
 const IconLeft = styled.span`
@@ -72,16 +73,16 @@ const Label = styled.span`
   transition: opacity var(--transition-speed-normal) ease-in-out;
   opacity: 1;
   font-family: var(--font-primary);
-  text-transform: capitalize;
-  font-size: var(--font-size-m);
 `;
 
-const OnlyIconButton = styled.button`
+const OnlyIconButtonStyled = styled.button`
+  outline: none;
   background-color: transparent;
   border: none;
+  padding: 0;
 `;
 
-const OnlyIconWithBorder = styled(OnlyIconButton)`
+const OnlyIconWithBorder = styled(OnlyIconButtonStyled)`
   border: 2px solid rgba(var(--color-primary-rgb), 0.25);
   padding: var(--spacing-xs);
 `;
@@ -92,36 +93,41 @@ const FlexStyled = styled.div`
 `;
 
 const NormalButton = styled.button<any>`
+  font-size: var(--font-size-m);
   color: ${props => {
-  if (props.clear && props.disabled) {
-    return color.getColor('gray');
+  if (props.outlined && props.disabled) {
+    return colorHelper.getColor('gray');
   }
 
-  if (props.clear) {
-    return color.getColor(props.color);
+  if (props.outlined || props.clear) {
+    return colorHelper.getColor(props.color);
   }
 
-  return color.getColorContrast(props.color);
+  return colorHelper.getColorContrast(props.color);
 }};
 
   background-color: ${props => {
-  if (props.clear) {
-    return 'transparent;';
+  if (props.outlined || props.clear) {
+    return 'rgba(0,0,0,0)';
   }
 
   if (props.disabled) {
-    return color.getColor('gray');
+    return colorHelper.getColor('gray');
   }
 
-  return color.getColor(props.color);
+  return colorHelper.getColor(props.color);
 }};
   
   border: 2px solid ${props => {
   if (props.disabled) {
-    return color.getColor('gray');
+    return colorHelper.getColor('gray');
   }
 
-  return color.getColor(props.color);
+  if (props.clear) {
+    return 'rgba(0,0,0,0)';
+  }
+
+  return colorHelper.getColor(props.color);
 }};
 
   cursor: ${props => props.disabled ? 'initial' : 'pointer'};
@@ -140,10 +146,38 @@ const NormalButton = styled.button<any>`
   line-height: ${props => sizes[props.size || "medium"]};
 
   &:hover {
-    background-color: ${props => props.disabled ? '' : color.getColorShade(props.color)};
-    border: 2px solid ${props => props.disabled ? color.getColor('gray') : color.getColorShade(props.color)};
-    color: ${props => props.disabled ? '' : color.getColorContrast(props.color)};
+    background-color: ${props => {
+  if (props.disabled || props.clear) {
+    return '';
   }
+
+  return colorHelper.getColorShade(props.color);
+}};
+    border: 2px solid ${props => {
+  if (props.disabled) {
+    return colorHelper.getColor('gray');
+  }
+
+  if (props.clear) {
+    return 'rgba(0,0,0,0)';
+  }
+
+  return colorHelper.getColorShade(props.color);
+}};
+    
+    
+    color: ${props => {
+  if (props.disabled) {
+    return '';
+  }
+
+  if (props.clear) {
+    return colorHelper.getColorShade(props.color);
+  }
+
+  return colorHelper.getColorContrast(props.color);
+}};
+ }
 `;
 
 const ButtonContainerStyled = styled.div`
@@ -171,6 +205,7 @@ export class Button extends React.Component<Props> {
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
+          outlined={this.props.outlined}
           clear={this.props.clear}
           onClick={this.props.onClick}
           rounded={this.props.rounded}
@@ -188,6 +223,7 @@ export class Button extends React.Component<Props> {
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
+          outlined={this.props.outlined}
           clear={this.props.clear}
           onClick={this.props.onClick}
           rounded={this.props.rounded}
@@ -208,7 +244,7 @@ export class Button extends React.Component<Props> {
           wide={this.props.wide}
           type={this.props.type}
           size={this.props.size}
-          clear={this.props.clear}
+          outlined={this.props.outlined}
           onClick={this.props.onClick}
           rounded={this.props.rounded}
           target={this.props.target}>
@@ -222,9 +258,9 @@ export class Button extends React.Component<Props> {
 
     if (hasIcon && this.props.iconOnly) {
       buttonContent = (
-        <OnlyIconButton>
-          <IconOnly>{this.props.iconOnly}</IconOnly>
-        </OnlyIconButton>
+        <OnlyIconButtonStyled {...this.props}>
+          <IconOnlyStyled color={this.props.color}>{this.props.iconOnly}</IconOnlyStyled>
+        </OnlyIconButtonStyled>
       );
     }
 
@@ -232,14 +268,14 @@ export class Button extends React.Component<Props> {
       buttonContent = (
         <OnlyIconWithBorder>
           <FlexStyled>
-            <IconOnly>{this.props.iconButtonWithBorder}</IconOnly>
+            <IconOnlyStyled>{this.props.iconButtonWithBorder}</IconOnlyStyled>
           </FlexStyled>
         </OnlyIconWithBorder>
       );
     }
 
     const spinnerContent = (
-      <Spinner color={color.getColor('primary')}/>
+      <Spinner color={colorHelper.getColor('primary')}/>
     );
 
     return (
