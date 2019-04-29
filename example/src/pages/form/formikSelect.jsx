@@ -23,7 +23,12 @@ export default class FormikSelectPage extends React.Component {
       form: {
         errors: {'example-input': null},
         touched: {'example-input': false},
-      }
+      },
+      exampleOptions: [
+        { label: 'Male', value: '1' },
+        { label: 'Female', value: '2' },
+        { label: 'X', value: '3' }
+      ]
     };
   }
 
@@ -153,17 +158,27 @@ export default class FormikSelectPage extends React.Component {
           <ReactSpecimen span={3}>
             <FormikSelect
               label='Gender'
-              options={[
-                { label: 'Male', value: '1' },
-                { label: 'Female', value: '2' },
-                { label: 'X', value: '3' }
-              ]}
+              options={this.state.exampleOptions}
               htmlFor='isSelect'
               error={this.state.error}
               touched={this.state.touched}
               disabled={this.state.disabled}
               field={this.state.field}
               form={this.state.form}
+            />
+          </ReactSpecimen>
+
+          An example with a placeholder
+          <ReactSpecimen span={3}>
+            <FormikSelect
+              options={this.state.exampleOptions}
+              htmlFor='isSelect'
+              error={this.state.error}
+              touched={this.state.touched}
+              disabled={this.state.disabled}
+              field={this.state.field}
+              form={this.state.form}
+              placeholder='Select a gender'
             />
           </ReactSpecimen>
         </Page>
