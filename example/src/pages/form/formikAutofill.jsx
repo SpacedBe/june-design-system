@@ -15,6 +15,7 @@ export default class FormikAutoFillPage extends React.Component {
       current: false,
       userInput: '',
       suggestions: [],
+      data: [],
       field: {
         name: 'example-input',
       },
@@ -133,6 +134,11 @@ export default class FormikAutoFillPage extends React.Component {
           <ReactSpecimen span={3}>
             <FormikAutoFill
               label='Label Value'
+              data={[
+                {name: 'MALE', id: '1'},
+                {name: 'FEMALE', id: '2'},
+                {name: 'X', id: '3'},
+              ]}
               error={this.state.error}
               focussed={this.state.focussed}
               type={this.state.type}

@@ -26,6 +26,7 @@ type Props = {
   label?: string,
   error: boolean,
   disabled: boolean,
+  data: Item[],
 
   fetch: (text: string) => Promise<any>;
   onChange: (selected: any) => void;
@@ -43,10 +44,12 @@ interface State {
   value: string,
   selected?: any,
   data: Item[],
+  loading: boolean,
 }
 
 const WrapperStyled = styled.div`
   display: flex;
+  position: relative;
   flex-flow: column;
   justify-content: flex-start;
   text-align: left;
@@ -95,6 +98,12 @@ const InputLoadingStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    outline: none;
 `;
 
+const SpinnerStyled = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 52%;
+`;
+
 
 const FlexStyled = styled.div`
   display: flex;
@@ -111,10 +120,14 @@ export class FormikAutoFill extends React.Component<Props, State> {
       name: props.field.name,
       value: "",
       data: [],
+      loading: false,
     };
 
     this.fetch = AwesomeDebouncePromise(
-      (searchText: string) => this.props.fetch(searchText),
+      (searchText: string) => {
+        this.setState({loading: true});
+        this.props.fetch(searchText);
+      },
       500,
       {},
     );
@@ -133,19 +146,20 @@ export class FormikAutoFill extends React.Component<Props, State> {
     };
 
     const spinnerContent = (
-      <Spinner color={color.getColor('primary')}/>
+       <SpinnerStyled>
+        {this.state.loading ? (<Spinner color={color.getColor('primary')}/>) : ''}
+       </SpinnerStyled>
     );
 
     return (
       <FlexStyled>
-         {spinnerContent}
         <WrapperStyled>
           <LabelStyled error={this.props.error}
                       disabled={this.props.disabled}>
             {label}
           </LabelStyled>
           <Autocomplete inputProps={inputProps}
-                        items={[{id:'0',name:'ABC', value:"0 - ABC"},{id:'1',name:'DEF',value:"1 - DEF"},{id:'2',name:'GHI',value:"2 - GHI"},{id:'3',name:'JKL',value:"3 - JKL"},{id:'4',name:'MNO',value:"4 - MNO"}]}
+                        items={this.state.data}
                         value={this.state.value}
                         renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled)}
                         renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
@@ -153,8 +167,10 @@ export class FormikAutoFill extends React.Component<Props, State> {
                         onChange={(val: any) => this.onChange(val)}
                         onSelect={(val: any, item: Item) => this.onSelect(val, item)}
                         />
+
           {touched && errors && <div>{errors}</div>}
         </WrapperStyled>
+         {setTimeout(() => true, 1000) && spinnerContent}
      </FlexStyled>
     );
   }
@@ -163,6 +179,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
     this.setState({
       value: val,
       selected: item,
+      loading: true,
     });
   }
 
@@ -170,6 +187,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
     this.setState({
       value: e.target.value,
       selected: null,
+      loading: true,
     });
 
     this.props.onChange(null);
@@ -191,16 +209,19 @@ export class FormikAutoFill extends React.Component<Props, State> {
   renderInput(props: any, hasError: boolean, isDisabled: boolean) {
     return (
       <InputStyled {...props}
-              error={hasError}
-              disabled={isDisabled} />
+                   error={hasError}
+                   disabled={isDisabled} />
     );
   }
 
   renderItem(item: Item, isHighlighted: boolean) {
     return (
-      <InputLoadingStyled style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}} key={item.id}>
-        {item.id} - {item.name}
-      </InputLoadingStyled>
+      this.props.data.map(item => {
+          <InputLoadingStyled style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}}
+                              key={item.id}>
+            {item.id} - {item.name}
+          </InputLoadingStyled>
+      })
     );
   }
 
