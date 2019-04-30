@@ -43,11 +43,11 @@ const WrapperStyled = styled.div<{ error?: boolean; disabled?: boolean; }>`
 
 const FlexStyled = styled.div`
   display: flex;
-  
+
   > * {
     margin-right: var(--spacing-m);
   }
-  
+
   > *:last-of-type {
     margin-right: 0;
   }
