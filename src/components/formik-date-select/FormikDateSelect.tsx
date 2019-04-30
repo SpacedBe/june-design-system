@@ -6,7 +6,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import {getIn} from 'formik';
 import Color from "../../helpers/color";
-import moment from 'moment/min/moment-with-locales'
+import moment from 'moment';
 import {FormikSelect} from "../..";
 
 interface Option {
@@ -80,14 +80,18 @@ export class FormikDateSelect extends React.Component<Props, {
   years: Option[];
   days: Option[];
 
-  selectedDay: string;
-  selectedMonth: string;
-  selectedYear: string;
+  selectedDay?: string;
+  selectedMonth?: string;
+  selectedYear?: string;
 }> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      months: [],
+      years: [],
+      days: [],
+    };
   }
 
   componentWillMount() {
@@ -102,7 +106,7 @@ export class FormikDateSelect extends React.Component<Props, {
     this.setState(newState, () => {
       const {selectedDay, selectedMonth, selectedYear} = this.state;
 
-      if (selectedDay, selectedMonth, selectedYear) {
+      if (selectedDay && selectedMonth && selectedYear) {
         this.props.setValue(`${selectedDay}/${selectedMonth}/${selectedYear}`);
       }
     });
@@ -181,10 +185,9 @@ export class FormikDateSelect extends React.Component<Props, {
         month = `${i}`;
       }
 
-      moment.locale('nl-be');
       months.push({
         value: month,
-        label: moment.months()[i - 1],
+        label: month,
       });
     }
 
