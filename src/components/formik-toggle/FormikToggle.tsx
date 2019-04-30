@@ -53,7 +53,7 @@ const ToggleInput = styled.input<{}>`
 const Label = styled.label`
   display: inline-block;
   width: 40px;
-  height: 15px;
+  height: 18px;
   border-radius: 30px;
   position: relative;
   cursor: pointer;
@@ -79,7 +79,7 @@ const Switch = styled.span`
   width: 25px;
   height: 25px;
   left: -10px;
-  top: -7px;
+  top: -5px;
   border-radius: 25px;
   background: var(--color-white);
   border: 2px solid var(--color-gray);
@@ -124,18 +124,17 @@ const FlexDivStyled = styled.div`
 `;
 
 const IconOnStyled = styled(IconOn)`
-  font-size: 10px;
-  margin-bottom: 20px;
-  padding-left: 5px;
-  font-weight: 400;
+  font-size: 8px;
+  margin: 0px 0px 6px 6px;
+  font-weight: var(--font-weight-normal);
   fill: var(--color-white);
 `
 
 
 const IconOffStyled = styled(IconOff)`
-  font-size: 10px;
-  margin-bottom: 20px;
-  margin-left: 10px;
+  font-size: 8px;
+  margin: 0px 0px 6px 8px;
+  font-weight: var(--font-weight-normal);
   fill: var(--color-white);
 `
 
