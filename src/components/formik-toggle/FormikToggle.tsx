@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import {IconOn, IconOff} from '../../icons';
 
 type Props = {
   field: {
@@ -33,7 +34,7 @@ const ToggleInput = styled.input<{}>`
     border: 2px solid var(--color-primary-shade);
     transition: transform var(--transition-speed-normal) ease-in;
     :after {
-      content: 'I';
+      content: On;
       visibility: visible;
       display: block;
       position: absolute;
@@ -43,7 +44,7 @@ const ToggleInput = styled.input<{}>`
 
   &:checked ~ label p {
     opacity: 1;
-    content: I;
+    content: '';
     transform: translateX(-20px);
     color: var(--color-white);
   }
@@ -64,7 +65,7 @@ const Label = styled.label`
     top: -2px;
     left: 4px;
     font-size: 10px;
-    content: 'O';
+    content: '';
     visibility: visible;
     display: block;
     color: var(--color-white);
@@ -122,6 +123,22 @@ const FlexDivStyled = styled.div`
   flex: 1;
 `;
 
+const IconOnStyled = styled(IconOn)`
+  font-size: 10px;
+  margin-bottom: 20px;
+  padding-left: 5px;
+  font-weight: 400;
+  fill: var(--color-white);
+`
+
+
+const IconOffStyled = styled(IconOff)`
+  font-size: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  fill: var(--color-white);
+`
+
 export class FormikToggle extends React.Component<Props> {
   constructor(props: any) {
     super(props);
@@ -167,7 +184,9 @@ export class FormikToggle extends React.Component<Props> {
             />
 
             <Label>
+              <IconOnStyled/>
               <Switch></Switch>
+              <IconOffStyled/>
             </Label>
           </div>
         </WrapperStyled>
