@@ -34,12 +34,6 @@ const ToggleInput = styled.input`
     background: var(--color-primary);
     border: 2px solid var(--color-primary-shade);
     transition: transform var(--transition-speed-normal) ease-in;
-    :after {
-      visibility: visible;
-      display: block;
-      position: absolute;
-      transform: translateX(2px);
-    }
   }
   &:checked ~ label p {
     opacity: 1;
