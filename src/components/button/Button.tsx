@@ -266,7 +266,7 @@ export class Button extends React.Component<Props> {
 
     if (hasIcon && this.props.iconButtonWithBorder) {
       buttonContent = (
-        <OnlyIconWithBorder>
+        <OnlyIconWithBorder {...this.props}>
           <FlexStyled>
             <IconOnlyStyled>{this.props.iconButtonWithBorder}</IconOnlyStyled>
           </FlexStyled>
@@ -279,8 +279,8 @@ export class Button extends React.Component<Props> {
     );
 
     return (
-      <ButtonContainerStyled {...this.props}
-                             onClick={this.props.onClick}>
+      <ButtonContainerStyled
+        onClick={this.props.onClick}>
         {buttonContent}
         {this.props.loading && spinnerContent}
       </ButtonContainerStyled>
