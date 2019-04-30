@@ -11,10 +11,9 @@ export default class FormikAutoFillPage extends React.Component {
       type: 'text',
       disabled: false,
       error: false,
-      focussed: false,
-      current: false,
       userInput: '',
       suggestions: [],
+      items: [],
       field: {
         name: 'example-input',
       },
@@ -133,14 +132,16 @@ export default class FormikAutoFillPage extends React.Component {
           <ReactSpecimen span={3}>
             <FormikAutoFill
               label='Label Value'
-              error={this.state.error}
-              focussed={this.state.focussed}
-              type={this.state.type}
-              disabled={this.state.disabled}
+              items={[
+                {name: 'MALE', id: '1', value: '1'},
+                {name: 'FEMALE', id: '2', value: '2'},
+                {name: 'X', id: '3', value: '3'},
+              ]}
               placeholderText='example placeholder'
+              error={this.state.error}
+              disabled={this.state.disabled}
               field={this.state.field}
               form={this.state.form}
-              current={this.state.current}
             />
           </ReactSpecimen>
         </Page>

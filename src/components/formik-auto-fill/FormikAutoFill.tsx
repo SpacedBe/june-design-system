@@ -42,15 +42,17 @@ interface State {
   name: string,
   value: string,
   selected?: any,
-  data: Item[],
+  items: Item[],
+  loading: boolean,
 }
 
 const WrapperStyled = styled.div`
   display: flex;
+  position: relative;
   flex-flow: column;
   justify-content: flex-start;
   text-align: left;
-  padding-left: var(--spacing-m);
+  width: 100%;
 `;
 
 const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
@@ -74,7 +76,7 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
    font-size: var(--font-size-m);
    background-color: var(--color-white);
    color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
-   padding: var(--spacing-s);
+   padding: 1.1em;
    border: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
    border-radius: 3px;
    opacity: ${props => props.disabled ? '0.5' : '1'};
@@ -84,8 +86,8 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
 const InputLoadingStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    width: 100%;
    font-size: var(--font-size-m);
-   background-color: var(--color-white);
-   color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
+   background-color: var(--color-error);
+   color: ${props => props.error ? 'var(--color-white)' : 'var(--color-dark)'};
    padding: var(--spacing-s);
    border-bottom: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
    border-right: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
@@ -95,11 +97,21 @@ const InputLoadingStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    outline: none;
 `;
 
+const SpinnerStyled = styled.div`
+  position: absolute;
+  top: 0;
+  bottom:0;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
 
 const FlexStyled = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export class FormikAutoFill extends React.Component<Props, State> {
   private fetch: any;
@@ -110,7 +122,8 @@ export class FormikAutoFill extends React.Component<Props, State> {
     this.state = {
       name: props.field.name,
       value: "",
-      data: [],
+      items: [],
+      loading: false,
     };
 
     this.fetch = AwesomeDebouncePromise(
@@ -126,36 +139,32 @@ export class FormikAutoFill extends React.Component<Props, State> {
     const error = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
+    const loading = this.state.loading;
 
     const inputProps = {
       error: this.props.error,
       disabled: this.props.disabled,
     };
 
-    const spinnerContent = (
-      <Spinner color={color.getColor('primary')}/>
-    );
-
     return (
       <FlexStyled>
-         {spinnerContent}
         <WrapperStyled>
           <LabelStyled error={this.props.error}
-                      disabled={this.props.disabled}>
+                       disabled={this.props.disabled}>
             {label}
           </LabelStyled>
           <Autocomplete inputProps={inputProps}
-                        items={[{id:'0',name:'ABC', value:"0 - ABC"},{id:'1',name:'DEF',value:"1 - DEF"},{id:'2',name:'GHI',value:"2 - GHI"},{id:'3',name:'JKL',value:"3 - JKL"},{id:'4',name:'MNO',value:"4 - MNO"}]}
+                        items={this.state.items}
                         value={this.state.value}
-                        renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled)}
+                        renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled, loading)}
                         renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
                         getItemValue={(val: any) => this.getItemValue(val)}
                         onChange={(val: any) => this.onChange(val)}
                         onSelect={(val: any, item: Item) => this.onSelect(val, item)}
-                        />
+          />
           {touched && errors && <div>{errors}</div>}
         </WrapperStyled>
-     </FlexStyled>
+      </FlexStyled>
     );
   }
 
@@ -164,6 +173,8 @@ export class FormikAutoFill extends React.Component<Props, State> {
       value: val,
       selected: item,
     });
+
+    this.props.onChange(item);
   }
 
   onChange(e: any) {
@@ -177,31 +188,40 @@ export class FormikAutoFill extends React.Component<Props, State> {
     if (e.target.value && e.target.value.length > 2) {
       this.retrieveDataAsynchronously(e.target.value);
     } else {
-      this.setState({data: []});
+      this.setState({items: []});
     }
   }
 
   retrieveDataAsynchronously(searchText: string) {
+    this.setState({items: [], loading: true});
+
     this.fetch(searchText)
-      .then((data: any[]) => {
-        this.setState({data: data || []});
+      .then((items: any[]) => {
+        this.setState({items: items || [], loading: false});
       });
   }
 
-  renderInput(props: any, hasError: boolean, isDisabled: boolean) {
+  renderInput(props: any, hasError: boolean, isDisabled: boolean, loading: boolean) {
     return (
-      <InputStyled {...props}
-              error={hasError}
-              disabled={isDisabled} />
+      <div style={{position: 'relative'}}>
+        <InputStyled {...props}
+                     error={hasError}
+                     disabled={isDisabled}/>
+        <SpinnerStyled>
+          {loading ? (<Spinner color={color.getColor('primary')}/>) : ''}
+        </SpinnerStyled>
+      </div>
     );
   }
 
   renderItem(item: Item, isHighlighted: boolean) {
     return (
-      <InputLoadingStyled style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}} key={item.id}>
+      <InputLoadingStyled
+        style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}}
+        key={item.id}>
         {item.id} - {item.name}
       </InputLoadingStyled>
-    );
+    )
   }
 
   getItemValue(item: Item) {

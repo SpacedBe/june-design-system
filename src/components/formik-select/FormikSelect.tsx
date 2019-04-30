@@ -15,8 +15,9 @@ interface Option {
 type Props = {
   field: {
     name: string;
+    onChange?: (arg?: any) => void;
   }
-  onChange?: (arg?: any) => void;
+
   form: {
     ['errors']: string;
     ['touched']: boolean;
@@ -90,6 +91,8 @@ export class FormikSelect extends React.Component<Props> {
     const touched = getIn(this.props.form.touched, name);
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
+    console.log(this.props.field);
+
     return (
       <WrapperStyled disabled={this.props.disabled} error={!!errors}>
         <LabelStyled
@@ -102,12 +105,11 @@ export class FormikSelect extends React.Component<Props> {
         <SelectStyled {...this.props.field}
                       disabled={this.props.disabled}
                       error={this.props.error}
-                      onChange={this.props.onChange}
-                      touched={touched}
-                      defaultValue='placeholderValue'>
+                      touched={touched}>
 
           {this.props.placeholder &&
-          (<OptionStyled value='placeholderValue' disabled hidden>{this.props.placeholder}</OptionStyled>)
+          (<OptionStyled value='placeholderValue' disabled
+                         hidden>{this.props.placeholder}</OptionStyled>)
           }
           {this.props.options.map(item => (
             <OptionStyled key={item.value} value={item.value}>
