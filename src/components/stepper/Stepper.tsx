@@ -22,6 +22,8 @@ const Wrapper = styled.div`
 `;
 
 const Entry = styled.div`
+  // todo: fix this
+  box-sizing: content-box !important;
   display: flex;
   justify-content: center;
 `;
