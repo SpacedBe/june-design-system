@@ -8,7 +8,6 @@ import {Container} from '../container/Container';
 import {IconClose, IconQuestionmark} from '../../icons';
 import monster from '../../assets/images/monster.png'
 
-
 type Props = {
   title: string,
   show?: boolean,
@@ -26,7 +25,6 @@ const PopupStyled = styled.div`
   font-size: var(--font-size-l);
   color: var(--color-primary-contrast);
   background-color: rgba(var(--color-primary-rgb), 0.95);
-
   text-align: center;
 
   @media only screen and (min-width: 400px) {
@@ -107,7 +105,6 @@ export class Popup extends React.Component<Props> {
               {this.props.children}
             </div>
           </div>
-
         </BorderStyled>
       </Container>
       <MonsterStyled src={monster} alt=""  width="380" height="420"/>
