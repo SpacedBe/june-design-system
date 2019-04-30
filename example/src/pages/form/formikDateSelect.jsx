@@ -125,7 +125,10 @@ export default class FormikDateSelectPage extends React.Component{
             <FormikDateSelect
               label='Geboortedatum'
               field={this.state.field}
-              form={this.state.form}>
+              form={this.state.form}
+              error={this.state.error}
+              touched={this.state.touched}
+              disabled={this.state.disabled}>
             </FormikDateSelect>
           </ReactSpecimen>
         </Page>
