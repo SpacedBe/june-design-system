@@ -72,12 +72,7 @@ const BorderStyled = styled.div`
     .contents {
       max-height: 400px;
       overflow-y: auto;
-      padding: 0 var(--spacing-l) var(--spacing-l);
-    }
-
-    .text{
-      width: 80%;
-      margin: 0 auto;
+      padding: 0 var(--spacing-xl) var(--spacing-xl);
     }
   }
 `;
@@ -101,7 +96,7 @@ export class Popup extends React.Component<Props> {
               <IconQuestionmark fontSize={'70px'}/>
             </span>
             <h3 className={'no-margin margin-bottom'}>{this.props.title}</h3>
-            <div className={'text'}>
+            <div>
               {this.props.children}
             </div>
           </div>
