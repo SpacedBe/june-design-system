@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import {IconOn, IconOff} from '../../icons';
 
 type Props = {
   field: {
@@ -19,7 +20,7 @@ type Props = {
   icon?: any;
 };
 
-const ToggleInput = styled.input<{}>`
+const ToggleInput = styled.input`
   z-index: var(--zi-200);
   opacity: 0;
   width: 40px;
@@ -28,16 +29,15 @@ const ToggleInput = styled.input<{}>`
   &:checked ~ label span {
     transform: translatex(30px);
     transition: transform var(--transition-speed-normal) ease-in;
+    border: 2px solid var(--color-primary-shade);
   }
   &:checked ~ label {
     background: var(--color-primary);
     border: 2px solid var(--color-primary-shade);
     transition: transform var(--transition-speed-normal) ease-in;
   }
-
   &:checked ~ label p {
     opacity: 1;
-    content: I;
     transform: translateX(-20px);
     color: var(--color-white);
   }
@@ -46,7 +46,7 @@ const ToggleInput = styled.input<{}>`
 const Label = styled.label`
   display: inline-block;
   width: 40px;
-  height: 15px;
+  height: 18px;
   border-radius: 30px;
   position: relative;
   cursor: pointer;
@@ -54,6 +54,16 @@ const Label = styled.label`
   border: 2px solid var(--color-gray);
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
+  :after {
+    top: -2px;
+    left: 4px;
+    font-size: 10px;
+    visibility: visible;
+    display: block;
+    color: var(--color-white);
+    position: absolute;
+    transform: translateX(20px);
+  }
 `;
 
 const Switch = styled.span`
@@ -61,7 +71,7 @@ const Switch = styled.span`
   width: 25px;
   height: 25px;
   left: -10px;
-  top: -7px;
+  top: -5px;
   border-radius: 25px;
   background: var(--color-white);
   border: 2px solid var(--color-gray);
@@ -104,6 +114,21 @@ const FlexDivStyled = styled.div`
   align-items: center;
   flex: 1;
 `;
+
+const IconOnStyled = styled(IconOn)`
+  font-size: 8px;
+  margin: 0px 0px 6px 6px;
+  font-weight: var(--font-weight-normal);
+  fill: var(--color-white);
+`
+
+
+const IconOffStyled = styled(IconOff)`
+  font-size: 8px;
+  margin: 0px 0px 6px 8px;
+  font-weight: var(--font-weight-normal);
+  fill: var(--color-white);
+`
 
 export class FormikToggle extends React.Component<Props> {
   constructor(props: any) {
@@ -151,7 +176,9 @@ export class FormikToggle extends React.Component<Props> {
             />
 
             <Label>
+              <IconOnStyled/>
               <Switch></Switch>
+              <IconOffStyled/>
             </Label>
           </div>
         </WrapperStyled>

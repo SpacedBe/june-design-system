@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Off</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Forms-/-Toggle-/-Resting" transform="translate(-28.000000, -8.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M32,15 C33.6568542,15 35,13.6568542 35,12 C35,10.3431458 33.6568542,9 32,9 C30.3431458,9 29,10.3431458 29,12 C29,13.6568542 30.3431458,15 32,15 Z M32,16 C29.790861,16 28,14.209139 28,12 C28,9.790861 29.790861,8 32,8 C34.209139,8 36,9.790861 36,12 C36,14.209139 34.209139,16 32,16 Z" id="Off"></path>
+        </g>
+    </g>
+</svg>
