@@ -6,7 +6,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import {getIn} from 'formik';
 import Color from "../../helpers/color";
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales'
+import {FormikSelect} from "../..";
 
 interface Option {
   label: string,
@@ -40,40 +41,31 @@ const WrapperStyled = styled.div<{ error?: boolean; disabled?: boolean; }>`
   width: 100%;
 `;
 
-const Select = styled.select<{
-  error?: boolean;
-  disabled?: boolean;
-}>`
-  border: ${props =>
-  props.error
-    ? `2px solid var(--color-error)`
-    : `2px solid var(--color-gray-light)`};
-  padding: 10px 10px 10px 10px;
-  border-radius: 2.5px;
-  background: var(--color-white);
-  outline: none;
+const FlexStyled = styled.div`
   display: flex;
-  opacity: ${props => (props.disabled ? '0.5' : '1')};
-  justify-content: space-between;
-  height: 40px;
-  width: 100%;
+  
+  > * {
+    margin-right: var(--spacing-m);
+  }
+  
+  > *:last-of-type {
+    margin-right: 0;
+  }
 `;
 
-const Label = styled.label<{
+const LabelStyled = styled.label<{
   error?: boolean;
   disabled?: boolean;
 }>`
+  display: block;
   opacity: ${props => (props.disabled ? '0.5' : '1')};
   color: ${props =>
   props.error
     ? `var(--color-error)`
-    : `var(--color-gray-light)`};
+    : `var(--color-dark)`};
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
-`;
-
-const Option = styled.option`
-  color: var(--color-gray);
+  margin-bottom: var(--spacing-xs);
 `;
 
 const ErrorMessageStyled = styled.span`
@@ -95,8 +87,7 @@ export class FormikDateSelect extends React.Component<Props, {
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
   componentWillMount() {
@@ -125,55 +116,39 @@ export class FormikDateSelect extends React.Component<Props, {
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
     return (
-      <WrapperStyled disabled={this.props.disabled} error={!!errors && touched}>
-        <Label
-          disabled={this.props.disabled}
-          htmlFor={name}>
+      <WrapperStyled>
+        <LabelStyled error={!!errors}
+                     disabled={this.props.disabled}
+                     htmlFor={name}>
           {label}
-        </Label>
+        </LabelStyled>
 
-        <Select
-          value={this.state.selectedDay}
-          onChange={(event) => this.handleChange(event, 'selectedDay')}
-          disabled={this.props.disabled}>
-          <Option>
-            DD
-          </Option>
-          {this.state.days.map((item: any) => (
-            <Option key={item.value} value={item.value}>
-              {item.label}
-            </Option>
-          ))}
-        </Select>
-
-        <Select
-          value={this.state.selectedMonth}
-          onChange={(event) => this.handleChange(event, 'selectedMonth')}
-          disabled={this.props.disabled}>
-          <Option>
-            MM
-          </Option>
-          {this.state.months.map((item: any) => (
-            <Option key={item.value} value={item.value}>
-              {item.label}
-            </Option>
-          ))}
-        </Select>
-
-        <Select
-          value={this.state.selectedYear}
-          onChange={(event) => this.handleChange(event, 'selectedYear')}
-          disabled={this.props.disabled}>
-          <Option>
-            YYYY
-          </Option>
-
-          {this.state.years.map((item: any) => (
-            <Option key={item.value} value={item.value}>
-              {item.label}
-            </Option>
-          ))}
-        </Select>
+        <FlexStyled>
+          <FormikSelect
+            options={this.state.days}
+            disabled={this.props.disabled}
+            field={{name: 'day'}}
+            form={this.props.form}
+            placeholder='Dag'
+            onChange={(event: any) => this.handleChange(event, 'selectedDay')}
+          />
+          <FormikSelect
+            options={this.state.months}
+            disabled={this.props.disabled}
+            field={{name: 'month'}}
+            form={this.props.form}
+            placeholder='Maand'
+            onChange={(event: any) => this.handleChange(event, 'selectedMonth')}
+          />
+          <FormikSelect
+            options={this.state.years}
+            disabled={this.props.disabled}
+            field={{name: 'year'}}
+            form={this.props.form}
+            placeholder='Jaar'
+            onChange={(event: any) => this.handleChange(event, 'selectedYear')}
+          />
+        </FlexStyled>
 
         {touched && errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
       </WrapperStyled>
@@ -209,6 +184,7 @@ export class FormikDateSelect extends React.Component<Props, {
         month = `${i}`;
       }
 
+      moment.locale('nl-be');
       months.push({
         value: month,
         label: moment.months()[i - 1],
