@@ -35,7 +35,6 @@ const ToggleInput = styled.input`
     border: 2px solid var(--color-primary-shade);
     transition: transform var(--transition-speed-normal) ease-in;
     :after {
-      content: On;
       visibility: visible;
       display: block;
       position: absolute;
@@ -44,7 +43,6 @@ const ToggleInput = styled.input`
   }
   &:checked ~ label p {
     opacity: 1;
-    content: '';
     transform: translateX(-20px);
     color: var(--color-white);
   }
@@ -65,7 +63,6 @@ const Label = styled.label`
     top: -2px;
     left: 4px;
     font-size: 10px;
-    content: '';
     visibility: visible;
     display: block;
     color: var(--color-white);
