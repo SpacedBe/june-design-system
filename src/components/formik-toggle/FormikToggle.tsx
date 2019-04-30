@@ -19,7 +19,7 @@ type Props = {
   icon?: any;
 };
 
-const ToggleInput = styled.input<{}>`
+const ToggleInput = styled.input`
   z-index: var(--zi-200);
   opacity: 0;
   width: 40px;
@@ -28,6 +28,7 @@ const ToggleInput = styled.input<{}>`
   &:checked ~ label span {
     transform: translatex(30px);
     transition: transform var(--transition-speed-normal) ease-in;
+    border: 2px solid var(--color-primary-shade);
   }
   &:checked ~ label {
     background: var(--color-primary);
