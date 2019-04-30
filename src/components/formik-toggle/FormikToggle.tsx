@@ -42,7 +42,6 @@ const ToggleInput = styled.input`
       transform: translateX(2px);
     }
   }
-
   &:checked ~ label p {
     opacity: 1;
     content: '';
