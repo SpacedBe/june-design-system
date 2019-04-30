@@ -8,7 +8,7 @@ const SvgCalender = (props: React.SVGProps<SVGSVGElement>) => (
         id="calender_svg__a"
       />
     </defs>
-    <use fill="#46ACA6" xlinkHref="#calender_svg__a" fillRule="evenodd" />
+    <use xlinkHref="#calender_svg__a" fillRule="evenodd" />
   </svg>
 );
 
