@@ -207,6 +207,13 @@ class App extends Component {
                 )
               },
               {
+                path: 'dataselect',
+                title: 'Data Select',
+                component: pageLoader(() =>
+                  import('./pages/form/formikDateSelect.jsx')
+                )
+              },
+              {
                 path: 'formError',
                 title: 'Form Error',
                 component: pageLoader(() =>
