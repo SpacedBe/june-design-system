@@ -6,10 +6,10 @@
     <defs>
         <polygon id="path-1" points="23 16.1428571 16.1428571 16.1428571 16.1428571 23 13.8571429 23 13.8571429 16.1428571 7 16.1428571 7 13.8571429 13.8571429 13.8571429 13.8571429 7 16.1428571 7 16.1428571 13.8571429 23 13.8571429"></polygon>
     </defs>
-    <g id="Icons-/-Add" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <mask id="mask-2" fill="white">
+    <g id="Icons-/-Add" stroke="none" stroke-width="1">
+        <mask id="mask-2">
             <use xlink:href="#path-1"></use>
         </mask>
-        <use id="Color" fill="#46ACA6" xlink:href="#path-1"></use>
+        <use id="Color" xlink:href="#path-1"></use>
     </g>
 </svg>
