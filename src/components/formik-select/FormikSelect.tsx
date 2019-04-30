@@ -36,7 +36,6 @@ const colorHelper = new Color();
 const WrapperStyled = styled.div<{ error?: boolean; disabled?: boolean; }>`
   text-align: left;
   width: 100%;
-
 `;
 
 const SelectStyled = styled.select<{
