@@ -127,26 +127,23 @@ export class FormikDateSelect extends React.Component<Props, {
           <FormikSelect
             options={this.state.days}
             disabled={this.props.disabled}
-            field={{name: 'day'}}
+            field={{name: 'day', onChange: (event: any) => this.handleChange(event, 'selectedDay')}}
             form={this.props.form}
             placeholder='Dag'
-            onChange={(event: any) => this.handleChange(event, 'selectedDay')}
           />
           <FormikSelect
             options={this.state.months}
             disabled={this.props.disabled}
-            field={{name: 'month'}}
+            field={{name: 'month', onChange: (event: any) => this.handleChange(event, 'selectedMonth')}}
             form={this.props.form}
             placeholder='Maand'
-            onChange={(event: any) => this.handleChange(event, 'selectedMonth')}
           />
           <FormikSelect
             options={this.state.years}
             disabled={this.props.disabled}
-            field={{name: 'year'}}
+            field={{name: 'year', onChange: (event: any) => this.handleChange(event, 'selectedYear')}}
             form={this.props.form}
             placeholder='Jaar'
-            onChange={(event: any) => this.handleChange(event, 'selectedYear')}
           />
         </FlexStyled>
 

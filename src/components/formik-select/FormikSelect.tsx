@@ -102,7 +102,6 @@ export class FormikSelect extends React.Component<Props> {
         <SelectStyled {...this.props.field}
                       disabled={this.props.disabled}
                       error={this.props.error}
-                      onChange={this.props.onChange}
                       touched={touched}
                       defaultValue='placeholderValue'>
 
