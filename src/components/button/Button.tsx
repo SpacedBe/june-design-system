@@ -4,6 +4,7 @@
  */
 
 import * as React from 'react';
+import {Fragment} from 'react';
 import styled from 'styled-components';
 import {Spinner} from "../spinner/Spinner";
 import Color from "../../helpers/color";
@@ -35,18 +36,35 @@ type Props = {
   onClick?: (arg?: any) => any,
 };
 
-const Icon = styled.div<{ color?: string }>`
+const Icon = styled.div<{ color?: string, clear?: boolean, outlined?: boolean, loading?: boolean }>`
   display: flex;
   align-items: center;
-
+  visibility: ${props => props.loading ? 'hidden' : 'visible'};
+  
   svg {
-    fill: ${props => colorHelper.getColorContrast(props.color)};
+    fill: ${props => {
+
+  if (props.clear || props.outlined) {
+    return colorHelper.getColor(props.color);
+  }
+
+  return colorHelper.getColorContrast(props.color);
+}};
+
     font-size: var(--icon-size-m);
   }
 
   &:hover {
     fill: var(--color-white);
   }
+`;
+
+const IconLeft = styled(Icon)`
+  margin-right: var(--spacing-s);
+`;
+
+const IconRight = styled(Icon)`
+  margin-left: var(--spacing-s);
 `;
 
 const IconOnlyStyled = styled.div<{ color?: string }>`
@@ -58,20 +76,13 @@ const IconOnlyStyled = styled.div<{ color?: string }>`
   fill: ${props => colorHelper.getColor(props.color)};
 `;
 
-const IconLeft = styled.span`
-  display: flex;
-  margin-right: 8px;
-`;
-
-const IconRight = styled.span`
-  display: flex;
-  margin-left: 8px;
-`;
-
-const Label = styled.span`
+const Label = styled.div`
   transition: opacity var(--transition-speed-normal) ease-in-out;
   opacity: 1;
   font-family: var(--font-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const OnlyIconButtonStyled = styled.button`
@@ -125,7 +136,7 @@ const NormalButton = styled.button<any>`
   font-weight: var(--font-weight-bold);
 
   outline: none;
-  padding: 0 var(--spacing-m);
+  padding: var(--spacing-xs) var(--spacing-m);
   position: relative;
   text-align: center;
   width: ${props => (props.wide ? '100%' : 'auto')};
@@ -184,68 +195,35 @@ export class Button extends React.Component<Props> {
 
   render() {
     let buttonContent;
-    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly;
 
-    if (!hasIcon) {
-      buttonContent = (
-        <NormalButton
-          disabled={this.props.loading || this.props.disabled}
-          color={this.props.color}
-          wide={this.props.wide}
-          type={this.props.type}
-          size={this.props.size}
-          outlined={this.props.outlined}
-          clear={this.props.clear}
-          onClick={this.props.onClick}
-          rounded={this.props.rounded}
-          target={this.props.target}>
-          <Label>{this.props.children}</Label>
-        </NormalButton>
-      );
-    }
+    buttonContent = (
+      <NormalButton
+        disabled={this.props.loading || this.props.disabled}
+        color={this.props.color}
+        wide={this.props.wide}
+        type={this.props.type}
+        size={this.props.size}
+        outlined={this.props.outlined}
+        clear={this.props.clear}
+        onClick={this.props.onClick}
+        rounded={this.props.rounded}
+        target={this.props.target}>
+        <Label>
+          {this.props.iconLeft ? <IconLeft
+            clear={this.props.clear}
+            outlined={this.props.outlined}
+            loading={this.props.loading}>{this.props.iconLeft}</IconLeft> : ''}
+          <span style={{visibility: this.props.loading ? 'hidden' : 'visible'}}>{this.props.children}</span>
+          {this.props.iconRight ? <IconRight
+            clear={this.props.clear}
+            outlined={this.props.outlined}
+            loading={this.props.loading}>{this.props.iconRight}</IconRight> : ''}
+          {this.props.loading ? <Spinner style={{position: 'absolute'}} color={this.props.outlined || this.props.clear ? 'disabled' : 'white'}/> : ''}
+        </ Label>
+      </ NormalButton>
+    );
 
-    if (hasIcon && this.props.iconLeft) {
-      buttonContent = (
-        <NormalButton
-          disabled={this.props.loading || this.props.disabled}
-          color={this.props.color}
-          wide={this.props.wide}
-          type={this.props.type}
-          size={this.props.size}
-          outlined={this.props.outlined}
-          clear={this.props.clear}
-          onClick={this.props.onClick}
-          rounded={this.props.rounded}
-          target={this.props.target}>
-          <Icon>
-            <IconLeft>{this.props.iconLeft}</IconLeft>
-            <Label>{this.props.children}</Label>
-          </Icon>
-        </NormalButton>
-      );
-    }
-
-    if (hasIcon && this.props.iconRight) {
-      buttonContent = (
-        <NormalButton
-          disabled={this.props.loading || this.props.disabled}
-          color={this.props.color}
-          wide={this.props.wide}
-          type={this.props.type}
-          size={this.props.size}
-          outlined={this.props.outlined}
-          onClick={this.props.onClick}
-          rounded={this.props.rounded}
-          target={this.props.target}>
-          <Icon>
-            <Label>{this.props.children}</Label>
-            <IconRight>{this.props.iconRight}</IconRight>
-          </Icon>
-        </NormalButton>
-      );
-    }
-
-    if (hasIcon && this.props.iconOnly) {
+    if (this.props.iconOnly) {
       buttonContent = (
         <OnlyIconButtonStyled {...this.props}>
           <IconOnlyStyled color={this.props.color}>{this.props.iconOnly}</IconOnlyStyled>
@@ -253,15 +231,9 @@ export class Button extends React.Component<Props> {
       );
     }
 
-    const spinnerContent = (
-      <Spinner color={colorHelper.getColor('primary')}/>
-    );
-
     return (
-      <ButtonContainerStyled
-        onClick={this.props.onClick}>
+      <ButtonContainerStyled>
         {buttonContent}
-        {this.props.loading && spinnerContent}
       </ButtonContainerStyled>
 
     );

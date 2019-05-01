@@ -12,6 +12,8 @@ export default class ButtonPage extends React.Component {
       outlined: false,
       clear: false,
       disabled: false,
+      loading: false,
+      icon: '',
       size: 'medium',
       content: 'Button',
       color: 'primary',
@@ -45,6 +47,12 @@ export default class ButtonPage extends React.Component {
     });
   }
 
+  changeLoading() {
+    this.setState({
+      loading: !this.state.loading
+    });
+  }
+
   changeWide() {
     this.setState({
       wide: !this.state.wide
@@ -57,6 +65,10 @@ export default class ButtonPage extends React.Component {
 
   changeSize(event) {
     this.setState({size: event.target.value})
+  }
+
+  changeIcon(event) {
+    this.setState({icon: event.target.value})
   }
 
   changeClicked() {
@@ -78,9 +90,13 @@ export default class ButtonPage extends React.Component {
                 outlined={this.state.outlined}
                 clear={this.state.clear}
                 disabled={this.state.disabled}
+                loading={this.state.loading}
                 wide={this.state.wide}
-                color={this.state.color}>
-                  {this.state.content}
+                color={this.state.color}
+                iconLeft={this.state.icon === 'left' ? <IconSettings/> : ''}
+                iconRight={this.state.icon === 'right' ? <IconSettings/> : ''}
+                iconOnly={this.state.icon === 'only' ? <IconSettings/> : ''}>
+                {this.state.content}
               </Button>
             </ReactSpecimen>
             <Flex justify={'space-between'} column>
@@ -115,6 +131,23 @@ export default class ButtonPage extends React.Component {
                       touched: {'example-input': false}
                     }}
                     label='Disabled'
+                    type='checkbox'
+                  />
+                </div>
+
+                <div className='wrapper'>
+                  <FormikCheckbox
+                    error={false}
+                    field={{
+                      name: 'isLoading',
+                      value: this.state.loading,
+                      onChange: () => this.changeLoading()
+                    }}
+                    form={{
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
+                    }}
+                    label='Loading'
                     type='checkbox'
                   />
                 </div>
@@ -170,6 +203,7 @@ export default class ButtonPage extends React.Component {
                   />
                 </div>
               </Flex>
+
               <Flex>
                 <div className='wrapper'>
                   <FormikSelect
@@ -200,6 +234,30 @@ export default class ButtonPage extends React.Component {
                     disabled={false}
                     error={false}
                     field={{
+                      name: 'Icon',
+                      value: this.state.icon,
+                      onChange: event => this.changeIcon(event)
+                    }}
+                    form={{
+                      errors: {'example-input': null},
+                      touched: {'example-input': false}
+                    }}
+                    htmlFor='isSelect'
+                    label='Icon'
+                    options={[
+                      {label: 'Icon on the left', value: 'left'},
+                      {label: 'Icon on the right', value: 'right'},
+                      {label: 'Only an icon', value: 'only'},
+                      {label: 'No icon', value: ''},
+                    ]}
+                    touched={false}
+                  />
+                </div>
+                <div className='wrapper'>
+                  <FormikSelect
+                    disabled={false}
+                    error={false}
+                    field={{
                       name: 'size',
                       value: this.state.size,
                       onChange: event => this.changeSize(event)
@@ -221,24 +279,6 @@ export default class ButtonPage extends React.Component {
               </Flex>
             </Flex>
           </div>
-          ## Icon on the left
-          <ReactSpecimen>
-            <Button iconLeft={<IconSettings/>}>Button with icon</Button>
-          </ReactSpecimen>
-          ## Icon on the right
-          <ReactSpecimen>
-            <Button iconRight={<IconSettings/>}> Button with icon</Button>
-          </ReactSpecimen>
-          ## Only an icon
-          <ReactSpecimen>
-            <Button iconOnly={<IconSettings/>}>
-              Button with only an icon
-            </Button>
-          </ReactSpecimen>
-          ## Loading
-          <ReactSpecimen>
-            <Button loading={true}>Loading button</Button>
-          </ReactSpecimen>
           # Click events
           <p>Clicked {this.state.clicked} times</p>
           <ReactSpecimen>
