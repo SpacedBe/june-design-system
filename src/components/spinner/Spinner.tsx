@@ -1,14 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
+import Color from "../../helpers/color";
 
 type Props = {
-  color?: string
+  color?: string;
 }
 
+const colorHelper = new Color();
+
 export class Spinner extends React.Component<Props> {
-  static defaultProps = {
-    color: '#fff',
-  };
 
   render() {
     const SpinnerStyled = styled.div`
@@ -25,7 +25,7 @@ export class Spinner extends React.Component<Props> {
         animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
         border: 3px solid;
         border-radius: 50%;
-        border-color: ${this.props.color} transparent transparent transparent;
+        border-color: ${colorHelper.getColor(this.props.color)} transparent transparent transparent;
       }
       div:nth-child(1) {
         animation-delay: -0.45s;
@@ -47,7 +47,7 @@ export class Spinner extends React.Component<Props> {
 `;
 
     return (
-      <SpinnerStyled>
+      <SpinnerStyled {...this.props}>
         <div></div>
         <div></div>
         <div></div>

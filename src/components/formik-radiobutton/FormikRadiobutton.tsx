@@ -36,6 +36,7 @@ const Input = styled.input`
   z-index: var(--zi-200);
   position: absolute;
   cursor: pointer;
+  margin: 0;
   width: 20px;
   height: 20px;
 
@@ -54,9 +55,6 @@ const Round = styled.div<{ error?: boolean }>`
   width: 23px;
   height: 23px;
   border-radius: 15px;
-  top: 0px;
-  left: 0px;
-  position: absolute;
   content: '';
   display: inline-block;
   visibility: visible;
@@ -82,7 +80,7 @@ const Span = styled.span<{ error?: boolean }>`
 `;
 
 const Label = styled.label<{ error?: boolean }>`
-  margin-left: var(--spacing-l);
+  margin-left: var(--spacing-s);
   position: relative;
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
@@ -111,7 +109,7 @@ export class FormikRadiobutton extends React.Component<Props> {
     const checked = this.props.value == value;
 
     return (
-      <div>
+      <div style={{paddingTop: 'var(--spacing-s)'}}>
         <InputDiv>
           <Round error={!!errors}>
             <Input
