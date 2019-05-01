@@ -4,6 +4,7 @@ import Color from "../../helpers/color";
 
 type Props = {
   color?: string;
+  style?: any;
 }
 
 const colorHelper = new Color();

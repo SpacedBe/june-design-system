@@ -79,7 +79,7 @@ const Checkbox = styled.div<{ error?: boolean }>`
       : `2px solid var(--color-primary)`};
 `;
 
-const Label = styled.label<{ error?: boolean }>`
+const Label = styled.label<{ error?: boolean, htmlFor?: string }>`
   margin-left: var(--spacing-m);
   position: relative;
   font-family: var(--font-secondary);
@@ -96,7 +96,8 @@ export class FormikCheckbox extends React.Component<Props> {
     const name = this.props.field.name;
     const label = this.props.label;
     const error = getIn(this.props.form.errors, name);
-    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
+    const touched = getIn(this.props.form.touched, name);
+    const errors = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || error : null;
 
     return (
       <WrapperStyled>
@@ -104,10 +105,11 @@ export class FormikCheckbox extends React.Component<Props> {
           <Checkbox error={!!errors}>
             <Input
               {...this.props.field}
+              id={name}
               type="checkbox"/>
             <Span error={!!errors}/>
           </Checkbox>
-          <Label dangerouslySetInnerHTML={{__html: label}} error={!!errors}></Label>
+          <Label htmlFor={name} dangerouslySetInnerHTML={{__html: label}} error={!!errors}></Label>
         </CheckBoxWrapperStyled>
       </WrapperStyled>
     );
