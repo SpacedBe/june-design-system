@@ -22,7 +22,6 @@ type Props = {
   iconLeft?: any,
   iconRight?: any,
   iconOnly?: any,
-  iconButtonWithBorder?: any,
   loading?: boolean,
   wide?: boolean,
   size?: 'xsmall' | 'small' | 'medium' | 'large',
@@ -33,7 +32,7 @@ type Props = {
   disabled?: boolean,
   target?: string,
   type?: "button" | "reset" | "submit" | undefined,
-  onClick?: any,
+  onClick?: (arg?: any) => any,
 };
 
 const Icon = styled.div<{ color?: string }>`
@@ -80,16 +79,6 @@ const OnlyIconButtonStyled = styled.button`
   background-color: transparent;
   border: none;
   padding: 0;
-`;
-
-const OnlyIconWithBorder = styled(OnlyIconButtonStyled)`
-  border: 2px solid rgba(var(--color-primary-rgb), 0.25);
-  padding: var(--spacing-xs);
-`;
-
-const FlexStyled = styled.div`
-  display: flex;
-  justify-content: center;
 `;
 
 const NormalButton = styled.button<any>`
@@ -195,7 +184,7 @@ export class Button extends React.Component<Props> {
 
   render() {
     let buttonContent;
-    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly || this.props.iconButtonWithBorder;
+    const hasIcon = this.props.iconLeft || this.props.iconRight || this.props.iconOnly;
 
     if (!hasIcon) {
       buttonContent = (
@@ -261,16 +250,6 @@ export class Button extends React.Component<Props> {
         <OnlyIconButtonStyled {...this.props}>
           <IconOnlyStyled color={this.props.color}>{this.props.iconOnly}</IconOnlyStyled>
         </OnlyIconButtonStyled>
-      );
-    }
-
-    if (hasIcon && this.props.iconButtonWithBorder) {
-      buttonContent = (
-        <OnlyIconWithBorder {...this.props}>
-          <FlexStyled>
-            <IconOnlyStyled>{this.props.iconButtonWithBorder}</IconOnlyStyled>
-          </FlexStyled>
-        </OnlyIconWithBorder>
       );
     }
 

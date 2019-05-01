@@ -3,21 +3,33 @@
  */
 import * as React from 'react';
 import styled from 'styled-components';
-import {Button} from "../button/Button";
 import {IconAdd, IconRemove} from "../../icons";
 
 type Props = {
-  className?: string;
   id?: string,
-  onClickUp: any;
-  onClickDown: any;
+  onClickUp?: (arg?: any) => void;
+  onClickDown?: (arg?: any) => void;
+  className?: string;
 }
 
-const CounterDiv = styled.div<{ onClick?: void }>`
-  display: flex;
-  justify-content: space-around;
+const CountButton = styled.button`
+  border: 1px solid rgba(var(--color-primary-rgb), 0.25);
+  padding: var(--spacing-xs);
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
-  width: 10%;
+  outline: none;
+  cursor: pointer;
+  
+  &:first-of-type {
+    border-right: none;
+  }
+  
+  svg {
+    fill: var(--color-primary);
+    font-size: 1.5em;
+  } 
+ 
 `;
 
 export class Counter extends React.Component<Props> {
@@ -38,21 +50,17 @@ export class Counter extends React.Component<Props> {
   }
 
   render() {
-    const {id, className} = this.props;
+    const {id} = this.props;
 
     return (
-      <CounterDiv id={id} className={className}>
-        <Button
-          type='button'
-          iconButtonWithBorder={<IconRemove/>}
-          onClick={(e: any) => this.onClickDown(e)}
-        />
-        <Button
-          type='button'
-          iconButtonWithBorder={<IconAdd/>}
-          onClick={(e: any) => this.onClickUp(e)}
-        />
-      </CounterDiv>
+      <div id={id} className={this.props.className}>
+        <CountButton type='button' onClick={(e: any) => this.onClickDown(e)}>
+          <IconRemove/>
+        </CountButton>
+        <CountButton type='button' onClick={(e: any) => this.onClickUp(e)}>
+          <IconAdd/>
+        </CountButton>
+      </div>
     );
   }
 }

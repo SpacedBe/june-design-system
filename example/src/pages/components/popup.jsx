@@ -19,7 +19,6 @@ export default class PopupPage extends React.Component {
   }
 
   changeInputPopup(event) {
-    console.log('aaa', event);
     this.setState({
       title: event.title,
       text: event.name,
