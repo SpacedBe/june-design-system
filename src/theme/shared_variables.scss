@@ -29,8 +29,15 @@
   --color-google-shade: #c5323d;
   --color-google-tint: #e34d58;
 
-  --color-gray: #BFBFBF;
+  //todo: refactor color name
   --color-gray-dark: #949A9E;
+  --color-gray-dark-rgb: 148,154,158;
+  --color-gray-dark-contrast: #000000;
+  --color-gray-dark-contrast-rgb: 0,0,0;
+  --color-gray-dark-shade: #82888b;
+  --color-gray-dark-tint: #9fa4a8;
+
+  --color-gray: #BFBFBF;
   --color-gray-darker: #333;
   --color-gray-light: #CCC;
   --color-gray-lighter: #EEE;
