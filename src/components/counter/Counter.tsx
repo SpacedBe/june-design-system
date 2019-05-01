@@ -13,6 +13,7 @@ type Props = {
 }
 
 const CountButton = styled.button`
+  background-color: var(--color-white);
   border: 1px solid rgba(var(--color-primary-rgb), 0.25);
   padding: var(--spacing-xs);
   display: inline-flex;

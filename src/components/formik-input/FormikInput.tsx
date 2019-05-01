@@ -36,6 +36,7 @@ type Props = {
   required?: any,
   current?: boolean,
   classNames?: string[],
+  style?: any,
 };
 
 const colorHelper = new Color();
@@ -276,7 +277,7 @@ export class FormikInput extends React.Component<Props> {
     );
 
     return (
-      <WrapperStyled>
+      <WrapperStyled style={this.props.style}>
         <LabelStyled error={!!errors}
                      disabled={this.props.disabled}>
           {label}
