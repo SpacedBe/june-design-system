@@ -91,8 +91,6 @@ export class FormikSelect extends React.Component<Props> {
     const touched = getIn(this.props.form.touched, name);
     const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
 
-    console.log(this.props.field);
-
     return (
       <WrapperStyled disabled={this.props.disabled} error={!!errors}>
         <LabelStyled
