@@ -17,5 +17,4 @@ export class FormError extends React.Component {
       </ErrorStyled>
     );
   }
-
 }

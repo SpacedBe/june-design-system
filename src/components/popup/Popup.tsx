@@ -1,7 +1,7 @@
 /**
  * @class Popup
  */
-import * as React from 'react';
+import React from 'react';
 import {Button} from '../button/Button';
 import styled from 'styled-components';
 import {Container} from '../container/Container';
@@ -14,7 +14,7 @@ type Props = {
 }
 
 const PopupStyled = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

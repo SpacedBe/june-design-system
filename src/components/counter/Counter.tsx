@@ -1,7 +1,7 @@
 /**
  * @class Counter
  */
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {IconAdd, IconRemove} from "../../icons";
 

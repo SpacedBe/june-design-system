@@ -3,17 +3,19 @@
  *
  */
 
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-type Props = {};
+interface Props {
+  className?: string;
+}
 
 const FormGroupStyled = styled.div`
   margin-bottom: var(--spacing-m);
 `;
 
-export class FormGroup extends React.Component<Props> {
-  render() {
+export class FormGroup extends React.Component<Props, {}> {
+  render(): JSX.Element {
     return (
       <FormGroupStyled {...this.props}>
         {this.props.children}

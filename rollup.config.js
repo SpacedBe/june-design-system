@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel';
+import typescript from 'rollup-plugin-typescript2';
 import commonjs from 'rollup-plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
@@ -18,18 +18,17 @@ const extensions = [
 
 export default {
   external: [
-    'react',
-    'react-proptypes',
-    'styled-components',
-    'react-autocomplete',
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {}),
   ],
   input: 'src/index.tsx',
   output: [
     {
       file: pkg.main,
       format: 'cjs',
-      exports: 'named',
-      sourcemap: true,
+    }, {
+      file: pkg.module,
+      format: 'es',
     },
   ],
 
@@ -42,9 +41,11 @@ export default {
     svgr(),
     images(),
     resolve({ extensions }),
-    babel({
-      extensions,
-      include: ['src/**/*']
+    typescript({
+      check: false,
+      rollupCommonJSResolveHack: true,
+      clean: false,
+      objectHashIgnoreUnknownHack: true,
     }),
     commonjs(),
     copy([
