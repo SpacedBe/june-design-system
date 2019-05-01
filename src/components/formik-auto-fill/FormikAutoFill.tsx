@@ -138,7 +138,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
     const label = this.props.label;
     const error = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
-    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
+    const errors = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || error : null;
     const loading = this.state.loading;
 
     const inputProps = {
@@ -162,7 +162,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
                         onChange={(val: any) => this.onChange(val)}
                         onSelect={(val: any, item: Item) => this.onSelect(val, item)}
           />
-          {touched && errors && <div>{errors}</div>}
+          {errors && <div>{errors}</div>}
         </WrapperStyled>
       </FlexStyled>
     );

@@ -150,7 +150,7 @@ export class FormikInput extends React.Component<Props> {
     const label = this.props.label;
     const error = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
-    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
+    const errors = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || error : null;
 
     let inputContent;
 
@@ -284,7 +284,7 @@ export class FormikInput extends React.Component<Props> {
         </LabelStyled>
         {inputContent}
         {this.props.hint && hintContent}
-        {touched && errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
+        {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
       </WrapperStyled>
     );
   }
