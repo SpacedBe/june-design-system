@@ -1,42 +1,42 @@
 import React from 'react';
-import { Page, ReactSpecimen } from 'catalog';
-import { Counter } from 'june-design-system';
+import {Page, ReactSpecimen} from 'catalog';
+import {Counter} from 'june-design-system';
 
 export default class CounterPage extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-          clicked: 0
-        };
-        this.changeUpClicked = this.changeUpClicked.bind(this);
-        this.changeDownClicked = this.changeDownClicked.bind(this);
-    }
+  constructor() {
+    super();
+    this.state = {
+      clicked: 0
+    };
+    this.changeUpClicked = this.changeUpClicked.bind(this);
+    this.changeDownClicked = this.changeDownClicked.bind(this);
+  }
 
-    changeUpClicked(){
-      this.setState({
-        clicked: this.state.clicked + 1
-      });
-    }
+  changeUpClicked() {
+    this.setState({
+      clicked: this.state.clicked + 1
+    });
+  }
 
   changeDownClicked() {
-    if (this.state.clicked >= 1){
+    if (this.state.clicked >= 1) {
       this.setState({
         clicked: this.state.clicked - 1
       });
     }
   }
-    render(){
-        return (
-          <Page>
-            # Counter
-            <ReactSpecimen>
-              <Counter
-                changeUpClicked={this.changeUpClicked}
-                changeDownClicked={this.changeDownClicked}
-                clicked={this.state.clicked}
-              />
-            </ReactSpecimen>
-          </Page>
-        );
-    }
+
+  render() {
+    return (
+      <Page>
+        # Counter
+        <ReactSpecimen>
+          <Counter onClickUp={() => this.changeUpClicked()}
+                   onClickDown={() => this.changeDownClicked()}/>
+        </ReactSpecimen>
+
+        Number of times clicked: <span>{this.state.clicked}</span>
+      </Page>
+    );
+  }
 }
