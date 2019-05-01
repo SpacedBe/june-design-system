@@ -79,8 +79,7 @@ export default class ButtonPage extends React.Component {
                 clear={this.state.clear}
                 disabled={this.state.disabled}
                 wide={this.state.wide}
-                color={this.state.color}
-                onClick={this.state.clicked}>
+                color={this.state.color}>
                   {this.state.content}
               </Button>
             </ReactSpecimen>
@@ -238,7 +237,7 @@ export default class ButtonPage extends React.Component {
           </ReactSpecimen>
           ## Loading
           <ReactSpecimen>
-            <Button loading='true'>Loading button</Button>
+            <Button loading={true}>Loading button</Button>
           </ReactSpecimen>
           # Click events
           <p>Clicked {this.state.clicked} times</p>
