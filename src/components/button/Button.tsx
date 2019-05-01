@@ -3,8 +3,7 @@
  *
  */
 
-import * as React from 'react';
-import {Fragment} from 'react';
+import React  from 'react';
 import styled from 'styled-components';
 import {Spinner} from "../spinner/Spinner";
 import Color from "../../helpers/color";
@@ -153,6 +152,7 @@ const NormalButton = styled.button<any>`
 
   return colorHelper.getColorShade(props.color);
 }};
+
     border: 2px solid ${props => {
   if (props.disabled) {
     return colorHelper.getColor('gray');

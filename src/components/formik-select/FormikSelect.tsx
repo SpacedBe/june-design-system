@@ -2,7 +2,7 @@
  * @class FormikSelect
  */
 
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {getIn} from 'formik';
 import Color from "../../helpers/color";
@@ -102,8 +102,7 @@ export class FormikSelect extends React.Component<Props> {
 
         <SelectStyled {...this.props.field}
                       disabled={this.props.disabled}
-                      error={this.props.error}
-                      touched={touched}>
+                      error={this.props.error}>
 
           {this.props.placeholder &&
           (<OptionStyled value='placeholderValue' selected disabled

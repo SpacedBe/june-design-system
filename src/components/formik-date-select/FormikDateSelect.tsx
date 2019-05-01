@@ -2,11 +2,12 @@
  * @class FormikDateSelect
  */
 
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {getIn} from 'formik';
 import Color from "../../helpers/color";
-import moment from 'moment';
+import * as moment_ from 'moment';
+const moment = moment_;
 import {FormikSelect} from "../..";
 
 interface Option {
