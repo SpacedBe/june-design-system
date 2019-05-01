@@ -37,13 +37,6 @@ const Label = styled.div`
   font-family: var(--font-secondary);
 `;
 
-const Line = styled.div`
-  position: absolute;
-  width: 100%;
-  border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.25);
-  z-index: 0;
-`;
-
 const Step = styled.div`
   display: flex;
   justify-content: center;
@@ -64,17 +57,24 @@ const Dot = styled.div<{ large?: boolean; color?: string; current?: boolean }>`
   width: ${props => (props.large ? '20px' : '6px')};
   height: ${props => (props.large ? '20px' : '6px')};
   background-color: ${props =>
-    props.current
-      ? color.getColorContrast('primary')
-      : color.getColor('primary')};
+  props.current
+    ? color.getColorContrast('primary')
+    : color.getColor('primary')};
   border: ${props =>
-    props.current ? `5px solid var(--color-primary)` : 'none'};
+  props.current ? `5px solid var(--color-primary)` : 'none'};
   border-radius: 50%;
   position: relative;
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const LineStyled = styled.div<{steps: number}>`
+  position: absolute;
+  border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.25);
+  z-index: 0;
+  width: ${props => (props.steps * 20) - (props.steps * 0.25)}%;
 `;
 
 export class Stepper extends React.Component<Props> {
@@ -86,10 +86,6 @@ export class Stepper extends React.Component<Props> {
 
   render() {
     this.validateSteps(this.props.steps);
-
-    let lineStyle = {
-      width: ((this.props.steps.length - 2) * 25 + (2 * 15)) + '%'
-    };
 
     return (
       <Wrapper>
@@ -137,8 +133,7 @@ export class Stepper extends React.Component<Props> {
             }
           )
         }
-
-        <Line style={lineStyle}></Line>
+        <LineStyled steps={this.props.steps.length}/>
       </Wrapper>
     );
   }
