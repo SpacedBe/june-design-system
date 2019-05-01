@@ -106,7 +106,7 @@ export class FormikSelect extends React.Component<Props> {
                       touched={touched}>
 
           {this.props.placeholder &&
-          (<OptionStyled value='placeholderValue' disabled
+          (<OptionStyled value='placeholderValue' selected disabled
                          hidden>{this.props.placeholder}</OptionStyled>)
           }
           {this.props.options.map(item => (
