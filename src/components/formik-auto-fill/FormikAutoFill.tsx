@@ -208,7 +208,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
                      error={hasError}
                      disabled={isDisabled}/>
         <SpinnerStyled>
-          {loading ? (<Spinner color={color.getColor('primary')}/>) : ''}
+          {loading ? (<Spinner color='primary'/>) : ''}
         </SpinnerStyled>
       </div>
     );
