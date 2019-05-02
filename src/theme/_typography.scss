@@ -240,6 +240,7 @@ p {
 
 .primaryLink,
 .secondaryLink {
+  margin-top: var(--spacing-m);
   font-size: var(--font-size-m);
   text-decoration: underline;
   cursor: pointer;

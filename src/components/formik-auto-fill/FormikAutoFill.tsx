@@ -58,18 +58,18 @@ const WrapperStyled = styled.div`
 
 const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   font-family: var(--font-secondary);
-  padding-bottom: var(--spacing-xs);
+  padding-bottom: calc(var(--spacing-xs) * 3);
   color: ${props => {
-  if (props.disabled) {
-    return 'var(--color-disabled)';
-  }
+    if (props.disabled) {
+      return 'var(--color-disabled)';
+    }
 
-  if (props.error) {
-    return 'var(--color-error)';
-  }
+    if (props.error) {
+      return 'var(--color-error)';
+    }
 
-  return 'var(--color-dark)';
-}};
+    return 'var(--color-dark)';
+  }};
 `;
 
 const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
