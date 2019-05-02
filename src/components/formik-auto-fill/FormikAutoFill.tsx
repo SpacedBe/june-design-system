@@ -58,7 +58,7 @@ const WrapperStyled = styled.div`
 
 const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   font-family: var(--font-secondary);
-  padding-bottom: calc(var(--spacing-xs) * 3);
+  padding-bottom: var(--spacing-sm);
   color: ${props => {
     if (props.disabled) {
       return 'var(--color-disabled)';
@@ -104,7 +104,7 @@ const ResultItemStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    border-bottom: 1px solid var(--color-gray-light);
    opacity: ${props => props.disabled ? '0.5' : '1'};
    outline: none;
-   
+
    &:last-of-type {
     border-bottom: none;
    }

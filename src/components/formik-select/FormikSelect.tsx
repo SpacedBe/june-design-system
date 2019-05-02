@@ -62,7 +62,7 @@ const LabelStyled = styled.label<{
   disabled?: boolean;
 }>`
   display: block;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
   opacity: ${props => (props.disabled ? '0.5' : '1')};
   color: ${props =>
   props.error
