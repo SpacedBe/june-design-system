@@ -11,11 +11,6 @@ const FooterStyled = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  
-  @media only screen and (max-width: 768px) {
-    box-shadow: 0px -3px 10px var(--color-gray-lighter);
-    padding: var(--spacing-l);
-  }
 `;
 
 export class Footer extends React.Component {
