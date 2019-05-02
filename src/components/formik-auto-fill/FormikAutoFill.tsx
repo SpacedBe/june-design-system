@@ -9,9 +9,6 @@ import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import {getIn} from 'formik';
 import {Spinner} from "../spinner/Spinner";
 import styled from "styled-components";
-import Color from "../../helpers/color";
-
-const color = new Color();
 
 type Props = {
   field: {
@@ -29,6 +26,10 @@ type Props = {
 
   fetch: (text: string) => Promise<any>;
   onChange: (selected: any) => void;
+  translations: {
+    loading: string;
+    placeholder: string;
+  }
 }
 
 interface Item {
@@ -76,25 +77,37 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
    font-size: var(--font-size-m);
    background-color: var(--color-white);
    color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
-   padding: 1.1em;
+   padding: 1.2em;
    border: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
    border-radius: 3px;
    opacity: ${props => props.disabled ? '0.5' : '1'};
    outline: none;
 `;
 
-const InputLoadingStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
+const ResultMenuStyled = styled.div`
+  font-size: var(--font-size-m);
+  background-color: var(--color-white);
+  border: 2px solid var(--color-gray-light);
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+`;
+
+const ResultItemStyled = styled.div<{ error?: boolean; disabled?: boolean }>`
    width: 100%;
    font-size: var(--font-size-m);
-   background-color: var(--color-error);
+   background-color: var(--color-white);
    color: ${props => props.error ? 'var(--color-white)' : 'var(--color-dark)'};
    padding: var(--spacing-s);
-   border-bottom: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
-   border-right: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
-   border-left: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
-   border-radius: 1px;
+   border-bottom: 1px solid var(--color-gray-light);
    opacity: ${props => props.disabled ? '0.5' : '1'};
    outline: none;
+   
+   &:last-of-type {
+    border-bottom: none;
+   }
 `;
 
 const SpinnerStyled = styled.div`
@@ -111,6 +124,13 @@ const SpinnerStyled = styled.div`
 const FlexStyled = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const ErrorMessageStyled = styled.span`
+  font-size: var(--font-size-s);
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+  margin-top: var(--spacing-xs);
 `;
 
 export class FormikAutoFill extends React.Component<Props, State> {
@@ -157,12 +177,13 @@ export class FormikAutoFill extends React.Component<Props, State> {
                         items={this.state.items}
                         value={this.state.value}
                         renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled, loading)}
+                        renderMenu={(items: Item[]) => this.renderMenu(items, loading)}
                         renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
                         getItemValue={(val: any) => this.getItemValue(val)}
                         onChange={(val: any) => this.onChange(val)}
                         onSelect={(val: any, item: Item) => this.onSelect(val, item)}
           />
-          {errors && <div>{errors}</div>}
+          {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
         </WrapperStyled>
       </FlexStyled>
     );
@@ -214,14 +235,23 @@ export class FormikAutoFill extends React.Component<Props, State> {
     );
   }
 
+  renderMenu(items: Item[], loading: boolean) {
+    return (
+      <ResultMenuStyled>
+        {!loading && !items.length ? <ResultItemStyled>{this.props.translations.placeholder}</ResultItemStyled>: ''}
+        {loading ? <ResultItemStyled>{this.props.translations.loading}</ResultItemStyled> : <div children={items}></div>}
+      </ResultMenuStyled>
+    );
+  }
+
   renderItem(item: Item, isHighlighted: boolean) {
     return (
-      <InputLoadingStyled
+      <ResultItemStyled
         style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}}
         key={item.id}>
-        {item.id} - {item.name}
-      </InputLoadingStyled>
-    )
+        {item.value}
+      </ResultItemStyled>
+    );
   }
 
   getItemValue(item: Item) {
