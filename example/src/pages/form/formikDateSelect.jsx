@@ -128,7 +128,8 @@ export default class FormikDateSelectPage extends React.Component{
               form={this.state.form}
               error={this.state.error}
               touched={this.state.touched}
-              disabled={this.state.disabled}>
+              disabled={this.state.disabled}
+              translations={{dayPlaceholder: 'dag', monthPlaceholder: 'maand', yearPlaceholder: 'jaar'}}>
             </FormikDateSelect>
           </ReactSpecimen>
         </Page>

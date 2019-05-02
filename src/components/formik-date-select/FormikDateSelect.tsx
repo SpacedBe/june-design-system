@@ -33,6 +33,11 @@ type Props = {
   label?: string,
   error: boolean,
   disabled: boolean,
+  translations: {
+    dayPlaceholder: string,
+    monthPlaceholder: string,
+    yearPlaceholder: string
+  }
 };
 
 const colorHelper = new Color();
@@ -118,7 +123,6 @@ export class FormikDateSelect extends React.Component<Props, {
     const label = this.props.label;
     const error = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
-    const errors = (this.props.serverErrors && this.props.serverErrors[name]) || error;
     const errors = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || error : null;
 
     return (
@@ -135,21 +139,21 @@ export class FormikDateSelect extends React.Component<Props, {
             disabled={this.props.disabled}
             field={{name: 'day', onChange: (event: any) => this.handleChange(event, 'selectedDay')}}
             form={this.props.form}
-            placeholder='Dag'
+            placeholder={this.props.translations.dayPlaceholder}
           />
           <FormikSelect
             options={this.state.months}
             disabled={this.props.disabled}
             field={{name: 'month', onChange: (event: any) => this.handleChange(event, 'selectedMonth')}}
             form={this.props.form}
-            placeholder='Maand'
+            placeholder={this.props.translations.monthPlaceholder}
           />
           <FormikSelect
             options={this.state.years}
             disabled={this.props.disabled}
             field={{name: 'year', onChange: (event: any) => this.handleChange(event, 'selectedYear')}}
             form={this.props.form}
-            placeholder='Jaar'
+            placeholder={this.props.translations.yearPlaceholder}
           />
         </FlexStyled>
 
