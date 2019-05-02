@@ -11,7 +11,7 @@ interface Props {
 }
 
 const FormGroupStyled = styled.div`
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-ml);
 `;
 
 export class FormGroup extends React.Component<Props, {}> {

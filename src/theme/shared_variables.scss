@@ -86,12 +86,14 @@
   --zi-200: 200;
   --zi-300: 300;
 
-  --spacing-baseline: 1em;
-  --spacing-xs: calc(var(--spacing-s) / 2);
-  --spacing-s: calc(var(--spacing-baseline) / 2);
-  --spacing-m: var(--spacing-baseline);
-  --spacing-l: calc(var(--spacing-baseline) * 2);
-  --spacing-xl: calc(var(--spacing-l) * 2);
+  --spacing-baseline: 1em; //16px
+  --spacing-xs: calc(var(--spacing-s) / 2); //0.25em or 4px
+  --spacing-s: calc(var(--spacing-baseline) / 2); //0.5em or 8px
+  --spacing-m: var(--spacing-baseline); //1em or 16px
+  --spacing-ml: calc(var(--spacing-baseline) * 1.5);//1.5em or 24px
+  --spacing-l: calc(var(--spacing-baseline) * 2); //2em or 32px
+  --spacing-xl: calc(var(--spacing-l) * 2); //4em or 64px
+  --spacing-xxl: calc(var(--spacing-xl) * 2);//8em or 128px
 
   @media only screen and (min-width: 400px) {
     --spacing-baseline: 1.214em;
@@ -104,7 +106,7 @@
 
   --screen-xxxs: 370px;
   --screen-xxs: 400px;
-  --screen-xs: 480px;
+  --screen-xs: 450px;
   --screen-sm: 800px;
   --screen-md: 992px;
   --screen-lg: 1420px;
