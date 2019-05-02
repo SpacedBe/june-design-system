@@ -11,6 +11,7 @@ export default class FormikRadiobuttonPage extends React.Component{
       error: false,
       checked: false,
       focussed: false,
+      disabled: false,
       label: "",
       field: {
         name: 'example-input',
@@ -54,6 +55,12 @@ export default class FormikRadiobuttonPage extends React.Component{
           'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
         }
       }
+    });
+  }
+
+  toggleDisabled() {
+    this.setState({
+      disabled: !this.state.disabled
     });
   }
 
@@ -112,6 +119,22 @@ export default class FormikRadiobuttonPage extends React.Component{
                 type='checkbox'
               />
             </div>
+
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'isDisabled',
+                  onChange: () => this.toggleDisabled()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Disabled'
+                type='checkbox'
+              />
+            </div>
           </Flex>
           <ReactSpecimen span={3}>
             <div>
@@ -125,9 +148,8 @@ export default class FormikRadiobuttonPage extends React.Component{
                   label='Option one'
                   form={this.state.form}
                   name='radioTestName'
+                  disabled={this.state.disabled}
                 />
-              </FormGroup>
-              <FormGroup>
                 <FormikRadiobutton
                   error={this.state.error}
                   focussed={this.state.focussed}
@@ -137,6 +159,7 @@ export default class FormikRadiobuttonPage extends React.Component{
                   label='When a label is really long it just shows on multiple lines.'
                   form={this.state.form}
                   name='radioTestName'
+                  disabled={this.state.disabled}
                 />
               </FormGroup>
             </div>
