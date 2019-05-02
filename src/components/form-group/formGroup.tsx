@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 interface Props {
   className?: string;
+  style?: any;
 }
 
 const FormGroupStyled = styled.div`
