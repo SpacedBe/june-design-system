@@ -109,7 +109,7 @@ export class FormikRadiobutton extends React.Component<Props> {
     const checked = this.props.value == value;
 
     return (
-      <div style={{paddingTop: 'var(--spacing-s)'}}>
+      <div style={{padding: 'var(--spacing-sm) 0px'}}>
         <InputDiv>
           <Round error={!!errors}>
             <Input
