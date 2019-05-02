@@ -115,7 +115,7 @@ const FlexStyled = styled.div`
 
 const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   font-family: var(--font-secondary);
-  padding-bottom: var(--spacing-xs);
+  padding-bottom: calc(var(--spacing-xs) * 3);
   display: flex;
   align-items: center;
   color: ${props => {

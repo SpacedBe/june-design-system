@@ -39,7 +39,7 @@ const Icon = styled.div<{ color?: string, clear?: boolean, outlined?: boolean, l
   display: flex;
   align-items: center;
   visibility: ${props => props.loading ? 'hidden' : 'visible'};
-  
+
   svg {
     fill: ${props => {
 
@@ -116,7 +116,7 @@ const NormalButton = styled.button<any>`
 
   return colorHelper.getColor(props.color);
 }};
-  
+
   border: 2px solid ${props => {
   if (props.disabled) {
     return colorHelper.getColor('gray');
@@ -135,7 +135,7 @@ const NormalButton = styled.button<any>`
   font-weight: var(--font-weight-bold);
 
   outline: none;
-  padding: var(--spacing-xs) var(--spacing-m);
+  padding: 0px var(--spacing-m);
   position: relative;
   text-align: center;
   width: ${props => (props.wide ? '100%' : 'auto')};
@@ -164,8 +164,8 @@ const NormalButton = styled.button<any>`
 
   return colorHelper.getColorShade(props.color);
 }};
-    
-    
+
+
     color: ${props => {
   if (props.disabled) {
     return '';

@@ -84,7 +84,7 @@ const WrapperStyled = styled.div`
   align-items: center;
   margin-bottom: var(--spacing-m);
   padding-bottom: var(--spacing-m);
-  border-bottom: 2px solid #DFF2F2;
+  border-bottom: 1px solid #DFF2F2;
 `;
 
 const TooltipWrapperStyled = styled.div`

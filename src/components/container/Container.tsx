@@ -5,9 +5,9 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: var(--screen-xs);
   margin: 0 auto;
-  
+
   @media only screen and (max-width: 500px) {
-    padding: var(--spacing-m);
+    padding: 0px var(--spacing-m);
   }
 `;
 
