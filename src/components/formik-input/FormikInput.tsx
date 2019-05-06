@@ -53,9 +53,18 @@ const InputboxIconStyled = styled.div<{ error?: boolean, disabled?: boolean }>`
   width: 100%;
   background-color: ${colorHelper.getColor('white')};
   padding: 1.1em;
-  border: ${props => props.error ? `2px solid ${colorHelper.getColor('error')}` : `2px solid ${colorHelper.getColor('gray-light')}`};
+  border: 2px solid ${props => {
+  if (props.disabled) {
+    return 'var(--color-gray-lighter)';
+  }
+
+  if (props.error) {
+    return colorHelper.getColor('error');
+  }
+
+  return colorHelper.getColor('gray-light');
+}};
   border-radius: 3px;
-  opacity: ${props => props.disabled ? '0.5' : '1'};
   outline: none;
   display: flex;
   justify-content: space-between;
@@ -148,9 +157,9 @@ export class FormikInput extends React.Component<Props> {
   render() {
     const name = this.props.field.name;
     const label = this.props.label;
-    const error = getIn(this.props.form.errors, name);
+    const fieldError = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
-    const errors = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || error : null;
+    const formError = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || fieldError : null;
 
     let inputContent;
 
@@ -159,10 +168,10 @@ export class FormikInput extends React.Component<Props> {
 
     if (!hasIcon) {
       inputContent = (
-        <InputboxIconStyled error={this.props.error}
+        <InputboxIconStyled error={formError}
                             disabled={this.props.disabled}>
           <InputStyled {...this.props.field}
-                       error={this.props.error}
+                       error={formError}
                        placeholder={this.props.placeholderText}
                        disabled={this.props.disabled}
                        type={this.props.type}>
@@ -173,11 +182,11 @@ export class FormikInput extends React.Component<Props> {
 
     if (hasIcon && this.props.iconLeft) {
       inputContent = (
-        <InputboxIconStyled error={this.props.error}
+        <InputboxIconStyled error={formError}
                             disabled={this.props.disabled}>
           <IconSmallStyled hasIconRight={this.props.iconRight}>{this.props.iconLeft}</IconSmallStyled>
           <InputWithIconLeftStyled {...this.props.field}
-                                   error={this.props.error}
+                                   error={formError}
                                    placeholder={this.props.placeholderText}
                                    type={this.props.type}></InputWithIconLeftStyled>
         </InputboxIconStyled>
@@ -186,9 +195,9 @@ export class FormikInput extends React.Component<Props> {
 
     if (hasIcon && this.props.iconRight) {
       inputContent = (
-        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}>
+        <InputboxIconStyled error={formError} disabled={this.props.disabled}>
           <InputStyled {...this.props.field}
-                       error={this.props.error}
+                       error={formError}
                        placeholder={this.props.placeholderText}
                        disabled={this.props.disabled}
                        type={this.props.type}>
@@ -200,9 +209,9 @@ export class FormikInput extends React.Component<Props> {
 
     if (hasIcon && this.props.buttonRight) {
       inputContent = (
-        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}>
+        <InputboxIconStyled error={formError} disabled={this.props.disabled}>
           <InputStyled {...this.props.field}
-                       error={this.props.error}
+                       error={formError}
                        placeholder={this.props.placeholderText}
                        disabled={this.props.disabled}
                        type={this.props.type}></InputStyled>
@@ -214,10 +223,10 @@ export class FormikInput extends React.Component<Props> {
     if (hasButton && this.props.buttonOutsideRight) {
       inputContent = (
         <FlexStyled>
-          <InputboxIconStyled error={this.props.error}
+          <InputboxIconStyled error={formError}
                               disabled={this.props.disabled}>
             <InputStyled {...this.props.field}
-                         error={this.props.error}
+                         error={formError}
                          placeholder={this.props.placeholderText}
                          disabled={this.props.disabled}
                          type={this.props.type}></InputStyled>
@@ -233,10 +242,10 @@ export class FormikInput extends React.Component<Props> {
       inputContent = (
         <FlexStyled>
           <IconOutsideLeftStyled>{this.props.iconFront}</IconOutsideLeftStyled>
-          <InputboxIconStyled error={this.props.error}
+          <InputboxIconStyled error={formError}
                               disabled={this.props.disabled}>
             <InputStyled {...this.props.field}
-                         error={this.props.error}
+                         error={formError}
                          placeholder={this.props.placeholderText}
                          disabled={this.props.disabled}
                          type={this.props.type}></InputStyled>
@@ -248,10 +257,10 @@ export class FormikInput extends React.Component<Props> {
     if (hasIcon && this.props.iconEnd) {
       inputContent = (
         <FlexStyled>
-          <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}>
+          <InputboxIconStyled error={formError} disabled={this.props.disabled}>
             <InputStyled {...this.props.field}
                          placeholder={this.props.placeholderText}
-                         error={this.props.error}
+                         error={formError}
                          disabled={this.props.disabled}
                          type={this.props.type}></InputStyled>
           </InputboxIconStyled>
@@ -262,10 +271,10 @@ export class FormikInput extends React.Component<Props> {
 
     if (hasIcon && this.props.required) {
       inputContent = (
-        <InputboxIconStyled error={this.props.error} disabled={this.props.disabled}>
+        <InputboxIconStyled error={formError} disabled={this.props.disabled}>
           <InputStyled {...this.props.field}
                        placeholder={this.props.placeholderText}
-                       error={this.props.error}
+                       error={formError}
                        disabled={this.props.disabled}
                        type={this.props.type}></InputStyled>
         </InputboxIconStyled>
@@ -278,13 +287,13 @@ export class FormikInput extends React.Component<Props> {
 
     return (
       <WrapperStyled style={this.props.style}>
-        <LabelStyled error={!!errors}
+        <LabelStyled error={!!formError}
                      disabled={this.props.disabled}>
           {label}
         </LabelStyled>
         {inputContent}
         {this.props.hint && hintContent}
-        {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
+        {formError && <ErrorMessageStyled>{formError}</ErrorMessageStyled>}
       </WrapperStyled>
     );
   }
