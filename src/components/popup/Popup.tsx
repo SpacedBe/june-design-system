@@ -108,9 +108,7 @@ export class Popup extends React.Component<Props> {
             </div>
           </BorderStyled>
         </Container>
-
-          <MonsterStyled src={monster} alt='' width='380' height='420' />
-
+        <MonsterStyled src={monster} alt='' width='380' height='420' />
       </PopupStyled>
     );
 
