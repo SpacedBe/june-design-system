@@ -256,6 +256,9 @@ export default class FormPage extends React.Component {
                         form={this.state.form}
                       />
                     </FormGroup>
+                    <FormGroup>
+
+                    </FormGroup>
                   </div>
                 </div>
                 <div className={'container'}>
@@ -276,8 +279,6 @@ export default class FormPage extends React.Component {
                       field={this.state.field}
                       form={this.state.form}
                     />
-                  </FormGroup>
-                  <FormGroup>
                     <Field
                       label='Option Two'
                       name='radiobutton'
@@ -362,7 +363,7 @@ export default class FormPage extends React.Component {
                   </FormGroup>
                   <FormGroup>
                     <Field
-                      name='gas'
+                      name='toggleOne'
                       component={FormikToggle}
                       icon={<IconGas fill='#46AAD2' />}
                       tooltip={
@@ -377,7 +378,7 @@ export default class FormPage extends React.Component {
                   </FormGroup>
                   <FormGroup>
                     <Field
-                      name='gas'
+                      name='toggleTwo'
                       component={FormikToggle}
                       tooltip={
                         <Button
