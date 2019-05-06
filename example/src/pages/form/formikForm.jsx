@@ -211,9 +211,9 @@ export default class FormPage extends React.Component {
                     <Field
                       label='Gender'
                       options={[
-                        { label: 'Male', value: '1' },
-                        { label: 'Female', value: '2' },
-                        { label: 'X', value: '3' }
+                        {label: 'Male', value: '1'},
+                        {label: 'Female', value: '2'},
+                        {label: 'X', value: '3'}
                       ]}
                       htmlFor='isSelect'
                       name='genderSelect'
