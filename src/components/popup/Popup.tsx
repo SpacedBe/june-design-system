@@ -78,9 +78,12 @@ const BorderStyled = styled.div`
 `;
 
 const MonsterStyled = styled.img`
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
   position: absolute;
-  margin: 200px 300px
-`
+  margin: 200px 300px;
+`;
 
 export class Popup extends React.Component<Props> {
   render() {
@@ -105,7 +108,9 @@ export class Popup extends React.Component<Props> {
             </div>
           </BorderStyled>
         </Container>
-        <MonsterStyled src={monster} alt='' width='380' height='420' />
+
+          <MonsterStyled src={monster} alt='' width='380' height='420' />
+
       </PopupStyled>
     );
 
