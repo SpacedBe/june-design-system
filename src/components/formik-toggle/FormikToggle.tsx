@@ -18,24 +18,28 @@ type Props = {
   tooltip?: any;
   focused: boolean;
   icon?: any;
+  disabled?: boolean;
 };
 
-const ToggleInput = styled.input`
+const ToggleInputStyled = styled.input`
   z-index: var(--zi-200);
   opacity: 0;
   width: 40px;
   height: 15px;
   position: absolute;
+
   &:checked ~ label span {
     transform: translatex(30px);
     transition: transform var(--transition-speed-normal) ease-in;
-    border: 2px solid var(--color-primary-shade);
+    border: 2px solid var(--color-primary-shade); 
   }
+
   &:checked ~ label {
     background: var(--color-primary);
     border: 2px solid var(--color-primary-shade);
     transition: transform var(--transition-speed-normal) ease-in;
   }
+
   &:checked ~ label p {
     opacity: 1;
     transform: translateX(-20px);
@@ -43,17 +47,18 @@ const ToggleInput = styled.input`
   }
 `;
 
-const Label = styled.label`
+const ToggleStyled = styled.label<{disabled?: boolean}>`
   display: inline-block;
   width: 40px;
   height: 18px;
   border-radius: 30px;
   position: relative;
-  cursor: pointer;
-  background: var(--color-gray-light);
-  border: 2px solid var(--color-gray);
+  cursor: ${props => props.disabled ? 'initial' : 'pointer'};
+  background-color: ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray-light)'};
+  border: 2px solid ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray)'}; 
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
+
   :after {
     top: -2px;
     left: 4px;
@@ -66,15 +71,15 @@ const Label = styled.label`
   }
 `;
 
-const Switch = styled.span`
+const SwitchStyled = styled.span<{disabled?: boolean}>`
   position: absolute;
   width: 25px;
   height: 25px;
   left: -10px;
   top: -5px;
   border-radius: 25px;
-  background: var(--color-white);
-  border: 2px solid var(--color-gray);
+  background-color: var(--color-white);
+  border: 2px solid ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray)'}; 
   transition: transform var(--transition-speed-normal) ease-in;
 `;
 
@@ -89,6 +94,8 @@ const WrapperStyled = styled.div`
 
 const TooltipWrapperStyled = styled.div`
   margin-right: var(--spacing-s);
+  display: flex;
+  align-items: center;
 `;
 
 const TooltipIconStyled = styled.span`
@@ -97,22 +104,17 @@ const TooltipIconStyled = styled.span`
   margin-right: var(--spacing-s);
 `;
 
-const LabelBeforeToggleStyled = styled.label`
+const LabelStyled = styled.label<{ disabled?: boolean }>`
   display: flex;
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
   margin-right: var(--spacing-s);
+  color: ${props => props.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'};
 `;
 
-const LabelBeforeToggleIconStyled = styled.span`
+const LabelIconStyled = styled.span`
   display: flex;
   font-size: var(--icon-size-xl);
-`;
-
-const FlexDivStyled = styled.div`
-  display: flex;
-  align-items: center;
-  flex: 1;
 `;
 
 const IconOnStyled = styled(IconOn)`
@@ -120,15 +122,14 @@ const IconOnStyled = styled(IconOn)`
   margin: 0px 0px 6px 6px;
   font-weight: var(--font-weight-normal);
   fill: var(--color-white);
-`
-
+`;
 
 const IconOffStyled = styled(IconOff)`
   font-size: 8px;
   margin: 0px 0px 6px 8px;
   font-weight: var(--font-weight-normal);
   fill: var(--color-white);
-`
+`;
 
 export class FormikToggle extends React.Component<Props> {
   constructor(props: any) {
@@ -136,50 +137,30 @@ export class FormikToggle extends React.Component<Props> {
   }
 
   render() {
-    let tooltip;
-
-    if (!this.props.tooltip && !this.props.icon) {
-      tooltip = (<LabelBeforeToggleStyled>{this.props.label}</LabelBeforeToggleStyled>);
-    }
-
-    if (this.props.tooltip) {
-      tooltip = (
-        <FlexDivStyled>
-          <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>
-          <LabelBeforeToggleStyled>{this.props.label}</LabelBeforeToggleStyled>
-        </FlexDivStyled>
-      );
-    }
-
-    if (this.props.icon && this.props.tooltip) {
-      tooltip = (
-        <FlexDivStyled>
-          <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>
-          <LabelBeforeToggleStyled>{this.props.label}</LabelBeforeToggleStyled>
-          <LabelBeforeToggleIconStyled>{this.props.icon}</LabelBeforeToggleIconStyled>
-        </FlexDivStyled>
-      );
-    }
+    const tooltip = this.props.tooltip && <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>;
+    const labelIcon = this.props.icon && <LabelIconStyled>{this.props.icon}</LabelIconStyled>;
 
     return (
       <div>
         <WrapperStyled>
           <TooltipWrapperStyled>
             {tooltip}
+            <LabelStyled disabled={this.props.disabled}>{this.props.label}</LabelStyled>
+            {labelIcon}
           </TooltipWrapperStyled>
 
           <div>
-            <ToggleInput
+            <ToggleInputStyled
               {...this.props.field}
               checked={this.props.field.value}
-              type='checkbox'
-            />
+              disabled={this.props.disabled}
+              type='checkbox'/>
 
-            <Label>
+            <ToggleStyled disabled={this.props.disabled}>
               <IconOnStyled/>
-              <Switch></Switch>
+              <SwitchStyled disabled={this.props.disabled} />
               <IconOffStyled/>
-            </Label>
+            </ToggleStyled>
           </div>
         </WrapperStyled>
       </div>
