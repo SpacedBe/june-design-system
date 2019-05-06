@@ -8,11 +8,12 @@ import {
   FormikRadiobutton,
   FormikToggle,
   IconQuestionmark,
+  IconGas,
   IconElectricity,
   Button,
   FormikTextarea,
   FormError
-} from "june-design-system";
+} from 'june-design-system';
 import {Field, Form, Formik} from "formik";
 import {string} from "prop-types";
 import {Page, ReactSpecimen} from "catalog";
@@ -354,26 +355,45 @@ export default class FormPage extends React.Component {
                       component={FormikToggle}
                       name='regular'
                       label='Regular Toggle'
+                      field={this.state.field}
+                      form={this.state.form}
                     />
                   </FormGroup>
+
                   <FormGroup>
                     <Field
                       component={FormikToggle}
                       label='Toggle with a long label discription'
+                      field={this.state.field}
+                      form={this.state.form}
                     />
                   </FormGroup>
                   <FormGroup>
                     <Field
+                      name='gas'
                       component={FormikToggle}
-                      tooltip={<IconQuestionmark />}
-                      icon={<IconElectricity />}
-                      label='Toggle with an icon'
+                      icon={<IconGas fill='#46AAD2' />}
+                      tooltip={
+                        <Button
+                          type='button'
+                          color='gray-dark'
+                          iconOnly={<IconQuestionmark />}
+                        />
+                      }
+                      label='Toggle with info Icon'
                     />
                   </FormGroup>
                   <FormGroup>
                     <Field
+                      name='gas'
                       component={FormikToggle}
-                      tooltip={<IconQuestionmark />}
+                      tooltip={
+                        <Button
+                          type='button'
+                          color='gray-dark'
+                          iconOnly={<IconQuestionmark />}
+                        />
+                      }
                       label='Toggle with a long label discription and an info icon'
                     />
                   </FormGroup>
