@@ -45,6 +45,12 @@ export default class FormikCheckboxPage extends React.Component {
     });
   }
 
+  toggleDisabled() {
+    this.setState({
+      disabled: !this.state.disabled
+    });
+  }
+
   toggleError() {
     this.setState({
       error: !this.state.error,
@@ -112,6 +118,23 @@ export default class FormikCheckboxPage extends React.Component {
                 type='checkbox'
               />
             </div>
+
+            <div className='wrapper'>
+              <FormikCheckbox
+                error={false}
+                field={{
+                  name: 'isDisabled',
+                  value: this.state.disabled,
+                  onChange: () => this.toggleDisabled()
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Disabled'
+                type='checkbox'
+              />
+            </div>
           </Flex>
           <ReactSpecimen span={3}>
             <div>
@@ -123,6 +146,7 @@ export default class FormikCheckboxPage extends React.Component {
                 field={this.state.field}
                 label='Option one'
                 form={this.state.form}
+                disabled={this.state.disabled}
               />
               <FormikCheckbox
                 error={this.state.error}
@@ -131,6 +155,7 @@ export default class FormikCheckboxPage extends React.Component {
                 placeholderText='example placeholder'
                 field={this.state.field}
                 label='When a label is really long it just shows on multiple lines.'
+                disabled={this.state.disabled}
                 form={this.state.form}
               />
             </div>

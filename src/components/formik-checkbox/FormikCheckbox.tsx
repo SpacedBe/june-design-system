@@ -25,6 +25,7 @@ type Props = {
   placeholderText: string;
   error: boolean,
   required?: boolean,
+  disabled?: boolean,
 };
 
 const WrapperStyled = styled.div`
@@ -43,17 +44,24 @@ const Input = styled.input`
   }
 `;
 
-const Span = styled.span<{ error?: boolean }>`
+const CheckedFilling = styled.span<{ error?: boolean, disabled?: boolean }>`
   display: inline-block;
   margin: 2px;
   width: 15px;
   height: 15px;
   opacity: 0;
   position: relative;
-  background-color: ${props =>
-    props.error
-      ? `var(--color-error)`
-      : `var(--color-primary)`};
+  background-color: ${props => {
+    if (props.disabled) {
+      return `var(--color-disabled)`;
+    }
+    
+    if (props.error) {
+      return `var(--color-error)`;
+    }
+  
+    return `var(--color-primary)`;
+  }};
 `;
 
 const CheckBoxWrapperStyled = styled.div`
@@ -64,7 +72,7 @@ const CheckBoxWrapperStyled = styled.div`
   margin-bottom: var(--spacing-m);
 `;
 
-const Checkbox = styled.div<{ error?: boolean }>`
+const Checkbox = styled.div<{ error?: boolean, disabled?: boolean }>`
   width: 23px;
   height: 23px;
   border-radius: 15%;
@@ -73,21 +81,33 @@ const Checkbox = styled.div<{ error?: boolean }>`
   display: inline-block;
   visibility: visible;
   background-color: var(--color-white);
-  border: ${props =>
-    props.error
-      ? `2px solid var(--color-error)`
-      : `2px solid var(--color-primary)`};
+  border: ${props =>{
+  if (props.disabled) {
+    return `2px solid var(--color-disabled)`;
+  }
+  if (props.error) {
+    return `2px solid var(--color-error)`;
+  }
+
+  return `2px solid var(--color-primary)`;
+}}
 `;
 
-const Label = styled.label<{ error?: boolean, htmlFor?: string }>`
+const Label = styled.label<{ error?: boolean, disabled?: boolean }>`
   margin-left: var(--spacing-m);
   position: relative;
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
-  color: ${props =>
-    props.error
-      ? `var(--color-error)`
-      : `var(--color-dark)`};
+  color: ${props => {
+  if (props.disabled) {
+    return `var(--color-disabled)`;
+  }
+  if (props.error) {
+    return `var(--color-error)`;
+  }
+
+  return `var(--color-dark)`;
+}};
   text-align: left;
 `;
 
@@ -102,14 +122,15 @@ export class FormikCheckbox extends React.Component<Props> {
     return (
       <WrapperStyled>
         <CheckBoxWrapperStyled>
-          <Checkbox error={!!errors}>
+          <Checkbox error={!!errors} disabled={this.props.disabled}>
             <Input
               {...this.props.field}
+              disabled={this.props.disabled}
               id={name}
               type="checkbox"/>
-            <Span error={!!errors}/>
+            <CheckedFilling error={!!errors} disabled={this.props.disabled}/>
           </Checkbox>
-          <Label htmlFor={name} dangerouslySetInnerHTML={{__html: label}} error={!!errors}></Label>
+          <Label htmlFor={name} dangerouslySetInnerHTML={{__html: label}} error={!!errors} disabled={this.props.disabled}></Label>
         </CheckBoxWrapperStyled>
       </WrapperStyled>
     );
