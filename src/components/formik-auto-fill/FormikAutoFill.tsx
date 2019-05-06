@@ -183,20 +183,36 @@ export class FormikAutoFill extends React.Component<Props, State> {
                        disabled={this.props.disabled}>
             {label}
           </LabelStyled>
-          <Autocomplete inputProps={inputProps}
-                        items={this.state.items}
-                        value={this.state.value}
-                        renderInput={(props: any) => this.renderInput(props, formError, inputProps.disabled, loading)}
-                        renderMenu={(items: Item[]) => this.renderMenu(items, loading)}
-                        renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
-                        getItemValue={(val: any) => this.getItemValue(val)}
-                        onChange={(val: any) => this.onChange(val)}
-                        onSelect={(val: any, item: Item) => this.onSelect(val, item)}
+          <Autocomplete
+            inputProps={{
+              ...inputProps,
+              onBlur: (e) => this.onBlur(e)
+            }}
+            items={this.state.items}
+            value={this.state.value}
+            renderInput={(props: any) => this.renderInput(props, formError, inputProps.disabled, loading)}
+            renderMenu={(items: Item[]) => this.renderMenu(items, loading)}
+            renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
+            selectOnBlur={true}
+            getItemValue={(val: any) => this.getItemValue(val)}
+            onChange={(val: any) => this.onChange(val)}
+
+            onSelect={(val: any, item: Item) => this.onSelect(val, item)}
           />
           {formError && <ErrorMessageStyled>{formError}</ErrorMessageStyled>}
         </WrapperStyled>
       </FlexStyled>
     );
+  }
+
+  onBlur(e: any) {
+    setTimeout(() => {
+      if (!this.state.selected) {
+        this.setState({
+          value: '',
+        });
+      }
+    }, 0);
   }
 
   onSelect(val: string, item: Item) {
