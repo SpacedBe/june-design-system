@@ -16,7 +16,7 @@ import {
 import {Field, Form, Formik} from "formik";
 import {string} from "prop-types";
 import {Page, ReactSpecimen} from "catalog";
-
+import {Flex} from 'reflexbox';
 
 export default class FormPage extends React.Component {
   constructor(props) {
@@ -27,26 +27,69 @@ export default class FormPage extends React.Component {
       checked: false,
       focussed: false,
       name: string,
-      label: "",
+      label: '',
       field: {
-        name: "example-input"
+        name: 'example-input'
       },
       serverErrors: {
-        email: 'test',
+        email: 'test'
       },
+      // form: {
+      //   errors: {
+      //     email: null
+      //   },
+      //   touched: {
+      //     email: false
+      //   }
+      // }
       form: {
-        errors: {
-          email: null
-        },
-        touched: {
-          email: false
-        }
+        errors: { 'example-input': null },
+        touched: { 'example-input': false }
       }
     };
     this.handleCheckedChange = this.handleCheckedChange.bind(this);
     this.handleCheckedChangeTooltip = this.handleCheckedChangeTooltip.bind(this);
     this.handleCheckedChangeIconTooltip = this.handleCheckedChangeIconTooltip.bind(this);
   }
+
+  toggleTouched() {
+    this.setState({
+      focussed: !this.state.focussed,
+      form: {
+        ...this.state.form,
+        touched: {
+          'example-input': !this.state.form.touched['example-input'],
+        }
+      }
+    });
+  }
+
+  toggleServerError() {
+    this.setState({
+      serverErrors: {
+        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
+      }
+    });
+  }
+
+  toggleDisabled() {
+    this.setState({
+      disabled: !this.state.disabled
+    });
+  }
+
+  toggleError() {
+    this.setState({
+      error: !this.state.error,
+      form: {
+        ...this.state.form,
+        errors: {
+          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
+        }
+      }
+    });
+  }
+
 
   handleCheckedChange() {
     this.setState({checked: !this.state.checked})
@@ -64,6 +107,74 @@ export default class FormPage extends React.Component {
     return (
       <Page>
         ## Example Formik Form
+        <Flex className={'buttons'}>
+          <div className={'wrapper'}>
+            <FormikCheckbox
+              error={false}
+              field={{
+                name: 'isTouched',
+                value: this.state.focussed,
+                onChange: () => this.toggleTouched()
+              }}
+              form={{
+                errors: { 'example-input': null },
+                touched: { 'example-input': false }
+              }}
+              label='Touched'
+              type='checkbox'
+            />
+          </div>
+
+          <div className={'wrapper'}>
+            <FormikCheckbox
+              error={false}
+              field={{
+                name: 'hasError',
+                value: this.state.error,
+                onChange: () => this.toggleError()
+              }}
+              form={{
+                errors: { 'example-input': null },
+                touched: { 'example-input': false }
+              }}
+              label='Error'
+              type='checkbox'
+            />
+          </div>
+
+          <div className={'wrapper'}>
+            <FormikCheckbox
+              error={false}
+              field={{
+                name: 'hasServerError',
+                onChange: () => this.toggleServerError()
+              }}
+              form={{
+                errors: { 'example-input': null },
+                touched: { 'example-input': false }
+              }}
+              label='Has Server Error'
+              type='checkbox'
+            />
+          </div>
+
+          <div className={'wrapper'}>
+            <FormikCheckbox
+              error={false}
+              field={{
+                name: 'isDisabled',
+                value: this.state.disabled,
+                onChange: () => this.toggleDisabled()
+              }}
+              form={{
+                errors: { 'example-input': null },
+                touched: { 'example-input': false }
+              }}
+              label='Disabled'
+              type='checkbox'
+            />
+          </div>
+        </Flex>
         <ReactSpecimen>
           <Container>
             <Formik>
@@ -82,17 +193,27 @@ export default class FormPage extends React.Component {
                       type='email'
                       label='Email*'
                       component={FormikInput}
+                      error={this.state.error}
+                      disabled={this.state.disabled}
+                      focussed={this.state.focussed}
+                      field={this.state.field}
+                      form={this.state.form}
                     />
                   </FormGroup>
                   <FormGroup>
                     <Field
-                      placeholder='email'
+                      placeholder='password'
                       name='password'
                       type='password'
                       label='Password*'
                       hint='Min. 8 characters'
                       component={FormikInput}
                       validate={() => 'This is a validation message'}
+                      error={this.state.error}
+                      disabled={this.state.disabled}
+                      focussed={this.state.focussed}
+                      field={this.state.field}
+                      form={this.state.form}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -106,6 +227,11 @@ export default class FormPage extends React.Component {
                       htmlFor='isSelect'
                       name='genderSelect'
                       component={FormikSelect}
+                      error={this.state.error}
+                      disabled={this.state.disabled}
+                      focussed={this.state.focussed}
+                      field={this.state.field}
+                      form={this.state.form}
                     />
                   </FormGroup>
                   <div className={'flex'}>
@@ -116,6 +242,11 @@ export default class FormPage extends React.Component {
                         type='text'
                         label='Postal Code*'
                         component={FormikInput}
+                        error={this.state.error}
+                        disabled={this.state.disabled}
+                        focussed={this.state.focussed}
+                        field={this.state.field}
+                        form={this.state.form}
                       />
                     </FormGroup>
                     <FormGroup>
@@ -125,6 +256,11 @@ export default class FormPage extends React.Component {
                         type='number'
                         label='City*'
                         component={FormikInput}
+                        error={this.state.error}
+                        disabled={this.state.disabled}
+                        focussed={this.state.focussed}
+                        field={this.state.field}
+                        form={this.state.form}
                       />
                     </FormGroup>
                   </div>
@@ -141,6 +277,11 @@ export default class FormPage extends React.Component {
                       label='Option One'
                       name='radiobutton'
                       component={FormikRadiobutton}
+                      error={this.state.error}
+                      disabled={this.state.disabled}
+                      focussed={this.state.focussed}
+                      field={this.state.field}
+                      form={this.state.form}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -148,6 +289,11 @@ export default class FormPage extends React.Component {
                       label='Option Two'
                       name='radiobutton'
                       component={FormikRadiobutton}
+                      error={this.state.error}
+                      disabled={this.state.disabled}
+                      focussed={this.state.focussed}
+                      field={this.state.field}
+                      form={this.state.form}
                     />
                   </FormGroup>
                 </div>
@@ -162,6 +308,11 @@ export default class FormPage extends React.Component {
                         type='checkbox'
                         name='checkbox'
                         label='option one'
+                        error={this.state.error}
+                        disabled={this.state.disabled}
+                        focussed={this.state.focussed}
+                        field={this.state.field}
+                        form={this.state.form}
                       />
                     </FormGroup>
                     <FormGroup>
@@ -170,6 +321,11 @@ export default class FormPage extends React.Component {
                         type='checkbox'
                         name='checkbox'
                         label='When a label is really long it just shows on multiple lines.'
+                        error={this.state.error}
+                        disabled={this.state.disabled}
+                        focussed={this.state.focussed}
+                        field={this.state.field}
+                        form={this.state.form}
                       />
                     </FormGroup>
                   </div>
@@ -182,7 +338,11 @@ export default class FormPage extends React.Component {
                       label='Textarea *'
                       type='text'
                       placeholderText=''
+                      error={this.state.error}
+                      disabled={this.state.disabled}
+                      focussed={this.state.focussed}
                       field={this.state.field}
+                      form={this.state.form}
                     />
                   </FormGroup>
                 </div>
@@ -194,16 +354,12 @@ export default class FormPage extends React.Component {
                       component={FormikToggle}
                       name='regular'
                       label='Regular Toggle'
-                      field={this.state.field}
-                      form={this.state.form}
                     />
                   </FormGroup>
                   <FormGroup>
                     <Field
                       component={FormikToggle}
                       label='Toggle with a long label discription'
-                      field={this.state.field}
-                      form={this.state.form}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -212,8 +368,6 @@ export default class FormPage extends React.Component {
                       tooltip={<IconQuestionmark />}
                       icon={<IconElectricity />}
                       label='Toggle with an icon'
-                      field={this.state.field}
-                      form={this.state.form}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -221,8 +375,6 @@ export default class FormPage extends React.Component {
                       component={FormikToggle}
                       tooltip={<IconQuestionmark />}
                       label='Toggle with a long label discription and an info icon'
-                      field={this.state.field}
-                      form={this.state.form}
                     />
                   </FormGroup>
                 </div>
