@@ -24,8 +24,10 @@ type Props = {
 const ToggleInputStyled = styled.input`
   z-index: var(--zi-200);
   opacity: 0;
-  width: 40px;
-  height: 15px;
+  margin: -10px;
+  width: 60px;
+  height: 35px;
+  cursor: pointer;
   position: absolute;
 
   &:checked ~ label span {
@@ -47,13 +49,12 @@ const ToggleInputStyled = styled.input`
   }
 `;
 
-const ToggleStyled = styled.label<{disabled?: boolean}>`
+const ToggleStyled = styled.label<{ disabled?: boolean }>`
   display: inline-block;
   width: 40px;
   height: 18px;
   border-radius: 30px;
   position: relative;
-  cursor: ${props => props.disabled ? 'initial' : 'pointer'};
   background-color: ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray-light)'};
   border: 2px solid ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray)'}; 
   font-family: var(--font-secondary);
@@ -71,7 +72,7 @@ const ToggleStyled = styled.label<{disabled?: boolean}>`
   }
 `;
 
-const SwitchStyled = styled.span<{disabled?: boolean}>`
+const SwitchStyled = styled.span<{ disabled?: boolean }>`
   position: absolute;
   width: 25px;
   height: 25px;
@@ -141,29 +142,27 @@ export class FormikToggle extends React.Component<Props> {
     const labelIcon = this.props.icon && <LabelIconStyled>{this.props.icon}</LabelIconStyled>;
 
     return (
-      <div>
-        <WrapperStyled>
-          <TooltipWrapperStyled>
-            {tooltip}
-            <LabelStyled disabled={this.props.disabled}>{this.props.label}</LabelStyled>
-            {labelIcon}
-          </TooltipWrapperStyled>
+      <WrapperStyled>
+        <TooltipWrapperStyled>
+          {tooltip}
+          <LabelStyled disabled={this.props.disabled}>{this.props.label}</LabelStyled>
+          {labelIcon}
+        </TooltipWrapperStyled>
 
-          <div>
-            <ToggleInputStyled
-              {...this.props.field}
-              checked={this.props.field.value}
-              disabled={this.props.disabled}
-              type='checkbox'/>
+        <div style={{position: 'relative'}}>
+          <ToggleInputStyled
+            {...this.props.field}
+            checked={this.props.field.value}
+            disabled={this.props.disabled}
+            type='checkbox'/>
 
-            <ToggleStyled disabled={this.props.disabled}>
-              <IconOnStyled/>
-              <SwitchStyled disabled={this.props.disabled} />
-              <IconOffStyled/>
-            </ToggleStyled>
-          </div>
-        </WrapperStyled>
-      </div>
+          <ToggleStyled disabled={this.props.disabled}>
+            <IconOnStyled/>
+            <SwitchStyled disabled={this.props.disabled}/>
+            <IconOffStyled/>
+          </ToggleStyled>
+        </div>
+      </WrapperStyled>
     );
   }
 }
