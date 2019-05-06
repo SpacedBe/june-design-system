@@ -99,10 +99,6 @@ const ErrorMessageStyled = styled.span`
   margin-bottom: var(--spacing-xs);
 `;
 
-const TooltipWrapperStyled = styled.div`
-  margin-right: var(--spacing-s);
-`;
-
 const WrapperStyled = styled.div`
   padding: var(--spacing-sm) 0px;
   display: flex;
@@ -144,9 +140,7 @@ export class FormikRadiobutton extends React.Component<Props> {
           </Round>
           <Label dangerouslySetInnerHTML={{ __html: label }} error={!!errors}></Label>
         </InputDiv>
-        <TooltipWrapperStyled>
           {tooltip}
-        </TooltipWrapperStyled>
         {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
       </WrapperStyled>
     );
