@@ -82,20 +82,24 @@ const MonsterStyled = styled.img`
     display: none;
   }
   position: absolute;
-  top: 200px;
-  left: 300px;
+  top: 55%;
+  left: 70%;
 `;
 
 const RelativeStyled = styled.div`
   position: relative;
 `;
 
+const ContainerStyled = styled(Container)`
+  padding: var(--spacing-m);
+`
+
 export class Popup extends React.Component<Props> {
   render() {
     const popup = (
       <PopupStyled {...this.props}>
         <RelativeStyled>
-          <Container>
+          <ContainerStyled>
             <BorderStyled>
               <ControlsStyled>
                 <Button
@@ -113,7 +117,7 @@ export class Popup extends React.Component<Props> {
                 <div>{this.props.children}</div>
               </div>
             </BorderStyled>
-          </Container>
+          </ContainerStyled>
           <MonsterStyled src={monster} alt='' width='380' height='420' />
         </RelativeStyled>
       </PopupStyled>
