@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 const SvgOn = (props: React.SVGProps<SVGSVGElement>) => (
   <svg height="1em" viewBox="0 0 1 8" width="1em" {...props}>

@@ -12,10 +12,9 @@ export { default as IconElectricity } from './Electricity';
 export { default as IconGas } from './Gas';
 export { default as IconOff } from "./Off";
 export { default as IconOn } from "./On";
-export { default as IconJune } from "./June";
 export { default as IconJuneColor } from "./JuneColorLogo";
+export { default as IconJune } from "./Logo";
 export { default as IconAdd } from "./Add";
 export { default as IconRemove } from "./Remove";
 export { default as IconPhone } from "./Phone";
 export { default as IconChat } from "./Chat";
-
