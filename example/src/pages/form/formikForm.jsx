@@ -82,7 +82,6 @@ export default class FormPage extends React.Component {
     });
   }
 
-
   handleCheckedChange() {
     this.setState({checked: !this.state.checked})
   }
@@ -93,57 +92,6 @@ export default class FormPage extends React.Component {
 
   handleCheckedChangeIconTooltip() {
     this.setState({checkedIconRightTooltip: !this.state.checkedIconTooltip})
-  }
-
-
-  postalChange(city, index){
-    if (city) {
-      this.props.setFieldValue(`addresses.${index}.postalcode`, city.value);
-      this.props.setFieldValue(`addresses.${index}.city`, city.meta.name);
-      this.props.setFieldValue(`addresses.${index}.cityId`, city.id);
-    } else {
-      this.props.setFieldValue(`addresses.${index}.postalcode`, '');
-      this.props.setFieldValue(`addresses.${index}.street`, '');
-      this.props.setFieldValue(`addresses.${index}.streetId`, '');
-      this.props.setFieldValue(`addresses.${index}.city`, '');
-      this.props.setFieldValue(`addresses.${index}.cityId`, '');
-    }
-  }
-
-  streetChange(street, index) {
-    if (street) {
-      this.props.setFieldValue(`addresses.${index}.street`, street.value);
-      this.props.setFieldValue(`addresses.${index}.streetId`, street.id);
-    } else {
-      this.props.setFieldValue(`addresses.${index}.street`, '');
-      this.props.setFieldValue(`addresses.${index}.streetId`, '');
-    }
-  }
-
-  fetchPostal(search) {
-    return city.search([], {postalcode: `%${search}%`})
-      .then((cities) => cities.map((city) => ({
-        id: city.id,
-        name: `${city.postalcode} - ${city.name}`,
-        value: city.postalcode,
-        meta: city,
-      })));
-  }
-
-  fetchStreet(search, index) {
-    let cityId = this.props.values.addresses[index].cityId;
-
-    if (!cityId) {
-      return;
-    }
-
-    return city.searchStreet(cityId, [], {name: `%${search}%`})
-      .then((streets) => streets.map((street) => ({
-        id: street.id,
-        name: `${street.name}`,
-        value: street.name,
-        meta: street,
-      })));
   }
 
   render() {
@@ -280,17 +228,17 @@ export default class FormPage extends React.Component {
                   <div className={'flex'}>
                     <FormGroup>
                       <Field
-                        name={`addresses/postalcode`}
-                        type='text'
-                        placeholder='autofill'
-                        component={FormikAutoFill}
-                        disabled={this.props.loading}
-                        onChange={value => this.postalChange(value, index)}
-                        fetch={search => this.fetchPostal(search)}
-                        validate={value => required(value, this.props.intl)}
-                        serverErrors={this.props.serverErrors}
-                        errors={this.props.errors}
+                        placeholder='Postal*'
+                        name='Postal'
+                        type='Postal'
                         label='Postal*'
+                        component={FormikInput}
+                        validate={() => 'This is a validation message'}
+                        error={this.state.error}
+                        disabled={this.state.disabled}
+                        focussed={this.state.focussed}
+                        field={this.state.field}
+                        form={this.state.form}
                       />
                     </FormGroup>
                     <FormGroup>
@@ -299,7 +247,7 @@ export default class FormPage extends React.Component {
                         name='city'
                         type='number'
                         label='City*'
-                        component={FormikInput}
+                        component={FormikAutoFill}
                         error={this.state.error}
                         disabled={this.state.disabled}
                         focussed={this.state.focussed}
@@ -310,8 +258,8 @@ export default class FormPage extends React.Component {
                   </div>
                   <FormGroup>
                     <Field
-                      placeholder='city'
-                      name='city'
+                      placeholder='geboortedatum'
+                      name='geboortedatum'
                       type='number'
                       label='Geboortedatum'
                       component={FormikDateSelect}
