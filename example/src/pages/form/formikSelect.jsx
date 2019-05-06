@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikSelect, FormikCheckbox} from 'june-design-system';
+import {FormikCheckbox, FormikSelect} from 'june-design-system';
 import {Flex} from 'reflexbox';
 
 export default class FormikSelectPage extends React.Component {
@@ -84,7 +84,6 @@ export default class FormikSelectPage extends React.Component {
 
   render() {
     return (
-      <div className='buttons'>
         <Page>
           ## Dynamic selector
           <Flex>
@@ -182,7 +181,6 @@ export default class FormikSelectPage extends React.Component {
             />
           </ReactSpecimen>
         </Page>
-      </div>
     );
   }
 }

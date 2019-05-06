@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikInput, IconCalender, Button, IconElectricity, FormikCheckbox} from 'june-design-system';
+import {Button, FormikCheckbox, FormikInput, IconCalender, IconElectricity} from 'june-design-system';
 import {Flex} from 'reflexbox';
 
 export default class ButtonPage extends React.Component {
@@ -75,7 +75,6 @@ export default class ButtonPage extends React.Component {
 
   render() {
     return (
-      <div className='buttons'>
         <Page>
           ## Input Fields
           <Flex>
@@ -236,7 +235,6 @@ export default class ButtonPage extends React.Component {
             />
           </ReactSpecimen>
         </Page>
-      </div>
     );
   }
 }

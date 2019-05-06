@@ -1,6 +1,4 @@
 @import '~june-design-system/dist/scss/shared_variables';
-@import 'styling/button';
-@import 'styling/stepper';
 @import 'styling/separator';
 @import 'styling/icons';
 
@@ -46,6 +44,12 @@ label {
   }
 }
 
+// CONTROLS
+.wrapper {
+  padding: 10px;
+  display: flex;
+  width: 15rem;
+}
 
 /*POPUP - popup.jsx*/
 

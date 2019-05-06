@@ -1,7 +1,7 @@
 import React from 'react';
-import { Page, ReactSpecimen } from 'catalog';
-import { FormikTextarea, FormikCheckbox } from 'june-design-system';
-import { Flex } from 'reflexbox';
+import {Page, ReactSpecimen} from 'catalog';
+import {FormikCheckbox, FormikTextarea} from 'june-design-system';
+import {Flex} from 'reflexbox';
 
 export default class FormikTextareaPage extends React.Component {
   constructor(props) {
@@ -77,7 +77,6 @@ export default class FormikTextareaPage extends React.Component {
 
   render() {
     return (
-      <div className='buttons'>
         <Page>
           ## Textarea
           <Flex>
@@ -162,7 +161,6 @@ export default class FormikTextareaPage extends React.Component {
             />
           </ReactSpecimen>
         </Page>
-      </div>
     );
   }
 }

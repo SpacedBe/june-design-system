@@ -100,7 +100,7 @@ export default class FormPage extends React.Component {
     return (
       <Page>
         ## Example Formik Form
-        <Flex className={'buttons'}>
+        <Flex>
           <div className={'wrapper'}>
             <FormikCheckbox
               error={false}
