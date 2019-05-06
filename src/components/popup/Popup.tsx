@@ -6,7 +6,7 @@ import {Button} from '../button/Button';
 import styled from 'styled-components';
 import {Container} from '../container/Container';
 import {IconClose, IconQuestionmark} from '../../icons';
-import monster from '../../assets/images/monster.png'
+import monster from '../../assets/images/monster.png';
 
 type Props = {
   title: string,
@@ -84,26 +84,30 @@ const MonsterStyled = styled.img`
 
 export class Popup extends React.Component<Props> {
   render() {
-    const popup = (<PopupStyled {...this.props}>
-      <Container>
-        <BorderStyled>
-          <ControlsStyled>
-            <Button onClick={() => this.props.close()}
-                    iconOnly={<IconClose fill={'white'} fontSize={'20px'}></IconClose>}></Button>
-          </ControlsStyled>
-          <div className={'contents'}>
-            <span>
-              <IconQuestionmark fontSize={'70px'}/>
-            </span>
-            <h3 className={'no-margin margin-bottom'}>{this.props.title}</h3>
-            <div>
-              {this.props.children}
+    const popup = (
+      <PopupStyled {...this.props}>
+        <Container>
+          <BorderStyled>
+            <ControlsStyled>
+              <Button
+                onClick={() => this.props.close()}
+                iconOnly={<IconClose fill={'white'} fontSize={'20px'} />}
+              />
+            </ControlsStyled>
+            <div className={'contents'}>
+              <span>
+                <IconQuestionmark fontSize={'70px'} />
+              </span>
+              <h3 className={'no-margin margin-bottom'}>
+                {this.props.title}
+              </h3>
+              <div>{this.props.children}</div>
             </div>
-          </div>
-        </BorderStyled>
-      </Container>
-      <MonsterStyled src={monster} alt=""  width="380" height="420"/>
-    </PopupStyled>);
+          </BorderStyled>
+        </Container>
+        <MonsterStyled src={monster} alt='' width='380' height='420' />
+      </PopupStyled>
+    );
 
     return (
       this.props.show ? popup : ''
