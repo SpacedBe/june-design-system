@@ -1,7 +1,7 @@
 import React from 'react';
-import { Page, ReactSpecimen } from 'catalog';
-import {FormikDateSelect, FormikCheckbox} from 'june-design-system';
-import { Flex } from 'reflexbox';
+import {Page, ReactSpecimen} from 'catalog';
+import {FormikCheckbox, FormikDateSelect} from 'june-design-system';
+import {Flex} from 'reflexbox';
 
 export default class FormikDateSelectPage extends React.Component{
   constructor(props){
@@ -67,7 +67,6 @@ export default class FormikDateSelectPage extends React.Component{
 
   render(){
     return(
-      <div className='buttons'>
         <Page>
           <Flex>
             <div className='wrapper'>
@@ -133,8 +132,6 @@ export default class FormikDateSelectPage extends React.Component{
             </FormikDateSelect>
           </ReactSpecimen>
         </Page>
-      </div>
-
     );
   }
 }

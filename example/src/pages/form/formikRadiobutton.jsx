@@ -1,6 +1,6 @@
 import React from "react";
-import { Page, ReactSpecimen } from "catalog";
-import { FormikRadiobutton, FormGroup, FormikCheckbox, IconQuestionmark } from "june-design-system";
+import {Page, ReactSpecimen} from "catalog";
+import {FormGroup, FormikCheckbox, FormikRadiobutton, IconQuestionmark} from "june-design-system";
 import {Flex} from 'reflexbox';
 
 export default class FormikRadiobuttonPage extends React.Component{
@@ -66,8 +66,8 @@ export default class FormikRadiobuttonPage extends React.Component{
 
   render(){
     return (
-      <div className='buttons'>
-        <Page>
+
+      <Page>
           ## Radiobutton
           <Flex>
             <div className='wrapper'>
@@ -178,7 +178,6 @@ export default class FormikRadiobuttonPage extends React.Component{
             </div>
           </ReactSpecimen>
         </Page>
-      </div>
     );
   }
 }

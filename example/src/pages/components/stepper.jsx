@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Stepper, Button} from 'june-design-system';
+import {Button, Stepper} from 'june-design-system';
 import {Flex} from 'reflexbox';
 
 export default class StepPage extends React.Component {
@@ -61,18 +61,19 @@ export default class StepPage extends React.Component {
   render() {
 
     return (
-      <div className="stepper">
         <Page>
-          ## Stepper Controls
-          <Flex justify={'space-between'}>
-            <Button className="buttonWrapper" clear={false} disabled={false} onClick={() => this.decrementCurrentStep()}
-                    rounded={false} wide={false} size='small'>
-              Uncomplete one step
-            </Button>
-            <Button className="buttonWrapper" clear={false} disabled={false} onClick={() => this.incrementCurrentStep()}
-                    rounded={false} wide={false} size='small'>
-              Complete one step
-            </Button>
+          <Flex>
+            <div className="wrapper">
+              <Button onClick={() => this.decrementCurrentStep()}>
+                Uncomplete one step
+              </Button>
+            </div>
+
+            <div className="wrapper">
+              <Button onClick={() => this.incrementCurrentStep()}>
+                Complete one step
+              </Button>
+            </div>
           </Flex>
           <ReactSpecimen>
             <Stepper
@@ -81,7 +82,6 @@ export default class StepPage extends React.Component {
             />
           </ReactSpecimen>
         </Page>
-      </div>
     );
   }
 }

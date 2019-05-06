@@ -65,7 +65,6 @@ export default class FormikCheckboxPage extends React.Component {
 
   render() {
     return (
-      <div className='buttons'>
         <Page>
           ## Checkbox
           <Flex>
@@ -161,7 +160,6 @@ export default class FormikCheckboxPage extends React.Component {
             </div>
           </ReactSpecimen>
         </Page>
-      </div>
     );
   }
 }

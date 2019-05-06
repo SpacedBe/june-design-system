@@ -4,19 +4,19 @@ import logo from './assets/images/june-logo.svg';
 
 import {
   Button,
+  Fab,
+  IconChat,
+  IconMail,
+  IconPhone,
   IconPreferences,
   IconSavings,
   IconSettings,
   IconWater,
   IconWaterBattery,
-  IconPhone,
-  IconMail,
-  IconChat,
   Stepper,
-  Fab,
 } from 'june-design-system';
 
-import { hot } from 'react-hot-loader/root';
+import {hot} from 'react-hot-loader/root';
 
 class App extends Component {
   render() {
@@ -143,20 +143,6 @@ class App extends Component {
                 title: 'Counter',
                 component: pageLoader(() =>
                   import('./pages/components/counter')
-                )
-              },
-              {
-                path: 'header',
-                title: 'Header',
-                component: pageLoader(() =>
-                  import('./pages/components/header')
-                )
-              },
-              {
-                path: 'footer',
-                title: 'Footer',
-                component: pageLoader(() =>
-                  import('./pages/components/footer')
                 )
               },
               {

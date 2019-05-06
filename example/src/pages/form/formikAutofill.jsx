@@ -74,7 +74,6 @@ export default class FormikAutoFillPage extends React.Component {
 
   render() {
     return (
-      <div className='buttons'>
         <Page>
           ## Autofill
           <Flex>
@@ -145,7 +144,6 @@ export default class FormikAutoFillPage extends React.Component {
             />
           </ReactSpecimen>
         </Page>
-      </div>
     );
   }
 }
