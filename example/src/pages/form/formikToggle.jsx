@@ -1,36 +1,53 @@
 import React from "react";
 import {Page, ReactSpecimen} from "catalog";
-import {FormikToggle, IconQuestionmark, IconElectricity} from "june-design-system";
+import {FormikCheckbox, FormikToggle, IconQuestionmark, IconElectricity} from "june-design-system";
+import {Flex} from "reflexbox";
 
 export default class FormikTogglePage extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       field: {
         name: 'regular',
+        disabled: false,
       },
     };
+  }
+
+  toggleDisabled() {
+    this.setState({
+      disabled: !this.state.disabled
+    });
   }
 
   render() {
     return (
       <Page>
+        <Flex>
+          <div className='wrapper'>
+            <FormikCheckbox
+              error={false}
+              field={{
+                name: 'isDisabled',
+                value: this.state.disabled,
+                onChange: () => this.toggleDisabled()
+              }}
+              form={{
+                errors: { 'regular': null },
+                touched: { 'regular': false }
+              }}
+              label='Disabled'
+              type='checkbox'
+            />
+          </div>
+        </Flex>
         ## Toggle Regular
         <ReactSpecimen span={3}>
           <FormikToggle
             name="regular"
             label="Regular Toggle"
-            field={this.state.field}
-            form={this.state.form}
-          />
-        </ReactSpecimen>
-
-        ## Toggle Long Label.
-        <ReactSpecimen span={3}>
-          <FormikToggle
-            label="Toggle with a long label discription"
+            disabled={this.state.disabled}
             field={this.state.field}
             form={this.state.form}
           />
@@ -39,19 +56,10 @@ export default class FormikTogglePage extends React.Component {
         ## Toggle Icon Right & Tooltip
         <ReactSpecimen span={3}>
           <FormikToggle
-            tooltip={<IconQuestionmark/>}
-            icon={<IconElectricity/>}
+            tooltip={<IconQuestionmark fill={this.state.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'}/>}
+            icon={<IconElectricity fill={this.state.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'}/>}
             label="Toggle with an icon"
-            field={this.state.field}
-            form={this.state.form}
-          />
-        </ReactSpecimen>
-
-        ## Toggle Tooltip
-        <ReactSpecimen span={3}>
-          <FormikToggle
-            tooltip={<IconQuestionmark/>}
-            label="Toggle with a long label discription and an info icon"
+            disabled={this.state.disabled}
             field={this.state.field}
             form={this.state.form}
           />
