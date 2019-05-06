@@ -9,13 +9,13 @@ import {
   FormikToggle,
   IconQuestionmark,
   IconGas,
-  IconElectricity,
+  FormikAutoFill,
   Button,
   FormikTextarea,
-  FormError
+  FormError,
+  FormikDateSelect
 } from 'june-design-system';
 import {Field, Form, Formik} from "formik";
-import {string} from "prop-types";
 import {Page, ReactSpecimen} from "catalog";
 import {Flex} from 'reflexbox';
 
@@ -27,7 +27,6 @@ export default class FormPage extends React.Component {
       error: false,
       checked: false,
       focussed: false,
-      name: string,
       label: '',
       field: {
         name: 'example-input'
@@ -82,7 +81,6 @@ export default class FormPage extends React.Component {
       }
     });
   }
-
 
   handleCheckedChange() {
     this.setState({checked: !this.state.checked})
@@ -230,11 +228,12 @@ export default class FormPage extends React.Component {
                   <div className={'flex'}>
                     <FormGroup>
                       <Field
-                        placeholder='postalcode'
-                        name='postalcode'
-                        type='text'
-                        label='Postal Code*'
+                        placeholder='Postal*'
+                        name='Postal'
+                        type='Postal'
+                        label='Postal*'
                         component={FormikInput}
+                        validate={() => 'This is a validation message'}
                         error={this.state.error}
                         disabled={this.state.disabled}
                         focussed={this.state.focussed}
@@ -248,7 +247,7 @@ export default class FormPage extends React.Component {
                         name='city'
                         type='number'
                         label='City*'
-                        component={FormikInput}
+                        component={FormikAutoFill}
                         error={this.state.error}
                         disabled={this.state.disabled}
                         focussed={this.state.focussed}
@@ -257,6 +256,25 @@ export default class FormPage extends React.Component {
                       />
                     </FormGroup>
                   </div>
+                  <FormGroup>
+                    <Field
+                      placeholder='geboortedatum'
+                      name='geboortedatum'
+                      type='number'
+                      label='Geboortedatum'
+                      component={FormikDateSelect}
+                      error={this.state.error}
+                      disabled={this.state.disabled}
+                      focussed={this.state.focussed}
+                      field={this.state.field}
+                      form={this.state.form}
+                      translations={{
+                        dayPlaceholder: 'dag',
+                        monthPlaceholder: 'maand',
+                        yearPlaceholder: 'jaar'
+                      }}
+                    />
+                  </FormGroup>
                 </div>
                 <div className={'container'}>
                   <div>
@@ -276,8 +294,6 @@ export default class FormPage extends React.Component {
                       field={this.state.field}
                       form={this.state.form}
                     />
-                  </FormGroup>
-                  <FormGroup>
                     <Field
                       label='Option Two'
                       name='radiobutton'
@@ -362,7 +378,7 @@ export default class FormPage extends React.Component {
                   </FormGroup>
                   <FormGroup>
                     <Field
-                      name='gas'
+                      name='toggleOne'
                       component={FormikToggle}
                       icon={<IconGas fill='#46AAD2' />}
                       tooltip={
@@ -377,7 +393,7 @@ export default class FormPage extends React.Component {
                   </FormGroup>
                   <FormGroup>
                     <Field
-                      name='gas'
+                      name='toggleTwo'
                       component={FormikToggle}
                       tooltip={
                         <Button

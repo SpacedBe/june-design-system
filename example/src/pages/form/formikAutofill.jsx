@@ -136,7 +136,7 @@ export default class FormikAutoFillPage extends React.Component {
                 {name: 'FEMALE', id: '2', value: '2'},
                 {name: 'X', id: '3', value: '3'},
               ]}
-              placeholderText='example placeholder'
+              placeholder='example placeholder'
               error={this.state.error}
               disabled={this.state.disabled}
               field={this.state.field}
