@@ -36,8 +36,8 @@ export default class FormPage extends React.Component {
         email: 'test'
       },
       form: {
-        errors: { 'example-input': null },
-        touched: { 'example-input': false }
+        errors: {'example-input': null},
+        touched: {'example-input': false}
       }
     };
     this.handleCheckedChange = this.handleCheckedChange.bind(this);
@@ -110,8 +110,8 @@ export default class FormPage extends React.Component {
                 onChange: () => this.toggleTouched()
               }}
               form={{
-                errors: { 'example-input': null },
-                touched: { 'example-input': false }
+                errors: {'example-input': null},
+                touched: {'example-input': false}
               }}
               label='Touched'
               type='checkbox'
@@ -127,8 +127,8 @@ export default class FormPage extends React.Component {
                 onChange: () => this.toggleError()
               }}
               form={{
-                errors: { 'example-input': null },
-                touched: { 'example-input': false }
+                errors: {'example-input': null},
+                touched: {'example-input': false}
               }}
               label='Error'
               type='checkbox'
@@ -143,8 +143,8 @@ export default class FormPage extends React.Component {
                 onChange: () => this.toggleServerError()
               }}
               form={{
-                errors: { 'example-input': null },
-                touched: { 'example-input': false }
+                errors: {'example-input': null},
+                touched: {'example-input': false}
               }}
               label='Has Server Error'
               type='checkbox'
@@ -160,8 +160,8 @@ export default class FormPage extends React.Component {
                 onChange: () => this.toggleDisabled()
               }}
               form={{
-                errors: { 'example-input': null },
-                touched: { 'example-input': false }
+                errors: {'example-input': null},
+                touched: {'example-input': false}
               }}
               label='Disabled'
               type='checkbox'
@@ -213,9 +213,9 @@ export default class FormPage extends React.Component {
                     <Field
                       label='Gender'
                       options={[
-                        { label: 'Male', value: '1' },
-                        { label: 'Female', value: '2' },
-                        { label: 'X', value: '3' }
+                        {label: 'Male', value: '1'},
+                        {label: 'Female', value: '2'},
+                        {label: 'X', value: '3'}
                       ]}
                       htmlFor='isSelect'
                       name='genderSelect'
