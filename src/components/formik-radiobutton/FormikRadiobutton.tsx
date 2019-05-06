@@ -99,23 +99,16 @@ const ErrorMessageStyled = styled.span`
   margin-bottom: var(--spacing-xs);
 `;
 
-const TooltipIconStyled = styled.span`
-  font-size: var(--icon-size-xs);
-  line-height: 0;
-  margin-right: var(--spacing-s);
-`;
-
 const TooltipWrapperStyled = styled.div`
   margin-right: var(--spacing-s);
 `;
 
-const WrapperDivStyled = styled.div`
+const WrapperStyled = styled.div`
   padding: var(--spacing-sm) 0px;
   display: flex;
   width: 100%;
   justify-content: space-between;
-  height: 50px;
-  align-items: center;
+  height: auto;
 `;
 
 export class FormikRadiobutton extends React.Component<Props> {
@@ -131,14 +124,12 @@ export class FormikRadiobutton extends React.Component<Props> {
 
     if(this.props.tooltip){
       tooltip = (
-        <div>
-          <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>
-        </div>
+        <span>{this.props.tooltip}</span>
       );
     }
 
     return (
-      <WrapperDivStyled>
+      <WrapperStyled>
         <InputDiv>
           <Round error={!!errors}>
             <Input
@@ -157,8 +148,7 @@ export class FormikRadiobutton extends React.Component<Props> {
           {tooltip}
         </TooltipWrapperStyled>
         {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
-      </WrapperDivStyled>
-
+      </WrapperStyled>
     );
   }
 }
