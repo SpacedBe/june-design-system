@@ -9,13 +9,13 @@ import {
   FormikToggle,
   IconQuestionmark,
   IconGas,
-  IconElectricity,
+  FormikAutoFill,
   Button,
   FormikTextarea,
-  FormError
+  FormError,
+  FormikDateSelect
 } from 'june-design-system';
 import {Field, Form, Formik} from "formik";
-import {string} from "prop-types";
 import {Page, ReactSpecimen} from "catalog";
 import {Flex} from 'reflexbox';
 
@@ -27,7 +27,6 @@ export default class FormPage extends React.Component {
       error: false,
       checked: false,
       focussed: false,
-      name: string,
       label: '',
       field: {
         name: 'example-input'
@@ -96,6 +95,57 @@ export default class FormPage extends React.Component {
     this.setState({checkedIconRightTooltip: !this.state.checkedIconTooltip})
   }
 
+
+  postalChange(city, index){
+    if (city) {
+      this.props.setFieldValue(`addresses.${index}.postalcode`, city.value);
+      this.props.setFieldValue(`addresses.${index}.city`, city.meta.name);
+      this.props.setFieldValue(`addresses.${index}.cityId`, city.id);
+    } else {
+      this.props.setFieldValue(`addresses.${index}.postalcode`, '');
+      this.props.setFieldValue(`addresses.${index}.street`, '');
+      this.props.setFieldValue(`addresses.${index}.streetId`, '');
+      this.props.setFieldValue(`addresses.${index}.city`, '');
+      this.props.setFieldValue(`addresses.${index}.cityId`, '');
+    }
+  }
+
+  streetChange(street, index) {
+    if (street) {
+      this.props.setFieldValue(`addresses.${index}.street`, street.value);
+      this.props.setFieldValue(`addresses.${index}.streetId`, street.id);
+    } else {
+      this.props.setFieldValue(`addresses.${index}.street`, '');
+      this.props.setFieldValue(`addresses.${index}.streetId`, '');
+    }
+  }
+
+  fetchPostal(search) {
+    return city.search([], {postalcode: `%${search}%`})
+      .then((cities) => cities.map((city) => ({
+        id: city.id,
+        name: `${city.postalcode} - ${city.name}`,
+        value: city.postalcode,
+        meta: city,
+      })));
+  }
+
+  fetchStreet(search, index) {
+    let cityId = this.props.values.addresses[index].cityId;
+
+    if (!cityId) {
+      return;
+    }
+
+    return city.searchStreet(cityId, [], {name: `%${search}%`})
+      .then((streets) => streets.map((street) => ({
+        id: street.id,
+        name: `${street.name}`,
+        value: street.name,
+        meta: street,
+      })));
+  }
+
   render() {
     return (
       <Page>
@@ -110,8 +160,8 @@ export default class FormPage extends React.Component {
                 onChange: () => this.toggleTouched()
               }}
               form={{
-                errors: {'example-input': null},
-                touched: {'example-input': false}
+                errors: { 'example-input': null },
+                touched: { 'example-input': false }
               }}
               label='Touched'
               type='checkbox'
@@ -127,8 +177,8 @@ export default class FormPage extends React.Component {
                 onChange: () => this.toggleError()
               }}
               form={{
-                errors: {'example-input': null},
-                touched: {'example-input': false}
+                errors: { 'example-input': null },
+                touched: { 'example-input': false }
               }}
               label='Error'
               type='checkbox'
@@ -143,8 +193,8 @@ export default class FormPage extends React.Component {
                 onChange: () => this.toggleServerError()
               }}
               form={{
-                errors: {'example-input': null},
-                touched: {'example-input': false}
+                errors: { 'example-input': null },
+                touched: { 'example-input': false }
               }}
               label='Has Server Error'
               type='checkbox'
@@ -160,8 +210,8 @@ export default class FormPage extends React.Component {
                 onChange: () => this.toggleDisabled()
               }}
               form={{
-                errors: {'example-input': null},
-                touched: {'example-input': false}
+                errors: { 'example-input': null },
+                touched: { 'example-input': false }
               }}
               label='Disabled'
               type='checkbox'
@@ -213,9 +263,9 @@ export default class FormPage extends React.Component {
                     <Field
                       label='Gender'
                       options={[
-                        {label: 'Male', value: '1'},
-                        {label: 'Female', value: '2'},
-                        {label: 'X', value: '3'}
+                        { label: 'Male', value: '1' },
+                        { label: 'Female', value: '2' },
+                        { label: 'X', value: '3' }
                       ]}
                       htmlFor='isSelect'
                       name='genderSelect'
@@ -230,16 +280,17 @@ export default class FormPage extends React.Component {
                   <div className={'flex'}>
                     <FormGroup>
                       <Field
-                        placeholder='postalcode'
-                        name='postalcode'
+                        name={`addresses/postalcode`}
                         type='text'
-                        label='Postal Code*'
-                        component={FormikInput}
-                        error={this.state.error}
-                        disabled={this.state.disabled}
-                        focussed={this.state.focussed}
-                        field={this.state.field}
-                        form={this.state.form}
+                        placeholder='autofill'
+                        component={FormikAutoFill}
+                        disabled={this.props.loading}
+                        onChange={value => this.postalChange(value, index)}
+                        fetch={search => this.fetchPostal(search)}
+                        validate={value => required(value, this.props.intl)}
+                        serverErrors={this.props.serverErrors}
+                        errors={this.props.errors}
+                        label='Postal*'
                       />
                     </FormGroup>
                     <FormGroup>
@@ -256,10 +307,26 @@ export default class FormPage extends React.Component {
                         form={this.state.form}
                       />
                     </FormGroup>
-                    <FormGroup>
-
-                    </FormGroup>
                   </div>
+                  <FormGroup>
+                    <Field
+                      placeholder='city'
+                      name='city'
+                      type='number'
+                      label='Geboortedatum'
+                      component={FormikDateSelect}
+                      error={this.state.error}
+                      disabled={this.state.disabled}
+                      focussed={this.state.focussed}
+                      field={this.state.field}
+                      form={this.state.form}
+                      translations={{
+                        dayPlaceholder: 'dag',
+                        monthPlaceholder: 'maand',
+                        yearPlaceholder: 'jaar'
+                      }}
+                    />
+                  </FormGroup>
                 </div>
                 <div className={'container'}>
                   <div>
