@@ -35,14 +35,6 @@ export default class FormPage extends React.Component {
       serverErrors: {
         email: 'test'
       },
-      // form: {
-      //   errors: {
-      //     email: null
-      //   },
-      //   touched: {
-      //     email: false
-      //   }
-      // }
       form: {
         errors: { 'example-input': null },
         touched: { 'example-input': false }
