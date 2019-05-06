@@ -1,6 +1,6 @@
 import React from "react";
 import { Page, ReactSpecimen } from "catalog";
-import { FormikRadiobutton, FormGroup, FormikCheckbox } from "june-design-system";
+import { FormikRadiobutton, FormGroup, FormikCheckbox, IconQuestionmark } from "june-design-system";
 import {Flex} from 'reflexbox';
 
 export default class FormikRadiobuttonPage extends React.Component{
@@ -160,6 +160,19 @@ export default class FormikRadiobuttonPage extends React.Component{
                   form={this.state.form}
                   name='radioTestName'
                   disabled={this.state.disabled}
+                />
+              </FormGroup>
+              <FormGroup>
+                <FormikRadiobutton
+                  error={this.state.error}
+                  focussed={this.state.focussed}
+                  type='radio'
+                  placeholderText='example placeholder'
+                  field={this.state.field}
+                  label='When a label is really long it just shows on multiple lines.'
+                  form={this.state.form}
+                  name='radioTestName'
+                  tooltip={<IconQuestionmark />}
                 />
               </FormGroup>
             </div>

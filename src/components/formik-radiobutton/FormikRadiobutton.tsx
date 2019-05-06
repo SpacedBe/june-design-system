@@ -12,6 +12,7 @@ type Props = {
     name: string;
     value: string;
     disabled: boolean;
+    tooltip?: any;
     onChange: () => {};
     OnBlur: () => {};
   };
@@ -120,6 +121,14 @@ const ErrorMessageStyled = styled.span`
   margin-bottom: var(--spacing-xs);
 `;
 
+const WrapperStyled = styled.div`
+  padding: var(--spacing-sm) 0px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: auto;
+`;
+
 export class FormikRadiobutton extends React.Component<Props> {
   render() {
     const {name, value} = this.props.field;
@@ -128,9 +137,16 @@ export class FormikRadiobutton extends React.Component<Props> {
     const errors = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || error : null;
     const {disabled, label} = this.props;
     const checked = this.props.value == value;
+    let tooltip;
+
+    if(this.props.tooltip){
+      tooltip = (
+        <span>{this.props.tooltip}</span>
+      );
+    }
 
     return (
-      <div style={{padding: 'var(--spacing-sm) 0px'}}>
+      <WrapperStyled>
         <InputDiv>
           <RoundStyled error={!!errors} disabled={disabled}>
             <Input
@@ -145,9 +161,9 @@ export class FormikRadiobutton extends React.Component<Props> {
           </RoundStyled>
           <LabelStyled dangerouslySetInnerHTML={{__html: label}} error={!!errors} disabled={disabled}></LabelStyled>
         </InputDiv>
+          {tooltip}
         {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
-      </div>
-
+      </WrapperStyled>
     );
   }
 }
