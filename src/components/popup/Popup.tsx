@@ -82,33 +82,40 @@ const MonsterStyled = styled.img`
     display: none;
   }
   position: absolute;
-  margin: 200px 300px;
+  top: 200px;
+  left: 300px;
+`;
+
+const RelativeStyled = styled.div`
+  position: relative;
 `;
 
 export class Popup extends React.Component<Props> {
   render() {
     const popup = (
       <PopupStyled {...this.props}>
-        <Container>
-          <BorderStyled>
-            <ControlsStyled>
-              <Button
-                onClick={() => this.props.close()}
-                iconOnly={<IconClose fill={'white'} fontSize={'20px'} />}
-              />
-            </ControlsStyled>
-            <div className={'contents'}>
-              <span>
-                <IconQuestionmark fontSize={'70px'} />
-              </span>
-              <h3 className={'no-margin margin-bottom'}>
-                {this.props.title}
-              </h3>
-              <div>{this.props.children}</div>
-            </div>
-          </BorderStyled>
-        </Container>
-        <MonsterStyled src={monster} alt='' width='380' height='420' />
+        <RelativeStyled>
+          <Container>
+            <BorderStyled>
+              <ControlsStyled>
+                <Button
+                  onClick={() => this.props.close()}
+                  iconOnly={<IconClose fill={'white'} fontSize={'20px'} />}
+                />
+              </ControlsStyled>
+              <div className={'contents'}>
+                <span>
+                  <IconQuestionmark fontSize={'70px'} />
+                </span>
+                <h3 className={'no-margin margin-bottom'}>
+                  {this.props.title}
+                </h3>
+                <div>{this.props.children}</div>
+              </div>
+            </BorderStyled>
+          </Container>
+          <MonsterStyled src={monster} alt='' width='380' height='420' />
+        </RelativeStyled>
       </PopupStyled>
     );
 
