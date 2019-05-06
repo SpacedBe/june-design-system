@@ -60,16 +60,16 @@ const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   font-family: var(--font-secondary);
   padding-bottom: var(--spacing-sm);
   color: ${props => {
-    if (props.disabled) {
-      return 'var(--color-disabled)';
-    }
+  if (props.disabled) {
+    return 'var(--color-disabled)';
+  }
 
-    if (props.error) {
-      return 'var(--color-error)';
-    }
+  if (props.error) {
+    return 'var(--color-error)';
+  }
 
-    return 'var(--color-dark)';
-  }};
+  return 'var(--color-dark)';
+}};
 `;
 
 const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
@@ -78,9 +78,19 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
    background-color: var(--color-white);
    color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
    padding: 1.2em;
-   border: ${props => props.error ? `2px solid var(--color-error)` : `2px solid var(--color-gray-light)`};
+   
+   border: 2px solid ${props => {
+    if (props.disabled) {
+      return 'var(--color-gray-lighter)';
+    }
+    
+    if (props.error) {
+      return 'var(--color-error)';
+    }
+    
+    return 'var(--color-gray-light)';
+}};
    border-radius: 3px;
-   opacity: ${props => props.disabled ? '0.5' : '1'};
    outline: none;
 `;
 
@@ -156,9 +166,9 @@ export class FormikAutoFill extends React.Component<Props, State> {
   render() {
     const name = this.props.field.name;
     const label = this.props.label;
-    const error = getIn(this.props.form.errors, name);
+    const fieldError = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
-    const errors = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || error : null;
+    const formError = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || fieldError : null;
     const loading = this.state.loading;
 
     const inputProps = {
@@ -169,21 +179,21 @@ export class FormikAutoFill extends React.Component<Props, State> {
     return (
       <FlexStyled>
         <WrapperStyled>
-          <LabelStyled error={this.props.error}
+          <LabelStyled error={formError}
                        disabled={this.props.disabled}>
             {label}
           </LabelStyled>
           <Autocomplete inputProps={inputProps}
                         items={this.state.items}
                         value={this.state.value}
-                        renderInput={(props: any) => this.renderInput(props, inputProps.error, inputProps.disabled, loading)}
+                        renderInput={(props: any) => this.renderInput(props, formError, inputProps.disabled, loading)}
                         renderMenu={(items: Item[]) => this.renderMenu(items, loading)}
                         renderItem={(item: any, isHighlighted: boolean) => this.renderItem(item, isHighlighted)}
                         getItemValue={(val: any) => this.getItemValue(val)}
                         onChange={(val: any) => this.onChange(val)}
                         onSelect={(val: any, item: Item) => this.onSelect(val, item)}
           />
-          {errors && <ErrorMessageStyled>{errors}</ErrorMessageStyled>}
+          {formError && <ErrorMessageStyled>{formError}</ErrorMessageStyled>}
         </WrapperStyled>
       </FlexStyled>
     );
@@ -238,8 +248,9 @@ export class FormikAutoFill extends React.Component<Props, State> {
   renderMenu(items: Item[], loading: boolean) {
     return (
       <ResultMenuStyled>
-        {!loading && !items.length ? <ResultItemStyled>{this.props.translations.placeholder}</ResultItemStyled>: ''}
-        {loading ? <ResultItemStyled>{this.props.translations.loading}</ResultItemStyled> : <div children={items}></div>}
+        {!loading && !items.length ? <ResultItemStyled>{this.props.translations.placeholder}</ResultItemStyled> : ''}
+        {loading ? <ResultItemStyled>{this.props.translations.loading}</ResultItemStyled> :
+          <div children={items}></div>}
       </ResultMenuStyled>
     );
   }
