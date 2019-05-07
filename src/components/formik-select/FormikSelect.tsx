@@ -5,7 +5,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {getIn} from 'formik';
-import Color from "../../helpers/color";
 import {IconTriangleDown} from "../../icons";
 
 interface Option {
@@ -33,8 +32,6 @@ type Props = {
   disabled?: boolean,
 };
 
-const colorHelper = new Color();
-
 const WrapperStyled = styled.div<{ error?: boolean; disabled?: boolean; }>`
   text-align: left;
   width: 100%;
@@ -50,14 +47,14 @@ const SelectStyled = styled.select<{ error?: boolean; disabled?: boolean; }>`
   }
   color: ${props => {
     if (props.disabled) {
-      return colorHelper.getColor('disabled');
+      return 'var(--color-disabled)';
     }
   
     if (props.error) {
-      return colorHelper.getColor('error');
+      return 'var(--color-error)';
     }
-  
-    return colorHelper.getColor('dark');
+
+  return 'var(--color-dark)';
   }};
   border: 2px solid ${props => {
     if (props.disabled) {
@@ -65,10 +62,10 @@ const SelectStyled = styled.select<{ error?: boolean; disabled?: boolean; }>`
     }
   
     if (props.error) {
-      return colorHelper.getColor('error');
+      return 'var(--color-error)';
     }
-  
-    return colorHelper.getColor('gray-light');
+
+  return 'var(--color-gray-light)';
   }};
   min-height: 50px;
   border-radius: 3px;
@@ -88,14 +85,14 @@ const IconStyled = styled(IconTriangleDown)<{disabled?: boolean, error?: boolean
   font-size: var(--icon-size-m);
   fill: ${props => {
     if (props.disabled) {
-      return colorHelper.getColor('disabled');
+      return 'var(--color-disabled)';
     }
   
     if (props.error) {
-      return colorHelper.getColor('error');
+      return 'var(--color-error)';
     }
-  
-    return colorHelper.getColor('dark');
+
+  return 'var(--color-dark)';
   }};
   pointer-events: none;
 `;
@@ -121,7 +118,7 @@ const OptionStyled = styled.option`
 
 const ErrorMessageStyled = styled.span`
   font-size: var(--font-size-s);
-  color: ${colorHelper.getColor('error')};
+  color: var(--color-error);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-xs);
 `;
