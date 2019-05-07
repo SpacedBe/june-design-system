@@ -123,22 +123,6 @@ export default class FormikRadiobuttonPage extends React.Component{
                   component={FormikCheckbox}
                 />
               </FormGroup>
-              <FormGroup className='wrapper'>
-                <Field
-                  error={false}
-                  field={{
-                    name: 'hasServerError',
-                    onChange: () => this.toggleServerError()
-                  }}
-                  form={{
-                    errors: { 'example-input': null },
-                    touched: { 'example-input': false }
-                  }}
-                  label='Has Server Error'
-                  type='checkbox'
-                  component={FormikCheckbox}
-                />
-              </FormGroup>
             </Flex>
           </Form>
         </Formik>
