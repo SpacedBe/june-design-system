@@ -1,7 +1,8 @@
 import React from "react";
 import {Page, ReactSpecimen} from "catalog";
-import {FormikCheckbox, FormikToggle, IconQuestionmark, IconElectricity} from "june-design-system";
+import {FormikCheckbox, FormikToggle, IconQuestionmark, IconElectricity, FormGroup, Button} from "june-design-system";
 import {Flex} from "reflexbox";
+import {Field, Form, Formik} from 'formik';
 
 export default class FormikTogglePage extends React.Component {
   constructor(props) {
@@ -88,27 +89,42 @@ export default class FormikTogglePage extends React.Component {
             />
           </div>
         </Flex>
-        ## Toggle Regular
+         ## Toggle Regular
         <ReactSpecimen span={3}>
-          <FormikToggle
-            name="regular"
-            label="Regular Toggle"
-            disabled={this.state.disabled}
-            field={this.state.field}
-            form={this.state.form}
-          />
+          <Formik>
+            <Form>
+              <FormGroup>
+                <Field
+                  name="regular"
+                  label="Regular Toggle"
+                  disabled={this.state.disabled}
+                  field={this.state.field}
+                  form={this.state.form}
+                  component={FormikToggle}
+                />
+              </FormGroup>
+            </Form>
+          </Formik>
         </ReactSpecimen>
 
         ## Toggle Icon Right & Tooltip
         <ReactSpecimen span={3}>
-          <FormikToggle
-            tooltip={<IconQuestionmark fill={this.state.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'}/>}
-            icon={<IconElectricity fill={this.state.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'}/>}
-            label="Toggle with an icon"
-            disabled={this.state.disabled}
-            field={this.state.field}
-            form={this.state.form}
-          />
+          <Formik>
+            <Form>
+              <FormGroup>
+                <Field
+                  name="regular"
+                  label="Regular Toggle"
+                  disabled={this.state.disabled}
+                  field={this.state.field}
+                  form={this.state.form}
+                  component={FormikToggle}
+                  tooltip={<Button type='button' color='gray-dark' iconOnly={<IconQuestionmark />}/>}
+                  icon={<IconElectricity fill={this.state.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'} />}
+                />
+              </FormGroup>
+            </Form>
+          </Formik>
         </ReactSpecimen>
       </Page>
     );
