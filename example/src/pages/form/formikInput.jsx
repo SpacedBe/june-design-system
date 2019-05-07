@@ -136,9 +136,6 @@ export default class ButtonPage extends React.Component {
               <Form className={'form'}>
                 <FormGroup>
                   <Field
-                    placeholder='email'
-                    name='email'
-                    type='email'
                     label='Email*'
                     placeholderText='example placeholder'
                     component={FormikInput}
@@ -159,9 +156,6 @@ export default class ButtonPage extends React.Component {
               <Form className={'form'}>
                 <FormGroup>
                   <Field
-                    placeholder='email'
-                    name='email'
-                    type='email'
                     label='Email*'
                     iconLeft={<IconCalender />}
                     placeholderText='example placeholder'
@@ -183,9 +177,6 @@ export default class ButtonPage extends React.Component {
               <Form className={'form'}>
                 <FormGroup>
                   <Field
-                    placeholder='email'
-                    name='email'
-                    type='email'
                     label='Email*'
                     placeholderText='example placeholder'
                     iconRight={<IconCalender />}
@@ -207,9 +198,6 @@ export default class ButtonPage extends React.Component {
               <Form className={'form'}>
                 <FormGroup>
                   <Field
-                    placeholder='email'
-                    name='email'
-                    type='email'
                     label='Email*'
                     placeholderText='example placeholder'
                     buttonOutsideRight={<Button size={'medium'}>button</Button>}
@@ -231,9 +219,6 @@ export default class ButtonPage extends React.Component {
               <Form className={'form'}>
                 <FormGroup>
                   <Field
-                    placeholder='email'
-                    name='email'
-                    type='email'
                     label='Email*'
                     placeholderText='example placeholder'
                     iconFront={<IconElectricity />}
@@ -255,9 +240,6 @@ export default class ButtonPage extends React.Component {
               <Form className={'form'}>
                 <FormGroup>
                   <Field
-                    placeholder='email'
-                    name='email'
-                    type='email'
                     label='Email*'
                     placeholderText='example placeholder'
                     iconEnd={<IconElectricity />}
@@ -279,9 +261,6 @@ export default class ButtonPage extends React.Component {
               <Form className={'form'}>
                 <FormGroup>
                   <Field
-                    placeholder='email'
-                    name='email'
-                    type='email'
                     label='Email*'
                     placeholderText='example placeholder'
                     hint={'this is a hint'}
