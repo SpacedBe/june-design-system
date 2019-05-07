@@ -18,3 +18,4 @@ export { default as IconAdd } from "./Add";
 export { default as IconRemove } from "./Remove";
 export { default as IconPhone } from "./Phone";
 export { default as IconChat } from "./Chat";
+export { default as IconTriangleDown } from "./TriangleDown";

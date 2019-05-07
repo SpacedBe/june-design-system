@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Icons / Chevron down</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.8554124,15.0001626 L12.2318785,10.539657 C11.9227072,10.1875118 11.9227072,9.6175583 12.2318785,9.26410888 C12.5410498,8.91196371 13.0405691,8.91196371 13.3497404,9.26410888 L17.7681215,14.3610843 C18.0772928,14.7145337 18.0772928,15.2857914 17.7681215,15.6379366 L13.3497404,20.734912 C13.0417227,21.0896657 12.5410498,21.0870572 12.2318785,20.734912 C11.9227072,20.3840711 11.9227072,19.8128134 12.2318785,19.4593639 L15.8554124,15.0001626 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons-/-Chevron-down" stroke="none" stroke-width="1">
+        <mask id="mask-2">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Color" transform="translate(15.000000, 15.000000) rotate(-270.000000) translate(-15.000000, -15.000000) " xlink:href="#path-1"></use>
+    </g>
+</svg>
