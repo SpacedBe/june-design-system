@@ -6,7 +6,6 @@ export default class SnackbarPage extends React.Component {
   render() {
     return (
       <Page>
-        ## Snackbar
         <ReactSpecimen>
           <Snackbar>
             This is a snackbar.

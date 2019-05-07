@@ -81,7 +81,6 @@ export default class ButtonPage extends React.Component {
   render() {
     return (
         <Page>
-          ## Buttons
           <Formik>
             <Form>
               <Flex justify={'space-between'} column>
@@ -120,7 +119,6 @@ export default class ButtonPage extends React.Component {
                       component={FormikCheckbox}
                     />
                   </FormGroup>
-
                   <FormGroup className={'wrapper'}>
                     <Field
                       error={false}

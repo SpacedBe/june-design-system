@@ -44,7 +44,6 @@ export default class PopupPage extends React.Component {
     return (
       <div>
         <Page>
-          ## Popup
           <div>
             <p>Click this button to show popup</p>
             <ReactSpecimen>

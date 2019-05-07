@@ -29,13 +29,11 @@ export default class CounterPage extends React.Component {
   render() {
     return (
       <Page>
-        # Counter
+        Number of times clicked: <span>{this.state.clicked}</span>
         <ReactSpecimen>
           <Counter onClickUp={() => this.changeUpClicked()}
                    onClickDown={() => this.changeDownClicked()}/>
         </ReactSpecimen>
-
-        Number of times clicked: <span>{this.state.clicked}</span>
       </Page>
     );
   }

@@ -67,8 +67,7 @@ export default class FormikCheckboxPage extends React.Component {
   render() {
     return (
         <Page>
-          ## Checkbox
-           <Formik>
+         <Formik>
           <Form>
             <Flex>
               <FormGroup className='wrapper'>

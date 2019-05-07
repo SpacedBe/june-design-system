@@ -26,7 +26,6 @@ export default class IconPage extends React.Component {
   render() {
     return (
       <Page >
-      ## Icons
       <Flex wrap column className={'icons'}>
         <Flex>
           <div>

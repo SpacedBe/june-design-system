@@ -75,7 +75,6 @@ export default class FormikAutoFillPage extends React.Component {
   render() {
     return (
         <Page>
-          ## Autofill
           <Flex>
             <div className='wrapper'>
               <FormikCheckbox
