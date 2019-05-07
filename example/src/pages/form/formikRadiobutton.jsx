@@ -1,7 +1,8 @@
 import React from "react";
 import {Page, ReactSpecimen} from "catalog";
-import {FormGroup, FormikCheckbox, FormikRadiobutton, IconQuestionmark} from "june-design-system";
+import {FormGroup, FormikCheckbox, FormikRadiobutton, IconQuestionmark, Button} from "june-design-system";
 import {Flex} from 'reflexbox';
+import { Field, Form, Formik } from 'formik';
 
 export default class FormikRadiobuttonPage extends React.Component{
   constructor(props){
@@ -137,45 +138,47 @@ export default class FormikRadiobuttonPage extends React.Component{
             </div>
           </Flex>
           <ReactSpecimen span={3}>
-            <div>
-              <FormGroup>
-                <FormikRadiobutton
-                  error={this.state.error}
-                  focussed={this.state.focussed}
-                  type='radio'
-                  placeholderText='example placeholder'
-                  field={this.state.field}
-                  label='Option one'
-                  form={this.state.form}
-                  name='radioTestName'
-                  disabled={this.state.disabled}
-                />
-                <FormikRadiobutton
-                  error={this.state.error}
-                  focussed={this.state.focussed}
-                  type='radio'
-                  placeholderText='example placeholder'
-                  field={this.state.field}
-                  label='When a label is really long it just shows on multiple lines.'
-                  form={this.state.form}
-                  name='radioTestName'
-                  disabled={this.state.disabled}
-                />
-              </FormGroup>
-              <FormGroup>
-                <FormikRadiobutton
-                  error={this.state.error}
-                  focussed={this.state.focussed}
-                  type='radio'
-                  placeholderText='example placeholder'
-                  field={this.state.field}
-                  label='When a label is really long it just shows on multiple lines.'
-                  form={this.state.form}
-                  name='radioTestName'
-                  tooltip={<IconQuestionmark />}
-                />
-              </FormGroup>
-            </div>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    error={this.state.error}
+                    focussed={this.state.focussed}
+                    type='radio'
+                    placeholderText='example placeholder'
+                    field={this.state.field}
+                    label='Option one'
+                    form={this.state.form}
+                    name='radioTestName'
+                    disabled={this.state.disabled}
+                    component={FormikRadiobutton}
+                  />
+                  <Field
+                    error={this.state.error}
+                    focussed={this.state.focussed}
+                    type='radio'
+                    placeholderText='example placeholder'
+                    field={this.state.field}
+                    label='When a label is really long it just shows on multiple lines.'
+                    form={this.state.form}
+                    name='radioTestName'
+                    component={FormikRadiobutton}
+                  />
+                  <Field
+                    error={this.state.error}
+                    focussed={this.state.focussed}
+                    type='radio'
+                    placeholderText='example placeholder'
+                    field={this.state.field}
+                    label='When a label is really long it just shows on multiple lines.'
+                    form={this.state.form}
+                    name='radioTestName'
+                    tooltip={<Button type='button' color='gray-dark' iconOnly={<IconQuestionmark />}/>}
+                    component={FormikRadiobutton}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
           </ReactSpecimen>
         </Page>
     );
