@@ -30,7 +30,6 @@ export default class FabPage extends React.Component {
   render() {
     return (
       <Page>
-        ## Floating Action Button
         <Flex column>
           <p>
             The Floating Action Button accepts any children you throw at it,

@@ -5,7 +5,6 @@ export default class ButtonPage extends React.Component {
   render(){
     return (
       <Page>
-      ## Typography
         <ReactSpecimen>
           <h1>H1: The quick brow fox jumps over the lazy dog</h1>
         </ReactSpecimen>

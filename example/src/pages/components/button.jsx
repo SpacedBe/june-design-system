@@ -80,8 +80,6 @@ export default class ButtonPage extends React.Component {
   render() {
     return (
         <Page>
-          ## Buttons
-
           <Flex justify={'space-between'} column>
             <Flex>
               <div className='wrapper'>

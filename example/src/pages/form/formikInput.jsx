@@ -77,7 +77,6 @@ export default class ButtonPage extends React.Component {
   render() {
     return (
         <Page>
-          ## Input Fields
           <Flex>
             <div className='wrapper'>
               <FormikCheckbox

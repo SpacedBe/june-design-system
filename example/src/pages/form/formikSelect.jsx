@@ -86,7 +86,6 @@ export default class FormikSelectPage extends React.Component {
   render() {
     return (
         <Page>
-          ## Dynamic selector
           <Flex>
             <div className='wrapper'>
               <FormikCheckbox
