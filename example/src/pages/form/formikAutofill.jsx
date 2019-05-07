@@ -72,12 +72,13 @@ export default class FormikAutoFillPage extends React.Component {
     this.setState({userInput: event.target.value})
   };
 
-  postalChange(value){
+  postalChange(){
     console.log("in postal change");
   }
 
   fetchPostal(search){
     console.log("in fetch postal")
+    return [{ id: 1, value: "one" }, { id: 2, value: "two" }, { id: 3,value: "three" }, { id: 4, value:"four"}]
   }
 
   render() {
@@ -150,7 +151,7 @@ export default class FormikAutoFillPage extends React.Component {
               disabled={this.state.disabled}
               field={this.state.field}
               form={this.state.form}
-              onChange={(value) => this.postalChange(value)}
+              onChange={() => this.postalChange()}
               fetch={(search) => this.fetchPostal(search)}
               translations={{ loading: loadingTranslation, placeholder: placeholderTranslation }}
             />
