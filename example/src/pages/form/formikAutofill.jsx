@@ -73,6 +73,8 @@ export default class FormikAutoFillPage extends React.Component {
   };
 
   render() {
+    const loadingTranslation = "loading";
+    const placeholderTranslation = "Typ om te zoeken..";
     return (
         <Page>
           <Flex>
@@ -135,11 +137,11 @@ export default class FormikAutoFillPage extends React.Component {
                 {name: 'FEMALE', id: '2', value: '2'},
                 {name: 'X', id: '3', value: '3'},
               ]}
-              placeholder='example placeholder'
               error={this.state.error}
               disabled={this.state.disabled}
               field={this.state.field}
               form={this.state.form}
+              translations={{ loading: loadingTranslation, placeholder: placeholderTranslation }}
             />
           </ReactSpecimen>
         </Page>
