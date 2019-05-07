@@ -1,8 +1,8 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Fab, IconCheck, FormikSelect, FormikCheckbox, FormikInput} from 'june-design-system';
+import {Fab, IconCheck, FormikSelect, FormikCheckbox, FormikInput, FormGroup} from 'june-design-system';
 import {Flex} from 'reflexbox';
-
+import {Field, Form, Formik} from 'formik';
 
 export default class FabPage extends React.Component {
   constructor(props) {
@@ -30,15 +30,15 @@ export default class FabPage extends React.Component {
   render() {
     return (
       <Page>
-        ## Floating Action Button
-        <Flex column>
-          <p>
-            The Floating Action Button accepts any children you throw at it,
-            for example text or an icon.
+      ## Floating Action Button
+        <Formik>
+          <Form>
+            <p>
+              The Floating Action Button accepts any children you throw at it,
+              for example text or an icon.
           </p>
-          <Flex justify={'space-between'} align={'flex-start'} column>
-            <div className="spacingBaseline">
-              <FormikCheckbox
+            <FormGroup>
+              <Field
                 error={false}
                 field={{
                   name: 'isInverted',
@@ -51,10 +51,11 @@ export default class FabPage extends React.Component {
                 }}
                 label='Inverted'
                 type='checkbox'
+                component={FormikCheckbox}
               />
-            </div>
-            <div className="spacingBaseline">
-              <FormikSelect
+            </FormGroup>
+            <FormGroup>
+              <Field
                 disabled={false}
                 error={false}
                 field={{
@@ -74,31 +75,31 @@ export default class FabPage extends React.Component {
                   { label: 'large', value: 'large' }
                 ]}
                 touched={false}
+                component={FormikSelect}
               />
-            </div>
-            <div>
-              <div className="spacingBaseline">
-                <FormikInput
-                  disabled={false}
-                  error={false}
-                  field={{
-                    name: 'content',
-                    value: this.state.content,
-                    onChange: event => this.changeContent(event)
-                  }}
-                  form={{
-                    errors: { 'example-input': null },
-                    touched: { 'example-input': false }
-                  }}
-                  label='Content'
-                  placeholderText='example placeholder'
-                  required
-                  type='text'
-                />
-              </div>
-            </div>
-          </Flex>
-        </Flex>
+            </FormGroup>
+            <FormGroup>
+              <Field
+                disabled={false}
+                error={false}
+                field={{
+                  name: 'content',
+                  value: this.state.content,
+                  onChange: event => this.changeContent(event)
+                }}
+                form={{
+                  errors: { 'example-input': null },
+                  touched: { 'example-input': false }
+                }}
+                label='Content'
+                placeholderText='example placeholder'
+                required
+                type='text'
+                component={FormikInput}
+              />
+            </FormGroup>
+          </Form>
+        </Formik>
         <ReactSpecimen>
           <Fab size={this.state.size} inverted={this.state.inverted}>
             {this.state.content}
