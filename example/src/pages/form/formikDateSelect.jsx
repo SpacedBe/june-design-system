@@ -1,7 +1,8 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox, FormikDateSelect} from 'june-design-system';
+import {FormikCheckbox, FormikDateSelect, FormGroup} from 'june-design-system';
 import {Flex} from 'reflexbox';
+import {Field, Form, Formik} from 'formik';
 
 export default class FormikDateSelectPage extends React.Component{
   constructor(props){
@@ -68,68 +69,79 @@ export default class FormikDateSelectPage extends React.Component{
   render(){
     return(
         <Page>
-          <Flex>
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'isTouched',
-                  value: this.state.focussed,
-                  onChange: () => this.toggleTouched()
-                }}
-                form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
-                }}
-                label='Touched'
-                type='checkbox'
-              />
-            </div>
-
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'hasError',
-                  value: this.state.error,
-                  onChange: () => this.toggleError()
-                }}
-                form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
-                }}
-                label='Error'
-                type='checkbox'
-              />
-            </div>
-
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'isDisabled',
-                  value: this.state.disabled,
-                  onChange: () => this.changeDisable()
-                }}
-                form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
-                }}
-                label='Disabled'
-                type='checkbox'
-              />
-            </div>
-          </Flex>
+          <Formik>
+            <Form>
+              <Flex>
+                <FormGroup className='wrapper'>
+                  <Field
+                    error={false}
+                    field={{
+                      name: 'isTouched',
+                      value: this.state.focussed,
+                      onChange: () => this.toggleTouched()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Touched'
+                    type='checkbox'
+                    component={FormikCheckbox}
+                  />
+                </FormGroup>
+                <FormGroup className='wrapper'>
+                  <Field
+                    error={false}
+                    field={{
+                      name: 'hasError',
+                      value: this.state.error,
+                      onChange: () => this.toggleError()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Error'
+                    type='checkbox'
+                    component={FormikCheckbox}
+                  />
+                </FormGroup>
+                <FormGroup className='wrapper'>
+                  <Field
+                    error={false}
+                    field={{
+                      name: 'isDisabled',
+                      onChange: () => this.changeDisable()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Disabled'
+                    type='checkbox'
+                    component={FormikCheckbox}
+                  />
+                </FormGroup>
+              </Flex>
+            </Form>
+          </Formik>
           <ReactSpecimen>
-            <FormikDateSelect
-              label='Geboortedatum'
-              field={this.state.field}
-              form={this.state.form}
-              error={this.state.error}
-              touched={this.state.touched}
-              disabled={this.state.disabled}
-              translations={{dayPlaceholder: 'dag', monthPlaceholder: 'maand', yearPlaceholder: 'jaar'}}>
-            </FormikDateSelect>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                  label='Geboortedatum'
+                  field={this.state.field}
+                  form={this.state.form}
+                  error={this.state.error}
+                  touched={this.state.touched}
+                  disabled={this.state.disabled}
+                  component={FormikDateSelect}
+                  translations={{ dayPlaceholder: 'dag', monthPlaceholder: 'maand', yearPlaceholder: 'jaar' }}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
           </ReactSpecimen>
         </Page>
     );
