@@ -69,58 +69,62 @@ export default class FormikDateSelectPage extends React.Component{
   render(){
     return(
         <Page>
-          <Flex>
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'isTouched',
-                  value: this.state.focussed,
-                  onChange: () => this.toggleTouched()
-                }}
-                form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
-                }}
-                label='Touched'
-                type='checkbox'
-              />
-            </div>
-
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'hasError',
-                  value: this.state.error,
-                  onChange: () => this.toggleError()
-                }}
-                form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
-                }}
-                label='Error'
-                type='checkbox'
-              />
-            </div>
-
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'isDisabled',
-                  value: this.state.disabled,
-                  onChange: () => this.changeDisable()
-                }}
-                form={{
-                  errors: { 'example-input': null },
-                  touched: { 'example-input': false }
-                }}
-                label='Disabled'
-                type='checkbox'
-              />
-            </div>
-          </Flex>
+          <Formik>
+            <Form>
+              <Flex>
+                <FormGroup className='wrapper'>
+                  <Field
+                    error={false}
+                    field={{
+                      name: 'isTouched',
+                      value: this.state.focussed,
+                      onChange: () => this.toggleTouched()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Touched'
+                    type='checkbox'
+                    component={FormikCheckbox}
+                  />
+                </FormGroup>
+                <FormGroup className='wrapper'>
+                  <Field
+                    error={false}
+                    field={{
+                      name: 'hasError',
+                      value: this.state.error,
+                      onChange: () => this.toggleError()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Error'
+                    type='checkbox'
+                    component={FormikCheckbox}
+                  />
+                </FormGroup>
+                <FormGroup className='wrapper'>
+                  <Field
+                    error={false}
+                    field={{
+                      name: 'isDisabled',
+                      onChange: () => this.changeDisable()
+                    }}
+                    form={{
+                      errors: { 'example-input': null },
+                      touched: { 'example-input': false }
+                    }}
+                    label='Disabled'
+                    type='checkbox'
+                    component={FormikCheckbox}
+                  />
+                </FormGroup>
+              </Flex>
+            </Form>
+          </Formik>
           <ReactSpecimen>
             <Formik>
               <Form>
