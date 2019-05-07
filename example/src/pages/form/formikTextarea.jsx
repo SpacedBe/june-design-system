@@ -1,7 +1,8 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox, FormikTextarea} from 'june-design-system';
+import {FormikCheckbox, FormikTextarea, FormGroup} from 'june-design-system';
 import {Flex} from 'reflexbox';
+import {Field, Form, Formik} from 'formik';
 
 export default class FormikTextareaPage extends React.Component {
   constructor(props) {
@@ -148,17 +149,23 @@ export default class FormikTextareaPage extends React.Component {
             </div>
           </Flex>
           <ReactSpecimen span={3}>
-            <FormikTextarea
-              required
-              label='Textarea *'
-              size={'xlarge'}
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Textarea *'
+                    size={'xlarge'}
+                    placeholderText='example placeholder'
+                    component={FormikTextarea}
+                    error={this.state.error}
+                    disabled={this.state.disabled}
+                    focussed={this.state.focussed}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
           </ReactSpecimen>
         </Page>
     );
