@@ -141,12 +141,7 @@ export default class FormikAutoFillPage extends React.Component {
 
           <ReactSpecimen span={3}>
             <FormikAutoFill
-              label='Label Value'
-              items={[
-                {name: 'MALE', id: '1', value: '1'},
-                {name: 'FEMALE', id: '2', value: '2'},
-                {name: 'X', id: '3', value: '3'},
-              ]}
+              label='Options'
               error={this.state.error}
               disabled={this.state.disabled}
               field={this.state.field}
