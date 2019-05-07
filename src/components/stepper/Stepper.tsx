@@ -53,6 +53,10 @@ const lastStepStyle = {
   width: '15%',
 };
 
+const lastLabelStyle = {
+  paddingRight: 'var(--spacing-ml)',
+};
+
 const Dot = styled.div<{ large?: boolean; color?: string; current?: boolean }>`
   width: ${props => (props.large ? '20px' : '6px')};
   height: ${props => (props.large ? '20px' : '6px')};
@@ -93,6 +97,7 @@ export class Stepper extends React.Component<Props> {
           this.props.steps.map((step, index) => {
               let modifierStyle;
               let dot;
+              let labelStyle;
 
               if (index === 0) {
                 modifierStyle = firstStepStyle;
@@ -100,6 +105,7 @@ export class Stepper extends React.Component<Props> {
 
               if (index === this.props.steps.length - 1) {
                 modifierStyle = lastStepStyle;
+                labelStyle = lastLabelStyle;
               }
 
               if (index === this.props.currentStepIndex) {
@@ -126,7 +132,7 @@ export class Stepper extends React.Component<Props> {
                 <Step key={index} style={modifierStyle}>
                   <Entry>
                     {dot}
-                    <Label>{step.label}</Label>
+                    <Label style={labelStyle}>{step.label}</Label>
                   </Entry>
                 </Step>
               );
