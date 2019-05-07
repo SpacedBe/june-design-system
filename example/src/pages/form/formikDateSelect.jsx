@@ -1,7 +1,8 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox, FormikDateSelect} from 'june-design-system';
+import {FormikCheckbox, FormikDateSelect, FormGroup} from 'june-design-system';
 import {Flex} from 'reflexbox';
+import {Field, Form, Formik} from 'formik';
 
 export default class FormikDateSelectPage extends React.Component{
   constructor(props){
@@ -121,15 +122,22 @@ export default class FormikDateSelectPage extends React.Component{
             </div>
           </Flex>
           <ReactSpecimen>
-            <FormikDateSelect
-              label='Geboortedatum'
-              field={this.state.field}
-              form={this.state.form}
-              error={this.state.error}
-              touched={this.state.touched}
-              disabled={this.state.disabled}
-              translations={{dayPlaceholder: 'dag', monthPlaceholder: 'maand', yearPlaceholder: 'jaar'}}>
-            </FormikDateSelect>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                  label='Geboortedatum'
+                  field={this.state.field}
+                  form={this.state.form}
+                  error={this.state.error}
+                  touched={this.state.touched}
+                  disabled={this.state.disabled}
+                  component={FormikDateSelect}
+                  translations={{ dayPlaceholder: 'dag', monthPlaceholder: 'maand', yearPlaceholder: 'jaar' }}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
           </ReactSpecimen>
         </Page>
     );
