@@ -7,8 +7,9 @@ import styled from 'styled-components';
 import {getIn} from 'formik';
 import Color from "../../helpers/color";
 import * as moment_ from 'moment';
+import {FormikSelect} from "../formik-select/FormikSelect";
+
 const moment = moment_;
-import {FormikSelect} from "../..";
 
 interface Option {
   label: string,
