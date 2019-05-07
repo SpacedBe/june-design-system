@@ -30,13 +30,12 @@ export default class FabPage extends React.Component {
   render() {
     return (
       <Page>
-      ## Floating Action Button
         <Formik>
           <Form>
             <p>
               The Floating Action Button accepts any children you throw at it,
               for example text or an icon.
-          </p>
+           </p>
             <FormGroup>
               <Field
                 error={false}

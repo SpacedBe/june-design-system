@@ -1,6 +1,3 @@
-
-# Colors
-
 ```color
 span: 1
 name: "White"

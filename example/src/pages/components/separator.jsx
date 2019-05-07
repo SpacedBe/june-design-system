@@ -19,7 +19,6 @@ export default class FabPage extends React.Component {
     return (
 
       <Page>
-        ## Separator
         <div className="flexer">
           <div className={'input-group'}>
             <FormikInput

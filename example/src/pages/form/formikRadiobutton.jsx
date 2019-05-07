@@ -69,7 +69,6 @@ export default class FormikRadiobuttonPage extends React.Component{
     return (
 
       <Page>
-          ## Radiobutton
         <Formik>
           <Form>
             <Flex>

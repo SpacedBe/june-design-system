@@ -86,7 +86,6 @@ export default class FormikSelectPage extends React.Component {
   render() {
     return (
         <Page>
-          ## Dynamic selector
           <Formik>
             <Form>
               <Flex>
@@ -159,6 +158,7 @@ export default class FormikSelectPage extends React.Component {
               </Flex>
             </Form>
           </Formik>
+
           ## Normal selector with a placeholder
           <ReactSpecimen span={3}>
             <Formik>

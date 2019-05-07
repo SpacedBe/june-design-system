@@ -79,7 +79,6 @@ export default class FormikTextareaPage extends React.Component {
   render() {
     return (
         <Page>
-          ## Textarea
           <Formik>
             <Form>
               <Flex>
