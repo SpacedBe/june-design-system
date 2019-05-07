@@ -89,11 +89,11 @@ const InputWithIconLeftStyled = styled(InputStyled)`
   padding-left: var(--icon-size-m);
 `;
 
-const IconSmallStyled = styled.span<{ disabled?: boolean, hasIconRight?: boolean }>`
+const IconSmallStyled = styled.span<{ disabled?: boolean, hasIconRight?: boolean}>`
   display: flex;
   position: absolute;
   ${props => props.hasIconRight ? 'right: var(--spacing-xs)' : 'left: var(--spacing-xs)'};
-  opacity: ${props => (props.disabled ? "0.5" : "1")};
+  opacity: ${props => props.disabled ? '0.5' : '1'};
   font-size: var(--icon-size-m);
 `;
 
@@ -184,9 +184,10 @@ export class FormikInput extends React.Component<Props> {
       inputContent = (
         <InputboxIconStyled error={formError}
                             disabled={this.props.disabled}>
-          <IconSmallStyled hasIconRight={this.props.iconRight}>{this.props.iconLeft}</IconSmallStyled>
+          <IconSmallStyled disabled={this.props.disabled} hasIconRight={this.props.iconRight}>{this.props.iconLeft}</IconSmallStyled>
           <InputWithIconLeftStyled {...this.props.field}
                                    error={formError}
+                                   disabled={this.props.disabled}
                                    placeholder={this.props.placeholderText}
                                    type={this.props.type}></InputWithIconLeftStyled>
         </InputboxIconStyled>
@@ -202,7 +203,7 @@ export class FormikInput extends React.Component<Props> {
                        disabled={this.props.disabled}
                        type={this.props.type}>
           </InputStyled>
-          <IconSmallStyled hasIconRight={this.props.iconRight}>{this.props.iconRight}</IconSmallStyled>
+          <IconSmallStyled disabled={this.props.disabled} hasIconRight={this.props.iconRight}>{this.props.iconRight}</IconSmallStyled>
         </InputboxIconStyled>
       );
     }
@@ -241,7 +242,7 @@ export class FormikInput extends React.Component<Props> {
     if (hasIcon && this.props.iconFront) {
       inputContent = (
         <FlexStyled>
-          <IconOutsideLeftStyled>{this.props.iconFront}</IconOutsideLeftStyled>
+          <IconOutsideLeftStyled disabled={this.props.disabled}>{this.props.iconFront}</IconOutsideLeftStyled>
           <InputboxIconStyled error={formError}
                               disabled={this.props.disabled}>
             <InputStyled {...this.props.field}
@@ -264,7 +265,7 @@ export class FormikInput extends React.Component<Props> {
                          disabled={this.props.disabled}
                          type={this.props.type}></InputStyled>
           </InputboxIconStyled>
-          <IconOutsideLeftStyled>{this.props.iconEnd}</IconOutsideLeftStyled>
+          <IconOutsideLeftStyled disabled={this.props.disabled}>{this.props.iconEnd}</IconOutsideLeftStyled>
         </FlexStyled>
       );
     }

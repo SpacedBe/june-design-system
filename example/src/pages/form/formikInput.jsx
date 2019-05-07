@@ -1,7 +1,8 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Button, FormikCheckbox, FormikInput, IconCalender, IconElectricity} from 'june-design-system';
+import {Button, FormikCheckbox, FormikInput, IconCalender, IconElectricity, FormGroup} from 'june-design-system';
 import {Flex} from 'reflexbox';
+import {Field, Form, Formik} from 'formik';
 
 export default class ButtonPage extends React.Component {
   constructor(props) {
@@ -128,111 +129,151 @@ export default class ButtonPage extends React.Component {
               />
             </div>
           </Flex>
-          ## Input field no icon
-          <ReactSpecimen span={3}>
-            <FormikInput
-              label='Label Value'
-              error={this.state.error}
-              focussed={this.state.focussed}
-              type={this.state.type}
-              disabled={this.state.disabled}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-              current={this.state.current}
-            />
-          </ReactSpecimen>
-          ## Input field icon left
-          <ReactSpecimen span={3}>
-            <FormikInput
-              iconLeft={<IconCalender/>}
-              label='Label Value'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
-          ## Input field icon right
-          <ReactSpecimen span={3}>
-            <FormikInput
-              iconRight={<IconCalender/>}
-              label='Label Value'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
-          ## Input field button outside
-          <ReactSpecimen span={3}>
-            <FormikInput
-              buttonOutsideRight={<Button size={'medium'}>button</Button>}
-              label=''
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
-          ## Input field icon lead
-          <ReactSpecimen span={3}>
-            <FormikInput
-              iconFront={<IconElectricity/>}
-              label='Label Value'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
-          ## Input field icon end
-          <ReactSpecimen span={3}>
-            <FormikInput
-              iconEnd={<IconElectricity />}
-              label=''
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
-          </ReactSpecimen>
-          ## Input field with label
-          <ReactSpecimen span={3}>
-            <FormikInput
-              label='Label Value'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
+
+        ## Formik Input with label
+        <ReactSpecimen span={3}>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Email*'
+                    placeholderText='example placeholder'
+                    component={FormikInput}
+                    error={this.state.error}
+                    disabled={this.state.disabled}
+                    focussed={this.state.focussed}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
           </ReactSpecimen>
 
-          ## Input with a hint
+          ## Formik Input field icon left
           <ReactSpecimen span={3}>
-            <FormikInput
-              required
-              label='Label Value *'
-              error={this.state.error}
-              disabled={this.state.disabled}
-              hint={'this is a hint'}
-              type={this.state.type}
-              placeholderText='example placeholder'
-              field={this.state.field}
-              form={this.state.form}
-            />
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Email*'
+                    iconLeft={<IconCalender />}
+                    placeholderText='example placeholder'
+                    component={FormikInput}
+                    error={this.state.error}
+                    disabled={this.state.disabled}
+                    focussed={this.state.focussed}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
+          </ReactSpecimen>
+
+          ## Formik Input field icon right
+          <ReactSpecimen span={3}>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Email*'
+                    placeholderText='example placeholder'
+                    iconRight={<IconCalender />}
+                    component={FormikInput}
+                    error={this.state.error}
+                    disabled={this.state.disabled}
+                    focussed={this.state.focussed}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
+          </ReactSpecimen>
+
+          ## Formik Input field button outside
+          <ReactSpecimen span={3}>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Email*'
+                    placeholderText='example placeholder'
+                    buttonOutsideRight={<Button size={'medium'}>button</Button>}
+                    component={FormikInput}
+                    error={this.state.error}
+                    disabled={this.state.disabled}
+                    focussed={this.state.focussed}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
+          </ReactSpecimen>
+
+          ## Formik Input field icon lead
+          <ReactSpecimen span={3}>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Email*'
+                    placeholderText='example placeholder'
+                    iconFront={<IconElectricity />}
+                    component={FormikInput}
+                    error={this.state.error}
+                    disabled={this.state.disabled}
+                    focussed={this.state.focussed}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
+          </ReactSpecimen>
+
+          ## Formik Input field icon end
+          <ReactSpecimen span={3}>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Email*'
+                    placeholderText='example placeholder'
+                    iconEnd={<IconElectricity />}
+                    component={FormikInput}
+                    error={this.state.error}
+                    disabled={this.state.disabled}
+                    focussed={this.state.focussed}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
+          </ReactSpecimen>
+
+          ## Formik Input field with hint
+          <ReactSpecimen span={3}>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Email*'
+                    placeholderText='example placeholder'
+                    hint={'this is a hint'}
+                    component={FormikInput}
+                    error={this.state.error}
+                    disabled={this.state.disabled}
+                    focussed={this.state.focussed}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
           </ReactSpecimen>
         </Page>
     );
