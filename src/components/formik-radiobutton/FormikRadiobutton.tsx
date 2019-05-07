@@ -61,7 +61,7 @@ const RoundStyled = styled.div<{ error?: boolean, disabled?: boolean }>`
 
 const FillingStyled = styled.span<{ error?: boolean, disabled?: boolean }>`
   display: block;
-  margin: .2em;
+  margin: 2px;
   width: 1.1em;
   height: 1.1em;
   opacity: 0;
