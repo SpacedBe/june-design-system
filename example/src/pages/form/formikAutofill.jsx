@@ -72,9 +72,15 @@ export default class FormikAutoFillPage extends React.Component {
     this.setState({userInput: event.target.value})
   };
 
+  postalChange(value){
+    console.log("in postal change");
+    console.log(this.state.value);
+  }
+
   render() {
-    const loadingTranslation = "loading";
-    const placeholderTranslation = "Typ om te zoeken..";
+    const loadingTranslation = "Laden...";
+    const placeholderTranslation = "Typ om te zoeken...";
+
     return (
         <Page>
           <Flex>
@@ -141,6 +147,7 @@ export default class FormikAutoFillPage extends React.Component {
               disabled={this.state.disabled}
               field={this.state.field}
               form={this.state.form}
+              onChange={(value) => this.postalChange(value)}
               translations={{ loading: loadingTranslation, placeholder: placeholderTranslation }}
             />
           </ReactSpecimen>
