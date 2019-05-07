@@ -133,7 +133,7 @@ export default class ButtonPage extends React.Component {
         ## Formik Input with label
         <ReactSpecimen span={3}>
             <Formik>
-              <Form className={'form'}>
+              <Form>
                 <FormGroup>
                   <Field
                     label='Email*'
@@ -153,7 +153,7 @@ export default class ButtonPage extends React.Component {
           ## Formik Input field icon left
           <ReactSpecimen span={3}>
             <Formik>
-              <Form className={'form'}>
+              <Form>
                 <FormGroup>
                   <Field
                     label='Email*'
@@ -174,7 +174,7 @@ export default class ButtonPage extends React.Component {
           ## Formik Input field icon right
           <ReactSpecimen span={3}>
             <Formik>
-              <Form className={'form'}>
+              <Form>
                 <FormGroup>
                   <Field
                     label='Email*'
@@ -195,7 +195,7 @@ export default class ButtonPage extends React.Component {
           ## Formik Input field button outside
           <ReactSpecimen span={3}>
             <Formik>
-              <Form className={'form'}>
+              <Form>
                 <FormGroup>
                   <Field
                     label='Email*'
@@ -216,7 +216,7 @@ export default class ButtonPage extends React.Component {
           ## Formik Input field icon lead
           <ReactSpecimen span={3}>
             <Formik>
-              <Form className={'form'}>
+              <Form>
                 <FormGroup>
                   <Field
                     label='Email*'
@@ -237,7 +237,7 @@ export default class ButtonPage extends React.Component {
           ## Formik Input field icon end
           <ReactSpecimen span={3}>
             <Formik>
-              <Form className={'form'}>
+              <Form>
                 <FormGroup>
                   <Field
                     label='Email*'
@@ -258,7 +258,7 @@ export default class ButtonPage extends React.Component {
           ## Formik Input field with hint
           <ReactSpecimen span={3}>
             <Formik>
-              <Form className={'form'}>
+              <Form>
                 <FormGroup>
                   <Field
                     label='Email*'
