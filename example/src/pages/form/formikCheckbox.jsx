@@ -1,7 +1,8 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox} from 'june-design-system';
+import {FormikCheckbox, FormGroup} from 'june-design-system';
 import {Flex} from 'reflexbox';
+import {Field, Form, Formik} from 'formik';
 
 export default class FormikCheckboxPage extends React.Component {
   constructor(props) {
@@ -136,28 +137,34 @@ export default class FormikCheckboxPage extends React.Component {
             </div>
           </Flex>
           <ReactSpecimen span={3}>
-            <div>
-              <FormikCheckbox
-                error={this.state.error}
-                focussed={this.state.focussed}
-                type='checkbox'
-                placeholderText='example placeholder'
-                field={this.state.field}
-                label='Option one'
-                form={this.state.form}
-                disabled={this.state.disabled}
-              />
-              <FormikCheckbox
-                error={this.state.error}
-                focussed={this.state.focussed}
-                type='checkbox'
-                placeholderText='example placeholder'
-                field={this.state.field}
-                label='When a label is really long it just shows on multiple lines.'
-                disabled={this.state.disabled}
-                form={this.state.form}
-              />
-            </div>
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    error={this.state.error}
+                    focussed={this.state.focussed}
+                    type='checkbox'
+                    placeholderText='example placeholder'
+                    field={this.state.field}
+                    label='Option one'
+                    form={this.state.form}
+                    disabled={this.state.disabled}
+                    component={FormikCheckbox}
+                  />
+                  <Field
+                    error={this.state.error}
+                    focussed={this.state.focussed}
+                    type='checkbox'
+                    placeholderText='example placeholder'
+                    field={this.state.field}
+                    label='When a label is really long it just shows on multiple lines.'
+                    disabled={this.state.disabled}
+                    form={this.state.form}
+                    component={FormikCheckbox}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
           </ReactSpecimen>
         </Page>
     );
