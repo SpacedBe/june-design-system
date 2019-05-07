@@ -1,7 +1,8 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox, FormikSelect} from 'june-design-system';
+import {FormikCheckbox, FormikSelect, FormGroup} from 'june-design-system';
 import {Flex} from 'reflexbox';
+import {Field, Form, Formik} from 'formik';
 
 export default class FormikSelectPage extends React.Component {
   constructor(props) {
@@ -154,31 +155,47 @@ export default class FormikSelectPage extends React.Component {
               />
             </div>
           </Flex>
+
+          ## Normal selector with a placeholder
           <ReactSpecimen span={3}>
-            <FormikSelect
-              label='Gender'
-              options={this.state.exampleOptions}
-              htmlFor='isSelect'
-              error={this.state.error}
-              touched={this.state.touched}
-              disabled={this.state.disabled}
-              field={this.state.field}
-              form={this.state.form}
-            />
+            <Formik>
+              <Form>
+                <FormGroup>
+                  <Field
+                    label='Gender'
+                    htmlFor='isSelect'
+                    component={FormikSelect}
+                    options={this.state.exampleOptions}
+                    error={this.state.error}
+                    touched={this.state.touched}
+                    disabled={this.state.disabled}
+                    field={this.state.field}
+                    form={this.state.form}
+                  />
+                </FormGroup>
+              </Form>
+            </Formik>
           </ReactSpecimen>
 
-          An example with a placeholder
+          ## Selector with a placeholder
           <ReactSpecimen span={3}>
-            <FormikSelect
-              options={this.state.exampleOptions}
-              htmlFor='isSelect'
-              error={this.state.error}
-              touched={this.state.touched}
-              disabled={this.state.disabled}
-              field={this.state.field}
-              form={this.state.form}
-              placeholder='Select a gender'
-            />
+          <Formik>
+            <Form>
+              <FormGroup>
+                <Field
+                  options={this.state.exampleOptions}
+                  htmlFor='isSelect'
+                  component={FormikSelect}
+                  error={this.state.error}
+                  touched={this.state.touched}
+                  disabled={this.state.disabled}
+                  field={this.state.field}
+                  form={this.state.form}
+                  placeholder='Select a gender'
+                />
+              </FormGroup>
+            </Form>
+          </Formik>
           </ReactSpecimen>
         </Page>
     );
