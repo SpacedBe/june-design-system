@@ -12,8 +12,7 @@ export default class StepPage extends React.Component {
         {label: 'step 1'},
         {label: 'step 2'},
         {label: 'step 3'},
-        {label: 'step 4'},
-        {label: 'step 5'}
+        {label: 'step 4'}
       ],
       currentStepIndex: 0
     };
