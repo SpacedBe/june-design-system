@@ -78,7 +78,7 @@ export default class FormikAutoFillPage extends React.Component {
 
   fetchPostal(search){
     console.log("in fetch postal")
-    return [{ id: 1, value: "one" }, { id: 2, value: "two" }, { id: 3,value: "three" }, { id: 4, value:"four"}]
+    return [{id: 1, value: "one"}, {id: 2, value: "two"}, {id: 3,value: "three"}, {id: 4, value:"four"}]
   }
 
   render() {
@@ -142,13 +142,14 @@ export default class FormikAutoFillPage extends React.Component {
           <ReactSpecimen span={3}>
             <FormikAutoFill
               label='Options'
+              items={[{ id: 5, value: "five" }, { id: 6, value: "six" }, { id: 7, value: "seven" }, { id: 8, value: "eight" }]}
               error={this.state.error}
               disabled={this.state.disabled}
               field={this.state.field}
               form={this.state.form}
               onChange={() => this.postalChange()}
               fetch={(search) => this.fetchPostal(search)}
-              translations={{ loading: loadingTranslation, placeholder: placeholderTranslation }}
+              translations={{loading: loadingTranslation, placeholder: placeholderTranslation}}
             />
           </ReactSpecimen>
         </Page>
