@@ -33,7 +33,7 @@ const ToggleInputStyled = styled.input`
   &:checked ~ label span {
     transform: translatex(30px);
     transition: transform var(--transition-speed-normal) ease-in;
-    border: 2px solid var(--color-primary-shade); 
+    border: 2px solid var(--color-primary-shade);
   }
 
   &:checked ~ label {
@@ -56,7 +56,7 @@ const ToggleStyled = styled.label<{ disabled?: boolean }>`
   border-radius: 30px;
   position: relative;
   background-color: ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray-light)'};
-  border: 2px solid ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray)'}; 
+  border: 2px solid ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray)'};
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
 
@@ -80,7 +80,7 @@ const SwitchStyled = styled.span<{ disabled?: boolean }>`
   top: -5px;
   border-radius: 25px;
   background-color: var(--color-white);
-  border: 2px solid ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray)'}; 
+  border: 2px solid ${props => props.disabled ? 'var(--color-gray-lighter)' : 'var(--color-gray)'};
   transition: transform var(--transition-speed-normal) ease-in;
 `;
 
@@ -120,14 +120,19 @@ const LabelIconStyled = styled.span`
 
 const IconOnStyled = styled(IconOn)`
   font-size: 8px;
-  margin: 0px 0px 6px 6px;
+  position: relative;
+  margin: 5px;
+  bottom: 10%;
   font-weight: var(--font-weight-normal);
   fill: var(--color-white);
 `;
 
 const IconOffStyled = styled(IconOff)`
   font-size: 8px;
-  margin: 0px 0px 6px 8px;
+  position: relative;
+  margin: 5px;
+  bottom: 15%;
+
   font-weight: var(--font-weight-normal);
   fill: var(--color-white);
 `;
