@@ -72,7 +72,7 @@ const BorderStyled = styled.div`
     .contents {
       max-height: 400px;
       overflow-y: auto;
-      padding: 0 var(--spacing-xl) var(--spacing-xl);
+      margin: 0 var(--spacing-xl) var(--spacing-xl);
     }
   }
 `;
