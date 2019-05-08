@@ -132,7 +132,6 @@ const IconOffStyled = styled(IconOff)`
   position: relative;
   margin: 5px;
   bottom: 15%;
-
   font-weight: var(--font-weight-normal);
   fill: var(--color-white);
 `;
