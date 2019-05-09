@@ -26,17 +26,21 @@ type Props = {
 
   fetch: (text: string) => Promise<any>;
   onChange: (selected: any) => void;
+
   translations: {
-    loading: string;
     placeholder: string;
+    noResults: string;
+    manualInput: string;
   }
+
+  allowManualInput: boolean;
 }
 
 interface Item {
   id: number,
   value: number | string,
-  name: string,
-  meta: any,
+  name: number | string,
+  meta?: any,
 }
 
 interface State {
@@ -45,6 +49,8 @@ interface State {
   selected?: any,
   items: Item[],
   loading: boolean,
+  showPlaceholder?: boolean,
+  autofill: boolean,
 }
 
 const WrapperStyled = styled.div`
@@ -80,15 +86,15 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
    padding: 1.2em;
 
    border: 2px solid ${props => {
-    if (props.disabled) {
-      return 'var(--color-gray-lighter)';
-    }
+  if (props.disabled) {
+    return 'var(--color-gray-lighter)';
+  }
 
-    if (props.error) {
-      return 'var(--color-error)';
-    }
+  if (props.error) {
+    return 'var(--color-error)';
+  }
 
-    return 'var(--color-gray-light)';
+  return 'var(--color-gray-light)';
 }};
    border-radius: 3px;
    outline: none;
@@ -154,6 +160,8 @@ export class FormikAutoFill extends React.Component<Props, State> {
       value: "",
       items: [],
       loading: false,
+      showPlaceholder: true,
+      autofill: true,
     };
 
     this.fetch = AwesomeDebouncePromise(
@@ -186,7 +194,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
           <Autocomplete
             inputProps={{
               ...inputProps,
-              onBlur: (e) => this.onBlur(e)
+              onBlur: () => this.onBlur()
             }}
             items={this.state.items}
             value={this.state.value}
@@ -205,7 +213,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
     );
   }
 
-  onBlur(e: any) {
+  onBlur() {
     setTimeout(() => {
       if (!this.state.selected) {
         this.setState({
@@ -235,7 +243,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
     if (e.target.value && e.target.value.length > 2) {
       this.retrieveDataAsynchronously(e.target.value);
     } else {
-      this.setState({items: []});
+      this.setState({items: [], showPlaceholder: true});
     }
   }
 
@@ -244,11 +252,21 @@ export class FormikAutoFill extends React.Component<Props, State> {
 
     this.fetch(searchText)
       .then((items: any[]) => {
-        this.setState({items: items || [], loading: false});
+        if (!items.length && this.props.allowManualInput) {
+          items = [{
+            id: 0,
+            value: this.state.value,
+            name: this.props.translations.manualInput
+          }];
+        }
+
+        this.setState({items: items || [], loading: false, showPlaceholder: false});
       });
   }
 
   renderInput(props: any, hasError: boolean, isDisabled: boolean, loading: boolean) {
+    props.autoComplete = 'nope';
+
     return (
       <div style={{position: 'relative'}}>
         <InputStyled {...props}
@@ -262,13 +280,25 @@ export class FormikAutoFill extends React.Component<Props, State> {
   }
 
   renderMenu(items: Item[], loading: boolean) {
-    return (
-      <ResultMenuStyled>
-        {!loading && !items.length ? <ResultItemStyled>{this.props.translations.placeholder}</ResultItemStyled> : ''}
-        {loading ? <ResultItemStyled>{this.props.translations.loading}</ResultItemStyled> :
-          <div children={items}></div>}
-      </ResultMenuStyled>
-    );
+    let content;
+
+    if (this.state.showPlaceholder) {
+      content = <ResultItemStyled>{this.props.translations.placeholder}</ResultItemStyled>;
+    }
+
+    if (!this.state.showPlaceholder) {
+      content = <ResultItemStyled>{this.props.translations.noResults}</ResultItemStyled>;
+    }
+
+    if (items.length) {
+      content = <div children={items}/>;
+    }
+
+    if (loading) {
+      return <div/>;
+    }
+
+    return <ResultMenuStyled>{content}</ResultMenuStyled>;
   }
 
   renderItem(item: Item, isHighlighted: boolean) {
@@ -276,7 +306,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
       <ResultItemStyled
         style={{background: isHighlighted ? 'var(--color-gray-lighter)' : 'var( --color-white)'}}
         key={item.id}>
-        {item.value}
+        {item.name}
       </ResultItemStyled>
     );
   }

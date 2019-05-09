@@ -1,7 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {Fab, IconCheck, FormikSelect, FormikCheckbox, FormikInput, FormGroup} from 'june-design-system';
-import {Flex} from 'reflexbox';
 import {Field, Form, Formik} from 'formik';
 
 export default class FabPage extends React.Component {
