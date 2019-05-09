@@ -72,7 +72,19 @@ export default class FormikAutoFillPage extends React.Component {
     this.setState({userInput: event.target.value})
   };
 
+  postalChange(){
+    console.log("in postal change");
+  }
+
+  fetchPostal(search){
+    console.log("in fetch postal")
+    return [{id: 1, value: "one"}, {id: 2, value: "two"}, {id: 3,value: "three"}, {id: 4, value:"four"}]
+  }
+
   render() {
+    const loadingTranslation = "Laden...";
+    const placeholderTranslation = "Typ om te zoeken...";
+
     return (
         <Page>
           <Flex>
@@ -129,17 +141,15 @@ export default class FormikAutoFillPage extends React.Component {
 
           <ReactSpecimen span={3}>
             <FormikAutoFill
-              label='Label Value'
-              items={[
-                {name: 'MALE', id: '1', value: '1'},
-                {name: 'FEMALE', id: '2', value: '2'},
-                {name: 'X', id: '3', value: '3'},
-              ]}
-              placeholder='example placeholder'
+              label='Options'
+              items={[{ id: 5, value: "five" }, { id: 6, value: "six" }, { id: 7, value: "seven" }, { id: 8, value: "eight" }]}
               error={this.state.error}
               disabled={this.state.disabled}
               field={this.state.field}
               form={this.state.form}
+              onChange={() => this.postalChange()}
+              fetch={(search) => this.fetchPostal(search)}
+              translations={{loading: loadingTranslation, placeholder: placeholderTranslation}}
             />
           </ReactSpecimen>
         </Page>

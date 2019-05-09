@@ -78,16 +78,16 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
    background-color: var(--color-white);
    color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
    padding: 1.2em;
-   
+
    border: 2px solid ${props => {
     if (props.disabled) {
       return 'var(--color-gray-lighter)';
     }
-    
+
     if (props.error) {
       return 'var(--color-error)';
     }
-    
+
     return 'var(--color-gray-light)';
 }};
    border-radius: 3px;
