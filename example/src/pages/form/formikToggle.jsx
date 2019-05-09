@@ -12,6 +12,7 @@ export default class FormikTogglePage extends React.Component {
       field: {
         name: 'regular',
         disabled: false,
+        touched: false,
       },
     };
   }
@@ -26,9 +27,9 @@ export default class FormikTogglePage extends React.Component {
     this.setState({
       focussed: !this.state.focussed,
       form: {
-        ...this.state.form,
+        ...this.state.field,
         touched: {
-          'example-input': !this.state.form.touched['example-input'],
+          'example-input': !this.state.field.touched['example-input'],
         }
       }
     });
@@ -40,23 +41,6 @@ export default class FormikTogglePage extends React.Component {
         <Formik>
           <Form>
             <Flex>
-              <FormGroup className='wrapper'>
-                <Field
-                  error={false}
-                  field={{
-                    name: 'isTouched',
-                    value: this.state.focussed,
-                    onChange: () => this.toggleTouched()
-                  }}
-                  form={{
-                    errors: { 'example-input': null },
-                    touched: { 'example-input': false }
-                  }}
-                  label='Touched'
-                  type='checkbox'
-                  component={FormikCheckbox}
-                />
-              </FormGroup>
               <FormGroup className='wrapper'>
                 <Field
                   error={false}

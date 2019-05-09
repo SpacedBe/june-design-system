@@ -136,22 +136,6 @@ export default class FormPage extends React.Component {
             <FormikCheckbox
               error={false}
               field={{
-                name: 'hasServerError',
-                onChange: () => this.toggleServerError()
-              }}
-              form={{
-                errors: {'example-input': null},
-                touched: {'example-input': false}
-              }}
-              label='Has Server Error'
-              type='checkbox'
-            />
-          </div>
-
-          <div className={'wrapper'}>
-            <FormikCheckbox
-              error={false}
-              field={{
                 name: 'isDisabled',
                 value: this.state.disabled,
                 onChange: () => this.toggleDisabled()
