@@ -9,12 +9,38 @@ export default class FormikTogglePage extends React.Component {
     super(props);
 
     this.state = {
+      error: false,
+      checked: false,
+      focussed: false,
+      label: '',
       field: {
-        name: 'regular',
-        disabled: false,
-        touched: false,
+        name: 'example-input',
       },
+      form: {
+        errors: {'example-input': null},
+        touched: {'example-input': false},
+      }
     };
+  }
+
+  toggleTouched() {
+    this.setState({
+      focussed: !this.state.focussed,
+      form: {
+        ...this.state.form,
+        touched: {
+          'example-input': !this.state.form.touched['example-input'],
+        }
+      }
+    });
+  }
+
+  toggleServerError() {
+    this.setState({
+      serverErrors: {
+        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
+      }
+    });
   }
 
   toggleDisabled() {
@@ -23,13 +49,13 @@ export default class FormikTogglePage extends React.Component {
     });
   }
 
-  toggleTouched() {
+  toggleError() {
     this.setState({
-      focussed: !this.state.focussed,
+      error: !this.state.error,
       form: {
-        ...this.state.field,
-        touched: {
-          'example-input': !this.state.field.touched['example-input'],
+        ...this.state.form,
+        errors: {
+          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
         }
       }
     });
@@ -41,6 +67,40 @@ export default class FormikTogglePage extends React.Component {
         <Formik>
           <Form>
             <Flex>
+              <FormGroup className='wrapper'>
+                <Field
+                  error={false}
+                  field={{
+                    name: 'isTouched',
+                    value: this.state.touched,
+                    onChange: () => this.toggleTouched()
+                  }}
+                  form={{
+                    errors: { 'example-input': null },
+                    touched: { 'example-input': false }
+                  }}
+                  label='Touched'
+                  type='checkbox'
+                  component={FormikCheckbox}
+                />
+              </FormGroup>
+              <FormGroup className='wrapper'>
+                <Field
+                  error={false}
+                  field={{
+                    name: 'hasError',
+                    value: this.state.error,
+                    onChange: () => this.toggleError()
+                  }}
+                  form={{
+                    errors: { 'example-input': null },
+                    touched: { 'example-input': false }
+                  }}
+                  label='Error'
+                  type='checkbox'
+                  component={FormikCheckbox}
+                />
+              </FormGroup>
               <FormGroup className='wrapper'>
                 <Field
                   error={false}
@@ -67,11 +127,14 @@ export default class FormikTogglePage extends React.Component {
             <Form>
               <FormGroup>
                 <Field
-                  name="regular"
-                  label="Regular Toggle"
-                  disabled={this.state.disabled}
+                  error={this.state.error}
+                  focussed={this.state.focussed}
+                  type='checkbox'
+                  placeholderText='example placeholder'
                   field={this.state.field}
+                  label='Option one'
                   form={this.state.form}
+                  disabled={this.state.disabled}
                   component={FormikToggle}
                 />
               </FormGroup>
@@ -85,15 +148,19 @@ export default class FormikTogglePage extends React.Component {
             <Form>
               <FormGroup>
                 <Field
-                  name="regular"
-                  label="Regular Toggle"
-                  disabled={this.state.disabled}
-                  field={this.state.field}
-                  form={this.state.form}
-                  component={FormikToggle}
-                  tooltip={<Button type='button' color='gray-dark' iconOnly={<IconQuestionmark />}/>}
-                  icon={<IconElectricity fill={this.state.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'} />}
-                />
+                error={this.state.error}
+                focussed={this.state.focussed}
+                type='checkbox'
+                placeholderText='example placeholder'
+                field={this.state.field}
+                label='Option one'
+                form={this.state.form}
+                disabled={this.state.disabled}
+                component={FormikToggle}
+                name="regular"
+                tooltip={<Button type='button' color='gray-dark' iconOnly={<IconQuestionmark />}/>}
+                icon={<IconElectricity fill={this.state.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'} />}
+              />
               </FormGroup>
             </Form>
           </Formik>
