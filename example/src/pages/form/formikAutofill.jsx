@@ -2,157 +2,135 @@ import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
 import {FormikAutoFill, FormikCheckbox} from 'june-design-system';
 import {Flex} from 'reflexbox';
+import {Field, withFormik} from "formik";
 
-export default class FormikAutoFillPage extends React.Component {
+class FormikAutoFillPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       type: 'text',
-      disabled: false,
-      error: false,
       userInput: '',
-      suggestions: [],
-      items: [],
-      field: {
-        name: 'example-input',
-      },
-      form: {
-        errors: {'example-input': null},
-        touched: {'example-input': false},
-      }
+      currentValue: null,
+      items: [
+        {
+          id: 1,
+          value: "Antwerpen 1",
+          name: "Antwerpen 1",
+        },
+        {
+          id: 2,
+          value: "Antwerpen 2",
+          name: "Antwerpen 2",
+        },
+        {
+          id: 3,
+          value: "Antwerpen 3",
+          name: "Antwerpen 3",
+        },
+        {
+          id: 4,
+          value: "Bilzen",
+          name: "Bilzen",
+        },
+        {
+          id: 5,
+          value: "Gent",
+          name: "Gent",
+        },
+        {
+          id: 6,
+          value: "Brussel",
+          name: "Brussel",
+        }
+      ],
     }
   }
 
-  toggleTouched() {
-    this.setState({
-      focussed: !this.state.focussed,
-      form: {
-        ...this.state.form,
-        touched: {
-          'example-input': !this.state.form.touched['example-input'],
-        }
-      }
-    });
+  fetch(search) {
+    return new Promise((resolve => {
+      setTimeout(() => {
+        resolve(this.state.items.filter((item) => item.name.indexOf(search) > -1))
+      }, 250);
+    }));
   }
 
-  toggleServerError() {
-    this.setState({
-      serverErrors: {
-        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
-      }
-    });
+  onChange(currentValue) {
+    this.setState({ currentValue });
   }
 
-  toggleError() {
-    this.setState({
-      error: !this.state.error,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
-  }
+  componentWillReceiveProps(nextProps) {
+    const newValues = nextProps.values;
+    const oldValues = this.props.values;
 
-  changeDisable() {
-    this.setState({
-      disabled: !this.state.disabled,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
-  }
-
-  onChangeUserInput(event) {
-    this.setState({userInput: event.target.value})
-  };
-
-  postalChange(){
-    console.log("in postal change");
-  }
-
-  fetchPostal(search){
-    console.log("in fetch postal")
-    return [{id: 1, value: "one"}, {id: 2, value: "two"}, {id: 3,value: "three"}, {id: 4, value:"four"}]
+    if (newValues.touched !== oldValues.touched) {
+      this.props.setFieldTouched('autofill', newValues.touched);
+    }
   }
 
   render() {
-    const loadingTranslation = "Laden...";
-    const placeholderTranslation = "Typ om te zoeken...";
+    const {disabled, error, allowManualInput} = this.props.values;
 
     return (
-        <Page>
-          <Flex>
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'isTouched',
-                  value: this.state.focussed,
-                  onChange: () => this.toggleTouched()
-                }}
-                form={{
-                  errors: {'example-input': null},
-                  touched: {'example-input': false}
-                }}
-                label='Touched'
-                type='checkbox'
-              />
-            </div>
+      <Page>
+        <Flex>
+          <div className='wrapper'>
+            <Field
+              name={`touched`}
+              component={FormikCheckbox}
+              label={'Touched'}/>
+          </div>
 
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'hasError',
-                  value: this.state.error,
-                  onChange: () => this.toggleError()
-                }}
-                form={{
-                  errors: {'example-input': null},
-                  touched: {'example-input': false}
-                }}
-                label='Error'
-                type='checkbox'
-              />
-            </div>
+          <div className='wrapper'>
+            <Field
+              name={`error`}
+              component={FormikCheckbox}
+              label={'Error'}/>
+          </div>
 
-            <div className='wrapper'>
-              <FormikCheckbox
-                error={false}
-                field={{
-                  name: 'isDisabled',
-                  onChange: () => this.changeDisable()
-                }}
-                form={{
-                  errors: {'example-input': null},
-                  touched: {'example-input': false}
-                }}
-                label='Disabled'
-                type='checkbox'
-              />
-            </div>
-          </Flex>
+          <div className='wrapper'>
+            <Field
+              name={`disabled`}
+              component={FormikCheckbox}
+              label={'Disabled'}/>
+          </div>
 
-          <ReactSpecimen span={3}>
-            <FormikAutoFill
-              label='Options'
-              items={[{ id: 5, value: "five" }, { id: 6, value: "six" }, { id: 7, value: "seven" }, { id: 8, value: "eight" }]}
-              error={this.state.error}
-              disabled={this.state.disabled}
-              field={this.state.field}
-              form={this.state.form}
-              onChange={() => this.postalChange()}
-              fetch={(search) => this.fetchPostal(search)}
-              translations={{loading: loadingTranslation, placeholder: placeholderTranslation}}
-            />
-          </ReactSpecimen>
-        </Page>
+          <div className='wrapper'>
+            <Field
+              name={`allowManualInput`}
+              component={FormikCheckbox}
+              label={'allow manual input'}/>
+          </div>
+        </Flex>
+
+        <ReactSpecimen span={3}>
+          <Field
+            name={`postal`}
+            type="text"
+            component={FormikAutoFill}
+            allowManualInput={allowManualInput}
+            validate={() => error ? 'This input as an error' : false}
+            disabled={disabled}
+            onChange={(value) => this.onChange(value)}
+            fetch={(search) => this.fetch(search)}
+            translations={{
+                placeholder: 'Start typing',
+                noResults: 'No results',
+                manualInput: 'No results - add manual',
+              }}
+            label={'Autofill example'}/>
+        </ReactSpecimen>
+
+        current value
+        <div>
+          <pre>{JSON.stringify(this.state.currentValue, null, 2)}</pre>
+        </div>
+      </Page>
     );
   }
 }
+
+export default withFormik({
+  mapPropsToValues: () => ({}),
+  displayName: 'autoFillForm',
+})(FormikAutoFillPage);
