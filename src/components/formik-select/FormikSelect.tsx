@@ -30,9 +30,10 @@ type Props = {
   placeholder?: string,
   error?: boolean,
   disabled?: boolean,
+  tooltip?: any,
 };
 
-const WrapperStyled = styled.div<{ error?: boolean; disabled?: boolean; }>`
+const WrapperStyled = styled.div`
   text-align: left;
   width: 100%;
 `;
@@ -123,16 +124,23 @@ const ErrorMessageStyled = styled.span`
   margin-bottom: var(--spacing-xs);
 `;
 
+const TooltipIconStyled = styled.span`
+  font-size: var(--icon-size-xs);
+  line-height: 0;
+  margin-right: var(--spacing-s);
+`;
+
 export class FormikSelect extends React.Component<Props> {
   render() {
     const name = this.props.field.name;
+    const tooltip = this.props.tooltip && <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>;
     const label = this.props.label;
     const fieldError = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
     const formError = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || fieldError : null;
 
     return (
-      <WrapperStyled disabled={this.props.disabled} error={!!formError}>
+      <WrapperStyled>
         <LabelStyled
           disabled={this.props.disabled}
           error={formError}
@@ -140,7 +148,8 @@ export class FormikSelect extends React.Component<Props> {
           {label}
         </LabelStyled>
 
-        <div style={{position: 'relative'}}>
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{position: 'relative', flex: '1'}}>
           <SelectStyled {...this.props.field}
                         disabled={this.props.disabled}
                         error={formError}>
@@ -155,7 +164,9 @@ export class FormikSelect extends React.Component<Props> {
               </OptionStyled>
             ))}
           </SelectStyled>
-          <IconStyled disabled={this.props.disabled} error={formError}/>
+            <IconStyled disabled={this.props.disabled} error={formError}/>
+          </div>
+          <span style={{marginLeft: 'var(--spacing-s)'}}>{tooltip}</span>
         </div>
 
         {formError && <ErrorMessageStyled>{formError}</ErrorMessageStyled>}
