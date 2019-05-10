@@ -27,7 +27,6 @@ class FormikAutoFillPage extends React.Component {
         },
         {
           id: 4,
-          value: "Bilzen",
           name: "Bilzen",
         },
         {
