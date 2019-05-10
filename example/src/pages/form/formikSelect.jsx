@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox, FormikSelect, FormGroup} from 'june-design-system';
+import {FormikCheckbox, FormikSelect, FormGroup, Button, IconQuestionmark} from 'june-design-system';
 import {Flex} from 'reflexbox';
 import {Field, Form, Formik} from 'formik';
 
@@ -179,6 +179,7 @@ export default class FormikSelectPage extends React.Component {
                   field={this.state.field}
                   form={this.state.form}
                   placeholder='Select a gender'
+                  tooltip={<Button type='button' color='gray-dark' iconOnly={<IconQuestionmark />}/>}
                 />
               </FormGroup>
             </Form>
