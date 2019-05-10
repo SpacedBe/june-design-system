@@ -1,149 +1,67 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox, FormikDateSelect, FormGroup} from 'june-design-system';
+import {FormikCheckbox, FormikDateSelect} from 'june-design-system';
 import {Flex} from 'reflexbox';
-import {Field, Form, Formik} from 'formik';
+import {Field, withFormik} from 'formik';
 
-export default class FormikDateSelectPage extends React.Component{
-  constructor(props){
-    super(props);
+class FormikDateSelectPage extends React.Component {
 
-    this.state = {
-      field: {
-        name: 'example-input',
-      },
-      disabled: false,
-      error: false,
-      touched: false,
-      form: {
-        errors: { 'example-input': null },
-        touched: { 'example-input': false },
-      }
+  componentWillReceiveProps(nextProps) {
+    const newValues = nextProps.values;
+    const oldValues = this.props.values;
+
+    if (newValues.touched !== oldValues.touched) {
+      this.props.setFieldTouched('dateSelect', newValues.touched);
     }
   }
 
-  toggleTouched() {
-    this.setState({
-      touched: !this.state.touched,
-      form: {
-        ...this.state.form,
-        touched: {
-          "example-input": !this.state.form.touched["example-input"]
-        }
-      }
-    });
-  }
-
-  toggleServerError() {
-    this.setState({
-      serverErrors: {
-        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
-      }
-    });
-  }
-
-  toggleError() {
-    this.setState({
-      error: !this.state.error,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
-  }
-
-  changeDisable() {
-    this.setState({
-      disabled: !this.state.disabled,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
-  }
-
-  render(){
-    return(
-        <Page>
-          <Formik>
-            <Form>
-              <Flex>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'isTouched',
-                      value: this.state.focussed,
-                      onChange: () => this.toggleTouched()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Touched'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'hasError',
-                      value: this.state.error,
-                      onChange: () => this.toggleError()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Error'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'isDisabled',
-                      onChange: () => this.changeDisable()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Disabled'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-              </Flex>
-            </Form>
-          </Formik>
-          <ReactSpecimen>
-            <Formik>
-              <Form>
-                <FormGroup>
-                  <Field
-                  label='Geboortedatum'
-                  field={this.state.field}
-                  form={this.state.form}
-                  error={this.state.error}
-                  touched={this.state.touched}
-                  disabled={this.state.disabled}
-                  component={FormikDateSelect}
-                  translations={{ dayPlaceholder: 'dag', monthPlaceholder: 'maand', yearPlaceholder: 'jaar' }}
-                  />
-                </FormGroup>
-              </Form>
-            </Formik>
-          </ReactSpecimen>
-        </Page>
+  render() {
+    const { disabled, error } = this.props.values;
+    return (
+      <Page>
+        <Flex>
+          <div className='wrapper'>
+            <Field
+              name={`touched`}
+              component={FormikCheckbox}
+              label={'Touched'}
+            />
+          </div>
+          <div className='wrapper'>
+            <Field
+              name={`error`}
+              component={FormikCheckbox}
+              label={'Error'}
+            />
+          </div>
+          <div className='wrapper'>
+            <Field
+              name={`disabled`}
+              component={FormikCheckbox}
+              label={'Disabled'}
+            />
+          </div>
+        </Flex>
+        <ReactSpecimen>
+          <Field
+            label='Geboortedatum'
+            name={`dateSelect`}
+            validate={() => (error ? 'This select has an error' : false)}
+            disabled={disabled}
+            component={FormikDateSelect}
+            translations={{
+              dayPlaceholder: 'dag',
+              monthPlaceholder: 'maand',
+              yearPlaceholder: 'jaar'
+            }}
+          />
+        </ReactSpecimen>
+      </Page>
     );
   }
 }
+
+export default withFormik({
+  mapPropsToValues: () => ({}),
+  displayName: 'inputFields'
+})(FormikDateSelectPage);

@@ -1,160 +1,73 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox, FormikTextarea, FormGroup} from 'june-design-system';
+import {FormikCheckbox, FormikTextarea} from 'june-design-system';
 import {Flex} from 'reflexbox';
-import {Field, Form, Formik} from 'formik';
+import {Field,withFormik} from 'formik';
 
-export default class FormikTextareaPage extends React.Component {
+class FormikTextareaPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       type: 'text',
-      disabled: false,
-      error: false,
-      focussed: false,
-      current: false,
-      size: 'medium',
-      field: {
-        name: 'example-input',
-      },
-      serverErrors: {
-        'example-input': null,
-      },
-      form: {
-        errors: { 'example-input': null },
-        touched: { 'example-input': false },
-      }
-    }
-  }
-
-  toggleTouched() {
-    this.setState({
-      focussed: !this.state.focussed,
-      form: {
-        ...this.state.form,
-        touched: {
-          'example-input': !this.state.form.touched['example-input'],
-        }
-      }
-    });
-  }
-
-  toggleServerError() {
-    this.setState({
-      serverErrors: {
-        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
-      }
-    });
-  }
-
-  toggleError() {
-    this.setState({
-      error: !this.state.error,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
-  }
-
-  changeDisable() {
-    this.setState({
-      disabled: !this.state.disabled,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
+      size: 'medium'
+    };
   }
 
   changeSize(event) {
-    this.setState({ size: event.target.value })
+    this.setState({ size: event.target.value });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const newValues = nextProps.values;
+    const oldValues = this.props.values;
+
+    if (newValues.touched !== oldValues.touched) {
+      this.props.setFieldTouched('textarea', newValues.touched);
+    }
   }
 
   render() {
+    const { disabled, error } = this.props.values;
+
     return (
-        <Page>
-          <Formik>
-            <Form>
-              <Flex>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'isTouched',
-                      value: this.state.focussed,
-                      onChange: () => this.toggleTouched()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Touched'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'hasError',
-                      value: this.state.error,
-                      onChange: () => this.toggleError()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Error'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'isDisabled',
-                      onChange: () => this.changeDisable()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Disabled'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-              </Flex>
-            </Form>
-          </Formik>
-          <ReactSpecimen span={3}>
-            <Formik>
-              <Form>
-                <FormGroup>
-                  <Field
-                    label='Textarea *'
-                    size={'xlarge'}
-                    placeholderText='example placeholder'
-                    component={FormikTextarea}
-                    error={this.state.error}
-                    disabled={this.state.disabled}
-                    focussed={this.state.focussed}
-                    field={this.state.field}
-                    form={this.state.form}
-                  />
-                </FormGroup>
-              </Form>
-            </Formik>
-          </ReactSpecimen>
-        </Page>
+      <Page>
+        <Flex>
+          <div className='wrapper'>
+            <Field
+              name={`touched`}
+              component={FormikCheckbox}
+              label={'Touched'}
+            />
+          </div>
+          <div className='wrapper'>
+            <Field name={`error`} component={FormikCheckbox} label={'Error'} />
+          </div>
+          <div className='wrapper'>
+            <Field
+              name={`disabled`}
+              component={FormikCheckbox}
+              label={'Disabled'}
+            />
+          </div>
+        </Flex>
+        <ReactSpecimen span={3}>
+          <Field
+            name={`textarea`}
+            label={'Textarea*'}
+            size={'xlarge'}
+            placeholderText='example placeholder'
+            component={FormikTextarea}
+            validate={() => (error ? 'This input has an error' : false)}
+            disabled={disabled}
+          />
+        </ReactSpecimen>
+      </Page>
     );
   }
 }
+
+export default withFormik({
+  mapPropsToValues: () => ({}),
+  displayName: 'inputFields'
+})(FormikTextareaPage);

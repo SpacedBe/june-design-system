@@ -1,171 +1,72 @@
 import React from "react";
 import {Page, ReactSpecimen} from "catalog";
-import {FormikCheckbox, FormikToggle, IconQuestionmark, IconElectricity, FormGroup, Button} from "june-design-system";
+import {FormikCheckbox, FormikToggle, IconQuestionmark, IconElectricity, Button} from "june-design-system";
 import {Flex} from "reflexbox";
-import {Field, Form, Formik} from 'formik';
+import {Field, withFormik} from 'formik';
 
-export default class FormikTogglePage extends React.Component {
-  constructor(props) {
-    super(props);
+class FormikTogglePage extends React.Component {
 
-    this.state = {
-      error: false,
-      checked: false,
-      focussed: false,
-      label: '',
-      field: {
-        name: 'example-input',
-      },
-      form: {
-        errors: {'example-input': null},
-        touched: {'example-input': false},
-      }
-    };
-  }
+ componentWillReceiveProps(nextProps) {
+    const newValues = nextProps.values;
+    const oldValues = this.props.values;
 
-  toggleTouched() {
-    this.setState({
-      focussed: !this.state.focussed,
-      form: {
-        ...this.state.form,
-        touched: {
-          'example-input': !this.state.form.touched['example-input'],
-        }
-      }
-    });
-  }
-
-  toggleServerError() {
-    this.setState({
-      serverErrors: {
-        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
-      }
-    });
-  }
-
-  toggleDisabled() {
-    this.setState({
-      disabled: !this.state.disabled
-    });
-  }
-
-  toggleError() {
-    this.setState({
-      error: !this.state.error,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
+    if (newValues.touched !== oldValues.touched) {
+      this.props.setFieldTouched('toggle', newValues.touched);
+    }
   }
 
   render() {
+    const {disabled, error} = this.props.values;
     return (
       <Page>
-        <Formik>
-          <Form>
-            <Flex>
-              <FormGroup className='wrapper'>
-                <Field
-                  error={false}
-                  field={{
-                    name: 'isTouched',
-                    value: this.state.touched,
-                    onChange: () => this.toggleTouched()
-                  }}
-                  form={{
-                    errors: { 'example-input': null },
-                    touched: { 'example-input': false }
-                  }}
-                  label='Touched'
-                  type='checkbox'
-                  component={FormikCheckbox}
-                />
-              </FormGroup>
-              <FormGroup className='wrapper'>
-                <Field
-                  error={false}
-                  field={{
-                    name: 'hasError',
-                    value: this.state.error,
-                    onChange: () => this.toggleError()
-                  }}
-                  form={{
-                    errors: { 'example-input': null },
-                    touched: { 'example-input': false }
-                  }}
-                  label='Error'
-                  type='checkbox'
-                  component={FormikCheckbox}
-                />
-              </FormGroup>
-              <FormGroup className='wrapper'>
-                <Field
-                  error={false}
-                  field={{
-                    name: 'isDisabled',
-                    onChange: () => this.toggleDisabled()
-                  }}
-                  form={{
-                    errors: { 'example-input': null },
-                    touched: { 'example-input': false }
-                  }}
-                  label='Disabled'
-                  type='checkbox'
-                  component={FormikCheckbox}
-                />
-              </FormGroup>
-            </Flex>
-          </Form>
-        </Formik>
-
-         ## Toggle Regular
-        <ReactSpecimen span={3}>
-          <Formik>
-            <Form>
-              <FormGroup>
-                <Field
-                  error={this.state.error}
-                  focussed={this.state.focussed}
-                  type='checkbox'
-                  placeholderText='example placeholder'
-                  field={this.state.field}
-                  label='Option one'
-                  form={this.state.form}
-                  disabled={this.state.disabled}
-                  component={FormikToggle}
-                />
-              </FormGroup>
-            </Form>
-          </Formik>
+        <Flex>
+          <div className='wrapper'>
+            <Field
+              name={`touched`}
+              component={FormikCheckbox}
+              label={'Touched'}
+            />
+          </div>
+          <div className='wrapper'>
+            <Field
+              name={`error`}
+              component={FormikCheckbox}
+              label={'Error'}
+            />
+          </div>
+          <div className='wrapper'>
+            <Field
+              name={`disabled`}
+              component={FormikCheckbox}
+              label={'Disabled'}
+            />
+          </div>
+        </Flex>
+        <ReactSpecimen>
+          <Field
+            name={`toggle`}
+            label='Regular Toggle'
+            component={FormikToggle}
+            validate={() => (error ? 'This input as an error' : false)}
+            disabled={disabled}
+          />
         </ReactSpecimen>
-
-        ## Toggle Icon Right & Tooltip
-        <ReactSpecimen span={3}>
-          <Formik>
-            <Form>
-              <FormGroup>
-                <Field
-                error={this.state.error}
-                focussed={this.state.focussed}
-                type='checkbox'
-                placeholderText='example placeholder'
-                field={this.state.field}
-                label='Option one'
-                form={this.state.form}
-                disabled={this.state.disabled}
-                component={FormikToggle}
-                name="regular"
-                tooltip={<Button type='button' color='gray-dark' iconOnly={<IconQuestionmark />}/>}
-                icon={<IconElectricity fill={this.state.disabled ? 'var(--color-disabled)' : 'var(--color-dark)'} />}
-              />
-              </FormGroup>
-            </Form>
-          </Formik>
+        <ReactSpecimen>
+           <Field
+              name={`toggle`}
+              label="Regular Toggle"
+              component={FormikToggle}
+              tooltip={<Button type='button' color='gray-dark' iconOnly={<IconQuestionmark />}/>}
+              icon={<IconElectricity fill={disabled ? 'var(--color-disabled)' : 'var(--color-dark)'} />}
+              validate={() => (error ? 'This input as an error' : false)}
+              disabled={disabled}
+            />
         </ReactSpecimen>
       </Page>
     );
   }
 }
+export default withFormik({
+  mapPropsToValues: () => ({}),
+  displayName: 'inputFields',
+})(FormikTogglePage);
