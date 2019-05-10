@@ -206,6 +206,7 @@ class FormPage extends React.Component {
               validate={() => (error ? 'This input as an error' : false)}
               disabled={disabled}
             />
+            <hr/>
             <Field
               component={FormikToggle}
               label='Toggle with a long label discription'
@@ -213,6 +214,7 @@ class FormPage extends React.Component {
               validate={() => (error ? 'This input as an error' : false)}
               disabled={disabled}
             />
+            <hr/>
             <Field
               component={FormikToggle}
               name={`formikform`}
@@ -228,6 +230,7 @@ class FormPage extends React.Component {
               validate={() => (error ? 'This input as an error' : false)}
               disabled={disabled}
             />
+            <hr/>
             <Field
               name='toggleTwo'
               component={FormikToggle}
@@ -243,6 +246,7 @@ class FormPage extends React.Component {
               validate={() => (error ? 'This input as an error' : false)}
               disabled={disabled}
             />
+            <hr/>
             <Flex column align='center'>
               <FormError>This is an example server error!</FormError>
               <br />
