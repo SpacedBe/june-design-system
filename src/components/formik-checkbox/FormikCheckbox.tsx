@@ -126,6 +126,7 @@ export class FormikCheckbox extends React.Component<Props> {
             <Input
               {...this.props.field}
               disabled={this.props.disabled}
+              checked={this.props.field.value}
               id={name}
               type="checkbox"/>
             <CheckedFilling error={!!errors} disabled={this.props.disabled}/>

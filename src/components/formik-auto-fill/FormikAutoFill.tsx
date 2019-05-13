@@ -82,19 +82,29 @@ const InputStyled = styled.input<{ error?: boolean; disabled?: boolean }>`
    width: 100%;
    font-size: var(--font-size-m);
    background-color: var(--color-white);
-   color: ${props => props.error ? 'var(--color-error)' : 'var(--color-dark)'};
    padding: 1.2em;
 
    border: 2px solid ${props => {
+    if (props.disabled) {
+      return 'var(--color-gray-lighter)';
+    }
+  
+    if (props.error) {
+      return 'var(--color-error)';
+    }
+  
+    return 'var(--color-gray-light)';
+  }};
+   color: ${props => {
   if (props.disabled) {
-    return 'var(--color-gray-lighter)';
+    return 'var(--color-disabled)';
   }
 
   if (props.error) {
     return 'var(--color-error)';
   }
 
-  return 'var(--color-gray-light)';
+  return 'var(--color-dark)';
 }};
    border-radius: 3px;
    outline: none;
