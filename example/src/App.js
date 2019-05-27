@@ -3,6 +3,7 @@ import {Catalog, pageLoader} from 'catalog';
 import logo from './assets/images/june-logo.svg';
 
 import {
+  Banner,
   Button,
   Fab,
   IconChat,
@@ -13,7 +14,7 @@ import {
   IconSettings,
   IconWater,
   IconWaterBattery,
-  Stepper,
+  Stepper
 } from 'june-design-system';
 
 import {hot} from 'react-hot-loader/root';
@@ -151,7 +152,14 @@ class App extends Component {
                 component: pageLoader(() =>
                   import('./pages/components/snackbar')
                 )
-              }
+              },
+              {
+                path: 'banner',
+                title: 'Banner',
+                component: pageLoader(() =>
+                    import('./pages/components/banner')
+                )
+              },
             ]
           },
           {
