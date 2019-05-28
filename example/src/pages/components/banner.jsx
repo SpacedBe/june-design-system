@@ -12,8 +12,7 @@ export default class BannerPage extends React.Component {
         }
     }
 
-    updateState(name, event) {
-
+    updateDropdownState(name, event) {
         this.setState({
             [name]: event.target.value,
         });
@@ -35,7 +34,7 @@ export default class BannerPage extends React.Component {
                                 field={{
                                     name: 'color',
                                     value: this.state.color,
-                                    onChange: event => this.updateState('color', event)
+                                    onChange: event => this.updateDropdownState('color', event)
                                 }}
                                 form={{
                                     errors: {'example-input': null},
@@ -44,7 +43,7 @@ export default class BannerPage extends React.Component {
                                 htmlFor='isSelect'
                                 label='Color'
                                 options={[
-                                    {label: 'orange', value: 'orange'},
+                                    {label: 'orange (default)', value: 'orange'},
                                     {label: 'green', value: 'primary'},
                                     {label: 'red', value: 'error'},
                                     {label: 'facebook', value: 'facebook'},
@@ -54,13 +53,37 @@ export default class BannerPage extends React.Component {
                                 component={FormikSelect}
                             />
                         </FormGroup>
+                        <FormGroup className={'wrapper'}>
+                            <Field
+                                disabled={false}
+                                error={false}
+                                field={{
+                                    name: 'density',
+                                    value: this.state.density,
+                                    onChange: event => this.updateDropdownState('density', event)
+                                }}
+                                form={{
+                                    errors: {'example-input': null},
+                                    touched: {'example-input': false}
+                                }}
+                                htmlFor='isSelect'
+                                label='Density'
+                                options={[
+                                    {label: 'loose (default)', value: 'loose'},
+                                    {label: 'medium', value: 'medium'},
+                                    {label: 'tight', value: 'tight'},
+                                ]}
+                                touched={false}
+                                component={FormikSelect}
+                            />
+                        </FormGroup>
                     </Form>
                 </Formik>
 
                 <ReactSpecimen>
-                    <Banner color={this.state.color}>
+                    <Banner color={this.state.color} density={this.state.density}>
                         <h1>Example</h1>
-                        <p>this is banner content</p>
+                        <p className='no-margin'>this is banner content</p>
                     </Banner>
                 </ReactSpecimen>
             </Page>
