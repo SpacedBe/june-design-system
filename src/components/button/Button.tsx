@@ -18,6 +18,8 @@ const sizes = {
 };
 
 type Props = {
+  class?: string,
+  id?: string,
   label?: string | React.ReactNode,
   iconLeft?: any,
   iconRight?: any,
@@ -198,6 +200,8 @@ export class Button extends React.Component<Props> {
 
     buttonContent = (
       <NormalButton
+        id={this.props.id}
+        class={this.props.class}
         disabled={this.props.loading || this.props.disabled}
         color={this.props.color}
         wide={this.props.wide}

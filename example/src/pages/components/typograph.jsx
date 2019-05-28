@@ -64,6 +64,15 @@ export default class ButtonPage extends React.Component {
             </p>
           </div>
         </ReactSpecimen>
+
+          <ReactSpecimen>
+          <div>
+              <p className={'legal'}>Legal text</p>
+              <p className='legal'>
+                  The quick brow fox jumps over the lazy dog
+              </p>
+          </div>
+      </ReactSpecimen>
       </Page>
     );
   }

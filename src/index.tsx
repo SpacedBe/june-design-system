@@ -22,3 +22,4 @@ export * from "./components/separator/Separator";
 export * from "./components/spinner/Spinner";
 export * from "./components/formik-auto-fill/FormikAutoFill";
 export * from "./components/form-error/FormError";
+export * from "./components/banner/Banner";
