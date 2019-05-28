@@ -66,10 +66,17 @@ const LabelStyled = styled.label<{
 }>`
   display: block;
   opacity: ${props => (props.disabled ? '0.5' : '1')};
-  color: ${props =>
-  props.error
-    ? `var(--color-error)`
-    : `var(--color-dark)`};
+  color: ${props => {
+    if (props.disabled) {
+      return `var(--color-gray-light)`;
+    }
+
+    if (props.error) {
+      return `var(--color-error)`;
+    }
+
+    return `var(--color-dark)`;
+  }};
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
   margin-bottom: var(--spacing-xs);

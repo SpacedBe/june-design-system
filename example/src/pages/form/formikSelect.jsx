@@ -1,30 +1,16 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {FormikCheckbox, FormikSelect, FormGroup, Button, IconQuestionmark} from 'june-design-system';
+import {FormikCheckbox, FormikSelect} from 'june-design-system';
 import {Flex} from 'reflexbox';
-import {Field, Form, Formik} from 'formik';
+import {Field, withFormik} from 'formik';
 
-export default class FormikSelectPage extends React.Component {
+class FormikSelectPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userInput: "",
       options: [],
-      label: "",
-      disabled: false,
-      error: false,
-      touched: false,
-      field: {
-        name: 'example-input',
-      },
-      serverErrors: {
-        'example-input': null,
-      },
-      form: {
-        errors: {'example-input': null},
-        touched: {'example-input': false},
-      },
+      label: '',
       exampleOptions: [
         { label: 'Male', value: '1' },
         { label: 'Female', value: '2' },
@@ -33,159 +19,71 @@ export default class FormikSelectPage extends React.Component {
     };
   }
 
-  toggleTouched() {
-    this.setState({
-      touched: !this.state.touched,
-      form: {
-        ...this.state.form,
-        touched: {
-          "example-input": !this.state.form.touched["example-input"]
-        }
-      }
-    });
-  }
+  componentWillReceiveProps(nextProps) {
+    const newValues = nextProps.values;
+    const oldValues = this.props.values;
 
-  toggleServerError() {
-    this.setState({
-      serverErrors: {
-        'example-input': this.state.serverErrors['example-input'] ? null : 'this input has a server error',
-      }
-    });
+    if (newValues.touched !== oldValues.touched) {
+      this.props.setFieldTouched('select', newValues.touched);
+    }
   }
-
-  toggleError() {
-    this.setState({
-      error: !this.state.error,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
-  }
-
-  changeDisable() {
-    this.setState({
-      disabled: !this.state.disabled,
-      form: {
-        ...this.state.form,
-        errors: {
-          'example-input': this.state.form.errors['example-input'] ? null : 'this input is incorrect',
-        }
-      }
-    });
-  }
-
-  onChange = e => {
-    this.setState({
-      userInput: e.currentTarget.value
-    });
-  };
 
   render() {
+    const { disabled, error } = this.props.values;
     return (
-        <Page>
-          <Formik>
-            <Form>
-              <Flex>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'isTouched',
-                      value: this.state.focussed,
-                      onChange: () => this.toggleTouched()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Touched'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'hasError',
-                      value: this.state.error,
-                      onChange: () => this.toggleError()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Error'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-                <FormGroup className='wrapper'>
-                  <Field
-                    error={false}
-                    field={{
-                      name: 'isDisabled',
-                      onChange: () => this.changeDisable()
-                    }}
-                    form={{
-                      errors: { 'example-input': null },
-                      touched: { 'example-input': false }
-                    }}
-                    label='Disabled'
-                    type='checkbox'
-                    component={FormikCheckbox}
-                  />
-                </FormGroup>
-              </Flex>
-            </Form>
-          </Formik>
-
-          ## Normal selector with a placeholder
-          <ReactSpecimen span={3}>
-            <Formik>
-              <Form>
-                <FormGroup>
-                  <Field
-                    label='Gender'
-                    htmlFor='isSelect'
-                    component={FormikSelect}
-                    options={this.state.exampleOptions}
-                    error={this.state.error}
-                    touched={this.state.touched}
-                    disabled={this.state.disabled}
-                    field={this.state.field}
-                    form={this.state.form}
-                  />
-                </FormGroup>
-              </Form>
-            </Formik>
-          </ReactSpecimen>
-
-          ## Selector with a placeholder
-          <ReactSpecimen span={3}>
-          <Formik>
-            <Form>
-              <FormGroup>
-                <Field
-                  options={this.state.exampleOptions}
-                  htmlFor='isSelect'
-                  component={FormikSelect}
-                  error={this.state.error}
-                  touched={this.state.touched}
-                  disabled={this.state.disabled}
-                  field={this.state.field}
-                  form={this.state.form}
-                  placeholder='Select a gender'
-                  tooltip={<Button type='button' color='gray-dark' iconOnly={<IconQuestionmark />}/>}
-                />
-              </FormGroup>
-            </Form>
-          </Formik>
-          </ReactSpecimen>
-        </Page>
+      <Page>
+        <Flex>
+          <div className='wrapper'>
+            <Field
+              name={`touched`}
+              component={FormikCheckbox}
+              label={'Touched'}
+            />
+          </div>
+          <div className='wrapper'>
+            <Field
+              name={`error`}
+              component={FormikCheckbox}
+              label={'Error'}
+            />
+          </div>
+          <div className='wrapper'>
+            <Field
+              name={`disabled`}
+              component={FormikCheckbox}
+              label={'Disabled'}
+            />
+          </div>
+        </Flex>
+        ## Normal selector with a placeholder
+        <ReactSpecimen span={3}>
+          <Field
+            name={`select`}
+            component={FormikSelect}
+            validate={() => (error ? 'This select has an error' : false)}
+            disabled={disabled}
+            label={'Gender'}
+            options={this.state.exampleOptions}
+          />
+        </ReactSpecimen>
+        ## Selector with a placeholder
+        <ReactSpecimen span={3}>
+          <Field
+            name={`select`}
+            component={FormikSelect}
+            validate={() => (error ? 'This select has an error' : false)}
+            disabled={disabled}
+            label={'Gender'}
+            options={this.state.exampleOptions}
+            placeholder='Select a gender'
+          />
+        </ReactSpecimen>
+      </Page>
     );
   }
 }
+
+export default withFormik({
+  mapPropsToValues: () => ({}),
+  displayName: 'inputFields'
+})(FormikSelectPage);

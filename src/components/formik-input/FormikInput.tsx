@@ -37,6 +37,10 @@ type Props = {
   current?: boolean,
   classNames?: string[],
   style?: any,
+
+  translations:{
+    placeholder: string,
+  }
 };
 
 const colorHelper = new Color();

@@ -15,32 +15,26 @@ class FormikAutoFillPage extends React.Component {
       items: [
         {
           id: 1,
-          value: "Antwerpen 1",
           name: "Antwerpen 1",
         },
         {
           id: 2,
-          value: "Antwerpen 2",
           name: "Antwerpen 2",
         },
         {
           id: 3,
-          value: "Antwerpen 3",
           name: "Antwerpen 3",
         },
         {
           id: 4,
-          value: "Bilzen",
           name: "Bilzen",
         },
         {
           id: 5,
-          value: "Gent",
           name: "Gent",
         },
         {
           id: 6,
-          value: "Brussel",
           name: "Brussel",
         }
       ],
@@ -80,7 +74,6 @@ class FormikAutoFillPage extends React.Component {
               component={FormikCheckbox}
               label={'Touched'}/>
           </div>
-
           <div className='wrapper'>
             <Field
               name={`error`}
@@ -120,7 +113,6 @@ class FormikAutoFillPage extends React.Component {
               }}
             label={'Autofill example'}/>
         </ReactSpecimen>
-
         current value
         <div>
           <pre>{JSON.stringify(this.state.currentValue, null, 2)}</pre>

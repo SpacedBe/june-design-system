@@ -269,7 +269,6 @@ export class FormikAutoFill extends React.Component<Props, State> {
             name: this.props.translations.manualInput
           }];
         }
-
         this.setState({items: items || [], loading: false, showPlaceholder: false});
       });
   }

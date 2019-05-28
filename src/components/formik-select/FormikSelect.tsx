@@ -42,7 +42,7 @@ const SelectStyled = styled.select<{ error?: boolean; disabled?: boolean; }>`
   font-size: var(--font-size-m);
   -webkit-appearance: none;
   -moz-appearance: none;
-  
+
   &::-ms-expand {
      display: none;
   }
@@ -50,7 +50,7 @@ const SelectStyled = styled.select<{ error?: boolean; disabled?: boolean; }>`
     if (props.disabled) {
       return 'var(--color-disabled)';
     }
-  
+
     if (props.error) {
       return 'var(--color-error)';
     }
@@ -61,7 +61,7 @@ const SelectStyled = styled.select<{ error?: boolean; disabled?: boolean; }>`
     if (props.disabled) {
       return 'var(--color-gray-lighter)';
     }
-  
+
     if (props.error) {
       return 'var(--color-error)';
     }
@@ -88,7 +88,7 @@ const IconStyled = styled(IconTriangleDown)<{disabled?: boolean, error?: boolean
     if (props.disabled) {
       return 'var(--color-disabled)';
     }
-  
+
     if (props.error) {
       return 'var(--color-error)';
     }
@@ -105,10 +105,17 @@ const LabelStyled = styled.label<{
   display: block;
   margin-bottom: var(--spacing-sm);
   opacity: ${props => (props.disabled ? '0.5' : '1')};
-  color: ${props =>
-  props.error
-    ? `var(--color-error)`
-    : `var(--color-dark)`};
+  color: ${props => {
+    if (props.disabled) {
+      return `var(--color-gray-light)`;
+    }
+
+    if (props.error) {
+      return `var(--color-error)`;
+    }
+
+    return `var(--color-dark)`;
+  }};
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
 `;

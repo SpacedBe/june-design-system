@@ -96,7 +96,7 @@ const LabelStyled = styled.label<{ error?: boolean, disabled?: boolean }>`
   if (props.error) {
     return `var(--color-error)`;
   }
-  
+
   return `var(--color-dark)`;
 }};
   margin-right: var(--spacing-s);
@@ -141,9 +141,9 @@ export class FormikRadiobutton extends React.Component<Props> {
             />
             <FillingStyled error={errors} disabled={disabled}/>
           </RoundStyled>
-          <span dangerouslySetInnerHTML={{__html: label}}/>
-        </LabelStyled>
-        {tooltip}
+          <LabelStyled dangerouslySetInnerHTML={{__html: label}} error={!!errors} disabled={disabled}></LabelStyled>
+        </InputDiv>
+          {tooltip}
       </WrapperStyled>
     );
   }

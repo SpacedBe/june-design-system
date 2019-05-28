@@ -4,8 +4,9 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import {IconOff, IconOn} from '../../icons';
-import {getIn} from "formik";
+import {IconOn, IconOff} from '../../icons';
+import {getIn} from 'formik';
+import Color from '../../helpers/color';
 
 type Props = {
   field: {
@@ -19,18 +20,19 @@ type Props = {
   };
 
   ['serverErrors']: string;
-  tooltip?: any;
-  label: string,
   validationMessage: string;
   checked: boolean;
   placeholderText: string;
+  tooltip?: any;
+  focused: boolean;
+  icon?: any;
+  disabled?: boolean;
   error: boolean,
-  required?: boolean,
-  icon?: any,
-  disabled?: boolean,
 };
 
-const ToggleInputStyled = styled.input<{disabled?: boolean, error?: boolean}>`
+const colorHelper = new Color();
+
+const ToggleInputStyled = styled.input`
   z-index: var(--zi-200);
   opacity: 0;
   margin: -10px;
@@ -49,7 +51,7 @@ const ToggleInputStyled = styled.input<{disabled?: boolean, error?: boolean}>`
       if (props.error) {
         return `var(--color-error)`;
       }
-    
+
       return `var(--color-primary-shade)`;
     }};
   }
@@ -62,7 +64,7 @@ const ToggleInputStyled = styled.input<{disabled?: boolean, error?: boolean}>`
       if (props.error) {
         return `var(--color-error)`;
       }
-    
+
       return `var(--color-primary)`;
     }};
     border: 2px solid ${props => {
@@ -72,7 +74,7 @@ const ToggleInputStyled = styled.input<{disabled?: boolean, error?: boolean}>`
       if (props.error) {
         return `var(--color-error)`;
       }
-    
+
       return `var(--color-primary-shade)`;
     }};;
     transition: transform var(--transition-speed-normal) ease-in;
@@ -85,34 +87,35 @@ const ToggleInputStyled = styled.input<{disabled?: boolean, error?: boolean}>`
   }
 `;
 
-const ToggleStyled = styled.label<{error?: boolean, disabled?: boolean }>`
+const ToggleStyled = styled.label<{ disabled?: boolean; error?: boolean }>`
   display: inline-block;
   width: 40px;
   height: 18px;
   border-radius: 30px;
   position: relative;
   background-color: ${props => {
-  if (props.disabled) {
-    return `var(--color-gray-lighter)`;
-  }
-  if (props.error) {
-    return `var(--color-error)`;
-  }
+     if (props.disabled) {
+       return `var(--color-gray-lighter)`;
+     }
 
-  return `var(--color-gray-light)`;
-}};
-  
-  border: 2px solid ${props => {
-  if (props.disabled) {
-    return `var(--color-gray-lighter)`;
-  }
-  if (props.error) {
-    return `var(--color-error)`;
-  }
+     if (props.error) {
+       return `var(--color-error)`;
+     }
 
-  return `var(--color-gray)`;
-}};
-  
+     return `var(--color-gray-light)`;
+   }};
+
+   border:  ${props => {
+     if (props.disabled) {
+       return `2px solid var(--color-gray-lighter)`;
+     }
+
+     if (props.error) {
+       return `2px solid var(--color-error-shade)`;
+     }
+
+     return `2px solid var(--color-gray)`;
+   }};
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
 
@@ -128,7 +131,7 @@ const ToggleStyled = styled.label<{error?: boolean, disabled?: boolean }>`
   }
 `;
 
-const SwitchStyled = styled.span<{ error?: boolean, disabled?: boolean }>`
+const SwitchStyled = styled.span<{ disabled?: boolean, error?: boolean }>`
   position: absolute;
   width: 25px;
   height: 25px;
@@ -136,16 +139,17 @@ const SwitchStyled = styled.span<{ error?: boolean, disabled?: boolean }>`
   top: -5px;
   border-radius: 25px;
   background-color: var(--color-white);
-  border: 2px solid ${props => {
-  if (props.disabled) {
-    return `var(--color-gray-lighter)`;
-  }
-  if (props.error) {
-    return `var(--color-error)`;
-  }
+  border: ${props => {
+    if (props.disabled) {
+      return `2px solid var(--color-gray-lighter)`;
+    }
 
-  return `var(--color-gray)`;
-}};
+    if (props.error) {
+      return `2px solid var(--color-error-shade)`;
+    }
+
+    return `2px solid var(--color-gray)`;
+  }};
   transition: transform var(--transition-speed-normal) ease-in;
 `;
 
@@ -167,21 +171,22 @@ const TooltipIconStyled = styled.span`
   margin-right: var(--spacing-s);
 `;
 
-const LabelStyled = styled.label<{ error?: boolean, disabled?: boolean }>`
+const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   display: flex;
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
   margin-right: var(--spacing-s);
   color: ${props => {
-  if (props.disabled) {
-    return `var(--color-disabled)`;
-  }
-  if (props.error) {
-    return `var(--color-error)`;
-  }
+    if (props.disabled) {
+      return colorHelper.getColor('disabled');
+    }
 
-  return `var(--color-dark)`;
-}};
+    if (props.error) {
+      return colorHelper.getColor('error');
+    }
+
+    return colorHelper.getColor('dark');
+  }};
 `;
 
 const LabelIconStyled = styled.span`
@@ -219,37 +224,39 @@ export class FormikToggle extends React.Component<Props> {
   }
 
   render() {
-    const name = this.props.field.name;
+    const name = this.props.field.name
     const tooltip = this.props.tooltip && <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>;
     const labelIcon = this.props.icon && <LabelIconStyled>{this.props.icon}</LabelIconStyled>;
     const fieldError = getIn(this.props.form.errors, name);
-    const formError = (this.props.serverErrors && this.props.serverErrors[name]) || fieldError;
+    const touched = getIn(this.props.form.touched, name);
+    const label = this.props.label;
+    const formError = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || fieldError : null;
 
     return (
-      <RowStyled>
-        <WrapperStyled>
-          <TooltipWrapperStyled>
-            {tooltip}
-            <LabelStyled error={formError} disabled={this.props.disabled}>{this.props.label}</LabelStyled>
-            {labelIcon}
-          </TooltipWrapperStyled>
+      <WrapperStyled>
+        <TooltipWrapperStyled>
+          {tooltip}
+          <LabelStyled error={formError} disabled={this.props.disabled}>
+            {label}
+          </LabelStyled>
+          {labelIcon}
+        </TooltipWrapperStyled>
 
-          <div style={{position: 'relative'}}>
-            <ToggleInputStyled
-              {...this.props.field}
-              checked={this.props.field.value}
-              disabled={this.props.disabled}
-              error={formError}
-              type='checkbox'/>
+        <div style={{ position: 'relative' }}>
+          <ToggleInputStyled
+            {...this.props.field}
+            checked={this.props.field.value}
+            disabled={this.props.disabled}
+            type='checkbox'
+          />
 
-            <ToggleStyled disabled={this.props.disabled} error={formError}>
-              <IconOnStyled/>
-              <SwitchStyled disabled={this.props.disabled} error={formError}/>
-              <IconOffStyled/>
-            </ToggleStyled>
-          </div>
-        </WrapperStyled>
-      </RowStyled>
+          <ToggleStyled error={formError} disabled={this.props.disabled}>
+            <IconOnStyled />
+            <SwitchStyled error={formError} disabled={this.props.disabled} />
+            <IconOffStyled />
+          </ToggleStyled>
+        </div>
+      </WrapperStyled>
     );
   }
 }

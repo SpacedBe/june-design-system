@@ -41,7 +41,17 @@ type Props = {
 const colorHelper = new Color();
 
 const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean; focussed?: boolean; size?: string;}>`
-  border-radius: 2.5px;
+  border:  ${props => {
+     if (props.disabled) {
+       return `2px solid var(--color-gray-lighter)`;
+     }
+
+     if (props.error) {
+       return `2px solid var(--color-error)`;
+     }
+
+     return `2px solid var(--color-gray)`;
+   }};
   background: var(--color-white);
   opacity: ${props => (props.disabled ? '0.5' : '1')};
   outline: none;
@@ -50,19 +60,15 @@ const InputBoxRight = styled.div<{ error?: boolean; disabled?: boolean; focussed
   height: ${props => sizes[props.size || 'medium']};
 `;
 
-const Textarea = styled.textarea<{ disabled?: boolean, error?: boolean }>`
+const Textarea = styled.textarea`
   border: none;
   outline: none;
   background: var(--color-white);
-  opacity: ${props => (props.disabled ? '0.5' : '1')};
   width: 100%;
   padding: 10px;
   resize: none;
   font-size: var(--font-size-m);
-  border: ${props =>
-    props.error
-      ? `2px solid var(--color-error)`
-      : `2px solid var(--color-gray-light)`};
+
 `;
 
 const Flex = styled.div<{ disabled?: boolean; error?: boolean }>`
@@ -72,10 +78,20 @@ const Flex = styled.div<{ disabled?: boolean; error?: boolean }>`
   justify-content: space-between;
 `;
 
-const Label = styled.label<{ disabled?: boolean; error?: boolean }>`
+const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   padding-bottom: 5px;
   opacity: ${props => (props.disabled ? '0.5' : '1')};
-  color: ${props => (props.error ? `var(--color-error)` : `var(--color-dark)`)};
+  color: ${props => {
+    if (props.disabled) {
+      return colorHelper.getColor('disabled');
+    }
+
+    if (props.error) {
+      return colorHelper.getColor('error');
+    }
+
+    return colorHelper.getColor('dark');
+  }};
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
 `;
@@ -103,14 +119,13 @@ export class FormikTextarea extends React.Component<Props> {
     buttonContent = (
       <div>
         <Flex>
-          <Label error={this.props.error} disabled={this.props.disabled} htmlFor={name}>
+          <LabelStyled error={errors} disabled={this.props.disabled} htmlFor={name}>
             {label}
-          </Label>
+          </LabelStyled>
         </Flex>
-        <InputBoxRight size={this.props.size}>
+        <InputBoxRight error={errors} disabled={this.props.disabled} size={this.props.size}>
           <Textarea {...this.props.field}
-                    placeholder={this.props.placeholderText}
-                    disabled={this.props.disabled} error={this.props.error}>
+                    placeholder={this.props.placeholderText}>
           </Textarea>
         </InputBoxRight>
       </div>
