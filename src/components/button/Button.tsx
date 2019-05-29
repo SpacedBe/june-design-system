@@ -133,7 +133,7 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
 
   background-color: ${props => {
   if (props.disabled && props.outlined) {
-    return 'rgba(0,0,0,0)';
+    return 'transparent';
   }
 
   if (props.disabled && props.inverted) {
@@ -145,11 +145,11 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   }
   
   if (props.inverted && props.outlined) {
-    return 'rgba(0,0,0,0)';
+    return 'transparent';
   }
 
   if (props.outlined || props.clear) {
-    return 'rgba(0,0,0,0)';
+    return 'transparent';
   }
 
   if (props.inverted) {
@@ -173,7 +173,7 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   }
 
   if (props.clear) {
-    return 'rgba(0,0,0,0)';
+    return 'transparent';
   }
 
   return colorHelper.getColor(props.color);
@@ -209,7 +209,7 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   }
 
   if (props.clear) {
-    return 'rgba(0,0,0,0)';
+    return 'transparent';
   }
 
   return colorHelper.getColorShade(props.color);
