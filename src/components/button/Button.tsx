@@ -100,9 +100,21 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   display: inline-block;
   font-size: var(--font-size-m);
   color: ${props => {
-  if (props.disabled) {
+  if (props.disabled && props.outlined) {
+    return colorHelper.getColor('disabled');
+  }
+
+  if (props.disabled && props.inverted) {
+    return colorHelper.getColor('disabled');
+  }
+  
+  if (props.disabled && !props.clear) {
     return colorHelper.getColorContrast('disabled');
   }
+  
+  if (props.disabled) {
+    return colorHelper.getColor('disabled');
+  }    
 
   if (props.outlined && props.inverted || props.clear && props.inverted) {
     return colorHelper.getColorContrast(props.color);
@@ -120,10 +132,18 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
 }};
 
   background-color: ${props => {
-  if (props.disabled) {
-    return colorHelper.getColor('disabled');
+  if (props.disabled && props.outlined) {
+    return 'rgba(0,0,0,0)';
   }
 
+  if (props.disabled && props.inverted) {
+    return colorHelper.getColorContrast('disabled');
+  }
+  
+  if (props.disabled && !props.clear) {
+    return colorHelper.getColor('disabled');
+  }
+  
   if (props.inverted && props.outlined) {
     return 'rgba(0,0,0,0)';
   }
@@ -144,7 +164,7 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
 }};
 
   border: 2px solid ${props => {
-  if (props.disabled) {
+  if (props.disabled && !props.clear) {
     return colorHelper.getColor('disabled');
   }
 
@@ -184,7 +204,7 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
 }};
 
     border: 2px solid ${props => {
-  if (props.disabled) {
+  if (props.disabled && !props.clear) {
     return colorHelper.getColor('gray');
   }
 
