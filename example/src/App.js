@@ -3,7 +3,6 @@ import {Catalog, pageLoader} from 'catalog';
 import logo from './assets/images/june-logo.svg';
 
 import {
-  Banner,
   Button,
   Fab,
   IconChat,

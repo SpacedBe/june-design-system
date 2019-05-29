@@ -14,6 +14,7 @@ export default class ButtonPage extends React.Component {
       clear: false,
       disabled: false,
       loading: false,
+      inverted: false,
       tag: 'button',
       icon: '',
       size: 'medium',

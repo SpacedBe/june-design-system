@@ -231,7 +231,6 @@ class FormPage extends React.Component {
             />
             <hr/>
             <Field
-              name='toggleTwo'
               component={FormikToggle}
               tooltip={
                 <Button
