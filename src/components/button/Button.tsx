@@ -3,10 +3,11 @@
  *
  */
 
-import React  from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {Spinner} from "../spinner/Spinner";
 import Color from "../../helpers/color";
+import {withDynamicTag} from '../../helpers/DynamicTag';
 
 const colorHelper = new Color();
 
@@ -18,8 +19,11 @@ const sizes = {
 };
 
 type Props = {
-  class?: string,
+  tag?: string,
+  className?: string,
   id?: string,
+  href?: string,
+  target?: string,
   label?: string | React.ReactNode,
   iconLeft?: any,
   iconRight?: any,
@@ -30,9 +34,9 @@ type Props = {
   rounded?: boolean,
   outlined?: boolean,
   clear?: boolean,
+  inverted?: boolean,
   color?: string,
   disabled?: boolean,
-  target?: string,
   type?: "button" | "reset" | "submit" | undefined,
   onClick?: (arg?: any) => any,
 };
@@ -93,7 +97,8 @@ const OnlyIconButtonStyled = styled.button`
   padding: 0;
 `;
 
-const NormalButton = styled.button<any>`
+const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabled?: boolean, inverted?: boolean, color: string, size: string, rounded?: boolean, wide?: boolean }>`
+  display: inline-block;
   font-size: var(--font-size-m);
   color: ${props => {
   if (props.outlined && props.disabled) {
@@ -101,6 +106,10 @@ const NormalButton = styled.button<any>`
   }
 
   if (props.outlined || props.clear) {
+    return colorHelper.getColor(props.color);
+  }
+
+  if (props.inverted) {
     return colorHelper.getColor(props.color);
   }
 
@@ -114,6 +123,10 @@ const NormalButton = styled.button<any>`
 
   if (props.disabled) {
     return colorHelper.getColor('gray');
+  }
+
+  if (props.inverted) {
+    return colorHelper.getColorContrast(props.color);
   }
 
   return colorHelper.getColor(props.color);
@@ -137,7 +150,7 @@ const NormalButton = styled.button<any>`
   font-weight: var(--font-weight-bold);
 
   outline: none;
-  padding: 0px var(--spacing-m);
+  padding: 0 var(--spacing-m);
   position: relative;
   text-align: center;
   width: ${props => (props.wide ? '100%' : 'auto')};
@@ -191,6 +204,7 @@ const ButtonContainerStyled = styled.div`
 
 export class Button extends React.Component<Props> {
   static defaultProps = {
+    tag: 'button',
     size: 'medium',
     color: 'primary',
   };
@@ -198,20 +212,25 @@ export class Button extends React.Component<Props> {
   render() {
     let buttonContent;
 
+    const Tag = withDynamicTag(ButtonStyled);
+
     buttonContent = (
-      <NormalButton
-        id={this.props.id}
-        class={this.props.class}
-        disabled={this.props.loading || this.props.disabled}
-        color={this.props.color}
-        wide={this.props.wide}
-        type={this.props.type}
-        size={this.props.size}
-        outlined={this.props.outlined}
-        clear={this.props.clear}
-        onClick={this.props.onClick}
-        rounded={this.props.rounded}
-        target={this.props.target}>
+        <Tag
+            tag={this.props.tag || Button.defaultProps.tag}
+            id={this.props.id}
+            className={this.props.className}
+            href={this.props.href}
+            target={this.props.target}
+            disabled={this.props.loading || this.props.disabled}
+            color={this.props.color || Button.defaultProps.color}
+            wide={this.props.wide}
+            type={this.props.type}
+            size={this.props.size || Button.defaultProps.size}
+            outlined={this.props.outlined}
+            clear={this.props.clear}
+            inverted={this.props.inverted}
+            onClick={this.props.onClick}
+            rounded={this.props.rounded}>
         <Label>
           {this.props.iconLeft ? <IconLeft
             clear={this.props.clear}
@@ -224,7 +243,7 @@ export class Button extends React.Component<Props> {
             loading={this.props.loading}>{this.props.iconRight}</IconRight> : ''}
           {this.props.loading ? <Spinner style={{position: 'absolute'}} color={this.props.outlined || this.props.clear ? 'disabled' : 'white'}/> : ''}
         </ Label>
-      </ NormalButton>
+        </ Tag>
     );
 
     if (this.props.iconOnly) {

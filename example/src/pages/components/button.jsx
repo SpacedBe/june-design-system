@@ -1,6 +1,6 @@
 import React from 'react';
 import {Page, ReactSpecimen} from 'catalog';
-import {Button, IconSettings, FormikCheckbox, FormikSelect, FormGroup} from 'june-design-system';
+import {Button, FormGroup, FormikCheckbox, FormikSelect, IconSettings} from 'june-design-system';
 import {Flex} from 'reflexbox';
 import {Field, Form, Formik} from 'formik';
 
@@ -14,6 +14,7 @@ export default class ButtonPage extends React.Component {
       clear: false,
       disabled: false,
       loading: false,
+      tag: 'button',
       icon: '',
       size: 'medium',
       content: 'Button',
@@ -24,55 +25,15 @@ export default class ButtonPage extends React.Component {
     };
   }
 
-  changeRounded() {
-    this.setState({
-      rounded: !this.state.rounded,
-    });
+  handleDropdown(stateName, event) {
+    this.setState({[stateName]: event.target.value})
   }
 
-  changeOutline() {
-    this.setState({
-      outlined: !this.state.outlined
-    });
+  handleToggle(stateName) {
+    this.setState({[stateName]: !this.state[stateName]})
   }
 
-  changeClear() {
-    this.setState({
-      clear: !this.state.clear
-    });
-  }
-
-  changeDisable() {
-    this.setState({
-      disabled: !this.state.disabled
-    });
-  }
-
-  changeLoading() {
-    this.setState({
-      loading: !this.state.loading
-    });
-  }
-
-  changeWide() {
-    this.setState({
-      wide: !this.state.wide
-    });
-  }
-
-  changeColor(event) {
-    this.setState({color: event.target.value})
-  }
-
-  changeSize(event) {
-    this.setState({size: event.target.value})
-  }
-
-  changeIcon(event) {
-    this.setState({icon: event.target.value})
-  }
-
-  changeClicked() {
+  handleClick() {
     this.setState({
       clicked: this.state.clicked + 1
     });
@@ -84,13 +45,13 @@ export default class ButtonPage extends React.Component {
           <Formik>
             <Form>
               <Flex justify={'space-between'} column>
-                <Flex row wrap>
+                <Flex wrap>
                   <FormGroup className={'wrapper'}>
                     <Field
                       field={{
                         name: 'isRounded',
                         value: this.state.rounded,
-                        onChange: () => this.changeRounded()
+                        onChange: () => this.handleToggle('rounded')
                       }}
                       form={{
                         errors: { 'example-input': null },
@@ -108,7 +69,7 @@ export default class ButtonPage extends React.Component {
                       field={{
                         name: 'isDisabled',
                         value: this.state.disabled,
-                        onChange: () => this.changeDisable()
+                        onChange: () => this.handleToggle('disabled')
                       }}
                       form={{
                         errors: { 'example-input': null },
@@ -125,7 +86,7 @@ export default class ButtonPage extends React.Component {
                       field={{
                         name: 'isLoading',
                         value: this.state.loading,
-                        onChange: () => this.changeLoading()
+                        onChange: () => this.handleToggle('loading')
                       }}
                       form={{
                         errors: { 'example-input': null },
@@ -143,7 +104,7 @@ export default class ButtonPage extends React.Component {
                       field={{
                         name: 'isOutlined',
                         value: this.state.outlined,
-                        onChange: () => this.changeOutline()
+                        onChange: () => this.handleToggle('outlined')
                       }}
                       form={{
                         errors: { 'example-input': null },
@@ -161,7 +122,7 @@ export default class ButtonPage extends React.Component {
                       field={{
                         name: 'isClear',
                         value: this.state.clear,
-                        onChange: () => this.changeClear()
+                        onChange: () => this.handleToggle('clear')
                       }}
                       form={{
                         errors: { 'example-input': null },
@@ -175,11 +136,29 @@ export default class ButtonPage extends React.Component {
 
                   <FormGroup className={'wrapper'}>
                     <Field
+                        error={false}
+                        field={{
+                          name: 'isInverted',
+                          value: this.state.inverted,
+                          onChange: () => this.handleToggle('inverted')
+                        }}
+                        form={{
+                          errors: {'example-input': null},
+                          touched: {'example-input': false}
+                        }}
+                        label='Inverted'
+                        type='checkbox'
+                        component={FormikCheckbox}
+                    />
+                  </FormGroup>
+
+                  <FormGroup className={'wrapper'}>
+                    <Field
                       error={false}
                       field={{
                         name: 'isFullWidth',
                         value: this.state.wide,
-                        onChange: () => this.changeWide()
+                        onChange: () => this.handleToggle('wide')
                       }}
                       form={{
                         errors: { 'example-input': null },
@@ -199,7 +178,7 @@ export default class ButtonPage extends React.Component {
                         field={{
                           name: 'color',
                           value: this.state.color,
-                          onChange: event => this.changeColor(event)
+                          onChange: event => this.handleDropdown('color', event)
                         }}
                         form={{
                           errors: { 'example-input': null },
@@ -209,6 +188,8 @@ export default class ButtonPage extends React.Component {
                         label='Color'
                         options={[
                           { label: 'green', value: 'primary' },
+                          {label: 'white', value: 'white'},
+                          {label: 'orange', value: 'orange'},
                           { label: 'red', value: 'error' },
                           { label: 'facebook', value: 'facebook' },
                           { label: 'google', value: 'google' }
@@ -225,7 +206,7 @@ export default class ButtonPage extends React.Component {
                       field={{
                         name: 'Icon',
                         value: this.state.icon,
-                        onChange: event => this.changeIcon(event)
+                        onChange: event => this.handleDropdown('icon', event)
                       }}
                       form={{
                         errors: { 'example-input': null },
@@ -251,7 +232,7 @@ export default class ButtonPage extends React.Component {
                       field={{
                         name: 'size',
                         value: this.state.size,
-                        onChange: event => this.changeSize(event)
+                        onChange: event => this.handleDropdown('size', event)
                       }}
                       form={{
                         errors: { 'example-input': null },
@@ -270,21 +251,47 @@ export default class ButtonPage extends React.Component {
                   </FormGroup>
                 </Flex>
               </Flex>
+
+              <Flex>
+                <FormGroup className={'wrapper'}>
+                  <Field
+                      field={{
+                        name: 'tag',
+                        value: this.state.tag,
+                        onChange: event => this.handleDropdown('tag', event)
+                      }}
+                      form={{
+                        errors: {'example-input': null},
+                        touched: {'example-input': false}
+                      }}
+                      htmlFor='tag'
+                      label='Tag'
+                      options={[
+                        {label: 'button (default)', value: 'button'},
+                        {label: 'a', value: 'a'},
+                      ]}
+                      touched={false}
+                      component={FormikSelect}/>
+                </FormGroup>
+              </Flex>
             </Form>
           </Formik>
           <ReactSpecimen>
               <Button
-                size={this.state.size}
-                rounded={this.state.rounded}
-                outlined={this.state.outlined}
-                clear={this.state.clear}
-                disabled={this.state.disabled}
-                loading={this.state.loading}
-                wide={this.state.wide}
-                color={this.state.color}
-                iconLeft={this.state.icon === 'left' ? <IconSettings/> : ''}
-                iconRight={this.state.icon === 'right' ? <IconSettings/> : ''}
-                iconOnly={this.state.icon === 'only' ? <IconSettings/> : ''}>
+                  tag={this.state.tag}
+                  target={this.state.target}
+                  size={this.state.size}
+                  rounded={this.state.rounded}
+                  outlined={this.state.outlined}
+                  clear={this.state.clear}
+                  inverted={this.state.inverted}
+                  disabled={this.state.disabled}
+                  loading={this.state.loading}
+                  wide={this.state.wide}
+                  color={this.state.color}
+                  iconLeft={this.state.icon === 'left' ? <IconSettings/> : ''}
+                  iconRight={this.state.icon === 'right' ? <IconSettings/> : ''}
+                  iconOnly={this.state.icon === 'only' ? <IconSettings/> : ''}>
                 {this.state.content}
               </Button>
             </ReactSpecimen>
@@ -293,8 +300,7 @@ export default class ButtonPage extends React.Component {
           <ReactSpecimen>
             <Button
               htmlfor='isClicked'
-              onClick={() => this.changeClicked()}
-            >
+              onClick={() => this.handleClick()}>
               Click
             </Button>
           </ReactSpecimen>
