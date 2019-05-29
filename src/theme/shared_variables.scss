@@ -1,6 +1,12 @@
 :root {
-  // Use this tool to generate rich color sets:
-  // https://ionicframework.com/docs/theming/color-generator
+
+  /* COLORS */
+
+  /*
+    Use this tool to generate rich color sets:
+    https://ionicframework.com/docs/theming/color-generator
+  */
+
   --color-primary: #46ACA6;
   --color-primary-rgb: 70, 172, 166;
   --color-primary-contrast: #ffffff;
@@ -36,7 +42,27 @@
   --color-google-shade: #c5323d;
   --color-google-tint: #e34d58;
 
-  //todo: refactor color name
+  --color-gray-lighter: #eeeeee;
+  --color-gray-lighter-rgb: 238,238,238;
+  --color-gray-lighter-contrast: #000000;
+  --color-gray-lighter-contrast-rgb: 0,0,0;
+  --color-gray-lighter-shade: #d1d1d1;
+  --color-gray-lighter-tint: #f0f0f0;
+
+  --color-gray-light: #cccccc;
+  --color-gray-light-rgb: 204,204,204;
+  --color-gray-light-contrast: #000000;
+  --color-gray-light-contrast-rgb: 0,0,0;
+  --color-gray-light-shade: #b4b4b4;
+  --color-gray-light-tint: #d1d1d1;
+
+  --color-gray: #BFBFBF;
+  --color-gray-rgb: 191,191,191;
+  --color-gray-contrast: #000000;
+  --color-gray-contrast-rgb: 0,0,0;
+  --color-gray-shade: #a8a8a8;
+  --color-gray-tint: #c5c5c5;
+
   --color-gray-dark: #949A9E;
   --color-gray-dark-rgb: 148,154,158;
   --color-gray-dark-contrast: #000000;
@@ -44,11 +70,12 @@
   --color-gray-dark-shade: #82888b;
   --color-gray-dark-tint: #9fa4a8;
 
-  --color-gray: #BFBFBF;
-  --color-gray-darker: #333;
-  --color-gray-light: #CCC;
-  --color-gray-lighter: #EEE;
-  --color-disabled: var(--color-gray);
+  --color-gray-darker: #333333;
+  --color-gray-darker-rgb: 51,51,51;
+  --color-gray-darker-contrast: #ffffff;
+  --color-gray-darker-contrast-rgb: 255,255,255;
+  --color-gray-darker-shade: #2d2d2d;
+  --color-gray-darker-tint: #474747;
 
   --color-white: #ffffff;
   --color-white-rgb: 255,255,255;
@@ -58,6 +85,18 @@
   --color-white-tint: #ffffff;
 
   --color-dark: #172328;
+  --color-dark-rgb: 23,35,40;
+  --color-dark-contrast: #ffffff;
+  --color-dark-contrast-rgb: 255,255,255;
+  --color-dark-shade: #141f23;
+  --color-dark-tint: #2e393e;
+
+  --color-disabled: #BFBFBF;
+  --color-disabled-rgb: 191,191,191;
+  --color-disabled-contrast: #ffffff;
+  --color-disabled-contrast-rgb: 255,255,255;
+  --color-disabled-shade: #a8a8a8;
+  --color-disabled-tint: #c5c5c5;
 
   --color-error: #FF5757;
   --color-error-rgb: 255,87,87;
@@ -66,11 +105,17 @@
   --color-error-shade: #e04d4d;
   --color-error-tint: #ff6868;
 
+  /* FONT */
+
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Open Sans', sans-serif;
 
+  /* LINE HEIGHT */
+
   --line-height-body: 1.4;
   --line-height-headings: 1.6;
+
+  /* FONT SIZE */
 
   --font-size-xs: 0.714em;
   --font-size-s: 0.857em;
@@ -79,10 +124,14 @@
   --font-size-xl: 1.286em;
   --font-size-xxl: 1.429em;
 
+  /* FONT WEIGHT */
+
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
+
+  /* ICON SIZE */
 
   --icon-size-xs: 1em;
   --icon-size-s: 1.5em;
@@ -90,6 +139,7 @@
   --icon-size-l: 2.5em;
   --icon-size-xl: 3em;
 
+  /* Z-INDEX */
 
   --zi--50: -50;
   --zi-0: 0;
@@ -98,6 +148,8 @@
   --zi-150: 150;
   --zi-200: 200;
   --zi-300: 300;
+
+  /* SPACING */
 
   --spacing-baseline: 1em; //16px
   --spacing-xs: calc(var(--spacing-baseline) / 4); //0.25em or 4px
@@ -117,6 +169,7 @@
 
   --box-shadow-m: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 
+  /* RESPONSIVE */
 
   --screen-xxxs: 370px;
   --screen-xxs: 400px;
@@ -125,6 +178,8 @@
   --screen-md: 992px;
   --screen-lg: 1420px;
   --screen-xl: 1600px;
+
+  /* ANIMATION */
 
   --transition-speed-normal: 0.2s;
   --transition-speed-faster: 0.6s;

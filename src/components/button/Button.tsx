@@ -48,11 +48,10 @@ const Icon = styled.div<{ color?: string, clear?: boolean, outlined?: boolean, l
 
   svg {
     fill: ${props => {
-
   if (props.clear || props.outlined) {
     return colorHelper.getColor(props.color);
   }
-
+    
   return colorHelper.getColorContrast(props.color);
 }};
 
@@ -101,8 +100,24 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   display: inline-block;
   font-size: var(--font-size-m);
   color: ${props => {
-  if (props.outlined && props.disabled) {
-    return colorHelper.getColor('gray');
+  if (props.disabled && props.outlined) {
+    return colorHelper.getColor('disabled');
+  }
+
+  if (props.disabled && props.inverted) {
+    return colorHelper.getColor('disabled');
+  }
+  
+  if (props.disabled && !props.clear) {
+    return colorHelper.getColorContrast('disabled');
+  }
+  
+  if (props.disabled) {
+    return colorHelper.getColor('disabled');
+  }    
+
+  if (props.outlined && props.inverted || props.clear && props.inverted) {
+    return colorHelper.getColorContrast(props.color);
   }
 
   if (props.outlined || props.clear) {
@@ -117,12 +132,28 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
 }};
 
   background-color: ${props => {
-  if (props.outlined || props.clear) {
-    return 'rgba(0,0,0,0)';
+  if (props.disabled && props.outlined) {
+    return 'transparent';
   }
 
-  if (props.disabled) {
-    return colorHelper.getColor('gray');
+  if (props.disabled && props.inverted) {
+    return colorHelper.getColorContrast('disabled');
+  }
+  
+  if (props.disabled && !props.clear) {
+    return colorHelper.getColor('disabled');
+  }
+  
+  if (props.inverted && props.outlined) {
+    return 'transparent';
+  }
+
+  if (props.outlined || props.clear) {
+    return 'transparent';
+  }
+
+  if (props.inverted) {
+    return colorHelper.getColorContrast(props.color);
   }
 
   if (props.inverted) {
@@ -133,12 +164,16 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
 }};
 
   border: 2px solid ${props => {
-  if (props.disabled) {
-    return colorHelper.getColor('gray');
+  if (props.disabled && !props.clear) {
+    return colorHelper.getColor('disabled');
+  }
+
+  if (props.inverted && props.outlined) {
+    return colorHelper.getColorContrast(props.color);
   }
 
   if (props.clear) {
-    return 'rgba(0,0,0,0)';
+    return 'transparent';
   }
 
   return colorHelper.getColor(props.color);
@@ -169,12 +204,12 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
 }};
 
     border: 2px solid ${props => {
-  if (props.disabled) {
+  if (props.disabled && !props.clear) {
     return colorHelper.getColor('gray');
   }
 
   if (props.clear) {
-    return 'rgba(0,0,0,0)';
+    return 'transparent';
   }
 
   return colorHelper.getColorShade(props.color);
@@ -192,7 +227,7 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
 
   return colorHelper.getColorContrast(props.color);
 }};
- }
+  }
 `;
 
 const ButtonContainerStyled = styled.div`

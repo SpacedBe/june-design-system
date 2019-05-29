@@ -27,7 +27,7 @@ const BannerStyled = styled.div<{color: string, density: string}>`
 `;
 
 type Props = & {
-	class?: string
+	className?: string
 	id?: string,
 	color?: string,
 	density?: 'loose' | 'medium' | 'tight',
@@ -42,7 +42,7 @@ export class Banner extends React.Component<Props> {
 	render() {
 		return (
 			<BannerStyled id={this.props.id}
-						  className={this.props.class}
+						  className={this.props.className}
 						  density={this.props.density || Banner.defaultProps.density}
 						  color={this.props.color || Banner.defaultProps.color}>
 				{this.props.children}
