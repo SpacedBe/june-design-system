@@ -51,6 +51,12 @@
   --color-disabled: var(--color-gray);
 
   --color-white: #ffffff;
+  --color-white-rgb: 255,255,255;
+  --color-white-contrast: var(--color-gray-dark);
+  --color-white-contrast-rgb: var(--color-gray-dark-rgb);
+  --color-white-shade: #e0e0e0;
+  --color-white-tint: #ffffff;
+
   --color-dark: #172328;
 
   --color-error: #FF5757;
