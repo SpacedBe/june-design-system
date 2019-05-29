@@ -7,7 +7,6 @@ import React from 'react';
 import styled from 'styled-components';
 import {Spinner} from "../spinner/Spinner";
 import Color from "../../helpers/color";
-import {withDynamicTag} from '../../helpers/DynamicTag';
 
 const colorHelper = new Color();
 
@@ -19,7 +18,6 @@ const sizes = {
 };
 
 type Props = {
-  tag?: string,
   className?: string,
   id?: string,
   href?: string,
@@ -114,7 +112,7 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   
   if (props.disabled) {
     return colorHelper.getColor('disabled');
-  }    
+  }
 
   if (props.outlined && props.inverted || props.clear && props.inverted) {
     return colorHelper.getColorContrast(props.color);
@@ -215,7 +213,6 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   return colorHelper.getColorShade(props.color);
 }};
 
-
     color: ${props => {
   if (props.disabled) {
     return '';
@@ -239,7 +236,6 @@ const ButtonContainerStyled = styled.div`
 
 export class Button extends React.Component<Props> {
   static defaultProps = {
-    tag: 'button',
     size: 'medium',
     color: 'primary',
   };
@@ -247,38 +243,35 @@ export class Button extends React.Component<Props> {
   render() {
     let buttonContent;
 
-    const Tag = withDynamicTag(ButtonStyled);
 
     buttonContent = (
-        <Tag
-            tag={this.props.tag || Button.defaultProps.tag}
-            id={this.props.id}
-            className={this.props.className}
-            href={this.props.href}
-            target={this.props.target}
-            disabled={this.props.loading || this.props.disabled}
-            color={this.props.color || Button.defaultProps.color}
-            wide={this.props.wide}
-            type={this.props.type}
-            size={this.props.size || Button.defaultProps.size}
-            outlined={this.props.outlined}
-            clear={this.props.clear}
-            inverted={this.props.inverted}
-            onClick={this.props.onClick}
-            rounded={this.props.rounded}>
-        <Label>
-          {this.props.iconLeft ? <IconLeft
-            clear={this.props.clear}
-            outlined={this.props.outlined}
-            loading={this.props.loading}>{this.props.iconLeft}</IconLeft> : ''}
-          <span style={{visibility: this.props.loading ? 'hidden' : 'visible'}}>{this.props.children}</span>
-          {this.props.iconRight ? <IconRight
-            clear={this.props.clear}
-            outlined={this.props.outlined}
-            loading={this.props.loading}>{this.props.iconRight}</IconRight> : ''}
-          {this.props.loading ? <Spinner style={{position: 'absolute'}} color={this.props.outlined || this.props.clear ? 'disabled' : 'white'}/> : ''}
-        </ Label>
-        </ Tag>
+        <ButtonStyled id={this.props.id}
+                      className={this.props.className}
+                      href={this.props.href}
+                      target={this.props.target}
+                      disabled={this.props.loading || this.props.disabled}
+                      color={this.props.color || Button.defaultProps.color}
+                      wide={this.props.wide}
+                      type={this.props.type}
+                      size={this.props.size || Button.defaultProps.size}
+                      outlined={this.props.outlined}
+                      clear={this.props.clear}
+                      inverted={this.props.inverted}
+                      onClick={this.props.onClick}
+                      rounded={this.props.rounded}>
+          <Label>
+            {this.props.iconLeft ? <IconLeft
+              clear={this.props.clear}
+              outlined={this.props.outlined}
+              loading={this.props.loading}>{this.props.iconLeft}</IconLeft> : ''}
+            <span style={{visibility: this.props.loading ? 'hidden' : 'visible'}}>{this.props.children}</span>
+            {this.props.iconRight ? <IconRight
+              clear={this.props.clear}
+              outlined={this.props.outlined}
+              loading={this.props.loading}>{this.props.iconRight}</IconRight> : ''}
+            {this.props.loading ? <Spinner style={{position: 'absolute'}} color={this.props.outlined || this.props.clear ? 'disabled' : 'white'}/> : ''}
+          </ Label>
+        </ ButtonStyled>
     );
 
     if (this.props.iconOnly) {
