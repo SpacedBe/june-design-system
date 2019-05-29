@@ -15,7 +15,6 @@ export default class ButtonPage extends React.Component {
       disabled: false,
       loading: false,
       inverted: false,
-      tag: 'button',
       icon: '',
       size: 'medium',
       content: 'Button',
@@ -252,47 +251,22 @@ export default class ButtonPage extends React.Component {
                   </FormGroup>
                 </Flex>
               </Flex>
-
-              <Flex>
-                <FormGroup className={'wrapper'}>
-                  <Field
-                      field={{
-                        name: 'tag',
-                        value: this.state.tag,
-                        onChange: event => this.handleDropdown('tag', event)
-                      }}
-                      form={{
-                        errors: {'example-input': null},
-                        touched: {'example-input': false}
-                      }}
-                      htmlFor='tag'
-                      label='Tag'
-                      options={[
-                        {label: 'button (default)', value: 'button'},
-                        {label: 'a', value: 'a'},
-                      ]}
-                      touched={false}
-                      component={FormikSelect}/>
-                </FormGroup>
-              </Flex>
             </Form>
           </Formik>
           <ReactSpecimen>
-              <Button
-                  tag={this.state.tag}
-                  target={this.state.target}
-                  size={this.state.size}
-                  rounded={this.state.rounded}
-                  outlined={this.state.outlined}
-                  clear={this.state.clear}
-                  inverted={this.state.inverted}
-                  disabled={this.state.disabled}
-                  loading={this.state.loading}
-                  wide={this.state.wide}
-                  color={this.state.color}
-                  iconLeft={this.state.icon === 'left' ? <IconSettings/> : ''}
-                  iconRight={this.state.icon === 'right' ? <IconSettings/> : ''}
-                  iconOnly={this.state.icon === 'only' ? <IconSettings/> : ''}>
+              <Button target={this.state.target}
+                      size={this.state.size}
+                      rounded={this.state.rounded}
+                      outlined={this.state.outlined}
+                      clear={this.state.clear}
+                      inverted={this.state.inverted}
+                      disabled={this.state.disabled}
+                      loading={this.state.loading}
+                      wide={this.state.wide}
+                      color={this.state.color}
+                      iconLeft={this.state.icon === 'left' ? <IconSettings/> : ''}
+                      iconRight={this.state.icon === 'right' ? <IconSettings/> : ''}
+                      iconOnly={this.state.icon === 'only' ? <IconSettings/> : ''}>
                 {this.state.content}
               </Button>
             </ReactSpecimen>
