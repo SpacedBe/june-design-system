@@ -100,7 +100,6 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   display: inline-block;
   font-size: var(--font-size-m);
   color: ${props => {
-<<<<<<< HEAD
   if (props.disabled && props.outlined) {
     return colorHelper.getColor('disabled');
   }
@@ -115,12 +114,7 @@ const ButtonStyled = styled.button<{ outlined?: boolean, clear?: boolean, disabl
   
   if (props.disabled) {
     return colorHelper.getColor('disabled');
-  }    
-=======
-  if (props.disabled) {
-    return colorHelper.getColorContrast('disabled');
   }
->>>>>>> Button: add support for combined outlined-inverted states
 
   if (props.outlined && props.inverted || props.clear && props.inverted) {
     return colorHelper.getColorContrast(props.color);
