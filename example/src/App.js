@@ -153,6 +153,13 @@ class App extends Component {
                 )
               },
               {
+                path: 'spinner',
+                title: 'Spinner',
+                component: pageLoader(() =>
+                  import('./pages/components/spinner')
+                )
+              },
+              {
                 path: 'banner',
                 title: 'Banner',
                 component: pageLoader(() =>
