@@ -10,7 +10,6 @@ type Props = {
   field: {
     name: string;
     value: string;
-    disabled: boolean;
     onChange: () => {};
     OnBlur: () => {};
   };
@@ -80,11 +79,14 @@ const FillingStyled = styled.span<{ error?: boolean, disabled?: boolean }>`
 }};
 `;
 
-const LabelStyled = styled.label<{ error?: boolean, disabled?: boolean }>`
-  cursor: ${props => props.disabled ? 'initial' : 'pointer'};
-  display: flex;
+const LabelWrapperStyled = styled.label`
+ display: flex;
   align-items: center;
   position: relative;
+`;
+
+const LabelTextStyled = styled.span<{ error?: boolean, disabled?: boolean }>`
+  cursor: ${props => props.disabled ? 'initial' : 'pointer'};
   font-family: var(--font-secondary);
   font-size: var(--font-size-m);
   text-align: left;
@@ -129,21 +131,21 @@ export class FormikRadiobutton extends React.Component<Props> {
 
     return (
       <WrapperStyled>
-        <LabelStyled error={!!errors} disabled={disabled}>
+        <LabelWrapperStyled>
           <RoundStyled error={!!errors} disabled={disabled}>
             <Input
               name={this.props.field.name}
               value={this.props.value}
-              disabled={this.props.field.disabled}
+              disabled={disabled}
               onChange={this.props.field.onChange}
               checked={checked}
               type='radio'
             />
             <FillingStyled error={errors} disabled={disabled}/>
           </RoundStyled>
-          <LabelStyled dangerouslySetInnerHTML={{__html: label}} error={!!errors} disabled={disabled}></LabelStyled>
-        </InputDiv>
           {tooltip}
+          <LabelTextStyled dangerouslySetInnerHTML={{__html: label}} error={!!errors} disabled={disabled}></LabelTextStyled>
+        </LabelWrapperStyled>
       </WrapperStyled>
     );
   }
