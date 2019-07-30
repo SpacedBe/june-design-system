@@ -167,7 +167,7 @@ export class FormikAutoFill extends React.Component<Props, State> {
 
     this.state = {
       name: props.field.name,
-      value: "",
+      value: props.field.value,
       items: [],
       loading: false,
       showPlaceholder: true,
