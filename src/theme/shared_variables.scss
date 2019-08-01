@@ -152,6 +152,7 @@
   /* SPACING */
 
   --spacing-baseline: 1em; //16px
+  --spacing-xxs: calc(var(--spacing-baseline) / 6); //0.25em or 4px
   --spacing-xs: calc(var(--spacing-baseline) / 4); //0.25em or 4px
   --spacing-s: calc(var(--spacing-baseline) / 2); //0.5em or 8px
   --spacing-sm: calc((var(--spacing-baseline) / 4) * 3 ); // 0.75em or 12px
