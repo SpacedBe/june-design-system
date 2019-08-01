@@ -186,6 +186,13 @@ class App extends Component {
                 )
               },
               {
+                path: 'slottedInput',
+                title: 'Slotted Input',
+                component: pageLoader(() =>
+                  import('./pages/form/formikSlottedInput')
+                )
+              },
+              {
                 path: 'textarea',
                 title: 'Textarea',
                 component: pageLoader(() =>

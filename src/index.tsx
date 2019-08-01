@@ -11,6 +11,7 @@ export * from './components/counter/Counter';
 export * from './icons';
 export * from "./components/form-group/formGroup";
 export * from "./components/formik-input/FormikInput";
+export * from "./components/formik-slotted-input/FormikSlottedInput";
 export * from "./components/formik-toggle/FormikToggle";
 export * from "./components/formik-select/FormikSelect";
 export * from "./components/formik-date-select/FormikDateSelect";
