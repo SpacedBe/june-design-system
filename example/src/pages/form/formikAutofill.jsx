@@ -123,6 +123,8 @@ class FormikAutoFillPage extends React.Component {
 }
 
 export default withFormik({
-  mapPropsToValues: () => ({}),
+  mapPropsToValues: () => ({
+    postal : '',
+  }),
   displayName: 'autoFillForm',
 })(FormikAutoFillPage);
