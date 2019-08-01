@@ -6,12 +6,14 @@ import {Button} from '../button/Button';
 import styled from 'styled-components';
 import {Container} from '../container/Container';
 import {IconClose, IconQuestionmark} from '../../icons';
-import monster from '../../assets/images/monster.png';
+// @ts-ignore
+import monster from "../../assets/images/monster.png";
 
 type Props = {
   title: string,
   show?: boolean,
   close: any,
+  headingIcon?: boolean,
 }
 
 const PopupStyled = styled.div`
@@ -23,14 +25,16 @@ const PopupStyled = styled.div`
   z-index: 999;
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
-  color: var(--color-primary-contrast);
-  background-color: rgba(var(--color-primary-rgb), 0.95);
+  color: var(--color-dark);
+  background-color: rgba(var(--color-white-rgb), 0.95);
   text-align: center;
 
   @media only screen and (min-width: 400px) {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--color-primary-contrast);
+    background-color: rgba(var(--color-primary-rgb), 0.95);
   }
 `;
 
@@ -44,19 +48,23 @@ const ControlsStyled = styled.div`
 `;
 
 const BorderStyled = styled.div`
+  --close-button-color: var(--color-primary);
+  
   display: flex;
   flex-flow: column;
   justify-content: center;
-
-  svg {
-    fill: var(--color-white);
+  
+  .contents {
+    margin-top: var(--spacing-l);
   }
 
-  h3 {
-    margin-top: 0;
+  svg {
+    fill: var(--close-button-color);
   }
 
   @media only screen and (min-width: 400px) {
+      --close-button-color: var(--color-dark);
+
     justify-content: flex-start;
     background-color: var(--color-white);
     color: var(--color-dark);
@@ -65,11 +73,8 @@ const BorderStyled = styled.div`
     margin: var(--spacing-l) 0;
     max-height: 450px;
 
-    svg {
-      fill: var(--color-dark)
-    }
-
     .contents {
+      margin: 0;
       max-height: 400px;
       overflow-y: auto;
       padding: 0 var(--spacing-xl) var(--spacing-xl);
@@ -92,7 +97,7 @@ const RelativeStyled = styled.div`
 
 const ContainerStyled = styled(Container)`
   padding: var(--spacing-m);
-`
+`;
 
 export class Popup extends React.Component<Props> {
   render() {
@@ -104,21 +109,23 @@ export class Popup extends React.Component<Props> {
               <ControlsStyled>
                 <Button
                   onClick={() => this.props.close()}
-                  iconOnly={<IconClose fill={'white'} fontSize={'20px'} />}
+                  iconOnly={<IconClose fontSize={'var(--icon-size-xs)'}/>}
                 />
               </ControlsStyled>
               <div className={'contents'}>
-                <span>
-                  <IconQuestionmark fontSize={'70px'} />
-                </span>
-                <h3 className={'no-margin margin-bottom'}>
+                {this.props.headingIcon ? (
+                  <span>
+                    <IconQuestionmark fontSize={'var(--icon-size-l'}/>
+                  </span>
+                ) : ''}
+                <h2 className={'no-margin margin-bottom'}>
                   {this.props.title}
-                </h3>
+                </h2>
                 <div>{this.props.children}</div>
               </div>
             </BorderStyled>
           </ContainerStyled>
-          <MonsterStyled src={monster} alt='' width='380' height='420' />
+          <MonsterStyled src={monster} width='380' height='420' />
         </RelativeStyled>
       </PopupStyled>
     );
