@@ -6,8 +6,19 @@ import React from 'react';
 import styled from 'styled-components';
 import {State} from "react-autocomplete";
 import Color from "../../helpers/color";
+import {FormError} from "../..";
+import {getIn} from "formik";
 
 type Props = {
+  field: {
+    name: string;
+  };
+  form: {
+    ['errors']: string;
+    ['touched']: boolean;
+  };
+  ['serverErrors']: string;
+
   numberOfSlots: number;
   autoFocus?: boolean;
   error?: boolean;
@@ -84,10 +95,15 @@ export class FormikSlottedInput extends React.Component<Props, State> {
     this.slots = [];
     this.inputRefs = [];
     this.createSlots();
+    const name = this.props.field.name;
+    const fieldError = getIn(this.props.form.errors, name);
+    const touched = getIn(this.props.form.touched, name);
+    const formError = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || fieldError : null;
 
     return (
       <div>
         {this.slots}
+        {formError}
       </div>
     );
   }

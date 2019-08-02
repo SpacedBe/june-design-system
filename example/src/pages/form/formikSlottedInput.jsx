@@ -1,7 +1,7 @@
 import React from 'react';
 import {FormGroup, FormikCheckbox, FormikInput, FormikSlottedInput} from 'june-design-system';
 import {Page, ReactSpecimen} from 'catalog';
-import {Field, Form, Formik, withFormik} from 'formik';
+import {Field, withFormik} from 'formik';
 import {Flex} from "reflexbox";
 
 class FormikSlottedInputPage extends React.Component {
@@ -23,13 +23,18 @@ class FormikSlottedInputPage extends React.Component {
     this.setState({numberOfSlots: event.target.value})
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.hasError !== nextState.hasError) {
+      console.log(nextState.hasError);
+      this.props.setFieldError('input', nextState.hasError ? 'error message' : null);
+    }
+  }
 
   render() {
     const {disabled, error} = this.props.values;
+
     return (
       <Page>
-        <Formik>
-          <Form>
             <Flex justify={'space-between'} column>
               <Flex wrap>
                 <FormGroup className={'wrapper'}>
@@ -82,13 +87,10 @@ class FormikSlottedInputPage extends React.Component {
                 </FormGroup>
               </Flex>
             </Flex>
-          </Form>
-        </Formik>
 
         <ReactSpecimen span={3}>
           <Field
-            name={`slottedInput`}
-            error={this.state.hasError}
+            name={`input`}
             component={FormikSlottedInput}
             numberOfSlots={this.state.numberOfSlots}
             autoFocus={this.state.autoFocus}
