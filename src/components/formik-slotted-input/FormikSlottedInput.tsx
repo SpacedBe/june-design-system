@@ -6,17 +6,9 @@ import React from 'react';
 import styled from 'styled-components';
 import {State} from "react-autocomplete";
 import Color from "../../helpers/color";
-import {FormError} from "../..";
-import {getIn} from "formik";
+import {FieldProps, getIn, connect} from "formik";
 
-type Props = {
-  field: {
-    name: string;
-  };
-  form: {
-    ['errors']: string;
-    ['touched']: boolean;
-  };
+type Props = FieldProps & {
   ['serverErrors']: string;
 
   numberOfSlots: number;
@@ -26,33 +18,39 @@ type Props = {
 
 const colorHelper = new Color();
 
-const SlottedInputStyled = styled.input.attrs({maxLength: 1, autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: false})<{ ref?: any, error?: boolean }>`
+const SlottedInputStyled = styled.input.attrs({
+  maxLength: 1,
+  autocorrect: 'off',
+  autocapitalize: 'off',
+  autocomplete: 'off',
+  spellcheck: false
+})<{ ref?: any, error?: boolean }>`
   font-size: 1rem;
   text-transform: uppercase;
   text-align: center;
   font-weight: var(--font-weight-bold);
   color: ${props => {
-    if (props.error) {
-      return colorHelper.getColor('error');
-    } else {
-      return 'var(--color-gray-dark)';
-    }
-  }};
+  if (props.error) {
+    return colorHelper.getColor('error');
+  } else {
+    return 'var(--color-gray-dark)';
+  }
+}};
   width: 2rem;
   height: 2.5rem;
   border: 2px solid ${props => {
-    if (props.error) {
-      return colorHelper.getColor('error');
-    } else {
-      return 'var(--color-gray-dark)';
-    }
-  }};
+  if (props.error) {
+    return colorHelper.getColor('error');
+  } else {
+    return 'var(--color-gray-dark)';
+  }
+}};
   border-radius: 3px;
   margin: var(--spacing-xs) var(--spacing-xxs);
   outline: none;
 `;
 
-export class FormikSlottedInput extends React.Component<Props, State> {
+class FormikSlottedInput extends React.Component<Props, State> {
   public slots: any[];
   public inputRefs: any[];
 
@@ -67,38 +65,51 @@ export class FormikSlottedInput extends React.Component<Props, State> {
 
     if (inputValue.length > 0) {
       e.preventDefault();
+
       this.inputRefs[i].current.value = this.inputRefs[i].current.value.substr(-1, 1);
     }
 
-    if (!isLastInput) {
+    if (this.inputRefs[i].current.value && !isLastInput) {
       this.inputRefs[i + 1].current.select();
     }
+
+    let value = '';
+
+    this.inputRefs.forEach((input) => {
+      value = `${value}${input.current.value}`;
+    });
+
+    this.props.form.setFieldValue(this.props.field.name, value);
   }
 
-  createSlots() {
-    for (let i = 0; i < this.props.numberOfSlots; i++) {
-      let inputRef = React.createRef();
-      this.slots.push(<SlottedInputStyled key={i}
-                                          ref={inputRef}
-                                          name={'slot' + i}
-                                          id={'slot' + i}
-                                          autoFocus={this.props.autoFocus ? (i === 0) : false}
-                                          onChange={this.onChange.bind(this, i)}
-                                          error={this.props.error}/>);
-      this.inputRefs.push(inputRef);
-    }
-
-    return this.slots;
+  onBlur() {
+    this.props.form.setFieldTouched(this.props.field.name);
   }
 
   render() {
     this.slots = [];
     this.inputRefs = [];
-    this.createSlots();
+
     const name = this.props.field.name;
     const fieldError = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
     const formError = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || fieldError : null;
+
+    for (let i = 0; i < this.props.numberOfSlots; i++) {
+      let inputRef = React.createRef();
+
+      this.slots.push(<SlottedInputStyled
+        key={i}
+        ref={inputRef}
+        name={'slot' + i}
+        id={'slot' + i}
+        autoFocus={this.props.autoFocus ? (i === 0) : false}
+        onChange={this.onChange.bind(this, i)}
+        onBlur={this.onBlur.bind(this)}
+        error={!!formError}/>);
+
+      this.inputRefs.push(inputRef);
+    }
 
     return (
       <div>
@@ -108,3 +119,5 @@ export class FormikSlottedInput extends React.Component<Props, State> {
     );
   }
 }
+
+export default connect(FormikSlottedInput);
