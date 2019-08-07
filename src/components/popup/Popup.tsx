@@ -7,13 +7,13 @@ import styled from 'styled-components';
 import {Container} from '../container/Container';
 import {IconClose, IconQuestionmark} from '../../icons';
 // @ts-ignore
-import monster from "../../assets/images/monster.png";
+import monster from '../../assets/images/monster.png';
 
 type Props = {
   title: string,
   show?: boolean,
   close: any,
-  headingIcon?: boolean,
+  hideHeadingIcon?: boolean,
 }
 
 const PopupStyled = styled.div`
@@ -26,59 +26,26 @@ const PopupStyled = styled.div`
   font-family: var(--font-secondary);
   font-size: var(--font-size-l);
   color: var(--color-dark);
-  background-color: rgba(var(--color-white-rgb), 0.95);
+  background-color: var(--color-white);
   text-align: center;
-
-  @media only screen and (min-width: 400px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-primary-contrast);
-    background-color: rgba(var(--color-primary-rgb), 0.95);
-  }
 `;
 
 const ControlsStyled = styled.div`
- display: flex;
- justify-content: flex-end;
-
-  @media only screen and (min-width: 400px) {
-    padding: var(--spacing-s) var(--spacing-s) 0;
+  display: flex;
+  justify-content: flex-end;
+  
+  Button {
+    padding: var(--spacing-l);
   }
 `;
 
 const BorderStyled = styled.div`
-  --close-button-color: var(--color-primary);
-  
   display: flex;
   flex-flow: column;
   justify-content: center;
-  
-  .contents {
-    margin-top: var(--spacing-l);
-  }
 
   svg {
-    fill: var(--close-button-color);
-  }
-
-  @media only screen and (min-width: 400px) {
-      --close-button-color: var(--color-dark);
-
-    justify-content: flex-start;
-    background-color: var(--color-white);
-    color: var(--color-dark);
-    border-radius: 10px;
-    padding-top: 8px;
-    margin: var(--spacing-l) 0;
-    max-height: 450px;
-
-    .contents {
-      margin: 0;
-      max-height: 400px;
-      overflow-y: auto;
-      padding: 0 var(--spacing-xl) var(--spacing-xl);
-    }
+    fill: var(--color-dark);
   }
 `;
 
@@ -87,16 +54,13 @@ const MonsterStyled = styled.img`
     display: none;
   }
   position: absolute;
-  top: 55%;
-  left: 70%;
+  bottom: -160px;
+  right: 0;
 `;
 
 const RelativeStyled = styled.div`
   position: relative;
-`;
-
-const ContainerStyled = styled(Container)`
-  padding: var(--spacing-m);
+  height: 100%;
 `;
 
 export class Popup extends React.Component<Props> {
@@ -104,16 +68,15 @@ export class Popup extends React.Component<Props> {
     const popup = (
       <PopupStyled {...this.props}>
         <RelativeStyled>
-          <ContainerStyled>
+          <ControlsStyled>
+            <Button
+              onClick={() => this.props.close()}
+              iconOnly={<IconClose fill={'black'} fontSize={'var(--icon-size-xs)'}/>}
+            />
+          </ControlsStyled>
+          <Container>
             <BorderStyled>
-              <ControlsStyled>
-                <Button
-                  onClick={() => this.props.close()}
-                  iconOnly={<IconClose fontSize={'var(--icon-size-xs)'}/>}
-                />
-              </ControlsStyled>
-              <div className={'contents'}>
-                {this.props.headingIcon ? (
+                {!this.props.hideHeadingIcon ? (
                   <span>
                     <IconQuestionmark fontSize={'var(--icon-size-l'}/>
                   </span>
@@ -122,9 +85,8 @@ export class Popup extends React.Component<Props> {
                   {this.props.title}
                 </h2>
                 <div>{this.props.children}</div>
-              </div>
             </BorderStyled>
-          </ContainerStyled>
+          </Container>
           <MonsterStyled src={monster} width='380' height='420' />
         </RelativeStyled>
       </PopupStyled>
