@@ -25,7 +25,7 @@ const Host = styled.div<Props>`
       : `var(--color-primary)`};
   border: 2px solid var(--color-primary);
   border-radius: 50%;
-  font-size: 20px;
+  font-size: var(--font-size-l);
   cursor: pointer;
   outline: 0;
   position: relative;
