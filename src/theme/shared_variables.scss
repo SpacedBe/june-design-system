@@ -116,6 +116,7 @@
   --line-height-headings: 1.6;
 
   /* FONT SIZE */
+  --base-font-size: 16px;
 
   --font-size-xs: 0.714em;
   --font-size-s: 0.857em;
@@ -155,12 +156,12 @@
   --spacing-xxs: calc(var(--spacing-baseline) / 6); //0.25em or 4px
   --spacing-xs: calc(var(--spacing-baseline) / 4); //0.25em or 4px
   --spacing-s: calc(var(--spacing-baseline) / 2); //0.5em or 8px
-  --spacing-sm: calc((var(--spacing-baseline) / 4) * 3 ); // 0.75em or 12px
+  --spacing-sm: calc((var(--spacing-baseline) / 4) * 3); // 0.75em or 12px
   --spacing-m: var(--spacing-baseline); //1em or 16px
-  --spacing-ml: calc(var(--spacing-baseline) * 1.5);//1.5em or 24px
+  --spacing-ml: calc(var(--spacing-baseline) * 1.5); //1.5em or 24px
   --spacing-l: calc(var(--spacing-baseline) * 2); //2em or 32px
   --spacing-xl: calc(var(--spacing-baseline) * 4); //4em or 64px
-  --spacing-xxl: calc(var(--spacing-baseline) * 8);//8em or 128px
+  --spacing-xxl: calc(var(--spacing-baseline) * 8); //8em or 128px
 
   @media only screen and (min-width: 400px) {
     --spacing-baseline: 1.214em;
