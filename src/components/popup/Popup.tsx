@@ -53,14 +53,20 @@ const MonsterStyled = styled.img`
   @media screen and (max-width: 1000px) {
     display: none;
   }
-  position: absolute;
+  
+  @media screen and (max-height: 400px) {
+    display: none;
+  }
+  
+  position: fixed;
   bottom: -160px;
-  right: 0;
+  right: 25px;
 `;
 
 const RelativeStyled = styled.div`
   position: relative;
   height: 100%;
+  overflow: auto;
 `;
 
 export class Popup extends React.Component<Props> {
@@ -71,14 +77,14 @@ export class Popup extends React.Component<Props> {
           <ControlsStyled>
             <Button
               onClick={() => this.props.close()}
-              iconOnly={<IconClose fill={'black'} fontSize={'var(--icon-size-xs)'}/>}
-            />
+              iconOnly={<IconClose fill={'black'} fontSize={'var(--icon-size-xs)'}/>}>
+            </Button>
           </ControlsStyled>
           <Container>
             <BorderStyled>
                 {!this.props.hideHeadingIcon ? (
                   <span>
-                    <IconQuestionmark fontSize={'var(--icon-size-l'}/>
+                    <IconQuestionmark fontSize={'var(--icon-size-l)'}/>
                   </span>
                 ) : ''}
                 <h2 className={'no-margin margin-bottom'}>
