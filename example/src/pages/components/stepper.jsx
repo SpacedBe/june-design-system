@@ -65,13 +65,13 @@ export default class StepPage extends React.Component {
           <Flex>
             <div className="wrapper">
               <Button onClick={() => this.decrementCurrentStep()}>
-                Uncomplete one step
+                Uncomplete step
               </Button>
             </div>
 
             <div className="wrapper">
               <Button onClick={() => this.incrementCurrentStep()}>
-                Complete one step
+                Complete step
               </Button>
             </div>
           </Flex>

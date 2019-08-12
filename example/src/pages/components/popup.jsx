@@ -73,7 +73,7 @@ export default class PopupPage extends React.Component {
           </div>
           <Popup title={this.state.title}
                  show={this.state.show}
-                 close={(event) => this.handleClose({show: false})}>
+          close={(event) => this.handleClose({show: false})}>
             This is an amazing popup that transcludes the content!
           </Popup>
         </Page>

@@ -6,12 +6,15 @@ import {Button} from '../button/Button';
 import styled from 'styled-components';
 import {Container} from '../container/Container';
 import {IconClose, IconQuestionmark} from '../../icons';
+// @ts-ignore
 import monster from '../../assets/images/monster.png';
 
 type Props = {
   title: string,
   show?: boolean,
   close: any,
+  hideHeadingIcon?: boolean,
+  className?: string
 }
 
 const PopupStyled = styled.div`
@@ -22,24 +25,17 @@ const PopupStyled = styled.div`
   height: 100%;
   z-index: 999;
   font-family: var(--font-secondary);
-  font-size: var(--font-size-l);
-  color: var(--color-primary-contrast);
-  background-color: rgba(var(--color-primary-rgb), 0.95);
+  color: var(--color-dark);
+  background-color: var(--color-white);
   text-align: center;
-
-  @media only screen and (min-width: 400px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
 const ControlsStyled = styled.div`
- display: flex;
- justify-content: flex-end;
-
-  @media only screen and (min-width: 400px) {
-    padding: var(--spacing-s) var(--spacing-s) 0;
+  display: flex;
+  justify-content: flex-end;
+  
+  Button {
+    padding: var(--spacing-l);
   }
 `;
 
@@ -49,31 +45,7 @@ const BorderStyled = styled.div`
   justify-content: center;
 
   svg {
-    fill: var(--color-white);
-  }
-
-  h3 {
-    margin-top: 0;
-  }
-
-  @media only screen and (min-width: 400px) {
-    justify-content: flex-start;
-    background-color: var(--color-white);
-    color: var(--color-dark);
-    border-radius: 10px;
-    padding-top: 8px;
-    margin: var(--spacing-l) 0;
-    max-height: 450px;
-
-    svg {
-      fill: var(--color-dark)
-    }
-
-    .contents {
-      max-height: 400px;
-      overflow-y: auto;
-      padding: 0 var(--spacing-xl) var(--spacing-xl);
-    }
+    fill: var(--color-dark);
   }
 `;
 
@@ -81,44 +53,47 @@ const MonsterStyled = styled.img`
   @media screen and (max-width: 1000px) {
     display: none;
   }
-  position: absolute;
-  top: 55%;
-  left: 70%;
+  
+  @media screen and (max-height: 400px) {
+    display: none;
+  }
+  
+  position: fixed;
+  bottom: -160px;
+  right: 25px;
 `;
 
 const RelativeStyled = styled.div`
   position: relative;
+  height: 100%;
+  overflow: auto;
 `;
-
-const ContainerStyled = styled(Container)`
-  padding: var(--spacing-m);
-`
 
 export class Popup extends React.Component<Props> {
   render() {
     const popup = (
-      <PopupStyled {...this.props}>
+      <PopupStyled {...this.props.className}>
         <RelativeStyled>
-          <ContainerStyled>
+          <ControlsStyled>
+            <Button
+              onClick={() => this.props.close()}
+              iconOnly={<IconClose fill={'black'} />}>
+            </Button>
+          </ControlsStyled>
+          <Container>
             <BorderStyled>
-              <ControlsStyled>
-                <Button
-                  onClick={() => this.props.close()}
-                  iconOnly={<IconClose fill={'white'} fontSize={'20px'} />}
-                />
-              </ControlsStyled>
-              <div className={'contents'}>
-                <span>
-                  <IconQuestionmark fontSize={'70px'} />
-                </span>
-                <h3 className={'no-margin margin-bottom'}>
+                {!this.props.hideHeadingIcon ? (
+                  <span style={{marginBottom: 'var(--spacing-m)'}}>
+                    <IconQuestionmark fontSize={'var(--icon-size-l)'}/>
+                  </span>
+                ) : ''}
+                <h2 className={'no-margin margin-bottom'}>
                   {this.props.title}
-                </h3>
+                </h2>
                 <div>{this.props.children}</div>
-              </div>
             </BorderStyled>
-          </ContainerStyled>
-          <MonsterStyled src={monster} alt='' width='380' height='420' />
+          </Container>
+          <MonsterStyled src={monster} width='380' height='420' />
         </RelativeStyled>
       </PopupStyled>
     );

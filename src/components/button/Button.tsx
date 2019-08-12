@@ -20,8 +20,6 @@ const sizes = {
 type Props = {
   className?: string,
   id?: string,
-  href?: string,
-  target?: string,
   label?: string | React.ReactNode,
   iconLeft?: any,
   iconRight?: any,
@@ -52,8 +50,6 @@ const Icon = styled.div<{ color?: string, clear?: boolean, outlined?: boolean, l
     
   return colorHelper.getColorContrast(props.color);
 }};
-
-    font-size: var(--icon-size-m);
   }
 
   &:hover {
@@ -63,10 +59,12 @@ const Icon = styled.div<{ color?: string, clear?: boolean, outlined?: boolean, l
 
 const IconLeft = styled(Icon)`
   margin-right: var(--spacing-s);
+  font-size: var(--icon-size-m);
 `;
 
 const IconRight = styled(Icon)`
   margin-left: var(--spacing-s);
+  font-size: var(--icon-size-m);
 `;
 
 const IconOnlyStyled = styled.div<{ color?: string }>`
@@ -247,8 +245,6 @@ export class Button extends React.Component<Props> {
     buttonContent = (
         <ButtonStyled id={this.props.id}
                       className={this.props.className}
-                      href={this.props.href}
-                      target={this.props.target}
                       disabled={this.props.loading || this.props.disabled}
                       color={this.props.color || Button.defaultProps.color}
                       wide={this.props.wide}

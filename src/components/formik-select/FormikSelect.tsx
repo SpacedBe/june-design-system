@@ -15,6 +15,7 @@ interface Option {
 type Props = {
   field: {
     name: string;
+    value?: string;
     onChange?: (arg?: any) => void;
   }
 
@@ -75,7 +76,7 @@ const SelectStyled = styled.select<{ error?: boolean; disabled?: boolean; }>`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 1.1em;
+  padding: 1.1rem;
   cursor: pointer;
 `;
 
@@ -145,6 +146,7 @@ export class FormikSelect extends React.Component<Props> {
     const fieldError = getIn(this.props.form.errors, name);
     const touched = getIn(this.props.form.touched, name);
     const formError = touched ? (this.props.serverErrors && this.props.serverErrors[name]) || fieldError : null;
+    this.props.field.value = this.props.field.value || 'placeholderValue';
 
     return (
       <WrapperStyled>
@@ -162,7 +164,7 @@ export class FormikSelect extends React.Component<Props> {
                         error={formError}>
 
             {this.props.placeholder &&
-            (<OptionStyled value='placeholderValue' selected disabled
+            (<OptionStyled value='placeholderValue' disabled
                            hidden>{this.props.placeholder}</OptionStyled>)
             }
             {this.props.options.map(item => (

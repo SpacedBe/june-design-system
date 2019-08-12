@@ -28,11 +28,12 @@ type Props = {
   icon?: any;
   disabled?: boolean;
   error: boolean,
+  label?: string,
 };
 
 const colorHelper = new Color();
 
-const ToggleInputStyled = styled.input`
+const ToggleInputStyled = styled.input<{error?: boolean}>`
   z-index: var(--zi-200);
   opacity: 0;
   margin: -10px;
@@ -42,7 +43,7 @@ const ToggleInputStyled = styled.input`
   position: absolute;
 
   &:checked ~ label span {
-    transform: translatex(30px);
+    transform: translateX(30px);
     transition: transform var(--transition-speed-normal) ease-in;
     border: 2px solid ${props => {
       if (props.disabled) {
@@ -117,7 +118,6 @@ const ToggleStyled = styled.label<{ disabled?: boolean; error?: boolean }>`
      return `2px solid var(--color-gray)`;
    }};
   font-family: var(--font-secondary);
-  font-size: var(--font-size-l);
 
   :after {
     top: -2px;
@@ -174,7 +174,6 @@ const TooltipIconStyled = styled.span`
 const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
   display: flex;
   font-family: var(--font-secondary);
-  font-size: var(--font-size-l);
   margin-right: var(--spacing-s);
   color: ${props => {
     if (props.disabled) {
@@ -212,19 +211,13 @@ const IconOffStyled = styled(IconOff)`
   fill: var(--color-white);
 `;
 
-const RowStyled = styled.div`
-  margin-bottom: var(--spacing-m);
-  padding-bottom: var(--spacing-m);
-  border-bottom: 1px solid #DFF2F2;
-`;
-
 export class FormikToggle extends React.Component<Props> {
   constructor(props: any) {
     super(props);
   }
 
   render() {
-    const name = this.props.field.name
+    const name = this.props.field.name;
     const tooltip = this.props.tooltip && <TooltipIconStyled>{this.props.tooltip}</TooltipIconStyled>;
     const labelIcon = this.props.icon && <LabelIconStyled>{this.props.icon}</LabelIconStyled>;
     const fieldError = getIn(this.props.form.errors, name);
