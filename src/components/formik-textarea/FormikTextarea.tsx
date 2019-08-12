@@ -78,7 +78,7 @@ const Flex = styled.div<{ disabled?: boolean; error?: boolean }>`
   justify-content: space-between;
 `;
 
-const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean }>`
+const LabelStyled = styled.span<{ disabled?: boolean; error?: boolean, htmlFor?: any }>`
   padding-bottom: 5px;
   opacity: ${props => (props.disabled ? '0.5' : '1')};
   color: ${props => {

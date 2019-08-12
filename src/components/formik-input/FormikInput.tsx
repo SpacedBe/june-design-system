@@ -37,7 +37,6 @@ type Props = {
   current?: boolean,
   classNames?: string[],
   style?: any,
-
   translations:{
     placeholder: string,
   }
@@ -193,7 +192,7 @@ export class FormikInput extends React.Component<Props> {
                                    error={formError}
                                    disabled={this.props.disabled}
                                    placeholder={this.props.placeholderText}
-                                   type={this.props.type}></InputWithIconLeftStyled>
+                                   type={this.props.type}/>
         </InputboxIconStyled>
       );
     }
@@ -219,7 +218,7 @@ export class FormikInput extends React.Component<Props> {
                        error={formError}
                        placeholder={this.props.placeholderText}
                        disabled={this.props.disabled}
-                       type={this.props.type}></InputStyled>
+                       type={this.props.type}/>
           <ButtonWrapperStyled disabled={this.props.disabled}>{this.props.buttonRight}</ButtonWrapperStyled>
         </InputboxIconStyled>
       );
@@ -234,7 +233,7 @@ export class FormikInput extends React.Component<Props> {
                          error={formError}
                          placeholder={this.props.placeholderText}
                          disabled={this.props.disabled}
-                         type={this.props.type}></InputStyled>
+                         type={this.props.type}/>
           </InputboxIconStyled>
           <ButtonOutsideRightStyled disabled={this.props.disabled}>
             {this.props.buttonOutsideRight}
@@ -253,7 +252,7 @@ export class FormikInput extends React.Component<Props> {
                          error={formError}
                          placeholder={this.props.placeholderText}
                          disabled={this.props.disabled}
-                         type={this.props.type}></InputStyled>
+                         type={this.props.type}/>
           </InputboxIconStyled>
         </FlexStyled>
       );
@@ -267,7 +266,7 @@ export class FormikInput extends React.Component<Props> {
                          placeholder={this.props.placeholderText}
                          error={formError}
                          disabled={this.props.disabled}
-                         type={this.props.type}></InputStyled>
+                         type={this.props.type}/>
           </InputboxIconStyled>
           <IconOutsideLeftStyled disabled={this.props.disabled}>{this.props.iconEnd}</IconOutsideLeftStyled>
         </FlexStyled>
@@ -281,7 +280,7 @@ export class FormikInput extends React.Component<Props> {
                        placeholder={this.props.placeholderText}
                        error={formError}
                        disabled={this.props.disabled}
-                       type={this.props.type}></InputStyled>
+                       type={this.props.type}/>
         </InputboxIconStyled>
       );
     }

@@ -14,6 +14,7 @@ type Props = {
   show?: boolean,
   close: any,
   hideHeadingIcon?: boolean,
+  className?: string
 }
 
 const PopupStyled = styled.div`
@@ -24,7 +25,6 @@ const PopupStyled = styled.div`
   height: 100%;
   z-index: 999;
   font-family: var(--font-secondary);
-  font-size: var(--font-size-l);
   color: var(--color-dark);
   background-color: var(--color-white);
   text-align: center;
@@ -72,18 +72,18 @@ const RelativeStyled = styled.div`
 export class Popup extends React.Component<Props> {
   render() {
     const popup = (
-      <PopupStyled {...this.props}>
+      <PopupStyled {...this.props.className}>
         <RelativeStyled>
           <ControlsStyled>
             <Button
               onClick={() => this.props.close()}
-              iconOnly={<IconClose fill={'black'} fontSize={'var(--icon-size-xs)'}/>}>
+              iconOnly={<IconClose fill={'black'} />}>
             </Button>
           </ControlsStyled>
           <Container>
             <BorderStyled>
                 {!this.props.hideHeadingIcon ? (
-                  <span>
+                  <span style={{marginBottom: 'var(--spacing-m)'}}>
                     <IconQuestionmark fontSize={'var(--icon-size-l)'}/>
                   </span>
                 ) : ''}
