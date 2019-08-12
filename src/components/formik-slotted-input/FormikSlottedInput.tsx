@@ -2,11 +2,11 @@
  * @class FormikSlottedInput
  */
 
-import React from 'react';
+import React, {Fragment} from 'react';
 import styled from 'styled-components';
 import {State} from "react-autocomplete";
 import Color from "../../helpers/color";
-import {FieldProps, getIn, connect} from "formik";
+import {connect, FieldProps, getIn} from "formik";
 
 type Props = FieldProps & {
   ['serverErrors']: string;
@@ -48,6 +48,19 @@ const SlottedInputStyled = styled.input.attrs({
   border-radius: 3px;
   margin: var(--spacing-xs) var(--spacing-xxs);
   outline: none;
+`;
+
+const ErrorMessageStyled = styled.div`
+  font-size: var(--font-size-s);
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+  margin-top: var(--spacing-xs);
+`;
+
+const WrapperStyled = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 class FormikSlottedInput extends React.Component<Props, State> {
@@ -112,10 +125,12 @@ class FormikSlottedInput extends React.Component<Props, State> {
     }
 
     return (
-      <div>
+      <Fragment>
+        <WrapperStyled>
         {this.slots}
-        {formError}
-      </div>
+        </WrapperStyled>
+        {formError && <ErrorMessageStyled>{formError}</ErrorMessageStyled>}
+      </Fragment>
     );
   }
 }
