@@ -1,9 +1,9 @@
 import typescript from 'rollup-plugin-typescript2';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-import resolve from 'rollup-plugin-node-resolve';
-import url from 'rollup-plugin-url';
+import resolve from '@rollup/plugin-node-resolve';
+import url from '@rollup/plugin-url';
 import copy from 'rollup-plugin-copy-glob';
 import images from 'rollup-plugin-images';
 
@@ -34,20 +34,19 @@ export default {
 
   plugins: [
     external(),
+    commonjs(),
     postcss({
       modules: true
     }),
     url(),
     svgr(),
     images(),
-    resolve({ extensions }),
     typescript({
       check: false,
       rollupCommonJSResolveHack: true,
       clean: false,
       objectHashIgnoreUnknownHack: true,
     }),
-    commonjs(),
     copy([
       {
         files: 'src/theme/**/*',
